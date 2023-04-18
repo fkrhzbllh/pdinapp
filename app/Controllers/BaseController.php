@@ -55,4 +55,19 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    protected function view($file, $data = [], $file_only = false) 
+	{
+		if (is_array($file)) {
+			foreach ($file as $file_item) {
+				echo view($file_item, $data);
+			}
+		} else {
+			echo view('layout/header.php', $data);
+            echo view('layout/navbar.php');
+			echo view($file, $data);
+            echo view('layout/copyright.php');
+			echo view('layout/footer.php');
+		}
+	}
 }

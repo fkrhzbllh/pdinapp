@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
-class Profil extends BaseController
+class Login extends BaseController
 {
     public function index()
     {
-        $this->view('profilpdin.php');
+        $this->view('login.php');
     }
-
 }

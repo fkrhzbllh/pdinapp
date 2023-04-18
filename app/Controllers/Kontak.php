@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-class SewaRuang extends BaseController
+class Kontak extends BaseController
 {
     public function index()
     {
-        $this->view('sewaruang.php');
+        $this->view('kontak.php');
     }
 
 }
