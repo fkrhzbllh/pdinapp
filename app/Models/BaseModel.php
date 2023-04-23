@@ -11,12 +11,12 @@ class BaseModel extends \CodeIgniter\Model
         parent::__construct();
 
         //cek sesi admin
-        $admin = $this->session->get('admin');
+        // $admin = $this->session->get('admin');
 
-		if ($admin) 
-        {
-            $this->admin = $this->getAdminById($admin['id_admin']);
-        }
+		// if ($admin) 
+        // {
+        //     $this->admin = $this->getAdminById($admin['id_admin']);
+        // }
 
     }
 

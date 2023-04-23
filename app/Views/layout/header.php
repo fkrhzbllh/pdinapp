@@ -10,7 +10,7 @@
     <meta name="author" content="" />
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico" />
     
-    <title><?php if(!empty($page_title)) echo $page_title;?> </title>
+    <title><?php if(!empty($judul_halaman)) echo $judul_halaman;?> </title>
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/e87ebb70cc.js" crossorigin="anonymous"></script>
@@ -22,4 +22,11 @@
       crossorigin="anonymous"
     />
     <!-- Custom styles for this template -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+    
   </head>

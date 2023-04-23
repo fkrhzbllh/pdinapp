@@ -43,6 +43,8 @@ abstract class BaseController extends Controller
      */
     // protected $session;
 
+    protected $data;
+
     /**
      * Constructor.
      */
@@ -54,6 +56,7 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+        $this->data['judul_halaman'] = 'PDIN';
     }
 
     protected function view($file, $data = [], $file_only = false) 
