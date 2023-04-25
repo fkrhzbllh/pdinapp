@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <h3 class="card-title"><?= $r['nama'] ?></h3>
                                 <p class="card-text"><?= $r['deskripsi'] ?></p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="/fasilitas/ruang/<?= $r['slug'];?>" class="btn btn-primary">Detail</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <div class="card-body">
                                 <h3 class="card-title"><?= $a['nama'] ?></h3>
                                 <p class="card-text"><?= $a['deskripsi'] ?></p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="/fasilitas/alat/<?= $a['slug'];?>" class="btn btn-primary">Detail</a>
                             </div>
                         </div>
                     </div>

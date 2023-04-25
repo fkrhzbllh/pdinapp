@@ -4,13 +4,9 @@
             </div><div class="card mb-3">
               <img src="<?php echo base_url() ?>uploads/5ea50f43831c2.png" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title"><?= $ruangan['nama'] ?></h5>
-                <p class="card-text"><?= $ruangan['deskripsi'] ?></p>
-                <p class="border border-1 rounded border-danger" style="padding-left: 10px; padding-right: 10px; width:fit-content;"><?= $ruangan['tipe'] ?></p>
-                <p class="card-text">Kapasitas : <b><?= $ruangan['kapasitas']?></b></p>
-                <p class="card-text">Fasilitas : <b><?= $ruangan['fasilitas']?></b></p>
-                <p class="card-text">Ukuran : <b><?= $ruangan['ukuran']?></b></p>
-                <p class="card-text mb-5">Biaya sewa : <b><?= $ruangan['biaya_sewa']?></b></p>
+                <h5 class="card-title"><?= $alat['nama'] ?></h5>
+                <p class="card-text"><?= $alat['deskripsi'] ?></p>
+                <p class="card-text mb-5">Biaya sewa : <b><?= $alat['biaya_sewa']?></b></p>
                 <p class="card-text mb-2">Jadwal Sewa : </p>
                 <script>
                     //const element = document.getElementById("kt_docs_fullcalendar_basic");
