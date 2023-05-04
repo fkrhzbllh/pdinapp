@@ -4,7 +4,6 @@ namespace App\Models;
 class AlatModel extends \App\Models\BaseModel
 {
     protected $table = 'alat';
-    protected $primaryKey = 'id';
     protected $useTimestamps = true;
     protected $tableSewaAlat = 'sewa_alat';
 
@@ -12,7 +11,6 @@ class AlatModel extends \App\Models\BaseModel
     {
         parent::__construct();
         $this->table = 'alat';
-        $this->primaryKey = 'id';
     }
 
     public function getAlat($slug = false)

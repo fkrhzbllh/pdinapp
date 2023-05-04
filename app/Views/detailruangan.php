@@ -1,9 +1,13 @@
 <div class="container mt-3">
     <div class="row justify-content-center align-items-center">
-        <div class="column">
-            </div><div class="card mb-3">
-              <img src="<?php echo base_url() ?>uploads/5ea50f43831c2.png" class="card-img-top" alt="...">
-              <div class="card-body">
+        <?php if(session()->getFlashdata('sukses')) : ?>
+            <div class="alert alert-success" role="alert">
+                <?= session()->getFlashdata('sukses') ?>
+            </div>
+        <?php endif; ?>
+        <div class="card mb-3">
+            <img src="<?php echo base_url() ?>uploads/5ea50f43831c2.png" class="card-img-top" alt="...">
+            <div class="card-body">
                 <h5 class="card-title"><?= $ruangan['nama'] ?></h5>
                 <p class="card-text"><?= $ruangan['deskripsi'] ?></p>
                 <p class="border border-1 rounded border-danger" style="padding-left: 10px; padding-right: 10px; width:fit-content;"><?= $ruangan['tipe'] ?></p>
@@ -11,7 +15,10 @@
                 <p class="card-text">Fasilitas : <b><?= $ruangan['fasilitas']?></b></p>
                 <p class="card-text">Ukuran : <b><?= $ruangan['ukuran']?></b></p>
                 <p class="card-text mb-5">Biaya sewa : <b><?= $ruangan['biaya_sewa']?></b></p>
+                <a class="btn btn-primary" href="/fasilitas/sewaruangan/<?= $ruangan['id'] ?>">Sewa Ruangan</a>
                 <p class="card-text mb-2">Jadwal Sewa : </p>
+
+                <?php //d($jadwal_sewa)?>
                 <script>
                     //const element = document.getElementById("kt_docs_fullcalendar_basic");
 
@@ -26,7 +33,7 @@
                         headerToolbar: {
                             left: "prev,next today",
                             center: "title",
-                            right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+                            right: "dayGridMonth,timeGridWeek,listMonth"
                         },
 
                         height: 800,
@@ -38,8 +45,7 @@
 
                         views: {
                             dayGridMonth: { buttonText: "month" },
-                            timeGridWeek: { buttonText: "week" },
-                            timeGridDay: { buttonText: "day" }
+                            timeGridWeek: { buttonText: "week" }
                         },
 
                         initialView: "dayGridMonth",
@@ -81,7 +87,7 @@
                         headerToolbar: {
                         left: "prev,next,today",
                         center: "title",
-                        right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+                        right: "dayGridMonth,timeGridWeek,listMonth"
                         },
 
                         height: 800,
@@ -93,8 +99,7 @@
 
                         views: {
                         dayGridMonth: { buttonText: "month" },
-                        timeGridWeek: { buttonText: "week" },
-                        timeGridDay: { buttonText: "day" }
+                        timeGridWeek: { buttonText: "week" }
                         },
                         
                         initialView: 'dayGridMonth',
@@ -102,7 +107,7 @@
                         editable: true,
                         dayMaxEvents: true, // allow "more" link when too many events
                         navLinks: true,
-                        events: <?php echo json_encode($jadwal_sewa)?>, //array kegiatan -> objek kegiatan
+                        events: <?php echo (isset($jadwal_sewa)) ? json_encode($jadwal_sewa) : null;?>, //array kegiatan -> objek kegiatan
 
                         eventTimeFormat: { // like '14:30:00'
                             // day: '2-digit',
@@ -159,7 +164,7 @@
 
                 </script>
                 <div id="calendar" style="width: 1000px;"></div>
-              </div>
             </div>
         </div>
     </div>
+</div>

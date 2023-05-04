@@ -98,7 +98,7 @@
                         editable: true,
                         dayMaxEvents: true, // allow "more" link when too many events
                         navLinks: true,
-                        events: <?php echo json_encode($jadwal_sewa)?>, //array kegiatan -> objek kegiatan
+                        events: <?php echo (isset($jadwal_sewa)) ? json_encode($jadwal_sewa) : null;?>, //array kegiatan -> objek kegiatan
 
                         eventTimeFormat: { // like '14:30:00'
                             // day: '2-digit',

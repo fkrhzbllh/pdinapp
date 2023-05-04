@@ -42,7 +42,7 @@
                     headerToolbar: {
                         left: "prev,next today",
                         center: "title",
-                        right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+                        right: "dayGridMonth,timeGridWeek,listMonth"
                     },
 
                     height: 800,
@@ -55,7 +55,6 @@
                     views: {
                         dayGridMonth: { buttonText: "month" },
                         timeGridWeek: { buttonText: "week" },
-                        timeGridDay: { buttonText: "day" }
                     },
 
                     initialView: "dayGridMonth",
@@ -97,7 +96,7 @@
                     headerToolbar: {
                     left: "prev,next,today",
                     center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+                    right: "dayGridMonth,timeGridWeek,listMonth"
                     },
 
                     height: 800,
@@ -110,7 +109,6 @@
                     views: {
                     dayGridMonth: { buttonText: "month" },
                     timeGridWeek: { buttonText: "week" },
-                    timeGridDay: { buttonText: "day" }
                     },
                     
                     initialView: 'dayGridMonth',

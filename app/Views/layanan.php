@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <h3 class="card-title"><?= $l['nama_layanan'] ?></h3>
                         <p class="card-text"><?= $l['deskripsi'] ?></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                     </div>
                 </div>
             </div>
