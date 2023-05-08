@@ -84,14 +84,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulaiPameran')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalMulaiPameran" value="<?= old('tanggalMulaiPameran') ?>"/>
+                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulaiPameran')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalMulaiPameran" value="<?= old('tanggalMulaiPameran') ?>" />
                         <div class="invalid-feedback">
                         <?= validation_show_error('tanggalMulaiPameran'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesaiPameran')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalSelesaiPameran" value="<?= old('tanggalSelesaiPameran') ?>"/>
+                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesaiPameran')) ? 'is-invalid' : ''; ?>" type="date" date name="tanggalSelesaiPameran" value="<?= old('tanggalSelesaiPameran') ?>"/>
                         <div class="invalid-feedback">
                         <?= validation_show_error('tanggalSelesaiPameran'); ?>
                         </div>
@@ -102,15 +102,15 @@
             <div class="Kantor mb-3" id="Kantor" style="display: none;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= old('tanggalMulaiKantor') ?>" step="3600"/>
+                        <label for="tanggalMulai2" class="form-label">Tanggal Mulai</label>
+                        <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= old('tanggalMulaiKantor') ?>" step="3600"/>
                         <div class="invalid-feedback">
                         <?= validation_show_error('tanggalMulaiKantor'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= old('tanggalSelesaiKantor') ?>" step="60"/>
+                        <label for="tanggalSelesai2" class="form-label">Tanggal Selesai</label>
+                        <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= old('tanggalSelesaiKantor') ?>" step="60"/>
                         <div class="invalid-feedback">
                         <?= validation_show_error('tanggalSelesaiKantor'); ?>
                         </div>
@@ -121,15 +121,15 @@
             <div class="Meeting mb-3" id="Meeting" style="display: none;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiMeeting" value="<?= old('tanggalMulaiMeeting') ?>"/>
+                        <label for="tanggalMulai3" class="form-label">Tanggal Mulai</label>
+                        <input id="tanggalMulai3" class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiMeeting" value="<?= old('tanggalMulaiMeeting') ?>"/>
                         <div class="invalid-feedback">
                         <?= validation_show_error('tanggalMulaiMeeting'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiMeeting" value="<?= old('tanggalSelesaiMeeting') ?>"/>
+                        <label for="tanggalSelesai3" class="form-label">Tanggal Selesai</label>
+                        <input id="tanggalSelesai3" class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiMeeting" value="<?= old('tanggalSelesaiMeeting') ?>"/>
                         <div class="invalid-feedback">
                         <?= validation_show_error('tanggalSelesaiMeeting'); ?>
                         </div>
@@ -189,10 +189,81 @@
                     // }
 
                     // $('#tanggalMulai').date_default_timezone_set('id');
-                    // $('#tanggalSelesai').date_default_timezone_set('id');                
+                    // $('#tanggalSelesai').date_default_timezone_set('id');
+                    
+                    // var start = document.getElementById('tanggalMulai');
+                    // var end = document.getElementById('tanggalSelesai');
+
+                    // $('#tanggalMulai').change(function() {
+                    //     if ($('#tanggalMulai').val)
+                    //         $('#tanggalSelesai').min = $('#tanggalMulai').val;
+                    // }, false);
+                    // $('#tanggalSelesai').change(function() {
+                    //     if ($("#tanggalSelesai").val)
+                    //         $('#tanggalMulai').max = $("#tanggalSelesai").val;
+                    // }, false);
                 });
                 
 
+            </script>
+
+            <script>
+                var start = document.getElementById('tanggalMulai');
+                var end = document.getElementById('tanggalSelesai');
+                var tanggal = new Date();
+                var dd = String(tanggal.getDate()).padStart(2, '0');
+                var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = tanggal.getFullYear();
+
+                var today = yyyy + '-' + mm + '-' + dd;
+                start.min = today;
+
+                start.addEventListener('change', function() {
+                if (start.value)
+                    end.min = start.value;
+                }, false);
+                end.addEventLiseter('change', function() {
+                if (end.value)
+                    start.max = end.value;
+                }, false);
+
+                var start2 = document.getElementById('tanggalMulai2');
+                var end2 = document.getElementById('tanggalSelesai2');
+                // var tanggal = new Date();
+                // var dd = String(tanggal.getDate()).padStart(2, '0');
+                // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+                // var yyyy = tanggal.getFullYear();
+
+                // var today = dd + '-' + mm + '-' + yyyy;
+                // start2.min = new Date(today);
+
+                start2.addEventListener('change', function() {
+                if (start2.value)
+                    end2.min = start2.value;
+                }, false);
+                end2.addEventLiseter('change', function() {
+                if (end2.value)
+                    start2.max = end2.value;
+                }, false);
+
+                var start = document.getElementById('tanggalMulai');
+                var end = document.getElementById('tanggalSelesai');
+                // var tanggal = new Date();
+                // var dd = String(tanggal.getDate()).padStart(2, '0');
+                // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+                // var yyyy = tanggal.getFullYear();
+
+                // var today = dd + '-' + mm + '-' + yyyy;
+                // start.min = new Date(today);
+
+                start.addEventListener('change', function() {
+                if (start.value)
+                    end.min = start.value;
+                }, false);
+                end.addEventLiseter('change', function() {
+                if (end.value)
+                    start.max = end.value;
+                }, false);
             </script>
 
             <button class="w-100 btn btn-primary btn-lg mt-5" type="submit">Sewa Ruangan</button>

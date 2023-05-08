@@ -7,6 +7,7 @@
                 <h5 class="card-title"><?= $alat['nama'] ?></h5>
                 <p class="card-text"><?= $alat['deskripsi'] ?></p>
                 <p class="card-text mb-5">Biaya sewa : <b><?= $alat['biaya_sewa']?></b></p>
+                <a class="btn btn-primary" href="/fasilitas/sewaalat/<?= $alat['id'] ?>">Sewa Alat</a>
                 <p class="card-text mb-2">Jadwal Sewa : </p>
                 <script>
                     //const element = document.getElementById("kt_docs_fullcalendar_basic");

@@ -24,10 +24,15 @@ class AlatModel extends \App\Models\BaseModel
         return $this->where(['slug' => $slug])->first();
     }
 
-    public function getJadwalSewaAlat($id)
+    public function getAlatByID($id)
     {
-        return $this->db->table('sewa_alat')
-        ->join($this->table,$this->table.".".$this->primaryKey."=".$this->tableSewaAlat.".id_alat")
-        ->where($this->table.".id",$id)->get()->getResultArray();
+        return $this->where([$this->primaryKey => $id])->first();
     }
+
+    // public function getJadwalSewaAlat($id)
+    // {
+    //     return $this->db->table('sewa_alat')
+    //     ->join($this->table,$this->table.".".$this->primaryKey."=".$this->tableSewaAlat.".id_alat")
+    //     ->where($this->table.".id",$id)->get()->getResultArray();
+    // }
 }

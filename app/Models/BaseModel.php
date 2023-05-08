@@ -4,7 +4,7 @@ namespace App\Models;
 
 class BaseModel extends \CodeIgniter\Model
 {
-    protected $admin;
+    // protected $admin;
 
     public function __construct()
     {
@@ -20,20 +20,20 @@ class BaseModel extends \CodeIgniter\Model
 
     }
 
-    protected function getAdminById($id = null)
-    {
-        if (!$id) {
-			if (!$this->admin) {
-				return false;
-			}
-			$id= $this->admin['id_admin'];
-		}
+    // protected function getAdminById($id = null)
+    // {
+    //     if (!$id) {
+	// 		if (!$this->admin) {
+	// 			return false;
+	// 		}
+	// 		$id= $this->admin['id_admin'];
+	// 	}
 		
-		$query = $this->db->query('SELECT * FROM admin WHERE id_admin = ?', [$id]);
-		$admin = $query->getRowArray();
+	// 	$query = $this->db->query('SELECT * FROM admin WHERE id_admin = ?', [$id]);
+	// 	$admin = $query->getRowArray();
 
-        if (!$admin) return;
+    //     if (!$admin) return;
         
-        return $admin;
-    }
+    //     return $admin;
+    // }
 }

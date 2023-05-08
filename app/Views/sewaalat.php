@@ -1,13 +1,14 @@
 <div class="container">
-    <form class="needs-validation mt-3" novalidate="" action="/fasilitas/saveSewaAlat" method="post">
+    <form id="sewaalat" class="mt-3" action="/fasilitas/saveSewaAlat" method="post">
         <?php echo csrf_field()?>
         <div class="row g-3">
             <h3>Sewa Alat</h3>
+            <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" placeholder="" value="" required="" name="nama" autofocus>
+                <input type="text" class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>" id="nama" placeholder="" value="<?= old('nama') ?>" name="nama" autofocus>
                 <div class="invalid-feedback">
-                Nama harus diisi.
+                <?= validation_show_error('nama'); ?>
                 </div>
             </div>
 
@@ -24,144 +25,122 @@
 
             <div class="col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email">
+                <input type="email" class="form-control <?= (validation_show_error('email')) ? 'is-invalid' : ''; ?>" id="email" placeholder="you@example.com" name="email" value="<?= old('email') ?>">
                 <div class="invalid-feedback">
-                Email harus diisi dan valid.
+                <?= validation_show_error('email'); ?>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <label for="nomorTelepon" class="form-label">Nomor Telepon</label>
-                <input type="text" class="form-control" id="nomorTelepon" placeholder="6281234567890" required="" name="nomorTelepon">
+                <input type="text" class="form-control <?= (validation_show_error('nomorTelepon')) ? 'is-invalid' : ''; ?>" id="nomorTelepon" placeholder="6281234567890" name="nomorTelepon" value="<?= old('nomorTelepon') ?>">
                 <div class="invalid-feedback">
-                Nomor telepon harus diisi.
+                <?= validation_show_error('nomorTelepon'); ?>
                 </div>
             </div>
 
             <div class="col-12">
                 <label for="instansi" class="form-label">Instansi</label>
-                <input type="text" class="form-control" id="instansi" placeholder="" value="" required="" name="instansi">
+                <input type="text" class="form-control <?= (validation_show_error('instansi')) ? 'is-invalid' : ''; ?>" id="instansi" placeholder="" value="<?= old('instansi') ?>" name="instansi">
                 <div class="invalid-feedback">
-                Instansi harus diisi.
-                </div>
-            </div>
-
-            <!-- <div class="col-12">
-                <label for="kegiatan" class="form-label">Nama Kegiatan</label>
-                <input type="text" class="form-control" id="kegiatan" placeholder="" value="" required="" name="namaKegiatan">
-                <div class="invalid-feedback">
-                Nama Kegiatan harus diisi.
+                <?= validation_show_error('instansi'); ?>
                 </div>
             </div>
 
             <div class="col-12">
-                <label for="deskripsiKegiatan" class="form-label">Deskripsi Kegiatan</label>
-                <input type="text" class="form-control" id="deskripsiKegiatan" placeholder="" value="" required="" name="deskripsiKegiatan">
+                <label for="kegiatan" class="form-label">Nama Kegiatan</label>
+                <input type="text" class="form-control <?= (validation_show_error('namaKegiatan')) ? 'is-invalid' : ''; ?>" id="kegiatan" placeholder="" value="<?= old('namaKegiatan') ?>" name="namaKegiatan">
                 <div class="invalid-feedback">
-                Deskripsi Kegiatan harus diisi.
+                <?= validation_show_error('namaKegiatan'); ?>
+                </div>
+            </div>
+
+            <!-- <div class="col-12">
+                <label for="deskripsiKegiatan" class="form-label">Deskripsi Kegiatan</label>
+                <input type="text" class="form-control <?= (validation_show_error('deskripsiKegiatan')) ? 'is-invalid' : ''; ?>" id="deskripsiKegiatan" placeholder="" value="<?= old('deskripsiKegiatan') ?>" name="deskripsiKegiatan">
+                <div class="invalid-feedback">
+                <?php //validation_show_error('deskripsiKegiatan'); ?>
                 </div>
             </div> -->
             
             <div class="col-12">
                 <label for="alat" class="form-label">Alat yang Dipinjam</label>
-                <select class="form-select" aria-label="Default select" id="alat" name="alat">
+                <select class="form-select <?= (validation_show_error('alat')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="alat" name="alat">
                     <option selected disabled>Pilih Alat</option>
                     <?php foreach($alat as $a) : ?>
-                        <?php if($id_alat == $a['id']) :?>
-                            <option selected value="<?= $a['id'] ?>"><?= $a['nama'] ?></option>
+                        <?php if($id_alat == $a['id'] || old('alat') == $a['id']) :?>
+                            <option selected value="<?= $a['id'] ?>" ><?= $a['nama'] ?></option>
                         <?php else : ?>
                             <option value="<?= $a['id'] ?>" ><?= $a['nama'] ?></option>
                         <?php endif ?>
                     <?php endforeach ?>
                 </select>
-            </div> 
-            
-            <div class="col-sm-6">
-                <!-- <label for="linkedPickers1Input" class="form-label">Waktu Mulai Sewa</label>
-                <div
-                    class="input-group log-event"
-                    id="linkedPickers1"
-                    data-td-target-input="nearest"
-                    data-td-target-toggle="nearest"
-                >
-                    <input
-                    id="linkedPickers1Input"
-                    type="text"
-                    class="form-control"
-                    data-td-target="#linkedPickers1"
-                    />
-                    <span
-                    class="input-group-text"
-                    data-td-target="#linkedPickers1"
-                    data-td-toggle="datetimepicker"
-                    >
-                    <span class="fa-solid fa-calendar"></span>
-                    </span>
-                </div> -->
-                <label for="datetimepicker1Input" class="form-label">Picker</label>
-                <div class="input-group log-event" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
-                    <input id="datetimepicker1Input" type="text" class="form-control" data-td-target="#datetimepicker1">
-                    <span class="input-group-text" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker">
-                    <i class="fas fa-calendar"></i>
-                    </span>
+                <div class="invalid-feedback">
+                <?= validation_show_error('alat'); ?>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <!-- <label for="linkedPickers2Input" class="form-label">Waktu Selesai Sewa</label>
-                <div
-                    class="input-group log-event"
-                    id="linkedPickers2"
-                    data-td-target-input="nearest"
-                    data-td-target-toggle="nearest"
-                >
-                    <input
-                    id="linkedPickers2Input"
-                    type="text"
-                    class="form-control"
-                    data-td-target="#linkedPickers2"
-                    />
-                    <span
-                    class="input-group-text"
-                    data-td-target="#linkedPickers2"
-                    data-td-toggle="datetimepicker"
-                    >
-                    <span class="fa-solid fa-calendar"></span>
-                    </span>
-                </div> -->
-                <label for="datetimepicker2Input" class="form-label">Picker</label>
-                <div class="input-group log-event" id="datetimepicker2" data-td-target-input="nearest" data-td-target-toggle="nearest">
-                    <input id="datetimepicker2Input" type="text" class="form-control" data-td-target="#datetimepicker2">
-                    <span class="input-group-text" data-td-target="#datetimepicker2" data-td-toggle="datetimepicker">
-                    <i class="fas fa-calendar"></i>
-                    </span>
+            </div> 
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="tanggalMulai" class="form-label">Waktu Mulai Sewa</label>
+                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulai')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalMulai" value="<?= old('tanggalMulai') ?>"/>
+                        <div class="invalid-feedback">
+                        <?= validation_show_error('tanggalMulai'); ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="tanggalSelesai" class="form-label">Waktu Selesai Sewa</label>
+                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesai')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalSelesai" value="<?= old('tanggalSelesai') ?>"/>
+                        <div class="invalid-feedback">
+                        <?= validation_show_error('tanggalSelesai'); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <script>
-                // import { TempusDominus, Namespace } from '@eonasdan/tempus-dominus';
+                var start = document.getElementById('tanggalMulai');
+                var end = document.getElementById('tanggalSelesai');
+                var tanggal = new Date();
+                var dd = String(tanggal.getDate()).padStart(2, '0');
+                var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = tanggal.getFullYear();
 
-                // const linkedPicker1Element = document.getElementById('linkedPickers1');
-                // const linked1 = new TempusDominus(linkedPicker1Element);
-                // const linked2 = new TempusDominus(document.getElementById('linkedPickers2'), {
-                // useCurrent: false,
-                // });
+                var today = yyyy + '-' + mm + '-' + dd;
+                start.min = today;
 
-                // //using event listeners
-                // linkedPicker1Element.addEventListener(Namespace.events.change, (e) => {
-                // linked2.updateOptions({
-                //     restrictions: {
-                //     minDate: e.detail.date,
-                //     },
-                // });
-                // });
-                // import { TempusDominus } from '@eonasdan/tempus-dominus';
+                start.addEventListener('change', function() {
+                if (start.value)
+                    end.min = start.value;
+                }, false);
+                end.addEventLiseter('change', function() {
+                if (end.value)
+                    start.max = end.value;
+                }, false);
+                // if ($('$sewaruangan').length > 0)
+                // {
+                //     $('$sewaruangan').validate({
+                //         rules: {
+                //             nama: {
+                //                 required: true
+                //             },
+                //             email: {
+                //                 required: true,
+                //                 email: true
+                //             },
+                //             nomorTelepon: {
+                //                 required: true
+                //             }
+                //         }
+                //     })
+                // }
 
-                // new TempusDominus(document.getElementById('datetimepicker1'), {
-                //put your config here
-                // });
+                // $('#tanggalMulai').date_default_timezone_set('id');
+                // $('#tanggalSelesai').date_default_timezone_set('id');
             </script>
 
-            <button class="w-100 btn btn-primary btn-lg mt-5" type="submit">Sewa Ruangan</button>
+            <button class="w-100 btn btn-primary btn-lg mt-5" type="submit">Sewa Alat</button>
         </div>
     </form>     
 </div>
