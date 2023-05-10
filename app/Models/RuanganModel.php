@@ -6,6 +6,7 @@ class RuanganModel extends \App\Models\BaseModel
     protected $table = 'ruangan';
     protected $useTimestamps = true;
     protected $tableSewaRuangan = 'sewa_ruangan';
+    protected $allowedFields = ['nama', 'slug', 'deskripsi', 'tipe', 'lantai', 'kapasitas', 'ukuran', 'luas', 'fasilitas', 'biaya_sewa'];
 
     public function __construct()
     {

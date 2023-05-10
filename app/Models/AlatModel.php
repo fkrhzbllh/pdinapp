@@ -6,6 +6,7 @@ class AlatModel extends \App\Models\BaseModel
     protected $table = 'alat';
     protected $useTimestamps = true;
     protected $tableSewaAlat = 'sewa_alat';
+    protected $allowedFields = ['nama', 'slug', 'deskripsi', 'biaya_sewa'];
 
     public function __construct()
     {

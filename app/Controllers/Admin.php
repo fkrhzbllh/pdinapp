@@ -13,7 +13,7 @@ use App\Models\UserModel;
 use App\Models\GaleriRuanganModel;
 use App\Models\GaleriAlatModel;
 
-class Fasilitas extends BaseController
+class Admin extends BaseController
 {
     protected $ruanganModel;
     protected $alatModel;
@@ -41,6 +41,7 @@ class Fasilitas extends BaseController
     public function index()
     {
         $ruangan = $this->ruanganModel->getRuangan();
+        
         foreach ($ruangan as $key => $r)
         {
             $this->data['fotoruangan'][$key] = $this->galeriRuanganModel->where('id_ruangan',$r['id'])->first();
@@ -56,23 +57,13 @@ class Fasilitas extends BaseController
 
         $this->data['judul_halaman'] = 'Fasilitas PDIN';
 
-        // $this->data = [
-        //     'ruangan' => $this->ruanganModel->getRuangan(),
-        //     // 'ruangan' => $this->ruanganModel->paginate(1,'ruangan'),
-        //     // 'pager' => $this->ruanganModel->pager,
-        //     'alat' => $this->alatModel->getAlat(),
-        //     // 'alat' => $this->alatModel->paginate(1,'alat'),
-        //     // 'pager' => $this->alatModel->pager,
-        //     'judul_halaman' => 'Fasilitas PDIN'
-        // ];
-
         $this->view('fasilitas.php', $this->data);
     }
 
     public function detailRuangan($slug)
     {
         $ruangan = $this->ruanganModel->getRuangan($slug);
-        
+
         // tampilan error kalau tidak ada nama ruangan yang ada di database
         if(empty($ruangan))
         {
@@ -83,6 +74,8 @@ class Fasilitas extends BaseController
         {
             $fotoruangan = $this->galeriRuanganModel->getGaleriByRuangan($ruangan['id']) ;
         } else $fotoruangan['nama_file'] = '...';
+
+        // dd($fotoruangan);
 
         $jadwal = $this->sewaRuanganModel->getJadwalSewaRuangan($ruangan['id']);
 
@@ -109,7 +102,6 @@ class Fasilitas extends BaseController
     public function detailAlat($slug)
     {
         $alat = $this->alatModel->getAlat($slug);
-        $jadwal = $this->sewaAlatModel->getJadwalSewaAlat($alat['id']);
 
         // tampilan error kalau tidak ada nama alat yang ada di database
         if(empty($alat))
@@ -117,11 +109,15 @@ class Fasilitas extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Alat '.$slug.' tidak ditemukan.');
         }
 
-        // menampilkan foto alat
         if ($this->galeriAlatModel->getGaleriByAlat($alat['id'])) 
         {
             $fotoalat = $this->galeriAlatModel->getGaleriByAlat($alat['id']) ;
         } else $fotoalat['nama_file'] = '...';
+
+        // dd($fotoalat);
+
+        $jadwal = $this->sewaAlatModel->getJadwalSewaAlat($alat['id']);
+
 
         // menampilkan jadwal sewa alat
         if ($jadwal)
@@ -140,6 +136,144 @@ class Fasilitas extends BaseController
         $this->data['fotoalat'] = $fotoalat;
 
         $this->view('detailalat.php',$this->data);
+    }
+
+    // form tambah ruangan
+    public function tambahRuangan()
+    {
+        session();
+        $this->data['admin'] = true;
+        $this->data['judul_halaman'] = 'Tambah Ruangan';
+
+        $this->view('formruangan.php',$this->data);
+    }
+
+    // simpan tambah ruangan
+    public function saveTambahRuangan()
+    {
+        // aturan validasi
+        $rules = $this->formRulesRuangan();
+
+        // cek validasi
+        if(!$this->validate($rules))
+        {
+            return redirect()->to('/admin/tambahRuangan')->withInput();
+        }
+        
+        // dd($this->request->getVar());
+        // dd($this->request->getFileMultiple('fotoruangan'));
+
+        $panjang = $this->request->getVar('panjang');
+        $lebar = $this->request->getVar('lebar');
+        $tinggi = $this->request->getVar('tinggi');
+        $ukuran = $panjang.'m x '.$lebar.'m x '.$tinggi.'m';
+        $luas = $panjang * $lebar;
+
+        // simpan data tambah ruangan
+        $this->ruanganModel->save([
+            'nama' => $this->request->getVar('nama'),
+            'slug' => urlencode($this->request->getVar('nama')),
+            'deskripsi' => $this->request->getVar('deskripsiRuangan'),
+            'tipe' => $this->request->getVar('tipe'),
+            'lantai' => $this->request->getVar('lantai'),
+            'kapasitas' => $this->request->getVar('kapasitas'),
+            'ukuran' => $ukuran,
+            'luas' => $luas,
+            'fasilitas' => $this->request->getVar('fasilitas'),
+            'biaya_sewa' => $this->request->getVar('biayasewa'),    
+        ]);
+
+        $idRuangan = $this->ruanganModel->insertID();
+
+        // ambil gambar
+        $fotoruangan = $this->request->getFileMultiple('fotoruangan');
+        
+        if ($fotoruangan)
+        {
+            foreach ($fotoruangan as $f)
+            {
+                // pindahin ke folder
+                $f->move('uploads');
+                // ambil nama foto
+                $namafoto = $f->getName();
+                // simpan ke database
+                $this->galeriRuanganModel->save([
+                    'nama_file' => $namafoto,
+                    'id_ruangan' => $idRuangan
+                ]);
+            }
+        }
+
+        // get slug
+        $ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
+        $namaRuangan = $ruangan['slug'];
+
+        session()->setFlashdata('sukses','Data berhasil ditambahkan.');
+        
+        return redirect()->to("/admin/ruang/".$namaRuangan);
+    }
+
+    // form tambah alat
+    public function tambahAlat()
+    {
+        session();
+        $this->data['admin'] = true;
+        $this->data['judul_halaman'] = 'Tambah Alat';
+
+        $this->view('formalat.php',$this->data);
+    }
+
+    // simpan tambah alat
+    public function saveTambahAlat()
+    {
+        // aturan validasi
+        $rules = $this->formRulesAlat();
+
+        // cek validasi
+        if(!$this->validate($rules))
+        {
+            return redirect()->to('/admin/tambahAlat')->withInput();
+        }
+        
+        // dd($this->request->getVar());
+        // dd($this->request->getFileMultiple('fotoalat'));
+
+        // simpan data tambah ruangan
+        $this->alatModel->save([
+            'nama' => $this->request->getVar('nama'),
+            'slug' => url_title($this->request->getVar('nama'),'-',true),
+            'deskripsi' => $this->request->getVar('deskripsiAlat'),
+            'biaya_sewa' => $this->request->getVar('biayasewa'),    
+        ]);
+
+        $idalat = $this->alatModel->insertID();
+
+        // ambil gambar
+        $fotoalat = $this->request->getFileMultiple('fotoalat');
+        
+        if ($fotoalat)
+        {
+            foreach ($fotoalat as $f)
+            {
+                // pindahin ke folder
+                $f->move('uploads');
+                // ambil nama foto
+                $namafoto = $f->getName();
+                // simpan ke database
+                $this->galeriAlatModel->save([
+                    'nama_file' => $namafoto,
+                    'id_alat' => $idalat
+                ]);
+            }
+        }
+
+        // get slug
+        $alat = $this->alatModel->getAlatByID($idalat);
+        $namaAlat = $alat['slug'];
+
+        session()->setFlashdata('sukses','Data berhasil ditambahkan.');
+        
+        return redirect()->to("/admin/detailalat/".$namaAlat);
     }
 
     // form sewa ruangan
@@ -390,7 +524,72 @@ class Fasilitas extends BaseController
         return array_merge($rules,$date_rules);
     }
 
-    // aturan validasi form sewa ruangan 
+    // aturan validasi form ruangan 
+    public function formRulesRuangan()
+    {    
+        $rules = [
+            'nama' => [
+                'rules' => 'required|is_unique[ruangan.nama]',
+                'errors' => [
+                    'required' => '{field} ruangan harus diisi',
+                    'is_unique' => '{field} ruangan sudah ada'
+                ]
+            ],
+            'deskripsiRuangan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'deskripsi ruangan harus diisi',
+                ]
+            ],
+            'tipe' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'tipe ruangan harus diisi',
+                ]
+            ],
+            'lantai' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'kapasitas' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'panjang' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} ruangan harus dipilih'
+                ]
+            ],
+            'lebar' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} ruangan harus dipilih'
+                ]
+            ],
+            'tinggi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} ruangan harus dipilih'
+                ]
+            ],
+            'fotoruangan[]' => [
+                'rules' => 'max_size[fotoruangan,2048]|is_image[fotoruangan]|mime_in[fotoruangan,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'ukuran foto ruangan maksimal 2MB',
+                    'is_image' => 'file yang Anda pilih bukan gambar',
+                    'mime_in' => 'file yang Anda pilih bukan gambar'
+                ]
+            ]
+        ];
+    
+        return $rules;
+    }
+
     public function formRulesSewaAlat()
     {    
         $rules = [
@@ -446,6 +645,36 @@ class Fasilitas extends BaseController
                 'errors' => [
                     'required' => 'waktu selesai harus diisi',
                     'valid_date' => 'waktu selesai harus valid'
+                ]
+            ]
+        ];
+    
+        return $rules;
+    }
+
+    // aturan validasi form ruangan 
+    public function formRulesAlat()
+    {    
+        $rules = [
+            'nama' => [
+                'rules' => 'required|is_unique[alat.nama]',
+                'errors' => [
+                    'required' => '{field} ruangan harus diisi',
+                    'is_unique' => '{field} ruangan sudah ada'
+                ]
+            ],
+            'deskripsiAlat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'deskripsi alat harus diisi',
+                ]
+            ],
+            'fotoalat[]' => [
+                'rules' => 'max_size[fotoalat,2048]|is_image[fotoalat]|mime_in[fotoalat,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'ukuran foto alat maksimal 2MB',
+                    'is_image' => 'file yang Anda pilih bukan gambar',
+                    'mime_in' => 'file yang Anda pilih bukan gambar'
                 ]
             ]
         ];

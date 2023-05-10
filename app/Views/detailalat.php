@@ -1,9 +1,55 @@
 <div class="container mt-3">
     <div class="row justify-content-center align-items-center">
-        <div class="column">
-            </div><div class="card mb-3">
-              <img src="<?php echo base_url() ?>uploads/5ea50f43831c2.png" class="card-img-top" alt="...">
-              <div class="card-body">
+        <?php if(session()->getFlashdata('sukses')) : ?>
+            <div class="alert alert-success" role="alert">
+                <?= session()->getFlashdata('sukses') ?>
+            </div>
+        <?php endif; ?>    
+        <div class="card mb-3">
+            <?php if (is_array($fotoalat) && sizeof($fotoalat) > 1):?>
+                <div id="carouselExampleIndicators" class="carousel slide card-img-top">
+                    <div class="carousel-indicators">
+                        <?php foreach ($fotoalat as $key => $value) :?>
+                            <?php if ($key == 0) :?>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <?php else :?>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?= $key ?>" aria-label="Slide <?= $key-1 ?>"></button>
+                            <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+                            <?php endif;?>
+                        <?php endforeach;?>
+                    </div>
+                    <div class="carousel-inner">
+                        <?php foreach ($fotoalat as $key => $value) :?>
+                            <?php if ($key == 0) :?>
+                                <div class="carousel-item active">
+                                    <img src="<?php echo base_url() ?>uploads/<?= $value['nama_file']?>" class="d-block w-100" alt="...">
+                                </div>
+                            <?php else :?>
+                                <div class="carousel-item">
+                                    <img src="<?php echo base_url() ?>uploads/<?= $value['nama_file']?>" class="d-block w-100" alt="...">
+                                </div>
+                            <?php endif;?>
+                        <?php endforeach;?>
+                        <!-- <div class="carousel-item">
+                            <img src="..." class="d-block w-100" alt="...">
+                        </div> -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            <?php elseif (is_array($fotoalat) && isset($fotoalat[0])) :?>
+                <img src="<?php echo base_url() ?>uploads/<?= $fotoalat[0]['nama_file'] ?>" class="card-img-top" alt="tidak ada gambar" onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'">
+            <?php else :?>
+                <img src="<?php echo base_url() ?>uploads/<?= $fotoalat['nama_file'] ?>" class="card-img-top" alt="tidak ada gambar" onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'">
+            <?php endif;?>
+            
+            <div class="card-body">
                 <h5 class="card-title"><?= $alat['nama'] ?></h5>
                 <p class="card-text"><?= $alat['deskripsi'] ?></p>
                 <p class="card-text mb-5">Biaya sewa : <b><?= $alat['biaya_sewa']?></b></p>
@@ -156,7 +202,7 @@
 
                 </script>
                 <div id="calendar" style="width: 1000px;"></div>
-              </div>
             </div>
         </div>
     </div>
+</div>

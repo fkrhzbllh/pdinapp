@@ -29,16 +29,20 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-ruangan" role="tabpanel" aria-labelledby="pills-ruangan-tab" tabindex="0">
                     <div class="row justify-content-start mb-5">
-                        <?php foreach($ruangan as $r) : ?>
+                        <?php foreach($ruangan as $key => $r) : ?>
                         <div class="col-4 <?= $r['tipe']?> mb-3">
                             <div class="card">
-                                <img class="card-img-top" src="<?= base_url()?>uploads/5ea50f43831c2.png">
+                                <?php if (!is_null($fotoruangan[$key])) :?>
+                                    <img class="card-img-top" src="<?= base_url()?>uploads/<?= $fotoruangan[$key]['nama_file'] ?>" >
+                                <?php else :?>
+                                    <img class="card-img-top" src="<?php echo base_url() ?>Logo-PDIN.png" onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'" >
+                                <?php endif;?>
                             <!-- <h5 class="card-header">Featured</h5> -->
                                 <div class="card-body">
                                     <p class="small" >Lantai <?= $r['lantai'] ?></p>
                                     <h3 class="card-title"><?= $r['nama'] ?></h3>
                                     <p class="card-text"><?= $r['deskripsi'] ?></p>
-                                    <!-- <a href="/fasilitas/ruang/<?php // $r['slug'];?>" class="btn btn-primary">Detail</a> -->
+                                    <a href="/fasilitas/ruang/<?php echo $r['slug'];?>" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
@@ -48,14 +52,18 @@
                 </div>
                 <div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-alat-tab" tabindex="0">
                     <div class="row justify-content-start mb-5">
-                        <?php foreach($alat as $a) : ?>
+                        <?php foreach($alat as $key => $a) : ?>
                         <div class="col-4">
                             <div class="card">
-                                <img class="card-img-top" src="<?= base_url()?>uploads/5ea50f43831c2.png">
+                                <?php if (!is_null($fotoalat[$key])) :?>
+                                    <img class="card-img-top" src="<?= base_url()?>uploads/<?= $fotoalat[$key]['nama_file'] ?>" >
+                                <?php else :?>
+                                    <img class="card-img-top" src="<?php echo base_url() ?>Logo-PDIN.png" onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'" >
+                                <?php endif;?>
                                 <div class="card-body">
                                     <h3 class="card-title"><?= $a['nama'] ?></h3>
                                     <p class="card-text"><?= $a['deskripsi'] ?></p>
-                                    <!-- <a href="/fasilitas/alat/<?php // $a['slug'];?>" class="btn btn-primary">Detail</a> -->
+                                    <a href="/fasilitas/alat/<?php echo $a['slug'];?>" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
