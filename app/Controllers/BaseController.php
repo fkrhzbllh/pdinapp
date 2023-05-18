@@ -50,6 +50,8 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
+        $this->helpers = array_merge($this->helpers, ['setting']);
+
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
@@ -62,17 +64,16 @@ abstract class BaseController extends Controller
         $this->data['judul_halaman'] = 'PDIN';
     }
 
-    protected function view($file, $data = [], $file_only = false) 
+    protected function view(string $view, array $data = [], array $options = [])
 	{
-		if (is_array($file)) {
-			foreach ($file as $file_item) {
+		if (is_array($view)) {
+			foreach ($view as $file_item) {
 				echo view($file_item, $data);
 			}
 		} else {
 			echo view('layout/header.php', $data);
             echo view('layout/navbar.php');
-			echo view($file, $data);
-            echo view('layout/copyright.php');
+			echo view($view, $data);
 			echo view('layout/footer.php');
 		}
 	}

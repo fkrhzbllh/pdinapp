@@ -35,6 +35,9 @@ $routes->get('/', 'Beranda::index');
 // $routes->get('/sewa-ruang', 'SewaRuang::index');
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
 $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');
+$routes->get('/rilismedia/(:segment)', 'RilisMedia::detail/$1');
+
+service('auth')->routes($routes);
 
 /*
  * --------------------------------------------------------------------

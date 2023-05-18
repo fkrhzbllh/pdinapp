@@ -1,23 +1,21 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Models;
 
-class UserModel extends \App\Models\BaseModel
+use CodeIgniter\Shield\Models\UserModel as ShieldUserModel;
+
+class UserModel extends ShieldUserModel
 {
-    protected $table = 'user';
-    protected $useTimestamps = true;
-    // protected $ruanganTable = 'ruangan';
-    protected $allowedFields = ['email', 'nama', 'kontak', 'nama_instansi'];
-
-    public function __construct()
+    protected function initialize(): void
     {
-        parent::__construct();
-        $this->table = 'user';
-    }
+        parent::initialize();
 
-    // public function getJadwalSewaRuangan($id)
-    // {
-    //     return $this->db->table('sewa_ruangan')
-    //     ->join($this->ruanganTable,$this->ruanganTable.".".$this->primaryKey."=".$this->table.".id_ruangan")
-    //     ->where($this->ruanganTable.".id",$id)->get()->getResultArray();
-    // }
+        $this->allowedFields = [
+            ...$this->allowedFields,
+
+            // 'first_name',
+        ];
+    }
 }
