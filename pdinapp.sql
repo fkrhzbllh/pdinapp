@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2023 at 11:51 AM
+-- Generation Time: May 27, 2023 at 05:30 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -95,8 +95,11 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`id`, `judul`, `konten`, `excerp`, `meta_description`, `slug`, `kategori`, `status`, `template_file`, `search_engine_index`, `id_file_picker`, `tgl_terbit`, `created_at`, `id_admin_create`, `updated_at`, `id_admin_update`, `featured_image`) VALUES
-(1, 'Soft Launching', '<h3>Coba</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendis. consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendasdni reiciendis.</p>', 'abc', 'abc', 'soft-launching', 'Kegiatan', '', '', '', NULL, '2023-05-17 15:00:49', NULL, 0, NULL, 0, 'Logo-PDIN.png'),
-(2, 'Soft Launching 2', '<h3>Coba</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendis. consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendasdni reiciendis.</p>', 'abc', 'abc', 'soft-launching-2', 'Kegiatan', '', '', '', NULL, '2023-05-17 15:00:49', NULL, 0, NULL, 0, 'Logo-PDIN.png');
+(3, 'Jogja Design Merch#1', '<p><b>Yogyakarta</b> - Jogja Design Merch#1 merupakan salah satu gebrakan dari PDIN untuk memberikan apresiasi terhadap designer yang berkompeten melalui lomba mendesain produk cinderamata. Lomba Jogja Merch#1 akan dibuka pendaftarannya pada tang 6 Maret sampai dengan tanggal 17 Maret 2023. Sebelum dibukanya pendaftaran, Dinas Perindustrian Koperasi Usaha Kecil dan Menengah Kota Yogyakarta melakukan Konferensi Pers di Gedung PDIN dan ditayangkan langsung melalui kanal youtub Pemkot Jogja pada tanggal 6 Maret 2023 pada pukul 14.00 WIB. Konferensi Pers ini dihadiri oleh berbagai macam awak media terkait. </p>\r\n<p>Adapun syarat-syarat untuk dapat mendaftar di Lomba desain tersebut, diantaranya ialah memiliki volume yang mudah dibawa kemana-mana, menggunakan material yang aman untuk keselamatan orang lain, memiliki khas tradisi Yogyakarta, dan lain-lain. Peserta pendaftar lomba akan melalui tahap kurasi dan diambil 20 desain terbaik yang nantinya akan dilanjutkan untuk proses pembuatan prototype sampai produk jadi yang akan dibiayai oleh panitia sebesar 1 Juta setiap peserta (individual tau kelompok). Pemenang lomba desain akan mendapatkan hadia sebesar 10 Juta untuk 3 Karya terbaik. </p>\r\n', 'abc', 'Jogja Design Merch#1 merupakan salah satu gebrakan dari PDIN untuk memberikan apresiasi terhadap designer yang berkompeten melalui lomba mendesain produk cinderamata.', 'Jogja-Design-Merch-1', 'Pameran', 'published', '', '', NULL, '2023-03-06 13:13:17', NULL, 0, NULL, 0, 'gambar-artikel-jdm.jpg'),
+(4, 'Pameran Kaca: Glass Beyond Borders', '<p><b>Yogyakarta</b> - Glass Beyond Borders/Kaca Melampaui Batas-Batas merupakan sebuah proyek kolaborasi antar dua seniman kaca, yakni Ivan Bestari (Indonesia) dan Hannah Gibson (Inggris). Ivan dan Hannah dikenal sebagai seniman kaca yang menggunakan limbah kaca sebagai bahan utama mereka. Namun, masing-masing menggunakan metode olah kaca yang sangat berbeda secara teknis. Proyek kolaborasi ini bertujuan untuk menemukan peluang perpaduan dari dua metode olah kaca yang dikuasai oleh masing- masing seniman. Dalam proyek ini kedua seniman melakukan kolaborasi, baik dalam penciptaan karya bersama maupun dalam menyusun perencanaan dan materi lokakarya yang diikuti oleh mahasiswa Program Studi Desain Produk Universitas Kristen Duta Wacana (UKDW) dan juga peserta lokakarya umum.</p>\r\n<p>Perihal \"melampaui batas-batas\" yang dimaksudkan dalam judul proyek tersebut bisa dijabarkan dari beberapa sudut pandang. Batasan yang ingin coba dilampaui bisa berupa berbagai hal, misalkan batasan negara, batasan teknologi, batasan bahasa, bahkan juga batasan ranah lingkup kerja. Proyek ini tidak hanya bertumpu pada target pencapaian kolaborasi dari dua seniman dan hanya berhenti di ranah seni rupa, tetapi proyek ini diharapkan menjadi sarana untuk memperkenalkan metode olah limbah kaca kepada masyarakat luas melalui sisi akademis dan juga stakeholders! pemangku kepentingan yang mendukung jalannya proyek ini. Bahwa olah limbah kaca itu memungkinkan dilakukan di dalam skala studio seniman berarti mempunyai peluang untuk direplikasi menjadi skala usaha rumahan tanpa kebutuhan infrastruktur yang berskala industri besar. Atas pertimbangan tersebut maka Glass Beyond Borders juga mencoba untuk berbagi wawasan mengenai olah kaca terhadap berbagai pihak dengan melaksanakan lokakarya, paparan dalam bentuk temu wicara, serta presentasi metode olah kaca dalam bentuk pameran.\r\n</p>', 'abc', 'Glass Beyond Borders/Kaca Melampaui Batas-Batas merupakan sebuah proyek kolaborasi antar dua seniman kaca, yakni Ivan Bestari (Indonesia) dan Hannah Gibson (Inggris).', 'Pameran-Kaca-Glass-Beyond-Borders', 'Pameran', 'published', '', '', NULL, '2023-03-06 15:13:17', NULL, 0, NULL, 0, 'gambar-artikel-pameran-kaca.jpg'),
+(5, 'Kunjungan Sri Sultan Hamengku Buwono X ke Pusat Desain Industri Nasional', '<p><b>Yogyakarta</b> - Pusat Desain Industri Nasional (PDIN) dikunjungi oleh Gubernur Daerah Istimewa Yogyakarta, Sri Sultan Hamengku Buwono X didampingi beberapa struktural Pemerintah Daerah DIY. Kunjungan ini diterima oleh Pj Walikota Yogyakarta Bapak Sumadi, S.H., M.H., Asisten Perekonomian dan Pembangunan Bapak Drs. Kadri Renggono, M.Si., Kepala Dinas Perindustrian Koperasi UKM Bapak Drs. Tri Karyadi Riyanto Raharjo, S.H., M.Si., serta beberapa Kepala OPD di lingkungan Pemerintah Kota Yogyakarta.</p>\r\n<p>Kegiatan ini dalam rangka kunjungan kerja Gubernur DIY untuk melihat program kerja yang akan dilaksanakan di Pusat Desain Industri Nasional (PDIN) yang sudah diselesaikan pembangunannya pada akhir tahun 2022 lalu. </p>\r\n<p>Pusat Desain Industri Nasional (PDIN) merupakan hasil dari rencana kerja yang disepakati oleh Ditjen IKMA Kementerian Perindustrian, Pemda DIY dan Pemerintah Kota Yogyakarta dengan tujuan untuk menjadi pusat pengembangan desain guna meningkatkan daya saing industri kecil dan menengah nasional. PDIN akan dijadikan sebagai wadah dalam mempertemukan antara desainer, pelaku industri, akademisi, penyedia bahan baku, eksportir, dan berbagai pemangku kepentingan lainnya dalam pengembangan bisnis berbasis desain dan karakter industri. </p>\r\n<p>Kepala Dinas Perindustrian Koperasi UKM Kota Yogyakarta, Drs. Tri Karyadi Riyanto R, S.H. M.Si menyampaikan bahwa Kota Yogyakarta dipilih sebagai lokasi berdirinya PDIN oleh Kementerian Perindustrian dengan pertimbangan bahwa Yogyakarta dikenal sebagai pusat kerajinan dan produk kreatif di Indonesia, kekuatan dari sumber daya manusia dan pendidikan tersedia di Yogyakarta, Yogyakarta juga sebagai pusat perkembangan seni sebagai acuan tren dan kecenderungan masyarakat dunia serta potensi industri fashion Yogyakarta menuju kota pusat fashion dunia. Dalam jangka pendek, PDIN akan berfokus mendorong pengembangan desain pada 3 komoditas yaitu fesyen, logam, dan kayu. </p>\r\n<p>Gubernur DIY, Sri Sultan Hamengku Buwono X mengunjungi fasilitas yang ada di PDIN seperti ruang workshop kayu dan logam, ruang pameran, area plaza, area co-working, ruang rapat, rooftop, dan berbagai fasilitas lainnya, serta berkesempatan mendengar pemaparan program PDIN dari Kepala Dinas Perindustrian Koperasi UKM Kota Yogyakarta, Drs Tri Karyadi Riyanto Raharjo S.H., M.Si., serta mendengarkan laporan dari Kepala Dinas Perindustrian dan Perdagangan DIY Ibu Ir. Syam Arjanti, MPA. </p>\r\n<p>Sri Sultan Hamengku Buwono X memberikan beberapa arahan, yaitu agar pemerintah Kota Yogyakarta memperhatikan aspek kelembagaan dan manajemen pengelolaan PDIN terlebih dahulu agar segala program dapat dijalankan dengan profesional, PDIN harus dapat menjamin adanya standarisasi, kualitas, dan mutu produknya. serta agar PDIN dapat memberikan manfaat yang sebesar-besarnya dan memberikan kontribusi kepada masyarakat. Pihaknya juga berpesan untuk melibatkan anak muda jurusan desain dan grafis untuk menciptakan desain-desain eksklusif untuk menaikan harga dan daya saing produk fesyen di Jogja. </p>', 'abc', 'Pusat Desain Industri Nasional (PDIN) dikunjungi oleh Gubernur Daerah Istimewa Yogyakarta, Sri Sultan Hamengku Buwono X didampingi beberapa struktural Pemerintah Daerah DIY. Kunjungan ini diterima oleh Pj Walikota Yogyakarta Bapak Sumadi, S.H., M.H., Asisten Perekonomian dan Pembangunan Bapak Drs. Kadri Renggono, M.Si., Kepala Dinas Perindustrian Koperasi UKM Bapak Drs. Tri Karyadi Riyanto Raharjo, S.H., M.Si., serta beberapa Kepala OPD di lingkungan Pemerintah Kota Yogyakarta.', 'Kunjungan-Sri-Sultan-Hamengku-Buwono-X-ke-Pusat-Desain-Industri-Nasional', 'Pameran', 'published', '', '', NULL, '2023-03-06 16:43:50', NULL, 0, NULL, 0, 'gambar-artikel-kunjungan-sri-sultan.jpg'),
+(6, 'Pelatihan Batik di Pusat Desain Industri Nasional', '<p><b>Yogyakarta</b> —Dinas Perindustrian, Koperasi, dan UKM (Disperinkop UKM) Jogja mengadakan pelatihan batik yang diikuti 40 peserta selama Senin-Rabu (15-17/5/2023). Pelatihan tersebut dibagi dalam dua jenis, pelatihan batik cap dan pelatihan batik kontemporer yang semuanya digelar di Pusat Desain Industri Nasional (PDIN). </p>\r\n<p>Disperinkop UKM membuka pendaftaran peserta pelatihan secara terbuka dan umum dan diperoleh 120 pendaftar. “Lalu kami seleksi, kami pilih peserta pelatihan ini yang sudah punya usaha batik saja agar mereka bisa mengembangkan usahanya lebih inovatif lagi,” jelas Kepala Disperinkop UKM Jogja, Tri Karyadi Riyanto Raharjo, Senin (15/5/2023).\r\nTotok sapaan akrab Kepala Disperinkop UKM Jogja menjelaskan akan mengadakan pelatihan batik lagi semester depan. “Karena anggarannya dari APBN 2023, maka akan kami fasilitasi lagi nanti calon peserta pada semester depan setelah perubahan anggaran. Sangat baik sekali animonya ternyata,” katanya.\r\nPeserta pelatihan, jelas Totok, juga akan memamerkan hasil karya dari pelatihan ini lewat fashion show yang akan digelar  Senin (22/5/2023) mendatang. “Tujuan kami bikin pelatihan ini agar pembatik Jogja makin berkembang inovasinya dan bisa menyesuaikan permintaan pasar dengan baik,” ujarnya.\r\nSubkoordinator Kelompok Substansi Pembinaan Standarisasi Industri Disperinkop UKM Jogja Heri Karuniawan menyebut pelatihan tersebut diselenggarakan gratis dan intensif dari pagi pukul 08.00 sampai sore 15.00. “Pelatihan ini sangat intensif jadi ada target yang harus dicapai peserta, harapannya makin inovatif peserta ini dan bisa mengembangkan produk batiknya,” jelasnya, Senin siang.\r\nHeri menyebut pelatihan batik tersebut dilatih oleh praktisi ahli. “Pelatihan ini sangat membantu pelaku usaha batik karena dibimbing langsung oleh ahli, jadi dipastikan nanti hasil karya peserta juga sangat layak diapresiasi dalam fashion show,” terangnya.\r\nPelatih pelatihan batik Disperinkop UKM Jogja, Iwan Setiawan menjelaskan peserta sangat antusias dalam mengikuti pelatihan tersebut. “Saya mengisi materi batik kontemporer dimana mediumnya kaos, ini terutama untuk mengambil peluang pasar dari wisatawan yang berkunjung ke Jogja, karena masih sedikit yang berinovasi dengan batik kaos,” ucapnya.\r\nIwan berharap lewat pelatihan batik tersebut peserta dapat memaksimalkan materi dan mengembangkan karya sesuai inovasi dan kebutuhan pasar. “Saya juga aktif usaha di kaos batik peminatnya luar biasa, sehingga lewat pelatihan ini sama-sama berinovasi agar pasar batik kontemporer dapat terus diisi oleh pelaku usaha Jogja,” katanya. </p>', 'abc', 'Dinas Perindustrian, Koperasi, dan UKM (Disperinkop UKM) Jogja mengadakan pelatihan batik yang diikuti 40 peserta selama Senin-Rabu (15-17/5/2023). Pelatihan tersebut dibagi dalam dua jenis, pelatihan batik cap dan pelatihan batik kontemporer yang semuanya digelar di Pusat Desain Industri Nasional (PDIN).', 'Pelatihan-Batik-di-Pusat-Desain-Industri-Nasional', 'Pameran', 'published', '', '', NULL, '2023-03-06 19:43:50', NULL, 0, NULL, 0, 'gambar-artikel-pelatihan-batik.jpg'),
+(7, 'Pameran Kulit: Leather Innofashion Expo 2023', '<p>YOGYAKARTA (Simpony) – Setelah rampung dibangun pada Desember 2022, Pusat Desain Industri Nasional (PDIN) per Januari 2023 sudah mulai digunakan untuk kegiatan Industri Kecil Menengah (IKM). Salah satunya adalah Leather Innofashion Expo 2023, yang merupakan kerja sama antara Politeknik ATK Yogyakarta dengan Pemerintah Kota Yogyakarta melalui Dinas Perindustrian Koperasi dan UKM. </p>\r\n<p>Asisten Bidang Perekonomian dan Pembangunan Setda Kota Yogyakarta, Kadri Renggono mengatakan, setelah bangunan PDIN sudah selesai dikerjakan, strategi yang penting untuk dilakukan adalah membangun awareness. Dengan mengkomunikasikan kehadiran PDIN kepada seluruh masyarakat terutama stakeholder kunci.\r\n“Saat ini kami sedang menyusun dan memperkuat pada aspek manajemen, legalitas, dasar hukum untuk pengelolaan PDIN. Tentu harapan kita semua sebagaimana tujuan awal PDIN ini adalah menjadi sebuah sub sistem dari Industri Kecil Menengah dalam skala nasional dan secara keseluruhan agar semakin berkembang. Menjembatani serta memperkuat produk IKM yang berbasis desain,” jelasnya pada saat pembukaan Leather Innofashion Expo 2023, pada Jumat (13/1/2023).\r\nSelain itu, lanjut Kadri Renggono, PDIN ini tujuannya juga untuk mendorong IKM supaya mempunyai daya saing yang lebih baik dalam skala nasional sampai internasional. Sebab dari sisi Sumber Daya Manusia (SDM), Jogja punya banyak desainer, dan lembaga pendidikan yang menciptakan desainer berkualitas.\r\n“Manajemen dan sistem pemeliharaan operasional PDIN tengah disusun untuk meningkatkan kapasitas SDM serta pelaku IKM, agar lebih berkembang dalam melihat pasar dan memajukan daya saing produk. Kira-kira pada Juni nanti kami akan Grand Opening, dengan harapan semakin banyak pihak yang beraktivitas dan melihat peluang PDIN sebagai tempat untuk mengembangkan IKM,” imbuhnya.\r\nDirektur Politeknik ATK Yogyakarta, Sugiyanto menyampaikan, Leather Innofashion Expo 2023 merupakan wujud kerja sama dengan Pemerintah Kota Yogyakarta dalam memperkenalkan sebuah lembaga pengembangan desain yaitu PDIN, yang bertujuan untuk meningkatkan daya saing IKM nasional, termasuk bagi para 100 mahasiswa jurusan teknologi pengolahan produk kulit Politeknik ATK Yogyakarta dalam menampilkan hasil karyanya.\r\n“Berdasarkan dengan tujuannya, kami berharap PDIN bisa menjadi communal space yang berfungsi sebagai pusat informasi dan referensi desain berdasarkan jenis industri dan pasar dalam skala nasioal hingga global. Sebab Jogja merupakan kota yang potensial menjadi pasar global untuk produk inovatif dan kreatif yang dihasilkan oleh para pelaku IKM,” terangnya.\r\n\r\nSugiyanto juga mengungkapkan, dengan kehadiran PDIN sebagai tempat yang berskala nasional maka stakeholder yang terlibat sangat luas dan beragam. Sehingga inspirasi yang akan hadir tentunya bisa menciptakan kolaborasi dalam menghasilkan desain produk yang berdaya saing tinggi.\r\n\r\nLeather Innofashion Expo 2023 berlangsung hingga Juni mendatang. Dengan rangkaian kegiatan Leather Product Exibition pada 13 dan 14 Januari, Talkshow Entrepreneur 25 Februari, Worksop Ecodesign 18 Maret, National Footwear Design Competition 14 April, Workshop Tenan Corner 14 dan 15 Mei, dan Fashion Show 24 Juni 2023. </p>', 'abc', 'Setelah rampung dibangun pada Desember 2022, Pusat Desain Industri Nasional (PDIN) per Januari 2023 sudah mulai digunakan untuk kegiatan Industri Kecil Menengah (IKM). Salah satunya adalah Leather Innofashion Expo 2023, yang merupakan kerja sama antara Politeknik ATK Yogyakarta dengan Pemerintah Kota Yogyakarta melalui Dinas Perindustrian Koperasi dan UKM.\r\n', 'Pameran-Kulit-Leather-Innofashion-Expo-2023', 'Pameran', 'published', '', '', NULL, NULL, '2023-03-06 20:51:29', 0, NULL, 0, 'gambar-artikel-pameran-kulit.jpg');
 
 -- --------------------------------------------------------
 
@@ -178,7 +181,7 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-05-15 12:40:12', '2023-05-15 12:29:42', '2023-05-15 12:40:12');
+(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-05-27 14:11:37', '2023-05-15 12:29:42', '2023-05-27 14:11:37');
 
 -- --------------------------------------------------------
 
@@ -202,7 +205,18 @@ CREATE TABLE `auth_logins` (
 --
 
 INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identifier`, `user_id`, `date`, `success`) VALUES
-(1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-15 12:40:12', 1);
+(1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-15 12:40:12', 1),
+(2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-22 07:02:00', 1),
+(3, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-22 11:33:46', 1),
+(4, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-22 12:34:31', 1),
+(5, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'email_password', 'flaminggooo50@gmail.com', NULL, '2023-05-23 09:15:40', 0),
+(6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'email_password', 'flaminggooo50@gmail.com', NULL, '2023-05-23 09:15:49', 0),
+(7, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'email_password', 'flaminggooo50@gmail.com', NULL, '2023-05-23 09:15:57', 0),
+(8, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'email_password', 'flaminggooo50@gmail.com', NULL, '2023-05-23 09:16:25', 0),
+(9, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-23 09:16:59', 1),
+(10, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-23 09:17:51', 1),
+(11, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-26 06:37:17', 1),
+(12, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-27 14:11:37', 1);
 
 -- --------------------------------------------------------
 
@@ -232,6 +246,16 @@ CREATE TABLE `auth_remember_tokens` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `auth_remember_tokens`
+--
+
+INSERT INTO `auth_remember_tokens` (`id`, `selector`, `hashedValidator`, `user_id`, `expires`, `created_at`, `updated_at`) VALUES
+(2, '2806c4820802f58060ea8001', '76184cc0fcdb44b7bbad489008ac9bae2c6ca9e6a949445f4b2142243268f1a7', 1, '2023-06-22 09:16:59', '2023-05-23 09:16:59', '2023-05-23 09:16:59'),
+(3, '9efd83c6cb0e393d8dddff27', '8643624b1417acfd951a8f927b4f7d4b5512b56178135f3e5c83028c4ec3693d', 1, '2023-06-25 05:47:24', '2023-05-23 09:17:51', '2023-05-26 05:47:24'),
+(4, 'e815c51267e9dc3eb91e9b4e', 'bb81b02b3d63646553b49b621d2d9883ceb236ca82f1e184d819ab8ac09c1c77', 1, '2023-06-26 10:11:41', '2023-05-26 06:37:17', '2023-05-27 10:11:41'),
+(5, '84e24af3e0403bf440832151', '5a738bc75cd4001c13065471a30163de1ba310926b33b5dc98cc0de7edc1050a', 1, '2023-06-26 14:11:37', '2023-05-27 14:11:37', '2023-05-27 14:11:37');
 
 -- --------------------------------------------------------
 
@@ -278,14 +302,57 @@ CREATE TABLE `file_picker` (
 
 CREATE TABLE `galeri` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_kategori_galeri` int(11) UNSIGNED DEFAULT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
   `nama_file` varchar(255) DEFAULT NULL,
+  `judul` varchar(255) DEFAULT NULL,
+  `kategori` varchar(255) DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `galeri`
+--
+
+INSERT INTO `galeri` (`id`, `id_file_picker`, `nama_file`, `judul`, `kategori`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(1, NULL, 'Logo-PDIN.png', 'Logo PDIN', NULL, NULL, '2023-05-22 12:18:30', NULL, '2023-05-22 12:18:30'),
+(3, NULL, 'foto-ruang-woodworking-2.jpg', 'Ruang Woodworking', NULL, NULL, '2023-05-22 07:17:06', NULL, '2023-05-22 07:17:06'),
+(4, NULL, 'foto-ruang-woodworking-3.jpg', 'Ruang Woodworking', NULL, NULL, '2023-05-22 07:17:06', NULL, '2023-05-22 07:17:06'),
+(5, NULL, 'foto-ruang-woodworking-4.jpg', 'Ruang Woodworking', NULL, NULL, '2023-05-22 07:17:06', NULL, '2023-05-22 07:17:06'),
+(6, NULL, 'foto-ruang-steelworking-1.jpg', NULL, NULL, NULL, '2023-05-22 07:31:55', NULL, '2023-05-22 07:31:55'),
+(7, NULL, 'foto-ruang-steelworking-2.jpg', NULL, NULL, NULL, '2023-05-22 07:31:55', NULL, '2023-05-22 07:31:55'),
+(8, NULL, 'foto-ruang-pameran-1-1.jpg', NULL, NULL, NULL, '2023-05-22 07:35:07', NULL, '2023-05-22 07:35:07'),
+(9, NULL, 'foto-ruang-pameran-1-2.jpg', NULL, NULL, NULL, '2023-05-22 07:35:07', NULL, '2023-05-22 07:35:07'),
+(10, NULL, 'foto-ruang-pameran-1-3.jpg', NULL, NULL, NULL, '2023-05-22 07:35:07', NULL, '2023-05-22 07:35:07'),
+(11, NULL, 'foto-ruang-pameran-2-1.jpg', NULL, NULL, NULL, '2023-05-22 07:37:21', NULL, '2023-05-22 07:37:21'),
+(12, NULL, 'foto-ruang-pameran-2-2.jpg', NULL, NULL, NULL, '2023-05-22 07:37:21', NULL, '2023-05-22 07:37:21'),
+(13, NULL, 'foto-ruang-pameran-2-3.jpg', NULL, NULL, NULL, '2023-05-22 07:37:21', NULL, '2023-05-22 07:37:21'),
+(14, NULL, 'foto-ruang-pameran-3-1.jpg', NULL, NULL, NULL, '2023-05-22 07:38:59', NULL, '2023-05-22 07:38:59'),
+(15, NULL, 'foto-ruang-pameran-3-2.jpg', NULL, NULL, NULL, '2023-05-22 07:38:59', NULL, '2023-05-22 07:38:59'),
+(16, NULL, 'foto-alun-alun-1.jpg', NULL, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
+(17, NULL, 'foto-alun-alun-2.jpg', NULL, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
+(18, NULL, 'foto-alun-alun-3.jpg', NULL, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
+(19, NULL, 'foto-ruang-shopping-arcade-1.jpg', NULL, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
+(20, NULL, 'foto-ruang-shopping-arcade-2.jpg', NULL, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
+(21, NULL, 'foto-ruang-audio-visual-1.jpg', NULL, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
+(22, NULL, 'foto-ruang-audio-visual-2.jpg', NULL, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
+(23, NULL, 'foto-ruang-rapat-1.jpg', NULL, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
+(24, NULL, 'foto-ruang-rapat-2.jpg', NULL, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
+(28, NULL, 'foto-ruang-rapat-2_2.jpg', NULL, NULL, NULL, '2023-05-22 07:58:38', NULL, '2023-05-22 07:58:38'),
+(29, NULL, 'foto-ruang-rapat-1_3.jpg', NULL, NULL, NULL, '2023-05-22 07:58:57', NULL, '2023-05-22 07:58:57'),
+(30, NULL, 'foto-ruang-rapat-2_3.jpg', NULL, NULL, NULL, '2023-05-22 07:58:57', NULL, '2023-05-22 07:58:57'),
+(31, NULL, 'foto-roof-garden-1.jpg', NULL, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(32, NULL, 'foto-roof-garden-2.jpg', NULL, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(33, NULL, 'foto-roof-garden-3.jpg', NULL, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(34, NULL, 'foto-roof-garden-4.jpg', NULL, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(37, NULL, 'foto-ruang-foto-produk-1.jpg', NULL, NULL, NULL, '2023-05-22 12:22:36', NULL, '2023-05-22 12:22:36'),
+(38, NULL, 'foto-ruang-foto-produk-2.jpg', NULL, NULL, NULL, '2023-05-22 12:22:36', NULL, '2023-05-22 12:22:36'),
+(39, NULL, 'foto-ruang-cetak-produk-1.jpg', NULL, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
+(40, NULL, 'foto-ruang-cetak-produk-2.jpg', NULL, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
+(41, NULL, 'foto-ruang-desainer-1.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
+(42, NULL, 'foto-ruang-desainer-2.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41');
 
 -- --------------------------------------------------------
 
@@ -314,14 +381,33 @@ INSERT INTO `galeri_alat` (`id`, `id_alat`, `id_file_picker`, `nama_file`, `id_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `galeri_kegiatan`
+--
+
+CREATE TABLE `galeri_kegiatan` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_kegiatan` int(11) UNSIGNED DEFAULT NULL,
+  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
+  `nama_file` varchar(255) DEFAULT NULL,
+  `judul` varchar(255) DEFAULT NULL,
+  `kategori` varchar(255) DEFAULT NULL,
+  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `galeri_ruangan`
 --
 
 CREATE TABLE `galeri_ruangan` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_ruangan` int(11) UNSIGNED DEFAULT NULL,
+  `id_galeri` int(11) NOT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `nama_file` varchar(255) DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
@@ -332,9 +418,39 @@ CREATE TABLE `galeri_ruangan` (
 -- Dumping data for table `galeri_ruangan`
 --
 
-INSERT INTO `galeri_ruangan` (`id`, `id_ruangan`, `id_file_picker`, `nama_file`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 6, NULL, '2.png', NULL, '2023-05-10 06:08:00', NULL, '2023-05-10 06:08:00'),
-(2, 6, NULL, '5ea50f43831c2_1.png', NULL, '2023-05-10 06:08:00', NULL, '2023-05-10 06:08:00');
+INSERT INTO `galeri_ruangan` (`id`, `id_ruangan`, `id_galeri`, `id_file_picker`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(3, 7, 3, NULL, NULL, '2023-05-22 07:17:06', NULL, '2023-05-22 07:17:06'),
+(4, 7, 4, NULL, NULL, '2023-05-22 07:17:06', NULL, '2023-05-22 07:17:06'),
+(5, 7, 5, NULL, NULL, '2023-05-22 07:17:06', NULL, '2023-05-22 07:17:06'),
+(6, 8, 6, NULL, NULL, '2023-05-22 07:31:55', NULL, '2023-05-22 07:31:55'),
+(7, 8, 7, NULL, NULL, '2023-05-22 07:31:55', NULL, '2023-05-22 07:31:55'),
+(8, 9, 8, NULL, NULL, '2023-05-22 07:35:07', NULL, '2023-05-22 07:35:07'),
+(9, 9, 9, NULL, NULL, '2023-05-22 07:35:07', NULL, '2023-05-22 07:35:07'),
+(10, 9, 10, NULL, NULL, '2023-05-22 07:35:07', NULL, '2023-05-22 07:35:07'),
+(11, 10, 11, NULL, NULL, '2023-05-22 07:37:21', NULL, '2023-05-22 07:37:21'),
+(12, 10, 12, NULL, NULL, '2023-05-22 07:37:21', NULL, '2023-05-22 07:37:21'),
+(13, 10, 13, NULL, NULL, '2023-05-22 07:37:21', NULL, '2023-05-22 07:37:21'),
+(14, 11, 14, NULL, NULL, '2023-05-22 07:38:59', NULL, '2023-05-22 07:38:59'),
+(15, 11, 15, NULL, NULL, '2023-05-22 07:38:59', NULL, '2023-05-22 07:38:59'),
+(16, 12, 16, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
+(17, 12, 17, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
+(18, 12, 18, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
+(19, 13, 19, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
+(20, 13, 20, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
+(21, 14, 21, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
+(22, 14, 22, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
+(23, 16, 23, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
+(24, 16, 24, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
+(31, 25, 31, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(32, 25, 32, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(33, 25, 33, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(34, 25, 34, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
+(37, 28, 37, NULL, NULL, '2023-05-22 12:22:36', NULL, '2023-05-22 12:22:36'),
+(38, 28, 38, NULL, NULL, '2023-05-22 12:22:36', NULL, '2023-05-22 12:22:36'),
+(39, 29, 39, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
+(40, 29, 40, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
+(41, 30, 41, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
+(42, 30, 42, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41');
 
 -- --------------------------------------------------------
 
@@ -376,11 +492,15 @@ CREATE TABLE `kategori_galeri` (
 CREATE TABLE `kegiatan` (
   `id` int(11) UNSIGNED NOT NULL,
   `nama_kegiatan` varchar(255) DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
+  `jenis_kegiatan` varchar(255) DEFAULT NULL,
+  `tipe_kegiatan` enum('Online','Offline','Online dan Offline') DEFAULT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
   `tempat` varchar(255) DEFAULT NULL,
   `tgl_mulai` datetime DEFAULT NULL,
   `tgl_selesai` datetime DEFAULT NULL,
+  `link_pendaftaran` varchar(255) DEFAULT NULL,
+  `link_virtual` varchar(255) DEFAULT NULL,
+  `poster` varchar(255) DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
@@ -391,9 +511,11 @@ CREATE TABLE `kegiatan` (
 -- Dumping data for table `kegiatan`
 --
 
-INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `deskripsi`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 'Pameran Seni', 'Pameran seni', NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', NULL, '0000-00-00 00:00:00', NULL, NULL),
-(2, 'Pameran Busana', 'Pameran Busana', NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', NULL, '0000-00-00 00:00:00', NULL, NULL);
+INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `jenis_kegiatan`, `tipe_kegiatan`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `link_pendaftaran`, `link_virtual`, `poster`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(1, 'Pameran Seni', 'Pameran seni', NULL, NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
+(2, 'Pameran Busana', 'Pameran Busana', NULL, NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
+(3, 'Pameran Kaca: Glass Beyond Borders', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Pameran Busana Batik', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja membatik.JPG', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -455,7 +577,8 @@ CREATE TABLE `ruangan` (
   `nama` varchar(255) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
   `deskripsi` text DEFAULT NULL,
-  `tipe` enum('Pameran','Kantor','Meeting','Lainnya') DEFAULT NULL,
+  `tipe` enum('Pameran','Kantor','Meeting','Pengembangan','Lainnya') DEFAULT NULL,
+  `kegunaan` varchar(255) DEFAULT NULL,
   `lantai` int(1) DEFAULT NULL,
   `kapasitas` int(10) UNSIGNED DEFAULT NULL,
   `ukuran` varchar(100) DEFAULT NULL,
@@ -472,12 +595,30 @@ CREATE TABLE `ruangan` (
 -- Dumping data for table `ruangan`
 --
 
-INSERT INTO `ruangan` (`id`, `nama`, `slug`, `deskripsi`, `tipe`, `lantai`, `kapasitas`, `ukuran`, `luas`, `fasilitas`, `biaya_sewa`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 'Ruang A', 'ruang-a', 'Ruang A', 'Pameran', 1, 100, '7m x 8m x 3m', 56, NULL, 100000, NULL, '2023-04-24', NULL, NULL),
-(2, 'Ruang B', 'ruang-b', 'asd', 'Kantor', 1, 50, '10m x 7m x 3m', 70, NULL, 100000, NULL, NULL, NULL, NULL),
-(3, 'ruang C', 'ruang-c', 'ruang c', 'Meeting', 3, 50, '7m x 7m x 7m', 343, 'AC', NULL, NULL, NULL, NULL, NULL),
-(4, 'ruang z', 'ruang-z', 'ruang penuh dengan fitur berkualitas', 'Pameran', 2, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'asdfasdfasdfasd', 'asdfasdfasdfasd', 'asdfasdf', 'Meeting', 1, 20, '5m x 5m x 3', 25, 'ac', 10000, NULL, '2023-05-10', NULL, '2023-05-10');
+INSERT INTO `ruangan` (`id`, `nama`, `slug`, `deskripsi`, `tipe`, `kegunaan`, `lantai`, `kapasitas`, `ukuran`, `luas`, `fasilitas`, `biaya_sewa`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(7, 'Ruang Woodworking', 'Ruang-Woodworking', 'Ruang Woodworking adalah ruang yang berisi alat-alat untuk membuat produk dengan bahan dasar kayu. Ruangan ini terletak di lantai dasar (ground floor) gedung Pusat Desain Industri Nasional.   \r\n\r\nRuangan ini memiliki beberapa alat yang bisa digunakan untuk mengembangkan produk berbahan dasar kayu, seperti table saw, planner, jointer, mesin bubut kayu, drum sander, mesin CNC router, mesin CNC laser, dan lain-lain.\r\n', 'Pengembangan', 'Pengembangan Prototipe, Pelatihan, Workshop, ', 0, 3, '0m x 0m x 0m', 0, NULL, 0, NULL, NULL, NULL, '2023-05-26'),
+(8, 'Ruang Steelworking', 'Ruang-Steelworking', 'Ruang Steelworking adalah ruang yang berisi alat-alat untuk membuat produk dengan bahan dasar besi. Ruangan ini terletak di lantai dasar (ground floor) gedung Pusat Desain Industri Nasional.   \r\n\r\nRuangan ini memiliki beberapa alat yang bisa digunakan untuk mengembangkan produk berbahan dasar kayu, seperti mesin bubut besi, compressor, mesin CNC laser fiber, dan lain-lain.', 'Pengembangan', NULL, 0, 0, '0m x 0m x 0m', 0, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(9, 'Ruang Pameran 1', 'Ruang-Pameran-1', 'Ruang Pameran 1 merupakan sebuah aula luas yang terletak di bagian depan gedung Pusat Desain Industri Nasional.  Lokasi dari Ruang Pameran 1 adalah di lantai satu sayap utara Gedung, tepatnya di samping pintu masuk utama. \r\n\r\nKegunaan utama dari ruang ini adalah untuk menampilkan produk, barang, atau berbagai karya yang ingin Anda perlihatkan kepada audiens masyarakat luas. Namun, ruang ini juga dapat digunakan untuk pelbagai acara, seperti Pelatihan, Workshop, Meeting Point, dan lain-lain\r\n\r\nRuangan Pameran ini dikelilingi oleh kaca di setiap sudutnya, sehingga menambah kesan luas pada ruangan. Plafon dengan cat warna putih beserta ornament visual lain juga menambah estetika dari Ruang Pameran ini. \r\n\r\nRuangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Pameran', NULL, 1, 50, '20m x 7m x 5m', 140, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(10, 'Ruang Pameran 2', 'Ruang-Pameran-2', 'Ruang Pameran 2 merupakan sebuah aula luas yang terletak di bagian depan gedung Pusat Desain Industri Nasional.  Lokasi dari Ruang Pameran 2 adalah di lantai satu sayap selatan Gedung, tepatnya di samping pintu masuk utama. \r\n\r\nKegunaan utama dari ruang ini adalah untuk menampilkan produk, barang, atau berbagai karya yang ingin Anda perlihatkan kepada audiens masyarakat luas. Namun, ruang ini juga dapat digunakan untuk pelbagai acara, seperti Pelatihan, Workshop, Meeting Point, dan lain-lain\r\n\r\nRuangan Pameran ini dikelilingi oleh kaca di setiap sudutnya, sehingga menambah kesan luas pada ruangan. Plafon dengan cat warna putih beserta ornament visual lain juga menambah estetika dari Ruang Pameran ini. \r\n\r\nRuangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Pameran', NULL, 1, 50, '16m x 9m x 5m', 144, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(11, 'Ruang Pameran 3/Seminar', 'Ruang-Pameran-3Seminar', 'Ruang Pameran 3 merupakan sebuah aula luas yang terletak di bagian belakang gedung Pusat Desain Industri Nasional.  Lokasi dari Ruang Pameran 3 adalah di lantai satu sebelah barat, tepatnya di samping lift dan tangga naik. \r\n\r\nKegunaan utama dari ruang ini adalah untuk menampilkan produk, barang, atau berbagai karya yang ingin Anda perlihatkan kepada audiens masyarakat luas. Namun, ruang ini juga dapat digunakan untuk pelbagai acara, seperti Pelatihan, Workshop, Meeting Point, dan lain-lain\r\n\r\nRuangan Pameran ini dikelilingi oleh kaca di setiap sudutnya, sehingga menambah kesan luas pada ruangan. Plafon dengan cat warna putih beserta ornament visual lain juga menambah estetika dari Ruang Pameran ini. \r\n\r\nRuangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Pameran', NULL, 1, 50, '16m x 9m x 5m', 144, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(12, 'Ruang Pameran Outdoor / Alun-alun', 'Ruang-Pameran-Outdoor-Alun-alun', 'Ruang Pameran Outdoor atau Alun-alun merupakan sebuah area terbuka yang terletak di bagian tengah gedung Pusat Desain Industri Nasional.  \r\n\r\nAlun-alun ini biasanya digunakan untuk mengobrol santai dan bertukar ide terkait pengembangan produk. Namun, alun-alun ini juga dapat digunakan untuk menggelar pameran, konser, dan lain-lain.', 'Pameran', NULL, 1, 90, '17m x 6m x 10m', 102, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(13, 'Ruang Shopping Arcade', 'Ruang-Shopping-Arcade', 'Ruang Shopping Arcade adalah ruangan yang digunakan sebagai tempat display dari produk produk yang telah dikembangkan dan dipamerkan. Jenis produk yang ada di ruang ini memiliki beragam jenis, seperti produk kayu, kulit, kain, kaca, dan besi. Jika terpesona dengan produk yang ada di shopping arcade, pengunjung dapat membeli produk-produk tersebut secara langsung.', 'Pameran', NULL, 1, 30, '8m x 6m x 5m', 48, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(14, 'Food Court', 'Food-Court', 'Food court merupakan sebuah tempat istirahat makan yang terdiri dari beberapa gerai makanan. Menu yang disediakan di food court sangat variatif. Terdapat menu makanan ringan hingga makanan berat. Selain itu, harganya masih terjangkau dan tidak membuat kantong jebol.', 'Lainnya', NULL, 1, 20, '6m x 4m x 5m', 24, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(15, 'Ruang Audio Visual', 'Ruang-Audio-Visual', 'Ruang Audio Visual merupakan sebuah ruang serbaguna yang luas. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional.  Ruang ini dapat digunakan untuk pelbagai acara, seperti Rapat, Pelatihan, Workshop, Meeting Point, dan lain-lain. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', NULL, 2, 100, '21m x 16m x 4m', 336, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(16, 'Ruang Rapat Total', 'Ruang-Rapat-Total', 'Ruang Rapat merupakan ruang yang biasa digunakan untuk pertemuan formal. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', 'Ruang Pertemuan, Rapat, Konferensi Pers', 2, 140, '16m x 9m x 4m', 144, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(17, 'Ruang Rapat 1', 'Ruang-Rapat-1', 'Ruang Rapat merupakan ruang yang biasa digunakan untuk pertemuan formal. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', 'Ruang Pertemuan, Rapat, Konferensi Pers', 2, 20, '6m x 9m x 4m', 54, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(18, 'Ruang Rapat 2', 'Ruang-Rapat-2', 'Ruang Rapat merupakan ruang yang biasa digunakan untuk pertemuan formal. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', 'Ruang Pertemuan, Rapat, Konferensi Pers', 2, 20, '6m x 9m x 4m', 54, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(20, 'Ruang Kantor 1', 'Ruang-Kantor-1', '-', 'Kantor', 'Kantor', 2, 20, '6m x 8m x 4m', 48, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(21, 'Ruang Kantor 2', 'Ruang-Kantor-2', '-', 'Kantor', 'Kantor', 2, 20, '6m x 8m x 4m', 48, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(25, 'Roof Garden', 'Roof-Garden', '-', 'Lainnya', 'Bersantai', 2, 25, '14m x 10m x 10m', 140, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(26, 'Ruang Kantor Sewa', 'Ruang-Kantor-Sewa', '-', 'Kantor', 'Ruangan untuk disewakan sebagai kantor.', 3, 25, '10m x 10m x 5m', 100, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(27, 'Ruang Co-Working Space', 'Ruang-Co-Working-Space', '-', 'Kantor', '-', 3, 30, '12m x 7m x 5m', 84, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(28, 'Ruang Foto Produk', 'Ruang-Foto-Produk', '-', 'Lainnya', '-', 3, 0, '4m x 6m x 3m', 24, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(29, 'Ruang Cetak Produk', 'Ruang-Cetak-Produk', '-', 'Lainnya', '-', 3, 30, '5m x 5m x 3m', 25, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(30, 'Ruang Desainer', 'Ruang-Desainer', '-', 'Lainnya', '-', 3, 30, '14m x 6m x 3m', 84, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(31, 'Ruang Kontemplasi', 'Ruang-Kontemplasi', '-', 'Lainnya', '-', 4, 30, '10m x 9m x 3m', 90, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(32, 'Ruang Cafe Rooftop', 'Ruang-Cafe-Rooftop', '-', 'Lainnya', '-', 4, 30, '18m x 15m x 3m', 270, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(33, 'Ruang Mitra PDIN', 'Ruang-Mitra-PDIN', '-', 'Lainnya', '-', 4, 40, '18m x 10m x 3m', 180, '', 0, NULL, '2023-05-22', NULL, '2023-05-22');
 
 -- --------------------------------------------------------
 
@@ -584,7 +725,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'fikwkwk', NULL, NULL, 1, '2023-05-15 13:15:24', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
+(1, 'fikwkwk', NULL, NULL, 1, '2023-05-27 15:26:21', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
 
 --
 -- Indexes for dumped tables
@@ -693,6 +834,12 @@ ALTER TABLE `galeri_alat`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Indexes for table `galeri_kegiatan`
+--
+ALTER TABLE `galeri_kegiatan`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
 -- Indexes for table `galeri_ruangan`
 --
 ALTER TABLE `galeri_ruangan`
@@ -779,7 +926,7 @@ ALTER TABLE `alat`
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `author`
@@ -803,7 +950,7 @@ ALTER TABLE `auth_identities`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -815,7 +962,7 @@ ALTER TABLE `auth_permissions_users`
 -- AUTO_INCREMENT for table `auth_remember_tokens`
 --
 ALTER TABLE `auth_remember_tokens`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `auth_token_logins`
@@ -833,7 +980,7 @@ ALTER TABLE `file_picker`
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `galeri_alat`
@@ -842,10 +989,16 @@ ALTER TABLE `galeri_alat`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `galeri_kegiatan`
+--
+ALTER TABLE `galeri_kegiatan`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `galeri_ruangan`
 --
 ALTER TABLE `galeri_ruangan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -881,7 +1034,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `ruangan`
 --
 ALTER TABLE `ruangan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `settings`
