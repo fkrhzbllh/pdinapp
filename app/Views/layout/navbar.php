@@ -1,4 +1,4 @@
-<body class="bg-pdin-abu-terang">
+<body class="d-flex flex-column min-vh-100 bg-pdin-abu-terang">
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg fixed-top" id="navbar" aria-label="Offcanvas navbar large">
 		<div class="container px-lg-0">
@@ -29,33 +29,34 @@
 				<div class="offcanvas-body">
 					<ul class="navbar-nav justify-content-end flex-grow-1" id="navbarNav">
 						<li class="nav-item px-2">
-							<a class="nav-link"
+							<a class="nav-link <?= ($current_page == 'beranda') ? 'active' : '' ?>"
 								href=<?= base_url() ?>>Beranda</a>
 						</li>
 						<li class="nav-item px-2">
-							<a class="nav-link"
+							<a class="nav-link <?= ($current_page == 'profil') ? 'active' : '' ?>"
 								href="<?= base_url() ?>profilpdin">Profil</a>
 						</li>
 
 						<li class="nav-item px-2">
-							<a class="nav-link"
+							<a class="nav-link <?= ($current_page == 'fasilitas') ? 'active' : '' ?>"
 								href="<?= base_url() ?>fasilitas">Fasilitas</a>
 						</li>
 						<li class="nav-item px-2">
-							<a class="nav-link"
+							<a class="nav-link <?= ($current_page == 'kegiatan') ? 'active' : '' ?>"
 								href="<?= base_url() ?>kegiatan">Kegiatan</a>
 						</li>
 						<li class="nav-item px-2">
-							<a class="nav-link"
+							<a class="nav-link <?= ($current_page == 'galeri') ? 'active' : '' ?>"
 								href="<?= base_url() ?>galeri">Galeri</a>
 						</li>
 						<li class="nav-item px-2">
-							<a class="nav-link"
-								href="<?= base_url() ?>rilismedia">Artikel
+							<a class="nav-link <?= ($current_page == 'rilismedia') ? 'active' : '' ?>"
+								href="<?= base_url() ?>rilismedia">Rilis
+								Media
 							</a>
 						</li>
 						<li class="nav-item ps-2">
-							<a class="nav-link"
+							<a class="nav-link <?= ($current_page == 'kontak') ? 'active' : '' ?>"
 								href="<?= base_url() ?>kontak">Kontak</a>
 						</li>
 					</ul>

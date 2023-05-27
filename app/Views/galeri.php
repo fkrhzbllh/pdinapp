@@ -1,32 +1,30 @@
 <!-- ======= Judul Section ======= -->
 <section id="background-hitam-atas" class="d-flex align-items-center">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="text-light my-4">Galeri</h2>
-          <p class="text-light lh-base">
-            Dokumentasi terkait semua kegiatan yang ada di Pusat Desain Industri
-            Nasional adalah sebagai berikut.
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- End  -->
+  <div class="container">
+    <div class="text-center">
+      <h2 class="text-light my-4">Galeri</h2>
+      <p class="text-light lh-base">
+        Dokumentasi terkait semua kegiatan yang ada di Pusat Desain Industri
+        Nasional adalah sebagai berikut.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- End  -->
 
-    <!-- ======= isi Section ======= -->
-    <section id="isi-section">
-      <div class="container p-3">
-        <div class="bg-white rounded-5 p-5 shadow-sm" id="">
-          <!-- judul section -->
-          <div
-            class="d-flex flex-column flex-sm-row text-center justify-content-center justify-content-md-between mb-4"
-            data-aos="fade-up"
-          >
-            <!-- garis -->
-            <div class="d-none d-md-block flex-md-grow-1 p-0">
-              <hr />
-            </div>
-            <!-- filter dropdown tipe galeri -->
-            <!-- <div class="mb-3 mx-3">
+<!-- ======= isi Section ======= -->
+<section id="isi-section">
+  <div class="container p-3">
+    <div class="bg-white rounded-5 p-5 shadow-sm" id="">
+      <!-- judul section -->
+      <div class="d-flex flex-column flex-sm-row text-center justify-content-center justify-content-md-between mb-4 p-2"
+        data-aos="fade-up">
+        <!-- garis -->
+        <div class="d-none d-md-block flex-md-grow-1 p-0">
+          <hr />
+        </div>
+        <!-- filter dropdown tipe galeri -->
+        <!-- <div class="mb-3 mx-3">
               <div class="dropdown">
                 <a
                   class="btn btn-outline-dark dropdown-toggle"
@@ -47,150 +45,48 @@
                 </ul>
               </div>
             </div> -->
-            <!-- input pencarian -->
-            <div class="ps-md-4">
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Cari Dokumentasi"
-                  aria-label=""
-                  aria-describedby="basic-addon2"
-                />
-                <span
-                  class="input-group-text bi-search text-bg-danger"
-                  id="basic-addon2"
-                ></span>
+        <!-- input pencarian -->
+        <div class="ps-md-4">
+          <form action="" method="post">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control bg-light text-secondary" placeholder="Cari Dokumentasi"
+                aria-label="" aria-describedby="" id="" name="keyword" />
+              <div class="input-group-append">
+                <div class="tooltip"></div>
+                <button class="btn btn-danger rounded-start-0" type="submit">
+                  <span class="bi bi-search"></span>
+                </button>
               </div>
             </div>
-          </div>
-
-          <!--  -->
-          <div class="row mb-5" data-aos="fade-up" data-aos-delay="300">
-            <!-- foto -->
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img src="./assets/galeri-1.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="250"
-            >
-              <img src="./assets/galeri-2.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img src="./assets/galeri-3.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="150"
-            >
-              <img src="./assets/galeri-4.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img src="./assets/galeri-5.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="250"
-            >
-              <img src="./assets/galeri-6.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3 d-none d-md-grid"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img src="./assets/galeri-7.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img src="./assets/galeri-8.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="250"
-            >
-              <img src="./assets/galeri-9.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img src="./assets/galeri-10.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="150"
-            >
-              <img src="./assets/galeri-1.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img src="./assets/galeri-2.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="250"
-            >
-              <img src="./assets/galeri-3.jpg" class="img-fluid" alt="image" />
-            </div>
-            <div
-              class="col-6 col-md-4 mt-4 col-lg-3 d-none d-md-grid"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img src="./assets/galeri-4.jpg" class="img-fluid" alt="image" />
-            </div>
-          </div>
-
-          <!-- pagination -->
-          <div class="row mt-4 mb-2">
-            <div class="col-12 p-0 m-0">
-              <ul class="pagination justify-content-center m-0">
-                <li class="page-item">
-                  <a class="page-link text-black" href="#">Previous</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link text-black" href="#">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link text-black" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link text-black" href="#">3</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link text-black" href="#">Next</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
-      <div class="container p-3"></div>
-    </section>
+
+      <!-- foto -->
+      <div class="wrapper">
+        <div class="masonry masonry--h">
+          <?php foreach ($galeri as $g) : ?>
+          <figure class="masonry-brick masonry-brick--h">
+            <a href="<?= base_url() . 'uploads/' . $g['nama_file']?>"
+              data-toggle="lightbox">
+              <img
+                src="<?= base_url() . 'uploads/' . $g['nama_file']?>"
+                class="masonry-img" alt="Masonry Brick #1">
+            </a>
+          </figure>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <!-- pagination -->
+      <div class="row mt-4 mb-2 justify-content-center ">
+        <div class="col-6 p-3 m-0 justify-content-center">
+          <?php echo $pager->links('galeri', 'pager') ?>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  </div>
+  <div class="container p-3"></div>
+</section>

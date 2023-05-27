@@ -2,7 +2,8 @@
 <footer class="bg-pdin-hitam">
 	<div class="container px-sm-4 px-md-3 py-4">
 		<div class="my-4">
-			<img src="./assets/logo-pdin-merah-putih.png" id="logoFooter" alt="logo pdin putih" />
+			<img src="<?= base_url() ?>assets/logo-pdin-merah-putih.png"
+				id="logoFooter" alt="logo pdin putih" />
 		</div>
 		<div class="row justify-content-between m-0 p-0">
 			<!-- Alamat Gedung -->
@@ -107,19 +108,19 @@
 			</div>
 		</div>
 		<div class="row justify-content-center align-content-center align-items-center my-4">
-			<div class="col-2 text-center logo-pemda">
+			<div class="col-3 col-lg-2 text-center logo-pemda">
 				<img src="<?= base_url() ?>assets/logo-pemda-diy.png"
 					class="img-fluid" alt="" />
 			</div>
-			<div class="col-2 text-center logo-jogja">
+			<div class="col-3 col-lg-2 text-center logo-jogja">
 				<img src="<?= base_url() ?>assets/logo-jogja-istimewa.png"
 					class="img-fluid" alt="" />
 			</div>
-			<div class="col-2 text-center logo-pemda">
+			<div class="col-3 col-lg-2 text-center logo-pemda">
 				<img src="<?= base_url() ?>assets/logo-pemkot-yogyakarta.png"
 					class="img-fluid" alt="" />
 			</div>
-			<div class="col-2 text-center logo-yk">
+			<div class="col-3 col-lg-2 text-center logo-yk">
 				<img src="<?= base_url() ?>assets/logo-yk.png"
 					class="img-fluid" alt="" />
 			</div>
@@ -143,14 +144,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-<!-- <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"
 	integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
@@ -158,29 +151,20 @@
 	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
 </script>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
-
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+<!-- calendar -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.7/locales-all.global.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 	AOS.init();
 </script>
 
-<!-- Popperjs -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script> -->
-<!-- Tempus Dominus JavaScript -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.7.7/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script> -->
-
-<!-- Tempus Dominus Styles -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.7.7/dist/css/tempus-dominus.min.css" crossorigin="anonymous"> -->
 </body>
 
 </html>

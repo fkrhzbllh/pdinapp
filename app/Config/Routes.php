@@ -35,7 +35,12 @@ $routes->get('/', 'Beranda::index');
 // $routes->get('/sewa-ruang', 'SewaRuang::index');
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
 $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');
-$routes->get('/rilismedia/(:segment)', 'RilisMedia::detail/$1');
+$routes->delete('/admin/ruang/(:num)', 'Admin::deleteRuangan/$1');
+$routes->delete('/admin/alat/(:num)', 'Admin::deleteAlat/$1');
+$routes->get('/admin/ruang/(:any)', 'Admin::detailRuangan/$1');
+$routes->get('/admin/alat/(:any)', 'Admin::detailAlat/$1');
+$routes->get('/rilismedia/(:any)', 'RilisMedia::detail/$1');
+$routes->get('/rilismedia', 'RilisMedia::index');
 
 service('auth')->routes($routes);
 
@@ -53,5 +58,5 @@ service('auth')->routes($routes);
  * needing to reload it.
  */
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

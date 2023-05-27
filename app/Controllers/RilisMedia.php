@@ -9,35 +9,46 @@ use Psr\Log\LoggerInterface;
 
 class RilisMedia extends BaseController
 {
-    protected $artikelModel;
-    protected $helpers = ['form'];
+	protected $artikelModel;
 
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
-    {
-        parent::initController($request, $response, $logger);
+	protected $helpers = ['form'];
 
-        $this->artikelModel = new ArtikelModel();
-    }
-    public function index()
-    {
-        $artikel = $this->artikelModel->paginate(1, 'artikel');
-        $this->data['artikel'] = $artikel;
-        $this->data['pager'] = $this->artikelModel->pager;
-        $this->data['judul_halaman'] = 'Rilis Media';
-        $this->view('rilismedia.php', $this->data);
-    }
+	public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+	{
+		parent::initController($request, $response, $logger);
 
-    public function detail($slug)
-    {
-        $artikel = $this->artikelModel->getArtikel($slug);
+		$this->artikelModel = new ArtikelModel();
 
-        // tampilan error kalau tidak ada slug artikel yang ada di database
-        if(empty($artikel))
-        {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan '.$slug.' tidak ditemukan.');
-        }
+		$this->data['judul_halaman'] = 'Rilis Media | Pusat Desain Industri Nasional';
+		$this->data['current_page'] = 'rilismedia';
+	}
 
-        $this->data['artikel'] = $artikel;
-        $this->view('detailrilismedia.php', $this->data);
-    }
+	public function index()
+	{
+		$keyword = $this->request->getVar('keyword');
+
+		if ($keyword) {
+			$artikel = $this->artikelModel->search($keyword);
+		} else {
+			$artikel = $this->artikelModel;
+		}
+
+		$this->data['artikel'] = $artikel->paginate(3, 'artikel');
+		$this->data['pager'] = $this->artikelModel->pager;
+
+		$this->view('rilismedia.php', $this->data);
+	}
+
+	public function detail($slug)
+	{
+		$artikel = $this->artikelModel->getArtikel($slug);
+
+		// tampilan error kalau tidak ada slug artikel yang ada di database
+		if (empty($artikel)) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan ' . $slug . ' tidak ditemukan.');
+		}
+
+		$this->data['artikel'] = $artikel;
+		$this->view('detailrilismedia.php', $this->data);
+	}
 }
