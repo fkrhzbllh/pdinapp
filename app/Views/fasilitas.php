@@ -113,72 +113,46 @@
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
 
 						<!-- card ruangan -->
-						<!-- <div class="col">
-                        <a href="fasilitasdetail.html">
-                          <div class="card">
-                            <img
-                              src="./assets/hero-bg-2.jpg"
-                              class="card-img-top object-fit-cover"
-                              width="100%"
-                              height="200"
-                              alt=""
-                            />
-                            <div class="card-title px-3 pt-3">
-                              <h6 class="text-danger">Lantai 1</h6>
-                              <h5>Ruang Audio Video</h5>
-                            </div>
-                            <div class="card-body pt-0">
-                              <p class="card-text">
-                                This is a wider card with supporting text below as a
-                                natural lead-in to additional content. This content is a
-                                little bit longer.
-                              </p>
-                              <div class="d-flex justify-content-end align-items-center">
-                                <a href="#"
-                                  ><small class="text-body-secondary"
-                                    >Lihat selengkapnya</small
-                                  ></a
-                                >
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div> -->
-						<!-- card ruangan -->
-
 						<?php foreach($ruangan as $key => $r) : ?>
 
 						<div
-							class="col-4 <?= $r['tipe']?> mb-3">
+							class="col <?= $r['tipe']?> mb-3">
 							<div class="card">
 
 								<?php if (!is_null($fotoruangan[$key])) :?>
-								<img class="card-img-top object-fit-cover"
-									src="<?= base_url()?>uploads/<?= $fotoruangan[$key]['nama_file'] ?>"
-									width="100%" height="200">
+								<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>"
+									class="">
+									<img class="card-img-top object-fit-cover"
+										src="<?= base_url()?>uploads/<?= $fotoruangan[$key]['nama_file'] ?>"
+										width="100%" height="200">
+								</a>
 								<?php else :?>
-								<img class="card-img-top object-fit-cover"
-									src="<?php echo base_url() ?>Logo-PDIN.png"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'"
-									width="100%" height="200">
+								<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>"
+									class="">
+									<img class="card-img-top object-fit-scale"
+										src="<?php echo base_url() ?>assets/Logo-PDIN.png"
+										onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'"
+										width="100%" height="200">
+								</a>
 								<?php endif; ?>
 								<!-- <h5 class="card-header">Featured</h5> -->
 								<div class="card-title px-3 pt-3">
-									<h6 class="text-danger">Lantai
+									<p class="text-danger fw-bold mb-2">Lantai
 										<?php if($r['lantai'] == 0) {
 											echo 'Floor Ground';
 										} else {
 											echo $r['lantai'];
 										} ?>
-									</h6>
+									</p>
 									<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>"
-										class="streched-link">
+										class="">
 										<h5 class="crop-text-1" id="namaruangan">
 											<?= $r['nama'] ?>
 										</h5>
 									</a>
 								</div>
 								<div class="card-body pt-0">
+
 									<p class="card-text crop-text-2">
 										<?= $r['deskripsi'] ?>
 									</p>
@@ -203,44 +177,58 @@
 						</div>
 
 						<?php endforeach; ?>
+
+					</div>
+				</div>
+				<div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-alat-tab"
+					tabindex="0">
+					<?php if ($admin) : ?>
+					<a class="btn btn-success mb-3"
+						href="<?= base_url() . 'admin/tambahalat'?>">Tambah
+						Alat</a>
+					<?php endif; ?>
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
+						<!-- card alat -->
+						<?php foreach($alat as $key => $r) : ?>
+						<div class="col mb-3">
+							<div class="card">
+								<?php if (!is_null($fotoalat[$key])) :?>
+								<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>"
+									class="">
+									<img class="card-img-top object-fit-cover"
+										src="<?= base_url()?>uploads/<?= $fotoalat[$key]['nama_file'] ?>"
+										width="100%" height="200">
+								</a>
+								<?php else :?>
+								<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>"
+									class="">
+									<img class="card-img-top object-fit-scale"
+										src="<?php echo base_url() ?>assets/Logo-PDIN.png"
+										onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'"
+										width="100%" height="200">
+								</a>
+								<?php endif; ?>
+								<!-- <h5 class="card-header">Featured</h5> -->
+								<div class="card-title px-3 pt-3">
+									<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>"
+										class="">
+										<h5 class="crop-text-1" id="namaalat">
+											<?= $r['nama'] ?>
+										</h5>
+									</a>
+								</div>
+								<div class="card-body pt-0">
+									<p class="card-text">
+										<?= $r['deskripsi'] ?>
+									</p>
+								</div>
+							</div>
+						</div>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
 
-			<div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-alat-tab" tabindex="0">
-				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
-					<!-- card alat -->
-					<?php foreach($alat as $key => $r) : ?>
-					<div class="col-4 mb-3">
-						<div class="card">
-							<?php if (!is_null($fotoalat[$key])) :?>
-							<img class="card-img-top object-fit-cover"
-								src="<?= base_url()?>uploads/<?= $fotoalat[$key]['nama_file'] ?>"
-								width="100%" height="200">
-							<?php else :?>
-							<img class="card-img-top object-fit-cover"
-								src="<?php echo base_url() ?>Logo-PDIN.png"
-								onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'"
-								width="100%" height="200">
-							<?php endif; ?>
-							<!-- <h5 class="card-header">Featured</h5> -->
-							<div class="card-title px-3 pt-3">
-								<h5 class="crop-text-1" id="namaalat">
-									<?= $r['nama'] ?>
-								</h5>
-							</div>
-							<div class="card-body pt-0">
-								<p class="card-text">
-									<?= $r['deskripsi'] ?>
-								</p>
-								<a href="/fasilitas/alat/<?php echo $r['slug']; ?>"
-									class="stretched-link"></a>
-							</div>
-						</div>
-					</div>
-					<?php endforeach; ?>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="container p-3"></div>

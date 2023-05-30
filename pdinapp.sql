@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2023 at 05:30 PM
+-- Generation Time: May 30, 2023 at 05:55 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -61,8 +61,9 @@ CREATE TABLE `alat` (
 --
 
 INSERT INTO `alat` (`id`, `nama`, `slug`, `deskripsi`, `biaya_sewa`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(3, 'Gergaji mesin 2', 'gergaji-mesin-2', 'asdfasdf', 20000, NULL, '2023-05-10', NULL, '2023-05-10'),
-(4, 'Gergaji mesin 3', 'gergaji-mesin-3', 'a', 20000, NULL, '2023-05-10', NULL, '2023-05-10');
+(6, 'Printer 3D', 'Printer-3D', 'Printer 3D', 0, NULL, '2023-05-30', NULL, '2023-05-30'),
+(7, 'Pemotong Logam', 'pemotong-logam', 'Pemotong Logam', 0, NULL, '2023-05-30', NULL, '2023-05-30'),
+(8, 'Pemotong Kayu', 'pemotong-kayu', 'Pemotong kayu', 0, NULL, '2023-05-30', NULL, '2023-05-30');
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,7 @@ INSERT INTO `auth_remember_tokens` (`id`, `selector`, `hashedValidator`, `user_i
 (2, '2806c4820802f58060ea8001', '76184cc0fcdb44b7bbad489008ac9bae2c6ca9e6a949445f4b2142243268f1a7', 1, '2023-06-22 09:16:59', '2023-05-23 09:16:59', '2023-05-23 09:16:59'),
 (3, '9efd83c6cb0e393d8dddff27', '8643624b1417acfd951a8f927b4f7d4b5512b56178135f3e5c83028c4ec3693d', 1, '2023-06-25 05:47:24', '2023-05-23 09:17:51', '2023-05-26 05:47:24'),
 (4, 'e815c51267e9dc3eb91e9b4e', 'bb81b02b3d63646553b49b621d2d9883ceb236ca82f1e184d819ab8ac09c1c77', 1, '2023-06-26 10:11:41', '2023-05-26 06:37:17', '2023-05-27 10:11:41'),
-(5, '84e24af3e0403bf440832151', '5a738bc75cd4001c13065471a30163de1ba310926b33b5dc98cc0de7edc1050a', 1, '2023-06-26 14:11:37', '2023-05-27 14:11:37', '2023-05-27 14:11:37');
+(5, '84e24af3e0403bf440832151', 'c3e5ab11a5425dcc89422fa69b7f3b3da25aca991e81a72d2c3c870f2ee2c8f3', 1, '2023-06-29 12:36:43', '2023-05-27 14:11:37', '2023-05-30 12:36:43');
 
 -- --------------------------------------------------------
 
@@ -336,8 +337,6 @@ INSERT INTO `galeri` (`id`, `id_file_picker`, `nama_file`, `judul`, `kategori`, 
 (18, NULL, 'foto-alun-alun-3.jpg', NULL, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
 (19, NULL, 'foto-ruang-shopping-arcade-1.jpg', NULL, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
 (20, NULL, 'foto-ruang-shopping-arcade-2.jpg', NULL, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
-(21, NULL, 'foto-ruang-audio-visual-1.jpg', NULL, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
-(22, NULL, 'foto-ruang-audio-visual-2.jpg', NULL, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
 (23, NULL, 'foto-ruang-rapat-1.jpg', NULL, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
 (24, NULL, 'foto-ruang-rapat-2.jpg', NULL, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
 (28, NULL, 'foto-ruang-rapat-2_2.jpg', NULL, NULL, NULL, '2023-05-22 07:58:38', NULL, '2023-05-22 07:58:38'),
@@ -352,7 +351,9 @@ INSERT INTO `galeri` (`id`, `id_file_picker`, `nama_file`, `judul`, `kategori`, 
 (39, NULL, 'foto-ruang-cetak-produk-1.jpg', NULL, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
 (40, NULL, 'foto-ruang-cetak-produk-2.jpg', NULL, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
 (41, NULL, 'foto-ruang-desainer-1.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
-(42, NULL, 'foto-ruang-desainer-2.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41');
+(42, NULL, 'foto-ruang-desainer-2.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
+(88, NULL, 'foto-ruang-audio-visual-1.jpg', NULL, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25'),
+(89, NULL, 'foto-ruang-audio-visual-2.jpg', NULL, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25');
 
 -- --------------------------------------------------------
 
@@ -362,9 +363,9 @@ INSERT INTO `galeri` (`id`, `id_file_picker`, `nama_file`, `judul`, `kategori`, 
 
 CREATE TABLE `galeri_alat` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_alat` int(11) UNSIGNED DEFAULT NULL,
+  `id_alat` int(11) UNSIGNED NOT NULL,
+  `id_galeri` int(11) UNSIGNED NOT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `nama_file` varchar(255) DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
@@ -375,8 +376,8 @@ CREATE TABLE `galeri_alat` (
 -- Dumping data for table `galeri_alat`
 --
 
-INSERT INTO `galeri_alat` (`id`, `id_alat`, `id_file_picker`, `nama_file`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 4, NULL, '1.png', NULL, '2023-05-10 14:51:44', NULL, '2023-05-10 14:51:44');
+INSERT INTO `galeri_alat` (`id`, `id_alat`, `id_galeri`, `id_file_picker`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(4, 0, 75, NULL, NULL, '2023-05-30 04:36:07', NULL, '2023-05-30 04:36:07');
 
 -- --------------------------------------------------------
 
@@ -387,10 +388,8 @@ INSERT INTO `galeri_alat` (`id`, `id_alat`, `id_file_picker`, `nama_file`, `id_a
 CREATE TABLE `galeri_kegiatan` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_kegiatan` int(11) UNSIGNED DEFAULT NULL,
+  `id_gale` int(11) UNSIGNED NOT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `nama_file` varchar(255) DEFAULT NULL,
-  `judul` varchar(255) DEFAULT NULL,
-  `kategori` varchar(255) DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
@@ -405,8 +404,8 @@ CREATE TABLE `galeri_kegiatan` (
 
 CREATE TABLE `galeri_ruangan` (
   `id` int(11) UNSIGNED NOT NULL,
-  `id_ruangan` int(11) UNSIGNED DEFAULT NULL,
-  `id_galeri` int(11) NOT NULL,
+  `id_ruangan` int(11) UNSIGNED NOT NULL,
+  `id_galeri` int(11) UNSIGNED NOT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -437,8 +436,6 @@ INSERT INTO `galeri_ruangan` (`id`, `id_ruangan`, `id_galeri`, `id_file_picker`,
 (18, 12, 18, NULL, NULL, '2023-05-22 07:40:29', NULL, '2023-05-22 07:40:29'),
 (19, 13, 19, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
 (20, 13, 20, NULL, NULL, '2023-05-22 07:44:38', NULL, '2023-05-22 07:44:38'),
-(21, 14, 21, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
-(22, 14, 22, NULL, NULL, '2023-05-22 07:50:35', NULL, '2023-05-22 07:50:35'),
 (23, 16, 23, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
 (24, 16, 24, NULL, NULL, '2023-05-22 07:56:59', NULL, '2023-05-22 07:56:59'),
 (31, 25, 31, NULL, NULL, '2023-05-22 11:52:22', NULL, '2023-05-22 11:52:22'),
@@ -450,7 +447,9 @@ INSERT INTO `galeri_ruangan` (`id`, `id_ruangan`, `id_galeri`, `id_file_picker`,
 (39, 29, 39, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
 (40, 29, 40, NULL, NULL, '2023-05-22 12:24:44', NULL, '2023-05-22 12:24:44'),
 (41, 30, 41, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
-(42, 30, 42, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41');
+(42, 30, 42, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
+(73, 14, 88, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25'),
+(74, 14, 89, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25');
 
 -- --------------------------------------------------------
 
@@ -492,6 +491,7 @@ CREATE TABLE `kategori_galeri` (
 CREATE TABLE `kegiatan` (
   `id` int(11) UNSIGNED NOT NULL,
   `nama_kegiatan` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) NOT NULL,
   `jenis_kegiatan` varchar(255) DEFAULT NULL,
   `tipe_kegiatan` enum('Online','Offline','Online dan Offline') DEFAULT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
@@ -511,11 +511,11 @@ CREATE TABLE `kegiatan` (
 -- Dumping data for table `kegiatan`
 --
 
-INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `jenis_kegiatan`, `tipe_kegiatan`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `link_pendaftaran`, `link_virtual`, `poster`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 'Pameran Seni', 'Pameran seni', NULL, NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
-(2, 'Pameran Busana', 'Pameran Busana', NULL, NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
-(3, 'Pameran Kaca: Glass Beyond Borders', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Pameran Busana Batik', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja membatik.JPG', NULL, NULL, NULL, NULL);
+INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `slug`, `jenis_kegiatan`, `tipe_kegiatan`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `link_pendaftaran`, `link_virtual`, `poster`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(1, 'Pameran Seni', '', 'Pameran seni', NULL, NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
+(2, 'Pameran Busana', '', 'Pameran Busana', NULL, NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
+(3, 'Pameran Kaca: Glass Beyond Borders', '', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Pameran Busana Batik', '', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja membatik.JPG', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -603,7 +603,7 @@ INSERT INTO `ruangan` (`id`, `nama`, `slug`, `deskripsi`, `tipe`, `kegunaan`, `l
 (11, 'Ruang Pameran 3/Seminar', 'Ruang-Pameran-3Seminar', 'Ruang Pameran 3 merupakan sebuah aula luas yang terletak di bagian belakang gedung Pusat Desain Industri Nasional.  Lokasi dari Ruang Pameran 3 adalah di lantai satu sebelah barat, tepatnya di samping lift dan tangga naik. \r\n\r\nKegunaan utama dari ruang ini adalah untuk menampilkan produk, barang, atau berbagai karya yang ingin Anda perlihatkan kepada audiens masyarakat luas. Namun, ruang ini juga dapat digunakan untuk pelbagai acara, seperti Pelatihan, Workshop, Meeting Point, dan lain-lain\r\n\r\nRuangan Pameran ini dikelilingi oleh kaca di setiap sudutnya, sehingga menambah kesan luas pada ruangan. Plafon dengan cat warna putih beserta ornament visual lain juga menambah estetika dari Ruang Pameran ini. \r\n\r\nRuangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Pameran', NULL, 1, 50, '16m x 9m x 5m', 144, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (12, 'Ruang Pameran Outdoor / Alun-alun', 'Ruang-Pameran-Outdoor-Alun-alun', 'Ruang Pameran Outdoor atau Alun-alun merupakan sebuah area terbuka yang terletak di bagian tengah gedung Pusat Desain Industri Nasional.  \r\n\r\nAlun-alun ini biasanya digunakan untuk mengobrol santai dan bertukar ide terkait pengembangan produk. Namun, alun-alun ini juga dapat digunakan untuk menggelar pameran, konser, dan lain-lain.', 'Pameran', NULL, 1, 90, '17m x 6m x 10m', 102, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (13, 'Ruang Shopping Arcade', 'Ruang-Shopping-Arcade', 'Ruang Shopping Arcade adalah ruangan yang digunakan sebagai tempat display dari produk produk yang telah dikembangkan dan dipamerkan. Jenis produk yang ada di ruang ini memiliki beragam jenis, seperti produk kayu, kulit, kain, kaca, dan besi. Jika terpesona dengan produk yang ada di shopping arcade, pengunjung dapat membeli produk-produk tersebut secara langsung.', 'Pameran', NULL, 1, 30, '8m x 6m x 5m', 48, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(14, 'Food Court', 'Food-Court', 'Food court merupakan sebuah tempat istirahat makan yang terdiri dari beberapa gerai makanan. Menu yang disediakan di food court sangat variatif. Terdapat menu makanan ringan hingga makanan berat. Selain itu, harganya masih terjangkau dan tidak membuat kantong jebol.', 'Lainnya', NULL, 1, 20, '6m x 4m x 5m', 24, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(14, 'Food Court', 'Food-Court', 'Food court merupakan sebuah tempat istirahat makan yang terdiri dari beberapa gerai makanan. Menu yang disediakan di food court sangat variatif. Terdapat menu makanan ringan hingga makanan berat. Selain itu, harganya masih terjangkau dan tidak membuat kantong jebol.', 'Lainnya', NULL, 1, 20, '6m x 4m x 5m', 24, NULL, 0, NULL, '2023-05-22', NULL, '2023-05-30'),
 (15, 'Ruang Audio Visual', 'Ruang-Audio-Visual', 'Ruang Audio Visual merupakan sebuah ruang serbaguna yang luas. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional.  Ruang ini dapat digunakan untuk pelbagai acara, seperti Rapat, Pelatihan, Workshop, Meeting Point, dan lain-lain. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', NULL, 2, 100, '21m x 16m x 4m', 336, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (16, 'Ruang Rapat Total', 'Ruang-Rapat-Total', 'Ruang Rapat merupakan ruang yang biasa digunakan untuk pertemuan formal. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', 'Ruang Pertemuan, Rapat, Konferensi Pers', 2, 140, '16m x 9m x 4m', 144, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (17, 'Ruang Rapat 1', 'Ruang-Rapat-1', 'Ruang Rapat merupakan ruang yang biasa digunakan untuk pertemuan formal. Ruang ini terletak di lantai 2 gedung Pusat Desain Industri Nasional. Ruangan ini memiliki beberapa sarana pendukung untuk menjamin kelancaran acara Anda, seperti Sound System, Lampu, Meja, Kursi, Air Conditioner, Kipas Angin.', 'Meeting', 'Ruang Pertemuan, Rapat, Konferensi Pers', 2, 20, '6m x 9m x 4m', 54, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
@@ -616,9 +616,9 @@ INSERT INTO `ruangan` (`id`, `nama`, `slug`, `deskripsi`, `tipe`, `kegunaan`, `l
 (28, 'Ruang Foto Produk', 'Ruang-Foto-Produk', '-', 'Lainnya', '-', 3, 0, '4m x 6m x 3m', 24, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (29, 'Ruang Cetak Produk', 'Ruang-Cetak-Produk', '-', 'Lainnya', '-', 3, 30, '5m x 5m x 3m', 25, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (30, 'Ruang Desainer', 'Ruang-Desainer', '-', 'Lainnya', '-', 3, 30, '14m x 6m x 3m', 84, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(31, 'Ruang Kontemplasi', 'Ruang-Kontemplasi', '-', 'Lainnya', '-', 4, 30, '10m x 9m x 3m', 90, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(31, 'Ruang Kontemplasi', 'Ruang-Kontemplasi', 'Ruang untuk melakukan kontemplasi ', 'Lainnya', '-', 4, 30, '10m x 9m x 3m', 90, NULL, 0, NULL, '2023-05-22', NULL, '2023-05-30'),
 (32, 'Ruang Cafe Rooftop', 'Ruang-Cafe-Rooftop', '-', 'Lainnya', '-', 4, 30, '18m x 15m x 3m', 270, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(33, 'Ruang Mitra PDIN', 'Ruang-Mitra-PDIN', '-', 'Lainnya', '-', 4, 40, '18m x 10m x 3m', 180, '', 0, NULL, '2023-05-22', NULL, '2023-05-22');
+(33, 'Ruang Mitra PDIN', 'Ruang-Mitra-PDIN', '-', 'Lainnya', '-', 4, 40, '18m x 10m x 3m', 180, NULL, 0, NULL, '2023-05-22', NULL, '2023-05-30');
 
 -- --------------------------------------------------------
 
@@ -725,7 +725,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'fikwkwk', NULL, NULL, 1, '2023-05-27 15:26:21', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
+(1, 'fikwkwk', NULL, NULL, 1, '2023-05-30 15:53:45', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
 
 --
 -- Indexes for dumped tables
@@ -920,7 +920,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `artikel`
@@ -980,13 +980,13 @@ ALTER TABLE `file_picker`
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `galeri_alat`
 --
 ALTER TABLE `galeri_alat`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `galeri_kegiatan`
@@ -998,7 +998,7 @@ ALTER TABLE `galeri_kegiatan`
 -- AUTO_INCREMENT for table `galeri_ruangan`
 --
 ALTER TABLE `galeri_ruangan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `kategori`

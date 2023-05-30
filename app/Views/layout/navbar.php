@@ -1,7 +1,7 @@
 <body class="d-flex flex-column min-vh-100 bg-pdin-abu-terang">
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg fixed-top" id="navbar" aria-label="Offcanvas navbar large">
-		<div class="container px-lg-0">
+		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="navbar-brand text-center" id="navBrand">
@@ -34,7 +34,7 @@
 						</li>
 						<li class="nav-item px-2">
 							<a class="nav-link <?= ($current_page == 'profil') ? 'active' : '' ?>"
-								href="<?= base_url() ?>profilpdin">Profil</a>
+								href="<?= base_url() ?>ProfilPDIN">Profil</a>
 						</li>
 
 						<li class="nav-item px-2">
@@ -51,7 +51,7 @@
 						</li>
 						<li class="nav-item px-2">
 							<a class="nav-link <?= ($current_page == 'rilismedia') ? 'active' : '' ?>"
-								href="<?= base_url() ?>rilismedia">Rilis
+								href="<?= base_url() ?>rilis-media">Rilis
 								Media
 							</a>
 						</li>

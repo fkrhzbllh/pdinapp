@@ -14,7 +14,7 @@
 <section id="isi-section">
     <div class="container p-3">
         <div class="bg-white rounded-5 py-5 px-5 shadow-sm" id="">
-            <form id="formruangan" class="mt-3" action="/admin/saveTambahRuangan" method="post"
+            <form id="formruangan" class="mt-3" action="/DashboardAdmin/saveTambahRuangan" method="post"
                 enctype="multipart/form-data">
                 <?php echo csrf_field()?>
                 <div class="row g-3">

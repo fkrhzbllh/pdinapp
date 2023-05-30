@@ -2,10 +2,9 @@
 <section id="background-hitam-atas" class="d-flex align-items-center">
     <div class="container">
         <div class="text-center">
-            <h2 class="text-light my-4">Fasilitas</h2>
+            <h2 class="text-light my-4">Edit Ruangan</h2>
             <p class="text-light lh-base">
-                Informasi terkait semua Fasilitas yang ada di Pusat Desain Industri
-                Nasional adalah sebagai berikut.
+                Ubah data ruangan
             </p>
         </div>
     </div>

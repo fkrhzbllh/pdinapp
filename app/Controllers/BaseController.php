@@ -21,50 +21,50 @@ use Psr\Log\LoggerInterface;
  */
 abstract class BaseController extends Controller
 {
-    /**
-     * Instance of the main Request object.
-     *
-     * @var CLIRequest|IncomingRequest
-     */
-    protected $request;
+	/**
+	 * Instance of the main Request object.
+	 *
+	 * @var CLIRequest|IncomingRequest
+	 */
+	protected $request;
 
-    /**
-     * An array of helpers to be loaded automatically upon
-     * class instantiation. These helpers will be available
-     * to all other controllers that extend BaseController.
-     *
-     * @var array
-     */
-    protected $helpers = [];
+	/**
+	 * An array of helpers to be loaded automatically upon
+	 * class instantiation. These helpers will be available
+	 * to all other controllers that extend BaseController.
+	 *
+	 * @var array
+	 */
+	protected $helpers = [];
 
-    /**
-     * Be sure to declare properties for any property fetch you initialized.
-     * The creation of dynamic property is deprecated in PHP 8.2.
-     */
-    protected $session;
+	/**
+	 * Be sure to declare properties for any property fetch you initialized.
+	 * The creation of dynamic property is deprecated in PHP 8.2.
+	 */
+	protected $session;
 
-    protected $data;
+	protected $data;
 
-    /**
-     * Constructor.
-     */
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
-    {
-        $this->helpers = array_merge($this->helpers, ['setting']);
+	/**
+	 * Constructor.
+	 */
+	public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+	{
+		$this->helpers = array_merge($this->helpers, ['setting']);
 
-        // Do Not Edit This Line
-        parent::initController($request, $response, $logger);
+		// Do Not Edit This Line
+		parent::initController($request, $response, $logger);
 
-        // Preload any models, libraries, etc, here.
+		// Preload any models, libraries, etc, here.
 
-        // E.g.: $this->session = \Config\Services::session();
-        // $this->session = \Config\Services::session();
-        session();
-        
-        $this->data['judul_halaman'] = 'PDIN';
-    }
+		// E.g.: $this->session = \Config\Services::session();
+		// $this->session = \Config\Services::session();
+		session();
 
-    protected function view(string $view, array $data = [], array $options = [])
+		$this->data['judul_halaman'] = 'PDIN';
+	}
+
+	protected function view(string $view, array $data = [], array $options = [])
 	{
 		if (is_array($view)) {
 			foreach ($view as $file_item) {
@@ -72,9 +72,23 @@ abstract class BaseController extends Controller
 			}
 		} else {
 			echo view('layout/header.php', $data);
-            echo view('layout/navbar.php');
+			echo view('layout/navbar.php');
 			echo view($view, $data);
 			echo view('layout/footer.php');
+		}
+	}
+
+	protected function viewAdmin(string $view, array $data = [], array $options = [])
+	{
+		if (is_array($view)) {
+			foreach ($view as $file_item) {
+				echo view($file_item, $data);
+			}
+		} else {
+			echo view('admin/sidebaradmin.php', $data);
+
+			echo view('admin/' . $view, $data);
+			echo view('admin/footeradmin.php');
 		}
 	}
 }

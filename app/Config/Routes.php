@@ -21,7 +21,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -33,14 +33,44 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Beranda::index');
 // $routes->get('/sewa-ruang', 'SewaRuang::index');
+$routes->get('/fasilitas', 'Fasilitas::index');
+$routes->get('/kegiatan', 'Kegiatan::index');
+$routes->get('/galeri', 'Galeri::index');
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
 $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');
-$routes->delete('/admin/ruang/(:num)', 'Admin::deleteRuangan/$1');
-$routes->delete('/admin/alat/(:num)', 'Admin::deleteAlat/$1');
+$routes->delete('/DashboardAdmin/ruang/(:num)', 'DashboardAdmin::deleteRuangan/$1');
+$routes->delete('/DashboardAdmin/alat/(:num)', 'DashboardAdmin::deleteAlat/$1');
+$routes->delete('/DashboardAdmin/rilismedia/(:num)', 'DashboardAdmin::deleteRilisMedia/$1');
+$routes->delete('/DashboardAdmin/kegiatan/(:num)', 'DashboardAdmin::deleteKegiatan/$1');
 $routes->get('/admin/ruang/(:any)', 'Admin::detailRuangan/$1');
 $routes->get('/admin/alat/(:any)', 'Admin::detailAlat/$1');
-$routes->get('/rilismedia/(:any)', 'RilisMedia::detail/$1');
-$routes->get('/rilismedia', 'RilisMedia::index');
+$routes->get('/rilis-media/(:any)', 'RilisMedia::detail/$1');
+$routes->get('/rilis-media', 'RilisMedia::index');
+$routes->post('/rilis-media', 'RilisMedia::index');
+$routes->get('/ProfilPDIN', 'ProfilPdin::index');
+$routes->get('/kontak', 'Kontak::index');
+$routes->get('/DashboardAdmin', 'DashboardAdmin::index');
+$routes->get('/DashboardAdmin/rilis-media', 'DashboardAdmin::index');
+$routes->get('/DashboardAdmin/ruangan', 'DashboardAdmin::ruangan');
+$routes->get('/DashboardAdmin/alat', 'DashboardAdmin::alat');
+$routes->get('/DashboardAdmin/kegiatan', 'DashboardAdmin::kegiatan');
+$routes->get('/DashboardAdmin/tambah-alat', 'DashboardAdmin::tambahAlat');
+$routes->get('/DashboardAdmin/tambah-ruangan', 'DashboardAdmin::tambahRuangan');
+$routes->get('/DashboardAdmin/tambah-kegiatan', 'DashboardAdmin::tambahKegiatan');
+$routes->get('/DashboardAdmin/tambah-rilis-media', 'DashboardAdmin::tambahRilisMedia');
+$routes->post('/DashboardAdmin/saveTambahAlat', 'DashboardAdmin::saveTambahAlat/$1');
+$routes->post('/DashboardAdmin/saveTambahRuangan', 'DashboardAdmin::saveTambahRuangan/$1');
+$routes->post('/DashboardAdmin/saveTambahKegiatan', 'DashboardAdmin::saveTambahKegiatan/$1');
+$routes->post('/DashboardAdmin/saveTambahRilisMedia', 'DashboardAdmin::saveTambahRilisMedia/$1');
+$routes->get('/DashboardAdmin/update-alat/(:any)', 'DashboardAdmin::updateAlat/$1');
+$routes->get('/DashboardAdmin/update-ruangan/(:any)', 'DashboardAdmin::updateRuangan/$1');
+$routes->get('/DashboardAdmin/update-kegiatan/(:any)', 'DashboardAdmin::updateKegiatan/$1');
+$routes->get('/DashboardAdmin/update-rilis-media/(:any)', 'DashboardAdmin::updateRilisMedia/$1');
+$routes->post('/DashboardAdmin/saveUpdateAlat/(:num)', 'DashboardAdmin::saveUpdateAlat/$1');
+$routes->post('/DashboardAdmin/saveUpdateRuangan/(:num)', 'DashboardAdmin::saveUpdateRuangan/$1');
+$routes->post('/DashboardAdmin/saveUpdateKegiatan/(:num)', 'DashboardAdmin::saveUpdateKegiatan/$1');
+$routes->post('/DashboardAdmin/saveUpdateRilisMedia/(:num)', 'DashboardAdmin::saveUpdateRilisMedia/$1');
+// $routes->get('/dashboard', 'Dashboardadmin::index');
 
 service('auth')->routes($routes);
 

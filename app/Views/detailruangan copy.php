@@ -324,11 +324,11 @@
 			<?php elseif (is_array($fotoruangan) && isset($fotoruangan[0])) :?>
 			<img src="<?php echo base_url() ?>uploads/<?= $fotoruangan[0]['nama_file'] ?>"
 				class="card-img-top" alt="tidak ada gambar"
-				onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'">
+				onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'">
 			<?php else :?>
 			<img src="<?php echo base_url() ?>uploads/<?= $fotoruangan['nama_file'] ?>"
 				class="card-img-top" alt="tidak ada gambar"
-				onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'">
+				onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'">
 			<?php endif; ?>
 			<div class="card-body">
 				<h5 class="card-title">

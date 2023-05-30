@@ -62,7 +62,7 @@
 								<img src="<?= base_url() . 'uploads/' . $fotoruangan[0]['nama_file'] ?>"
 									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
 									style="width: 100%; max-height: 450px"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'" />
+									onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
 							</div>
 						</div>
 						<div class="swiper-pagination"></div>
@@ -75,7 +75,7 @@
 								<img src="<?= base_url() . 'uploads/' . $fotoruangan['nama_file'] ?>"
 									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
 									style="width: 100%; max-height: 450px"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'" />
+									onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
 							</div>
 						</div>
 						<div class="swiper-pagination"></div>

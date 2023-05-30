@@ -8,9 +8,35 @@
 					<?= session()->getFlashdata('sukses') ?>
 				</div>
 				<?php endif; ?>
+				<!-- breadcrumb -->
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Beranda</a></li>
+						<li class="breadcrumb-item"><a
+								href="<?= ($admin) ? '/admin' : '/fasilitas' ?>">Fasilitas</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">
+							<?php echo $alat['nama'] ?>
+						</li>
+					</ol>
+				</nav>
 				<div class="col-lg-8">
 					<h4 class="mt-2 text-pdin-merah">
 						<?= $alat['nama'] ?>
+						<span class="m-3">
+							<?php if ($admin) : ?>
+							<a href="/admin/updatealat/<?= $alat['slug'] ?>"
+								class="btn btn-warning">Edit</a>
+							<form
+								action="/admin/alat/<?php echo $alat['id']?>"
+								method="post" class="d-inline">
+								<?= csrf_field(); ?>
+								<input type="hidden" name="_method" value="DELETE">
+								<button class="btn btn-danger" type="submit"
+									onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+							</form>
+							<?php endif; ?>
+						</span>
 					</h4>
 					<h5 class="mt-4 mb-3">Deskripsi</h5>
 					<p class="mb-3">
@@ -61,7 +87,7 @@
 								<img src="<?= base_url() . 'uploads/' . $fotoalat[0]['nama_file'] ?>"
 									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
 									style="width: 100%; max-height: 450px"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'" />
+									onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
 							</div>
 						</div>
 						<div class="swiper-pagination"></div>
@@ -74,7 +100,7 @@
 								<img src="<?= base_url() . 'uploads/' . $fotoalat['nama_file'] ?>"
 									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
 									style="width: 100%; max-height: 450px"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>Logo-PDIN.png'" />
+									onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
 							</div>
 						</div>
 						<div class="swiper-pagination"></div>

@@ -5,7 +5,7 @@
       rgba(0, 0, 0, 0.1)
     ),
     url('./assets/hero-bg-1.jpg');">
-	<div class="row container-fluid" id="heri">
+	<div class="col-12 w-full" id="heri">
 		<div class="row justify-content-center">
 			<div class="col-11 col-sm-8 col-md-7 col-lg-12 col-xl-12 col-xxl-12 text-center">
 				<h1>Pusat Desain Industri Nasional</h1>
@@ -21,37 +21,14 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-xl-6 text-center">
-				<a href="/profilpdin" class="btn-lihat-profil">Lihat Profil</a>
+				<a href="/ProfilPDIN" class="btn-lihat-profil">Lihat Profil</a>
 			</div>
 		</div>
 	</div>
 </section>
 <!-- End Hero -->
 
-<!-- Hero Example Swiper -->
-<!-- <div class="" style="width: 100%; height: 100vh">
-      <div class="swiper aSwiper mb-4">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img
-              src="./hero-bg.jpg"
-              alt=""
-              class="object-fit-cover"
-              style="width: 100%; height: 100vh"
-            />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="./hero-bg.jpg"
-              alt=""
-              class="object-fit-cover"
-              style="width: 100%; height: 100vh"
-            />
-          </div>
-        </div>
-      </div>
-    </div> -->
-<!-- End Hero Example Swiper -->
+
 <!-- Garis Batas -->
 <div class="bg-pdin-abu-gelap w-100">
 	<div class="container bg-pdin-merah" style="height: 8px"></div>
@@ -573,7 +550,7 @@
 							</div>
 						</div>
 						<div class="text-end mt-lg-5 mt-xl-4 mt-xxl-2">
-							<a class="btn btn-sm btn-outline-danger" href="/rilismedia" role="button">Lihat Semua
+							<a class="btn btn-sm btn-outline-danger" href="/rilis-media" role="button">Lihat Semua
 								Artikel
 								<span class="ps-1 bi-arrow-right"></span></a>
 						</div>

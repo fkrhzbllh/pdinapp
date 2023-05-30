@@ -58,14 +58,22 @@ class Fasilitas extends BaseController
 			if ($foto) {
 				$this->data['fotoruangan'][$key] = $foto[0];
 			} else {
-				$this->data['fotoruangan'][$key]['nama_file'] = 'Logo-PDIN.png';
+				// $this->data['fotoruangan'][$key]['nama_file'] = '...';
+				$this->data['fotoruangan'][$key] = null;
 			}
 		}
 		$this->data['ruangan'] = $ruangan;
 
 		$alat = $this->alatModel->getAlat();
 		foreach ($alat as $key => $a) {
-			$this->data['fotoalat'][$key] = $this->galeriAlatModel->where('id_alat', $a['id'])->first();
+			// $this->data['fotoalat'][$key] = $this->galeriAlatModel->where('id_alat', $a['id'])->first();
+			$foto = $this->galeriAlatModel->getGaleriByAlat($a['id']);
+			if ($foto) {
+				$this->data['fotoalat'][$key] = $foto[0];
+			} else {
+				// $this->data['fotoalat'][$key]['nama_file'] = '...';
+				$this->data['fotoalat'][$key] = null;
+			}
 		}
 		$this->data['alat'] = $alat;
 
@@ -85,6 +93,7 @@ class Fasilitas extends BaseController
 	public function detailRuangan($slug)
 	{
 		$ruangan = $this->ruanganModel->getRuangan($slug);
+		$jadwal = $this->sewaRuanganModel->getJadwalSewaRuangan($ruangan['id']);
 
 		// tampilan error kalau tidak ada nama ruangan yang ada di database
 		if (empty($ruangan)) {
@@ -94,10 +103,8 @@ class Fasilitas extends BaseController
 		if ($this->galeriRuanganModel->getGaleriByRuangan($ruangan['id'])) {
 			$fotoruangan = $this->galeriRuanganModel->getGaleriByRuangan($ruangan['id']);
 		} else {
-			$fotoruangan['nama_file'] = '...';
+			$fotoruangan['nama_file'] = null;
 		}
-
-		$jadwal = $this->sewaRuanganModel->getJadwalSewaRuangan($ruangan['id']);
 
 		// menampilkan jadwal sewa ruangan
 		if ($jadwal) {
@@ -132,7 +139,7 @@ class Fasilitas extends BaseController
 		if ($this->galeriAlatModel->getGaleriByAlat($alat['id'])) {
 			$fotoalat = $this->galeriAlatModel->getGaleriByAlat($alat['id']);
 		} else {
-			$fotoalat['nama_file'] = '...';
+			$fotoalat['nama_file'] = null;
 		}
 
 		// menampilkan jadwal sewa alat

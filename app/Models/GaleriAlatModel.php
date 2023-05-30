@@ -10,7 +10,9 @@ class GaleriAlatModel extends \App\Models\BaseModel
 
 	protected $tableAlat = 'alat';
 
-	protected $allowedFields = ['nama_file', 'id_alat', 'judul', 'kategori'];
+	protected $tableGaleri = 'galeri';
+
+	protected $allowedFields = ['id_galeri', 'id_alat'];
 
 	public function __construct()
 	{
@@ -18,10 +20,22 @@ class GaleriAlatModel extends \App\Models\BaseModel
 		$this->table = 'galeri_alat';
 	}
 
+	public function findGaleriAlat($idAlat)
+	{
+		return $this->where(['id_alat' => $idAlat])->get()->getResultArray();
+	}
+
 	public function getGaleriByAlat($id)
 	{
 		return $this->db->table('galeri_alat')
-		->join($this->tableAlat, $this->tableAlat . '.' . $this->primaryKey . '=' . $this->table . '.id_alat')
-		->where($this->tableAlat . '.id', $id)->get()->getResultArray();
+		->join($this->tableGaleri, $this->tableGaleri . '.' . $this->primaryKey . '=' . $this->table . '.id_galeri')
+		->where($this->table . '.id_alat', $id)->get()->getResultArray();
+	}
+
+	public function getFirstGaleriByAlat($id)
+	{
+		return $this->db->table('galeri_alat')
+		->join($this->tableGaleri, $this->tableGaleri . '.' . $this->primaryKey . '=' . $this->table . '.id_galeri')
+		->where($this->table . '.id_alat', $id)->get()->getResult();
 	}
 }
