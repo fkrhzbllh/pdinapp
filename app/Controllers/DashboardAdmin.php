@@ -101,7 +101,7 @@ class DashboardAdmin extends BaseController
 		$perPage = 10;
 		$this->data['per_page'] = $perPage;
 		$this->data['kegiatan'] = $this->kegiatanModel->paginate($perPage, 'kegiatan');
-		$this->data['kegiatan'] = $this->kegiatanModel->findAll();
+		// $this->data['kegiatan'] = $this->kegiatanModel->findAll();
 		$this->data['pager'] = $this->kegiatanModel->pager;
 		$this->data['pager_current'] = $this->kegiatanModel->pager->getCurrentPage('kegiatan');
 		$this->viewAdmin('adminkegiatan.php', $this->data);
@@ -299,6 +299,7 @@ class DashboardAdmin extends BaseController
 		return redirect()->to('/DashboardAdmin/ruangan');
 	}
 
+	// delete ruangan
 	public function deleteRuangan($id)
 	{
 		// delete gambar
@@ -324,7 +325,7 @@ class DashboardAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
-		return redirect()->to('/DashboardAdmin');
+		return redirect()->to('/DashboardAdmin/ruangan');
 	}
 
 	// form tambah alat
@@ -494,7 +495,7 @@ class DashboardAdmin extends BaseController
 				// $this->galeriRuanganModel->delete($galeriRuangan[$key]['id']);
 			}
 		}
-		// delete di table galeri_ruangan
+		// delete di table galeri_alat
 		$galeriAlat = $this->galeriAlatModel->findGaleriAlat($id);
 		if ($galeriAlat) {
 			foreach ($galeriAlat as $ga) {
@@ -502,12 +503,155 @@ class DashboardAdmin extends BaseController
 			}
 		}
 
-		// delete ruangan
+		// delete alat
 		$this->alatModel->delete($id);
 
 		session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
 		return redirect()->to('/DashboardAdmin/alat');
+	}
+
+	// form tambah kegiatan
+	public function tambahKegiatan()
+	{
+		session();
+		$this->data['admin'] = true;
+		// $this->data['judul_halaman'] = 'Tambah kegiatan';
+
+		$this->viewAdmin('formtambahkegiatan.php', $this->data);
+	}
+
+	// simpan tambah kegiatan
+	public function saveTambahKegiatan()
+	{
+		// aturan validasi
+		$rules = $this->formRulesKegiatan('required|is_unique[kegiatan.nama_kegiatan]');
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/tambah-kegiatan')->withInput();
+		}
+
+		// ambil gambar
+		$poster = $this->request->getFile('poster');
+
+		if ($poster) {
+			if ($poster->isValid() && !$poster->hasMoved()) {
+				// pindahin ke folder
+				$poster->move('uploads');
+				// ambil nama foto
+				$namafoto = $poster->getName();
+			} else {
+				$namafoto = null;
+			}
+		} else {
+			$namafoto = null;
+		}
+
+		// simpan data tambah kegiatan
+		$this->kegiatanModel->save([
+			'nama_kegiatan' => $this->request->getVar('nama_kegiatan'),
+			'slug' => url_title($this->request->getVar('nama_kegiatan')),
+			'jenis_kegiatan' => $this->request->getVar('jenis_kegiatan'),
+			'tipe_kegiatan' => $this->request->getVar('tipe_kegiatan'),
+			'tempat' => $this->request->getVar('tempat'),
+			'tgl_mulai' => $this->request->getVar('tgl_mulai'),
+			'tgl_selesai' => $this->request->getVar('tgl_selesai'),
+			'link_pendaftaran' => $this->request->getVar('link_pendaftaran'),
+			'link_virtual' => $this->request->getVar('link_virtual'),
+			'poster' => $namafoto,
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/kegiatan');
+	}
+
+	// form update kegiatan
+	public function updateKegiatan($slug)
+	{
+		$kegiatan = $this->kegiatanModel->getKegiatan($slug);
+		session();
+
+		$this->data['admin'] = true;
+		$this->data['kegiatan'] = $kegiatan;
+
+		$this->viewAdmin('formeditkegiatan.php', $this->data);
+	}
+
+	// simpan tambah kegiatan
+	public function saveUpdateKegiatan($id)
+	{
+		$slugLama = $this->request->getVar('slug');
+
+		($slugLama == url_title($this->request->getVar('nama_kegiatan'))) ? $rules_nama = 'required' : $rules_nama = 'required|is_unique[kegiatan.nama_kegiatan]';
+
+		// aturan validasi
+		$rules = $this->formRulesKegiatan($rules_nama);
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/update-kegiatan')->withInput();
+		}
+
+		// dd($this->request->getFile('poster'));
+		// ambil gambar
+		$poster = $this->request->getFile('poster');
+		// dd($poster);
+
+		// delete gambar
+		$kegiatanLama = $this->kegiatanModel->getKegiatanByID($id);
+		if ($kegiatanLama['poster']) {
+			unlink('uploads/' . $kegiatanLama['poster']);
+		}
+
+		if ($poster) {
+			if ($poster->isValid() && !$poster->hasMoved()) {
+				// pindahin ke folder
+				$poster->move('uploads');
+				// ambil nama foto
+				$namafoto = $poster->getName();
+			} else {
+				$namafoto = null;
+			}
+		} else {
+			$namafoto = null;
+		}
+
+		// simpan data update kegiatan
+		$this->kegiatanModel->save([
+			'id' => $id,
+			'nama_kegiatan' => $this->request->getVar('nama_kegiatan'),
+			'slug' => url_title($this->request->getVar('nama_kegiatan')),
+			'jenis_kegiatan' => $this->request->getVar('jenis_kegiatan'),
+			'tipe_kegiatan' => $this->request->getVar('tipe_kegiatan'),
+			'tempat' => $this->request->getVar('tempat'),
+			'tgl_mulai' => $this->request->getVar('tgl_mulai'),
+			'tgl_selesai' => $this->request->getVar('tgl_selesai'),
+			'link_pendaftaran' => $this->request->getVar('link_pendaftaran'),
+			'link_virtual' => $this->request->getVar('link_virtual'),
+			'poster' => $namafoto,
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil diubah.');
+
+		return redirect()->to('/DashboardAdmin/kegiatan');
+	}
+
+	// delete kegiatan
+	public function deleteKegiatan($id)
+	{
+		$kegiatan = $this->kegiatanModel->getKegiatanByID($id);
+		if ($kegiatan) {
+			if ($kegiatan['poster']) {
+				unlink('uploads/' . $kegiatan['poster']);
+			}
+			$this->kegiatanModel->delete($id);
+		}
+
+		session()->setFlashdata('sukses', 'Data berhasil dihapus.');
+
+		return redirect()->to('/DashboardAdmin/kegiatan');
 	}
 
 	// aturan validasi form ruangan
@@ -597,6 +741,54 @@ class DashboardAdmin extends BaseController
 				'rules' => 'max_size[fotoalat,2048]|is_image[fotoalat]|mime_in[fotoalat,image/jpg,image/jpeg,image/png]',
 				'errors' => [
 					'max_size' => 'ukuran foto alat maksimal 2MB',
+					'is_image' => 'file yang Anda pilih bukan gambar',
+					'mime_in' => 'file yang Anda pilih bukan gambar'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// aturan validasi form kegiatan
+	public function formRulesKegiatan($rules_nama)
+	{
+		$rules = [
+			'nama_kegiatan' => [
+				'rules' => $rules_nama,
+				'errors' => [
+					'required' => 'nama kegiatan harus diisi',
+					'is_unique' => ' nama kegiatan sudah ada'
+				]
+			],
+			'jenis_kegiatan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'jenis kegiatan harus diisi',
+				]
+			],
+			'tipe_kegiatan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'tipe kegiatan harus diisi',
+				]
+			],
+			'tempat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'tgl_mulai' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'tanggal mulai harus diisi'
+				]
+			],
+			'poster' => [
+				'rules' => 'max_size[poster,2048]|is_image[poster]|mime_in[poster,image/jpg,image/jpeg,image/png]',
+				'errors' => [
+					'max_size' => 'ukuran foto ruangan maksimal 2MB',
 					'is_image' => 'file yang Anda pilih bukan gambar',
 					'mime_in' => 'file yang Anda pilih bukan gambar'
 				]

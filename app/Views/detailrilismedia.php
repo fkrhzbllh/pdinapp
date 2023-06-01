@@ -110,8 +110,8 @@
 				</h3>
 				<p class="mt-3 mb-2">
 					Rilis Media -
-					<?php setlocale(LC_ALL, 'id-ID', 'id_ID');
-							echo strftime('%A, %d %B %Y', strtotime($artikel['tgl_terbit'])) ?>
+					<?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
+							echo $formatter->format(date_create($a['tgl_terbit'])) ?>
 					- Pusat Desain Industri Nasional
 				</p>
 				<img src="<?php echo base_url() . 'uploads/' . $artikel['featured_image'] ?>"

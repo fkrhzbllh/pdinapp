@@ -147,8 +147,8 @@
                         <!-- <span class="badge rounded-pill bg-dark">Tag1</span> -->
                         <p class="card-text crop-text-2 mb-3">
                           <b>Pusat Desain Industri Nasional</b> -
-                          <?php setlocale(LC_ALL, 'id-ID', 'id_ID');
-              	echo strftime('%A, %d %B %Y', strtotime($a['tgl_terbit'])) ?>
+                          <?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
+              	echo $formatter->format(date_create($a['tgl_terbit'])) ?>
                         </p>
                       </div>
 

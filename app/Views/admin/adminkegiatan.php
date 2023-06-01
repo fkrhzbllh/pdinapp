@@ -48,9 +48,10 @@
                     </td>
                     <td><?= $a['nama_kegiatan']?>
                     </td>
-                    <td><?= $a['tgl_mulai']?>
+                    <td><?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
+                	echo $formatter->format(date_create($a['tgl_mulai']))?>
                     </td>
-                    <td><a href="/DasboardAdmin/update-kegiatan/<?= $a['id'] ?>"
+                    <td><a href="/DashboardAdmin/update-kegiatan/<?= $a['slug'] ?>"
                             class="btn btn-warning">Edit</a>
                         <form
                             action="/DashboardAdmin/kegiatan/<?php echo $a['id']?>"

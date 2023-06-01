@@ -19,7 +19,7 @@
                 method="post" enctype="multipart/form-data">
                 <?php echo csrf_field()?>
                 <div class="row g-3">
-                    <h3><?= $judul_halaman ?></h3>
+                    <!-- <h3><?php // $judul_halaman?></h3> -->
                     <?= \Config\Services::validation()->listErrors() ?>
                     <div class="col-12">
                         <label for="nama" class="form-label">Nama Ruangan</label>

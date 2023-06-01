@@ -18,7 +18,7 @@
                 enctype="multipart/form-data">
                 <?php echo csrf_field()?>
                 <div class="row g-3">
-                    <h3><?= $judul_halaman ?></h3>
+                    <!-- <h3><?php // $judul_halaman?></h3> -->
                     <?= \Config\Services::validation()->listErrors() ?>
                     <div class="col-12">
                         <label for="nama" class="form-label">Nama Ruangan</label>
@@ -38,7 +38,7 @@
                             class="form-control <?= (validation_show_error('deskripsiRuangan')) ? 'is-invalid' : ''; ?>"
                             id="deskripsiRuangan" placeholder=""
                             value="<?= old('deskripsiRuangan') ?>"
-                            name="deskripsiRuangan"></textarea>
+                            name="deskripsiRuangan"><?= old('deskripsiRuangan') ?></textarea>
                         <div class="invalid-feedback">
                             <?= validation_show_error('deskripsiRuangan'); ?>
                         </div>

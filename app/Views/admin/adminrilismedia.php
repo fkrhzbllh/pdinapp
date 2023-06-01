@@ -48,10 +48,11 @@
                     <td><?= ($pager_current - 1) * $per_page + ($key + 1) ?>
                     </td>
                     <td><?= $a['judul']?></td>
-                    <td><?= $a['tgl_terbit']?>
+                    <td><?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
+                	echo $formatter->format(date_create($a['tgl_terbit'])) ?>
                     </td>
                     <td><?= $a['status']?></td>
-                    <td><a href="/DasboardAdmin/update-rilis-media/<?= $a['id'] ?>"
+                    <td><a href="/DashboardAdmin/update-rilis-media/<?= $a['id'] ?>"
                             class="btn btn-warning">Edit</a>
                         <form
                             action="/DashboarAdmin/rilismedia/<?php echo $a['id']?>"

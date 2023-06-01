@@ -15,4 +15,18 @@ class KegiatanModel extends \App\Models\BaseModel
 		parent::__construct();
 		$this->table = 'kegiatan';
 	}
+
+	public function getKegiatan($slug = false)
+	{
+		if (!$slug) {
+			return $this->findAll();
+		}
+
+		return $this->where(['slug' => $slug])->first();
+	}
+
+	public function getKegiatanByID($id)
+	{
+		return $this->where([$this->primaryKey => $id])->first();
+	}
 }

@@ -162,15 +162,29 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
+            // initialView: 'listWeek',
             selectable: true,
             events: <?php  echo json_encode($kegiatan)?> , //array kegiatan -> objek kegiatan
 
             eventClick: function(arg) {
+                const formatter2 = new Intl.DateTimeFormat('id-ID', {
+                    // dateStyle: "full",
+                    // timeStyle: "long",
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    timeZoneName: "short",
+                    timeZone: "Asia/Jakarta",
+                });
+                const mulai = formatter2.format(arg.event.start);
                 $('.modal-body').find('#judul_kegiatan').text(arg.event.title);
                 $('.modal-body').find('#jenis_kegiatan').text(arg.event.extendedProps
                     .jenis_kegiatan);
                 $('.modal-body').find('#tipe_kegiatan').text(arg.event.extendedProps.tipe_kegiatan);
-                $('.modal-body').find('#tgl_mulai').text(arg.event.start);
+                $('.modal-body').find('#tgl_mulai').text(mulai);
                 $('.modal-body').find('#tempat').text(arg.event.extendedProps.tempat);
                 $('.modal-body').find('#link_pendaftaran').text(arg.event.extendedProps
                     .link_pendaftaran);
@@ -183,7 +197,7 @@
                 $('#modalKegiatan').modal('toggle');
             },
             editable: true,
-            dayMaxEvents: true,
+            dayMaxEvents: false,
         });
         calendar.render();
     });
