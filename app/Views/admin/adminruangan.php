@@ -28,7 +28,7 @@
         </div> -->
     </div>
     <div class="table-responsive">
-        <table class="table align-middle table-bordered" id="tableruangan">
+        <table class="table align-middle table-bordered" id="tableruangan" style="width: 100%;">
             <thead>
                 <tr>
                     <!-- <td>No</td> -->
@@ -70,6 +70,15 @@
 
 <script>
     $(document).ready(function() {
-        $('#tableruangan').DataTable();
+        $('#tableruangan').DataTable({
+            "columns": [
+                null,
+                null,
+                null,
+                {
+                    "width": "20%"
+                },
+            ]
+        });
     });
 </script>

@@ -231,8 +231,6 @@
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -265,6 +263,8 @@
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView: 'dayGridMonth',
+			themeSystem: 'bootstrap5',
+			locale: 'id',
 			events: <?php echo (isset($jadwal_sewa)) ? json_encode($jadwal_sewa) : null; ?> , //array kegiatan -> objek kegiatan
 		});
 		calendar.render();

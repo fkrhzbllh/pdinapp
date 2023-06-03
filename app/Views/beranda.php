@@ -676,6 +676,7 @@
 		var calendarEl = document.getElementById('calendar-beranda');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView: 'listWeek',
+
 			events: <?php echo json_encode($jadwal_kegiatan)?> ,
 			eventColor: '#d82328',
 			// height: '300px',

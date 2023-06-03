@@ -12,23 +12,23 @@
                 Kegiatan</a>
         </div>
         <div class="col-12 col-md-6">
-            <!-- <div class="row mb-3">
-                <div class="col-12 col-sm-12"> -->
-            <!-- input pencarian -->
-            <form action="" method="post">
-                <div class="input-group mb-3 ps-5">
-                    <input type="text" class="form-control bg-light text-secondary" placeholder="Cari Kegiatan"
-                        aria-label="" aria-describedby="" id="" name="keyword" />
-                    <div class="input-group-append">
-                        <div class="tooltip"></div>
-                        <button class="btn btn-danger rounded-start-0" type="submit">
-                            <span class="bi bi-search"></span>
-                        </button>
-                    </div>
+            <div class="row mb-3">
+                <div class="col-6 col-sm-8 ms-auto">
+                    <!-- input pencarian -->
+                    <form action="" method="post">
+                        <div class="input-group ">
+                            <input type="text" class="form-control bg-light text-secondary" placeholder="Cari Kegiatan"
+                                aria-label="" aria-describedby="" id="" name="keyword" />
+                            <div class="input-group-append">
+                                <div class="tooltip"></div>
+                                <button class="btn btn-danger rounded-start-0" type="submit">
+                                    <span class="bi bi-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            <!-- </div>
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="table-responsive">
@@ -38,6 +38,7 @@
                     <td>No</td>
                     <td>Nama Kegiatan</td>
                     <td>Tanggal</td>
+                    <td>Tipe</td>
                     <td>Aksi</td>
                 </tr>
             </thead>
@@ -50,6 +51,8 @@
                     </td>
                     <td><?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
                 	echo $formatter->format(date_create($a['tgl_mulai']))?>
+                    </td>
+                    <td><?= $a['tipe_kegiatan'] ?>
                     </td>
                     <td><a href="/DashboardAdmin/update-kegiatan/<?= $a['slug'] ?>"
                             class="btn btn-warning">Edit</a>

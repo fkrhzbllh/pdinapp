@@ -35,11 +35,11 @@
         <table class="table align-middle table-bordered">
             <thead>
                 <tr>
-                    <td>No</td>
-                    <td>Judul</td>
-                    <td>Tanggal</td>
-                    <td>Status</td>
-                    <td>Aksi</td>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th class="th-lg">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +52,7 @@
                 	echo $formatter->format(date_create($a['tgl_terbit'])) ?>
                     </td>
                     <td><?= $a['status']?></td>
-                    <td><a href="/DashboardAdmin/update-rilis-media/<?= $a['id'] ?>"
+                    <td><a href="/DashboardAdmin/update-rilis-media/<?= $a['slug'] ?>"
                             class="btn btn-warning">Edit</a>
                         <form
                             action="/DashboarAdmin/rilismedia/<?php echo $a['id']?>"

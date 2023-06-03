@@ -27,13 +27,13 @@
             </form>
         </div> -->
     </div>
-    <div class="table-responsive">
-        <table class="table align-middle table-bordered" id="tablealat">
+    <div class="table-responsive p-0">
+        <table class="table align-middle table-bordered" id="tablealat" style="width:100%">
             <thead>
                 <tr>
                     <!-- <td>No</td> -->
-                    <td>Nama Alat</td>
-                    <td>Aksi</td>
+                    <th>Nama Alat</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +64,12 @@
 
 <script>
     $(document).ready(function() {
-        $('#tablealat').DataTable();
+        $('#tablealat').DataTable({
+            "columns": [{
+                    "width": "80%"
+                },
+                null,
+            ]
+        });
     });
 </script>

@@ -112,6 +112,7 @@ class DashboardAdmin extends BaseController
 	{
 		session();
 		$this->data['admin'] = true;
+		$this->data['current_page'] = 'adminruangan';
 		// $this->data['judul_halaman'] = 'Tambah Ruangan';
 
 		$this->viewAdmin('formtambahruangan.php', $this->data);
@@ -120,6 +121,7 @@ class DashboardAdmin extends BaseController
 	// simpan tambah ruangan
 	public function saveTambahRuangan()
 	{
+		$this->data['current_page'] = 'adminruangan';
 		// aturan validasi
 		$rules = $this->formRulesRuangan('required|is_unique[ruangan.nama]');
 
@@ -187,6 +189,7 @@ class DashboardAdmin extends BaseController
 	// form update ruangan
 	public function updateRuangan($slug)
 	{
+		$this->data['current_page'] = 'adminruangan';
 		$ruangan = $this->ruanganModel->getRuangan($slug);
 		session();
 
@@ -214,6 +217,7 @@ class DashboardAdmin extends BaseController
 	// simpan tambah ruangan
 	public function saveUpdateRuangan($id)
 	{
+		$this->data['current_page'] = 'adminruangan';
 		$slugLama = $this->request->getVar('slug');
 
 		($slugLama == url_title($this->request->getVar('nama'))) ? $rules_nama = 'required' : $rules_nama = 'required|is_unique[ruangan.nama]';
@@ -332,6 +336,7 @@ class DashboardAdmin extends BaseController
 	public function tambahAlat()
 	{
 		session();
+		$this->data['current_page'] = 'adminalat';
 		$this->data['admin'] = true;
 		$this->data['judul_halaman'] = 'Tambah Alat';
 
@@ -396,6 +401,7 @@ class DashboardAdmin extends BaseController
 	// form update alat
 	public function updateAlat($slug)
 	{
+		$this->data['current_page'] = 'adminalat';
 		$alat = $this->alatModel->getAlat($slug);
 		session();
 
@@ -514,6 +520,7 @@ class DashboardAdmin extends BaseController
 	// form tambah kegiatan
 	public function tambahKegiatan()
 	{
+		$this->data['current_page'] = 'adminkegiatan';
 		session();
 		$this->data['admin'] = true;
 		// $this->data['judul_halaman'] = 'Tambah kegiatan';
@@ -570,6 +577,7 @@ class DashboardAdmin extends BaseController
 	// form update kegiatan
 	public function updateKegiatan($slug)
 	{
+		$this->data['current_page'] = 'adminkegiatan';
 		$kegiatan = $this->kegiatanModel->getKegiatan($slug);
 		session();
 
@@ -652,6 +660,150 @@ class DashboardAdmin extends BaseController
 		session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
 		return redirect()->to('/DashboardAdmin/kegiatan');
+	}
+
+	// form tambah artikel
+	public function tambahRilisMedia()
+	{
+		$this->data['current_page'] = 'adminrilismedia';
+		session();
+		$this->data['admin'] = true;
+		// $this->data['judul_halaman'] = 'Tambah kegiatan';
+
+		$this->viewAdmin('formtambahartikel.php', $this->data);
+	}
+
+	// simpan tambah artikel
+	public function saveTambahRilisMedia()
+	{
+		// aturan validasi
+		$rules = $this->formRulesRilisMedia('required|is_unique[artikel.judul]');
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/tambah-rilis-media')->withInput();
+		}
+
+		// ambil gambar
+		$featured_image = $this->request->getFile('featured_image');
+
+		if ($featured_image) {
+			if ($featured_image->isValid() && !$featured_image->hasMoved()) {
+				// pindahin ke folder
+				$featured_image->move('uploads');
+				// ambil nama foto
+				$namafoto = $featured_image->getName();
+			} else {
+				$namafoto = null;
+			}
+		} else {
+			$namafoto = null;
+		}
+
+		// simpan data tambah artikel
+		$this->artikelModel->save([
+			'judul' => $this->request->getVar('judul'),
+			'slug' => url_title($this->request->getVar('judul')),
+			'konten' => $this->request->getVar('konten'),
+			'excerp' => $this->request->getVar('excerp'),
+			'meta_description' => $this->request->getVar('meta_description'),
+			'kategori' => $this->request->getVar('kategori'),
+			'status' => $this->request->getVar('status'),
+			'tgl_terbit' => $this->request->getVar('tgl_terbit'),
+			'featured_image' => $namafoto,
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/rilis-media');
+	}
+
+	// form update artikel
+	public function updateRilisMedia($slug)
+	{
+		$this->data['current_page'] = 'adminrilismedia';
+		$artikel = $this->artikelModel->getArtikel($slug);
+		session();
+
+		$this->data['admin'] = true;
+		$this->data['artikel'] = $artikel;
+
+		$this->viewAdmin('formeditartikel.php', $this->data);
+	}
+
+	// simpan tambah artikel
+	public function saveUpdateRilisMedia($id)
+	{
+		$artikelLama = $this->artikelModel->getArtikelByID($id);
+		$slugLama = $artikelLama['slug'];
+
+		($slugLama == url_title($this->request->getVar('judul'))) ? $rules_nama = 'required' : $rules_nama = 'required|is_unique[artikel.judul]';
+
+		// aturan validasi
+		$rules = $this->formRulesRilisMedia($rules_nama);
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/update-rilis-media')->withInput();
+		}
+
+		// dd($this->request->getFile('poster'));
+		// ambil gambar
+		$featured_image = $this->request->getFile('featured_image');
+		// dd($featured_image);
+
+		// delete gambar
+		if ($artikelLama['featured_image']) {
+			unlink('uploads/' . $artikelLama['featured_image']);
+		}
+
+		if ($featured_image) {
+			if ($featured_image->isValid() && !$featured_image->hasMoved()) {
+				// pindahin ke folder
+				$featured_image->move('uploads');
+				// ambil nama foto
+				$namafoto = $featured_image->getName();
+			} else {
+				$namafoto = null;
+			}
+		} else {
+			$namafoto = null;
+		}
+
+		// simpan data update artikel
+		$this->artikelModel->save([
+			'id' => $id,
+			'judul' => $this->request->getVar('judul'),
+			'slug' => url_title($this->request->getVar('judul')),
+			'konten' => $this->request->getVar('konten'),
+			'excerp' => $this->request->getVar('excerp'),
+			'meta_description' => $this->request->getVar('meta_description'),
+			'kategori' => $this->request->getVar('kategori'),
+			'status' => $this->request->getVar('status'),
+			'tgl_terbit' => $this->request->getVar('tgl_terbit'),
+			'featured_image' => $namafoto,
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil diubah.');
+
+		return redirect()->to('/DashboardAdmin/rilis-media');
+	}
+
+	// delete artikel
+	public function deleteRilisMedia($id)
+	{
+		$artikel = $this->artikelModel->getArtikelByID($id);
+		// hapus gambar
+		if ($artikel) {
+			if ($artikel['featured_image']) {
+				unlink('uploads/' . $artikel['featured_image']);
+			}
+			$this->artikelModel->delete($id);
+		}
+
+		session()->setFlashdata('sukses', 'Data berhasil dihapus.');
+
+		return redirect()->to('/DashboardAdmin/rilis-media');
 	}
 
 	// aturan validasi form ruangan
@@ -787,6 +939,48 @@ class DashboardAdmin extends BaseController
 			],
 			'poster' => [
 				'rules' => 'max_size[poster,2048]|is_image[poster]|mime_in[poster,image/jpg,image/jpeg,image/png]',
+				'errors' => [
+					'max_size' => 'ukuran foto ruangan maksimal 2MB',
+					'is_image' => 'file yang Anda pilih bukan gambar',
+					'mime_in' => 'file yang Anda pilih bukan gambar'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// aturan validasi form artikel
+	public function formRulesRilisMedia($rules_nama)
+	{
+		$rules = [
+			'judul' => [
+				'rules' => $rules_nama,
+				'errors' => [
+					'required' => 'judul harus diisi',
+					'is_unique' => ' judul sudah ada'
+				]
+			],
+			'konten' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'konten harus diisi',
+				]
+			],
+			'status' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'status harus diisi',
+				]
+			],
+			'tgl_terbit' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'tanggal terbit harus diisi'
+				]
+			],
+			'featured_image' => [
+				'rules' => 'max_size[featured_image,2048]|is_image[featured_image]|mime_in[featured_image,image/jpg,image/jpeg,image/png]',
 				'errors' => [
 					'max_size' => 'ukuran foto ruangan maksimal 2MB',
 					'is_image' => 'file yang Anda pilih bukan gambar',

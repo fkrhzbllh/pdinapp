@@ -27,13 +27,15 @@
         <title>Dashboard</title>
     </head>
 
-    <body class="bg-pdin-abu-terang">
+    <body class="bg-white">
         <!-- SIDEBAR -->
         <div id="sidebar">
             <a href="#" class="brand">
                 <!-- <i class="icon bi bi-grid-fill"> </i> -->
                 <div class="icon">
-                    <img src="<?= base_url() ?>assets/Logo-PDIN.png"
+                    <!-- <img src="<?= base_url() ?>assets/Logo-PDIN.png"
+                    -->
+                    <img src="<?= base_url() ?>favicon.ico"
                         style="height: 24px; width: 24px" alt="" class="rounded-1" />
                 </div>
                 <span>

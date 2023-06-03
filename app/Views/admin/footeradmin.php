@@ -4,9 +4,25 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
 </script>
 
-<!-- <script type="text/javascript" src="<?= base_url() ?>assets/navadmin.js">
--->
+<!-- tinymce -->
+<script src="<?php echo base_url(); ?>assets/tinymce/js/tinymce/tinymce.min.js">
 </script>
+
+<script>
+    tinymce.init({
+        selector: '#konten',
+        plugins: [
+            'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+            'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+            'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help',
+            'wordcount'
+        ],
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    });
+</script>
+
 <script>
     // SIDEBAR DROPDOWN
     const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');

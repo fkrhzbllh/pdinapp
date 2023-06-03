@@ -40,7 +40,7 @@ class Filters extends BaseConfig
 			// 'honeypot',
 			// 'csrf',
 			// 'invalidchars',
-			'session' => ['except' => ['login*', 'register', 'auth/a/*', 'beranda', 'kegiatan', 'kontak', 'layanan', 'profilpdin', 'fasilitas', 'fasilitas/ruang/*', 'fasilitas/alat/*', 'galeri', '', 'rilismedia*']],
+			'session' => ['except' => ['login*', 'register', 'auth/a/*', 'beranda', 'kegiatan', 'kontak', 'layanan', 'profilpdin', 'fasilitas', 'fasilitas/ruang/*', 'fasilitas/alat/*', 'galeri', '', 'rilis-media*']],
 		],
 		'after' => [
 			'toolbar',

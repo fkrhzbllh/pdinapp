@@ -99,7 +99,7 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Beranda</a></li>
-						<li class="breadcrumb-item"><a href="/rilismedia">Rilis Media</a></li>
+						<li class="breadcrumb-item"><a href="/rilis-media">Rilis Media</a></li>
 						<li class="breadcrumb-item active" aria-current="page">
 							<?php echo $artikel['judul'] ?>
 						</li>
@@ -111,7 +111,7 @@
 				<p class="mt-3 mb-2">
 					Rilis Media -
 					<?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-							echo $formatter->format(date_create($a['tgl_terbit'])) ?>
+							echo $formatter->format(date_create($artikel['tgl_terbit'])) ?>
 					- Pusat Desain Industri Nasional
 				</p>
 				<img src="<?php echo base_url() . 'uploads/' . $artikel['featured_image'] ?>"

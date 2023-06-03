@@ -137,7 +137,7 @@
                         </p>
                         <h4 class="card-title">
                           <a class="link-dark text-decoration-none crop-text-2"
-                            href="/rilismedia/<?php echo $a['slug'] ?>"
+                            href="/rilis-media/<?php echo $a['slug'] ?>"
                             target="_blank"><?php echo $a['judul']; ?></a>
                         </h4>
 

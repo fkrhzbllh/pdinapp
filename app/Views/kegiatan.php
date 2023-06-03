@@ -164,7 +164,19 @@
             initialView: 'dayGridMonth',
             // initialView: 'listWeek',
             selectable: true,
+            locale: 'id',
             events: <?php  echo json_encode($kegiatan)?> , //array kegiatan -> objek kegiatan
+
+            eventTimeFormat: { // like '14:30:00'
+                // day: '2-digit',
+                // month: '2-digit',
+                // year: '4-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: false
+            },
+
+            themeSystem: 'bootstrap5',
 
             eventClick: function(arg) {
                 const formatter2 = new Intl.DateTimeFormat('id-ID', {

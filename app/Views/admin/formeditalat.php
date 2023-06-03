@@ -1,92 +1,75 @@
-<!-- ======= Judul Section ======= -->
-<section id="background-hitam-atas" class="d-flex align-items-center">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="text-light my-4">Edit Alat</h2>
-            <p class="text-light lh-base">
-                Ubah data alat
-            </p>
-        </div>
-    </div>
-</section>
-<!-- End Hero -->
-
-<section id="isi-section">
-    <div class="container p-3">
-        <div class="bg-white rounded-5 py-5 px-5 shadow-sm" id="">
-            <form id="formalat" class="mt-3"
-                action="/DashboardAdmin/saveUpdateAlat/<?= $alat['id'] ?>"
-                method="post" enctype="multipart/form-data">
-                <?php echo csrf_field()?>
-                <div class="row g-3">
-                    <h3><?= $judul_halaman ?></h3>
-                    <?= \Config\Services::validation()->listErrors() ?>
-                    <div class="col-12">
-                        <label for="nama" class="form-label">Nama Alat</label>
-                        <input type="text"
-                            class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>"
-                            id="nama" placeholder=""
-                            value="<?= (old('nama')) ? old('nama') : $alat['nama'] ?>"
-                            name="nama" autofocus>
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('nama'); ?>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="deskripsiAlat" class="form-label">Deskripsi Alat</label>
-                        <textarea
-                            class="form-control <?= (validation_show_error('deskripsiAlat')) ? 'is-invalid' : ''; ?>"
-                            id="deskripsiAlat" placeholder="" value=""
-                            name="deskripsiAlat"><?= (old('deskripsiAlat')) ? old('deskripsiAlat') : $alat['deskripsi'] ?></textarea>
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('deskripsiAlat'); ?>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <label for="biaya-sewa" class="form-label">Biaya Sewa</label>
-                        <div class="input-group">
-                            <span class="input-group-text">Rp</span>
-                            <input type="number" step="1000"
-                                class="form-control biaya-sewa <?= (validation_show_error('fasilitas')) ? 'is-invalid' : ''; ?>"
-                                id="biaya-sewa"
-                                value="<?= (old('biayasewa')) ? old('biayasewa') : $alat['biaya_sewa'] ?>"
-                                name="biayasewa">
-                        </div>
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('biayasewa'); ?>
-                        </div>
-                    </div>
-
-
-
-                    <!-- coba -->
-                    <p class="mt-5 text-center">
-                        <label for="fotoalat">
-                            <a class="btn btn-danger text-light" role="button" aria-disabled="false">+ Tambah Gambar</a>
-
-                        </label>
-                        <input type="file" name="fotoalat[]" id="fotoalat"
-                            style="visibility: hidden; position: absolute;" multiple />
-
-                    </p>
-                    <div id="files-area">
-                        <div id="filesList">
-                            <div id="files-names"></div>
-
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="slug"
-                        value="<?= $alat['slug'] ?>">
-
-                    <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
+<div class="bg-white col-12 p-5" id="">
+    <h3 class="mb-3">Ubah Alat</h3>
+    <form id="formalat" class="mt-3"
+        action="/DashboardAdmin/saveUpdateAlat/<?= $alat['id'] ?>"
+        method="post" enctype="multipart/form-data">
+        <?php echo csrf_field()?>
+        <div class="row g-3">
+            <?= \Config\Services::validation()->listErrors() ?>
+            <div class="col-12">
+                <label for="nama" class="form-label">Nama Alat</label>
+                <input type="text"
+                    class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>"
+                    id="nama" placeholder=""
+                    value="<?= (old('nama')) ? old('nama') : $alat['nama'] ?>"
+                    name="nama" autofocus>
+                <div class="invalid-feedback">
+                    <?= validation_show_error('nama'); ?>
                 </div>
-            </form>
+            </div>
+
+            <div class="col-12">
+                <label for="deskripsiAlat" class="form-label">Deskripsi Alat</label>
+                <textarea
+                    class="form-control <?= (validation_show_error('deskripsiAlat')) ? 'is-invalid' : ''; ?>"
+                    id="deskripsiAlat" placeholder="" value=""
+                    name="deskripsiAlat"><?= (old('deskripsiAlat')) ? old('deskripsiAlat') : $alat['deskripsi'] ?></textarea>
+                <div class="invalid-feedback">
+                    <?= validation_show_error('deskripsiAlat'); ?>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label for="biaya-sewa" class="form-label">Biaya Sewa</label>
+                <div class="input-group">
+                    <span class="input-group-text">Rp</span>
+                    <input type="number" step="1000"
+                        class="form-control biaya-sewa <?= (validation_show_error('fasilitas')) ? 'is-invalid' : ''; ?>"
+                        id="biaya-sewa"
+                        value="<?= (old('biayasewa')) ? old('biayasewa') : $alat['biaya_sewa'] ?>"
+                        name="biayasewa">
+                </div>
+                <div class="invalid-feedback">
+                    <?= validation_show_error('biayasewa'); ?>
+                </div>
+            </div>
+
+
+
+            <!-- coba -->
+            <p class="mt-5 text-center">
+                <label for="fotoalat">
+                    <a class="btn btn-danger text-light" role="button" aria-disabled="false">+ Tambah Gambar</a>
+
+                </label>
+                <input type="file" name="fotoalat[]" id="fotoalat" style="visibility: hidden; position: absolute;"
+                    multiple />
+
+            </p>
+            <div id="files-area">
+                <div id="filesList">
+                    <div id="files-names"></div>
+
+                </div>
+            </div>
+
+            <input type="hidden" name="slug"
+                value="<?= $alat['slug'] ?>">
+
+            <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
         </div>
-    </div>
-</section>
+    </form>
+</div>
 
 <script>
     const dt = new DataTransfer(); // Permet de manipuler les fichiers de l'input file
