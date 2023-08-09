@@ -59,6 +59,16 @@
                             <button class="btn btn-danger" type="submit"
                                 onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
                         </form>
+                        <!-- <form
+                            action="/DashboardAdmin/sewaRuangan/<?php echo $a['id']?>"
+                        method="post" class="d-inline">
+                        <?= csrf_field(); ?>
+                        <button class="btn btn-success" type="submit">Sewa</button>
+                        </form> -->
+                        <?php if($a['tipe'] != 'Lainnya'): ?>
+                        <a href="/DashboardAdmin/sewa-ruangan/<?= $a['slug']?>"
+                            class="btn btn-success">Sewa</a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach?>
@@ -76,7 +86,7 @@
                 null,
                 null,
                 {
-                    "width": "20%"
+                    "width": "25%"
                 },
             ]
         });

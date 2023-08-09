@@ -36,6 +36,7 @@ html {
 body {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+  padding-right:0 !important;
   /* background-color: #444444; */
   /* overflow-x: hidden; */
 }
@@ -111,6 +112,38 @@ ul li {
   border-color: #940002;
 }
 .fc .fc-today-button:hover {
+  font-size: 10px;
+  background: #b30003;
+  border-color:#b30003;
+}
+
+.fc .fc-dayGridMonth-button {
+  font-size: 10px;
+  background: #d82328;
+  border-color: #d82328;
+}
+.fc .fc-dayGridMonth-button.active {
+  font-size: 10px;
+  background: #940002;
+  border-color: #940002;
+}
+.fc .fc-dayGridMonth-button:hover {
+  font-size: 10px;
+  background: #b30003;
+  border-color:#b30003;
+}
+
+.fc .fc-listMonth-button {
+  font-size: 10px;
+  background: #d82328;
+  border-color: #d82328;
+}
+.fc .fc-listMonth-button.active {
+  font-size: 10px;
+  background: #940002;
+  border-color: #940002;
+}
+.fc .fc-listMonth-button:hover {
   font-size: 10px;
   background: #b30003;
   border-color:#b30003;
@@ -201,6 +234,7 @@ h6 {
   padding: 10px 0px;
   transition: 0.4s;
   background-color: rgba(221, 222, 222, 0.8);
+  padding-right:0 !important;
   /* background-color: rgba(255, 255, 255, 0.8); */
 }
 #navbar:hover {
@@ -1823,4 +1857,24 @@ main {
   nav .divider {
     display: none;
   }
+}
+
+/* not active */
+.nav-underline .nav-item .nav-link:not(.active) {
+  /* background-color: rgba(140, 140, 140, 0.2); */
+  color: rgba(216, 35, 40, 0.4);
+}
+
+/* active (faded) */
+.nav-underline .nav-item .nav-link {
+  /* background-color: rgba(216, 35, 40, 1); */
+  color: rgba(216, 35, 40, 1);
+  /* color: white; */
+  font-size: 14px;
+  /* border-radius: 16px; */
+}
+
+.modal-open{
+  overflow: auto;
+  padding-right:0 !important;
 }

@@ -1,15 +1,18 @@
 <div class="container">
-    <form id="sewaruangan" class="mt-3" action="/DashboardAdmin/saveSewaRuangan" method="post">
+    <form id="sewaruangan" class="mt-3"
+        action="/DashboardAdmin/saveUpdateSewaRuangan/<?= $jadwal['id'] . '/' . $penyewa['id']?>"
+        method="post">
         <?php echo csrf_field()?>
         <div class="row g-3">
-            <h3>Sewa Ruangan</h3>
+            <h3>Ubah Sewa <?= $ruangan['nama']?>
+            </h3>
             <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
-                <label for="nama" class="form-label">Nama</label>
+                <label for="nama" class="form-label">Nama Penyewa</label>
                 <input type="text"
                     class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>"
                     id="nama" placeholder=""
-                    value="<?= old('nama') ?>"
+                    value="<?= (old('nama')) ? old('nama') : $penyewa['nama'] ?>"
                     name="nama" autofocus>
                 <div class="invalid-feedback">
                     <?= validation_show_error('nama'); ?>
@@ -32,7 +35,7 @@
                 <input type="email"
                     class="form-control <?= (validation_show_error('email')) ? 'is-invalid' : ''; ?>"
                     id="email" placeholder="you@example.com" name="email"
-                    value="<?= old('email') ?>">
+                    value="<?= (old('email')) ? old('email') : $penyewa['email'] ?>">
                 <div class="invalid-feedback">
                     <?= validation_show_error('email'); ?>
                 </div>
@@ -43,7 +46,7 @@
                 <input type="text"
                     class="form-control <?= (validation_show_error('nomorTelepon')) ? 'is-invalid' : ''; ?>"
                     id="nomorTelepon" placeholder="6281234567890" name="nomorTelepon"
-                    value="<?= old('nomorTelepon') ?>">
+                    value="<?= (old('nomorTelepon')) ? old('nomorTelepon') : $penyewa['kontak'] ?>">
                 <div class="invalid-feedback">
                     <?= validation_show_error('nomorTelepon'); ?>
                 </div>
@@ -54,7 +57,7 @@
                 <input type="text"
                     class="form-control <?= (validation_show_error('instansi')) ? 'is-invalid' : ''; ?>"
                     id="instansi" placeholder=""
-                    value="<?= old('instansi') ?>"
+                    value="<?= (old('instansi')) ? old('instansi') : $penyewa['nama_instansi'] ?>"
                     name="instansi">
                 <div class="invalid-feedback">
                     <?= validation_show_error('instansi'); ?>
@@ -66,7 +69,7 @@
                 <input type="text"
                     class="form-control <?= (validation_show_error('namaKegiatan')) ? 'is-invalid' : ''; ?>"
                     id="kegiatan" placeholder=""
-                    value="<?= old('namaKegiatan') ?>"
+                    value="<?= (old('namaKegiatan')) ? old('namaKegiatan') : $jadwal['nama_kegiatan'] ?>"
                     name="namaKegiatan">
                 <div class="invalid-feedback">
                     <?= validation_show_error('namaKegiatan'); ?>
@@ -78,7 +81,7 @@
                 <input type="text"
                     class="form-control <?= (validation_show_error('deskripsiKegiatan')) ? 'is-invalid' : ''; ?>"
                     id="deskripsiKegiatan" placeholder=""
-                    value="<?= old('deskripsiKegiatan') ?>"
+                    value="<?= (old('deskripsiKegiatan')) ? old('deskripsiKegiatan') : $jadwal['deskripsi'] ?>"
                     name="deskripsiKegiatan">
                 <div class="invalid-feedback">
                     <?= validation_show_error('deskripsiKegiatan'); ?>
@@ -86,31 +89,34 @@
             </div>
 
             <div class="col-12">
-                <label for="ruangan" class="form-label">Ruang yang Dipinjam</label>
-                <select
+                <label hidden for="ruangan" class="form-label">Ruang yang Dipinjam</label>
+                <select hidden
                     class="form-select <?= (validation_show_error('ruangan')) ? 'is-invalid' : ''; ?>"
-                    aria-label="Default select" id="ruangan" name="ruangan">
+                    aria-label="Default select" id="ruangan" name="ruangan" type="hidden">
                     <option selected disabled>Pilih Ruangan</option>
-                    <?php foreach($ruangan as $r) : ?>
-                    <?php if($id_ruangan == $r['id'] || old('ruangan') == $r['id']) :?>
+                    <?php // foreach($ruangan as $r) :?>
+                    <?php if($id_ruangan == $ruangan['id'] || old('ruangan') == $ruangan['id']) :?>
                     <option selected
-                        value="<?= $r['id'] ?>"
-                        class="<?= $r['tipe'] ?>">
-                        <?= $r['nama'] ?>
+                        value="<?= $ruangan['id'] ?>"
+                        class="<?= $ruangan['tipe'] ?>">
+                        <?= $ruangan['nama'] ?>
                     </option>
                     <?php else : ?>
                     <option
-                        value="<?= $r['id'] ?>"
-                        class="<?= $r['tipe'] ?>">
-                        <?= $r['nama'] ?>
+                        value="<?= $ruangan['id'] ?>"
+                        class="<?= $ruangan['tipe'] ?>">
+                        <?= $ruangan['nama'] ?>
                     </option>
                     <?php endif ?>
-                    <?php endforeach ?>
+                    <?php // endforeach?>
                 </select>
                 <div class="invalid-feedback">
                     <?= validation_show_error('ruangan'); ?>
                 </div>
             </div>
+
+            <?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'yyyy-MM-dd'); ?>
+            <?php $formatter2 = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'yyyy-MM-ddThh:mm'); ?>
 
             <div class="Pameran mb-3" id="Pameran" style="display: none;">
                 <div class="row">
@@ -119,7 +125,7 @@
                         <input id="tanggalMulai"
                             class="form-control <?= (validation_show_error('tanggalMulaiPameran')) ? 'is-invalid' : ''; ?>"
                             type="date" name="tanggalMulaiPameran"
-                            value="<?= old('tanggalMulaiPameran') ?>" />
+                            value="<?= (old('tanggalMulaiPameran')) ? old('tanggalMulaiPameran') : $formatter->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiPameran'); ?>
                         </div>
@@ -129,7 +135,7 @@
                         <input id="tanggalSelesai"
                             class="form-control <?= (validation_show_error('tanggalSelesaiPameran')) ? 'is-invalid' : ''; ?>"
                             type="date" date name="tanggalSelesaiPameran"
-                            value="<?= old('tanggalSelesaiPameran') ?>" />
+                            value="<?= (old('tanggalSelesaiPameran')) ? old('tanggalSelesaiPameran') : $formatter->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiPameran'); ?>
                         </div>
@@ -144,7 +150,7 @@
                         <input id="tanggalMulai2"
                             class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalMulaiKantor"
-                            value="<?= old('tanggalMulaiKantor') ?>"
+                            value="<?= (old('tanggalMulaiKantor')) ? old('tanggalMulaiKantor') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>"
                             step="3600" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiKantor'); ?>
@@ -155,7 +161,7 @@
                         <input id="tanggalSelesai2"
                             class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalSelesaiKantor"
-                            value="<?= old('tanggalSelesaiKantor') ?>"
+                            value="<?= (old('tanggalSelesaiKantor')) ? old('tanggalSelesaiKantor') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>"
                             step="60" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiKantor'); ?>
@@ -171,7 +177,7 @@
                         <input id="tanggalMulai3"
                             class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalMulaiMeeting"
-                            value="<?= old('tanggalMulaiMeeting') ?>" />
+                            value="<?= (old('tanggalMulaiMeeting')) ? old('tanggalMulaiMeeting') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiMeeting'); ?>
                         </div>
@@ -181,7 +187,7 @@
                         <input id="tanggalSelesai3"
                             class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalSelesaiMeeting"
-                            value="<?= old('tanggalSelesaiMeeting') ?>" />
+                            value="<?= (old('tanggalSelesaiMeeting')) ? old('tanggalSelesaiMeeting') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiMeeting'); ?>
                         </div>
@@ -196,7 +202,7 @@
                         <input id="tanggalMulai3"
                             class="form-control <?= (validation_show_error('tanggalMulaiPengembangan')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalMulaiPengembangan"
-                            value="<?= old('tanggalMulaiPengembangan') ?>" />
+                            value="<?= (old('tanggalMulaiPengembangan')) ? old('tanggalMulaiPengembangan') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiPengembangan'); ?>
                         </div>
@@ -206,13 +212,14 @@
                         <input id="tanggalSelesai3"
                             class="form-control <?= (validation_show_error('tanggalSelesaiPengembangan')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalSelesaiPengembangan"
-                            value="<?= old('tanggalSelesaiPengembangan') ?>" />
+                            value="<?= (old('tanggalSelesaiPengembangan')) ? old('tanggalSelesaiPengembangan') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiPengembangan'); ?>
                         </div>
                     </div>
                 </div>
             </div>
+            <?= d($jadwal['tgl_mulai_sewa']) ?>
 
             <input id="tipe" class="form-control" type="hidden" name="tipe"
                 value="<?= old('tipe') ?>" />
@@ -339,7 +346,7 @@
                 }, false);
             </script>
 
-            <button class="w-100 btn btn-primary btn-lg mt-5" type="submit">Sewa Ruangan</button>
+            <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit">Edit Sewa Ruangan</button>
         </div>
     </form>
 </div>

@@ -165,7 +165,7 @@
             // initialView: 'listWeek',
             selectable: true,
             locale: 'id',
-            events: <?php  echo json_encode($kegiatan)?> , //array kegiatan -> objek kegiatan
+            events: <?php echo json_encode($kegiatan)?> , //array kegiatan -> objek kegiatan
 
             eventTimeFormat: { // like '14:30:00'
                 // day: '2-digit',

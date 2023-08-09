@@ -9,7 +9,7 @@ use App\Models\RuanganModel;
 use App\Models\AlatModel;
 use App\Models\SewaRuanganModel;
 use App\Models\SewaAlatModel;
-use App\Models\UserModel;
+use App\Models\UsersModel;
 use App\Models\GaleriRuanganModel;
 use App\Models\GaleriAlatModel;
 
@@ -23,7 +23,7 @@ class Fasilitas extends BaseController
 
 	protected $sewaAlatModel;
 
-	protected $userModel;
+	protected $usersModel;
 
 	protected $galeriRuanganModel;
 
@@ -39,7 +39,7 @@ class Fasilitas extends BaseController
 		$this->alatModel = new AlatModel();
 		$this->sewaRuanganModel = new SewaRuanganModel();
 		$this->sewaAlatModel = new SewaAlatModel();
-		$this->userModel = new UserModel();
+		$this->usersModel = new UsersModel();
 		$this->galeriRuanganModel = new GaleriRuanganModel();
 		$this->galeriAlatModel = new GaleriAlatModel();
 		$this->data['judul_halaman'] = 'Fasilitas | Pusat Desain Industri Nasional';
@@ -200,14 +200,14 @@ class Fasilitas extends BaseController
 		// dd($this->request->getVar());
 
 		// simpan data user
-		$this->userModel->save([
+		$this->usersModel->save([
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
 			'kontak' => $this->request->getVar('nomorTelepon'),
 			'nama_instansi' => $this->request->getVar('instansi'),
 		]);
 
-		$userID = $this->userModel->insertID();
+		$userID = $this->usersModel->insertID();
 
 		// simpan data sewa berdasarkan tipe
 		if ($tipe == 'Pameran') {
@@ -264,14 +264,14 @@ class Fasilitas extends BaseController
 		// dd($this->request->getVar());
 
 		// simpan data user
-		$this->userModel->save([
+		$this->usersModel->save([
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
 			'kontak' => $this->request->getVar('nomorTelepon'),
 			'nama_instansi' => $this->request->getVar('instansi'),
 		]);
 
-		$userID = $this->userModel->insertID();
+		$userID = $this->usersModel->insertID();
 
 		// simpan data sewa
 		$this->sewaAlatModel->save([

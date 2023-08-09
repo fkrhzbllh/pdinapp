@@ -1,7 +1,7 @@
 <?php $pager->setSurroundCount(2) ?>
 
-<nav aria-label="Page navigation">
-    <ul class="pagination">
+<nav aria-label="Page navigation" class="justify-content-center">
+    <ul class="pagination justify-content-center">
         <?php if ($pager->hasPreviousPage()) : ?>
         <li class="page-item">
             <a class="page-link" href="<?= $pager->getFirst() ?>"

@@ -9,12 +9,13 @@ use App\Models\RuanganModel;
 use App\Models\AlatModel;
 use App\Models\SewaRuanganModel;
 use App\Models\SewaAlatModel;
-use App\Models\UserModel;
+use App\Models\UsersModel;
 use App\Models\GaleriRuanganModel;
 use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Models\ArtikelModel;
 use App\Models\KegiatanModel;
+use IntlDateFormatter;
 
 class DashboardAdmin extends BaseController
 {
@@ -26,7 +27,7 @@ class DashboardAdmin extends BaseController
 
 	protected $sewaAlatModel;
 
-	protected $userModel;
+	protected $usersModel;
 
 	protected $galeriRuanganModel;
 
@@ -48,7 +49,7 @@ class DashboardAdmin extends BaseController
 		$this->alatModel = new AlatModel();
 		$this->sewaRuanganModel = new SewaRuanganModel();
 		$this->sewaAlatModel = new SewaAlatModel();
-		$this->userModel = new UserModel();
+		$this->usersModel = new UsersModel();
 		$this->galeriRuanganModel = new GaleriRuanganModel();
 		$this->galeriAlatModel = new GaleriAlatModel();
 		$this->galeriModel = new GaleriModel();
@@ -56,8 +57,9 @@ class DashboardAdmin extends BaseController
 		$this->kegiatanModel = new KegiatanModel();
 		$this->helpers = ['form'];
 		$this->data['judul_halaman'] = 'Admin | Pusat Desain Industri Nasional';
-		$this->data['current_page'] = 'fasilitas';
+		$this->data['current_page'] = 'adminrilismedia';
 		$this->data['admin'] = true;
+		date_default_timezone_set('Asia/Jakarta');
 	}
 
 	public function index()
@@ -296,7 +298,7 @@ class DashboardAdmin extends BaseController
 
 		// get slug
 		$ruangan = $this->ruanganModel->getRuanganByID($id);
-		$namaRuangan = $ruangan['slug'];
+		// $namaRuangan = $ruangan['slug'];
 
 		session()->setFlashdata('sukses', 'Data berhasil diubah.');
 
@@ -985,6 +987,545 @@ class DashboardAdmin extends BaseController
 					'max_size' => 'ukuran foto ruangan maksimal 2MB',
 					'is_image' => 'file yang Anda pilih bukan gambar',
 					'mime_in' => 'file yang Anda pilih bukan gambar'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// list sewa suatu ruangan
+	public function listSewaRuangan($slug)
+	{
+		$this->data['current_page'] = 'adminruangan';
+		$ruangan = $this->ruanganModel->getRuangan($slug);
+
+		// tampilan error kalau tidak ada nama ruangan yang ada di database
+		if (empty($ruangan)) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan "' . $slug . '" tidak ditemukan.');
+		}
+		// $this->data['id_ruangan'] = $id;
+		$jadwal = $this->sewaRuanganModel->getJadwalSewaRuangan($ruangan['id']);
+		// $penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
+		// $penyewa = $this->usersModel->findAll();
+		$this->data['ruangan'] = $ruangan;
+		$this->data['jadwal'] = $jadwal;
+		// $this->data['penyewa'] = $penyewa;
+
+		// menampilkan penyewa sewa ruangan
+		if ($jadwal) {
+			foreach ($jadwal as $key => $value) {
+				$penyewa = $this->usersModel->getUserByID($value['id_user']);
+				if ($penyewa == null || empty($penyewa)) {
+					// dd($this->usersModel->getUserByID($jadwal[2]['id_user']));
+					$this->data['penyewa'][$key]['nama'] = '';
+					$this->data['penyewa'][$key]['kontak'] = '';
+					$this->data['penyewa'][$key]['nama_instansi'] = '';
+				} else {
+					if ($ruangan['tipe'] == 'Pameran') {
+						$this->data['events'][$key]['allDay'] = true;
+						$this->data['events'][$key]['end'] = date_add(date_create($value['tgl_akhir_sewa']), date_interval_create_from_date_string('1 day'))->format('Y-m-d H:i:s');
+					}
+					$this->data['penyewa'][$key]['nama'] = $penyewa['nama'];
+					$this->data['penyewa'][$key]['kontak'] = $penyewa['kontak'];
+					$this->data['penyewa'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
+					$this->data['events'][$key]['title'] = $value['nama_kegiatan'];
+					$this->data['events'][$key]['start'] = $value['tgl_mulai_sewa'];
+					$this->data['events'][$key]['end'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
+					$this->data['events'][$key]['selesai'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
+					$this->data['events'][$key]['nama'] = $penyewa['nama'];
+					$this->data['events'][$key]['kontak'] = $penyewa['kontak'];
+					$this->data['events'][$key]['email'] = $penyewa['email'];
+					$this->data['events'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
+					$this->data['events'][$key]['deskripsi'] = $value['deskripsi'];
+					$this->data['events'][$key]['tipe_ruangan'] = $ruangan['tipe'];
+				}
+			}
+		} else {
+			$this->data['penyewa'] = '';
+			$this->data['events'] = '';
+		}
+
+		$this->data['judul_halaman'] = 'Sewa ' . $ruangan['nama'];
+
+		$this->viewAdmin('adminsewaruangan.php', $this->data);
+	}
+
+	// form sewa ruangan
+	public function tambahSewaRuangan($slug = null)
+	{
+		session();
+		$ruangan = $this->ruanganModel->getRuangan($slug);
+
+		// tampilan error kalau tidak ada nama ruangan yang ada di database
+		if (empty($ruangan)) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan "' . $slug . '" tidak ditemukan.');
+		}
+
+		$this->data['current_page'] = 'adminruangan';
+		$this->data['id_ruangan'] = $ruangan['id'];
+		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
+		$this->data['ruangan'] = $this->ruanganModel->getRuangan(); // find all
+
+		$this->viewAdmin('formtambahsewaruangan.php', $this->data);
+	}
+
+	// form sewa alat
+	public function tambahSewaAlat($slug = null)
+	{
+		session();
+		$alat = $this->alatModel->getAlat($slug);
+		$this->data['current_page'] = 'adminalat';
+		$this->data['id_alat'] = $alat['id'];
+		$this->data['judul_halaman'] = 'Sewa Alat PDIN';
+		$this->data['alat'] = $this->alatModel->getAlat(); // find all
+
+		$this->viewAdmin('sewaalat.php', $this->data);
+	}
+
+	// simpan data sewa ruangan
+	public function saveTambahSewaRuangan()
+	{
+		$tipe = $this->request->getVar('tipe');
+		$idRuangan = $this->request->getVar('ruangan');
+		$ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
+		$slug = $ruangan['slug'];
+
+		// $mulai = $this->request->getVar('tanggalMulaiPameran');
+		// $selesai = $this->request->getVar('tanggalSelesaiPameran');
+		// $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::SHORT, IntlDateFormatter::FULL, null, null);
+		// $aaaaaa = $formatter->format(date_create($mulai));
+		// $aaaaaa = date_create($mulai);
+		// $bbbbbb = date_add(date_create($selesai), date_interval_create_from_date_string('23 hours + 59 mins + 59 secs'));
+		// d($aaaaaa);
+		// dd($bbbbbb);
+
+		// aturan validasi
+		$rules = $this->formRulesSewaRuangan($tipe);
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/tambah-sewa-ruangan/' . $slug)->withInput();
+		}
+
+		// dd($this->request->getVar());
+
+		// simpan data user
+		$this->usersModel->save([
+			'email' => $this->request->getVar('email'),
+			'nama' => $this->request->getVar('nama'),
+			'kontak' => $this->request->getVar('nomorTelepon'),
+			'nama_instansi' => $this->request->getVar('instansi'),
+		]);
+
+		$userID = $this->usersModel->insertID();
+
+		// simpan data sewa berdasarkan tipe
+		if ($tipe == 'Pameran') {
+			// $mulai = date_create($this->request->getVar('tanggalMulaiPameran'));
+			// $mulai = $this->request->getVar('tanggalMulaiPameran');
+			// $selesai = date_add(date_create($this->request->getVar('tanggalSelesaiPameran')), date_interval_create_from_date_string('23 hours + 59 mins + 59 secs'));
+			// $selesai = date_create($this->request->getVar('tanggalSelesaiPameran'));
+			// $selesai = $this->request->getVar('tanggalSelesaiPameran');
+			// dd($selesai);
+			$this->sewaRuanganModel->save([
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $userID,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPameran'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPameran'),
+				// 'tgl_mulai_sewa' => $mulai,
+				// 'tgl_akhir_sewa' => $selesai->format('Y-m-d H:i:s'),
+				// 'tgl_akhir_sewa' => $selesai,
+			]);
+		} elseif ($tipe == 'Kantor') {
+			$this->sewaRuanganModel->save([
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $userID,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiKantor'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiKantor'),
+			]);
+		} elseif ($tipe == 'Meeting') {
+			$this->sewaRuanganModel->save([
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $userID,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiMeeting'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiMeeting'),
+			]);
+		} elseif ($tipe == 'Pengembangan') {
+			$this->sewaRuanganModel->save([
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $userID,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPengembangan'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPengembangan'),
+			]);
+		}
+
+		// get slug
+		// $ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
+		// $namaRuangan = $ruangan['slug'];
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/sewa-ruangan/' . $slug);
+	}
+
+	// simpan data sewa alat
+	public function saveTambahSewaAlat()
+	{
+		$idAlat = $this->request->getVar('alat');
+
+		// aturan validasi
+		$rules = $this->formRulesSewaAlat();
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/sewaAlat')->withInput();
+		}
+
+		// dd($this->request->getVar());
+
+		// simpan data user
+		$this->usersModel->save([
+			'email' => $this->request->getVar('email'),
+			'nama' => $this->request->getVar('nama'),
+			'kontak' => $this->request->getVar('nomorTelepon'),
+			'nama_instansi' => $this->request->getVar('instansi'),
+		]);
+
+		$userID = $this->usersModel->insertID();
+
+		// simpan data sewa
+		$this->sewaAlatModel->save([
+			'id_alat' => $idAlat,
+			'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+			// 'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+			'id_user' => $userID,
+			'tgl_mulai_sewa' => $this->request->getVar('tanggalMulai'),
+			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesai'),
+		]);
+
+		// get slug
+		// $alat = $this->alatModel->getAlatByID($idAlat);
+		// $namaAlat = $alat['slug'];
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/alat');
+	}
+
+	// form edit sewa ruangan
+	public function updateSewaRuangan()
+	{
+		$this->data['current_page'] = 'adminruangan';
+		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
+		$id = $this->request->getVar('id');
+
+		// ambil data jadwal yang dipilih
+		$jadwal = $this->sewaRuanganModel->getJadwalByID($id);
+		$this->data['jadwal'] = $jadwal;
+
+		// ambil data ruangan berdasarkan jadwal
+		// $ruangan = $this->ruanganModel->getRuangan($slug);
+		$ruangan = $this->ruanganModel->getRuanganByID($jadwal['id_ruangan']);
+		$this->data['ruangan'] = $ruangan;
+		$this->data['id_ruangan'] = $jadwal['id_ruangan'];
+
+		// ambil data penyewa berdasarkan jadwal
+		$penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
+		$this->data['penyewa'] = $penyewa;
+
+		$this->viewAdmin('formeditsewaruangan.php', $this->data);
+	}
+
+	// update data sewa ruangan
+	public function saveUpdateSewaRuangan($idJadwal, $idPenyewa)
+	{
+		$tipe = $this->request->getVar('tipe');
+		$idRuangan = $this->request->getVar('ruangan');
+		$ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
+		$slug = $ruangan['slug'];
+
+		// aturan validasi
+		$rules = $this->formRulesSewaRuangan($tipe);
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/tambah-sewa-ruangan/' . $slug)->withInput();
+		}
+
+		// dd($this->request->getVar());
+
+		// simpan data user
+		$this->usersModel->save([
+			'id' => $idPenyewa,
+			'email' => $this->request->getVar('email'),
+			'nama' => $this->request->getVar('nama'),
+			'kontak' => $this->request->getVar('nomorTelepon'),
+			'nama_instansi' => $this->request->getVar('instansi'),
+		]);
+
+		// simpan data sewa berdasarkan tipe
+		if ($tipe == 'Pameran') {
+			$this->sewaRuanganModel->save([
+				'id' => $idJadwal,
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $idPenyewa,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPameran'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPameran'),
+			]);
+		} elseif ($tipe == 'Kantor') {
+			date_default_timezone_set('Asia/Jakarta');
+			$this->sewaRuanganModel->save([
+				'id' => $idJadwal,
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $idPenyewa,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiKantor'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiKantor'),
+			]);
+		} elseif ($tipe == 'Meeting') {
+			$this->sewaRuanganModel->save([
+				'id' => $idJadwal,
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $idPenyewa,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiMeeting'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiMeeting'),
+			]);
+		} elseif ($tipe == 'Pengembangan') {
+			$this->sewaRuanganModel->save([
+				'id' => $idJadwal,
+				'id_ruangan' => $idRuangan,
+				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+				'id_user' => $idPenyewa,
+				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPengembangan'),
+				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPengembangan'),
+			]);
+		}
+
+		// get slug
+		// $ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
+		// $namaRuangan = $ruangan['slug'];
+
+		session()->setFlashdata('sukses', 'Data berhasil diubah.');
+
+		return redirect()->to('/DashboardAdmin/sewa-ruangan/' . $slug);
+	}
+
+	// hapus sewa ruangan
+	public function deleteSewaRuangan($id)
+	{
+		$sewaruangan = $this->sewaRuanganModel->getJadwalByID($id);
+		$ruangan = $this->ruanganModel->getRuanganByID($sewaruangan['id_ruangan']);
+		$slug = $ruangan['slug'];
+
+		if ($sewaruangan) {
+			$this->sewaRuanganModel->delete($id);
+			session()->setFlashdata('sukses', 'Data berhasil dihapus.');
+
+			return redirect()->to('/DashboardAdmin/sewa-ruangan/' . $slug);
+		} else {
+			session()->setFlashdata('gagal', 'Data gagal dihapus.');
+
+			return redirect()->to('/DashboardAdmin/sewa-ruangan/' . $slug);
+		}
+	}
+
+	// aturan validasi form sewa ruangan
+	public function formRulesSewaRuangan($tipe)
+	{
+		$date_rules = [];
+		if ($tipe == 'Pameran') {
+			$date_rules = [
+				'tanggalMulaiPameran' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal mulai harus diisi',
+						'valid_date' => 'tanggal mulai harus valid'
+					]
+				],
+				'tanggalSelesaiPameran' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal selesai harus diisi',
+						'valid_date' => 'tanggal selesai harus valid'
+					]
+				]
+			];
+		} elseif ($tipe == 'Kantor') {
+			$date_rules = [
+				'tanggalMulaiKantor' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal mulai harus diisi',
+						'valid_date' => 'tanggal mulai harus valid'
+					]
+				],
+				'tanggalSelesaiKantor' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal selesai harus diisi',
+						'valid_date' => 'tanggal selesai harus valid'
+					]
+				]
+			];
+		} elseif ($tipe == 'Meeting') {
+			$date_rules = [
+				'tanggalMulaiMeeting' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal mulai harus diisi',
+						'valid_date' => 'tanggal mulai harus valid'
+					]
+				],
+				'tanggalSelesaiMeeting' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal selesai harus diisi',
+						'valid_date' => 'tanggal selesai harus valid'
+					]
+				]
+			];
+		} elseif ($tipe == 'Pengembangan') {
+			$date_rules = [
+				'tanggalMulaiPengembangan' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal mulai harus diisi',
+						'valid_date' => 'tanggal mulai harus valid'
+					]
+				],
+				'tanggalSelesaiPengembangan' => [
+					'rules' => 'required|valid_date',
+					'errors' => [
+						'required' => 'tanggal selesai harus diisi',
+						'valid_date' => 'tanggal selesai harus valid'
+					]
+				]
+			];
+		}
+
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'email' => [
+				'rules' => 'required|valid_email',
+				'errors' => [
+					'required' => '{field} harus diisi',
+					'valid_email' => '{field} harus valid'
+				]
+			],
+			'nomorTelepon' => [
+				'rules' => 'required|numeric|min_length[8]|max_length[15]',
+				'errors' => [
+					'required' => 'nomor telepon harus diisi',
+					'numeric' => 'nomor telepon harus berupa angka',
+					'min_length' => 'nomor telepon harus lebih dari 8 angka',
+					'max_length' => 'nomor telepon harus kurang dari 15 angka'
+				]
+			],
+			'instansi' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'namaKegiatan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'nama kegiatan harus diisi'
+				]
+			],
+			'deskripsiKegiatan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'deskripsi kegiatan harus diisi'
+				]
+			],
+			'ruangan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus dipilih'
+				]
+			],
+		];
+
+		return array_merge($rules, $date_rules);
+	}
+
+	// aturan validasi form sewa ruangan
+	public function formRulesSewaAlat()
+	{
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'email' => [
+				'rules' => 'required|valid_email',
+				'errors' => [
+					'required' => '{field} harus diisi',
+					'valid_email' => '{field} harus valid'
+				]
+			],
+			'nomorTelepon' => [
+				'rules' => 'required|numeric|min_length[8]|max_length[15]',
+				'errors' => [
+					'required' => 'nomor telepon harus diisi',
+					'numeric' => 'nomor telepon harus berupa angka',
+					'min_length' => 'nomor telepon harus lebih dari 8 angka',
+					'max_length' => 'nomor telepon harus kurang dari 15 angka'
+				]
+			],
+			'instansi' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'namaKegiatan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'nama kegiatan harus diisi'
+				]
+			],
+			'alat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus dipilih'
+				]
+			],
+			'tanggalMulai' => [
+				'rules' => 'required|valid_date',
+				'errors' => [
+					'required' => 'waktu mulai harus diisi',
+					'valid_date' => 'waktu mulai harus valid'
+				]
+			],
+			'tanggalSelesai' => [
+				'rules' => 'required|valid_date',
+				'errors' => [
+					'required' => 'waktu selesai harus diisi',
+					'valid_date' => 'waktu selesai harus valid'
 				]
 			]
 		];

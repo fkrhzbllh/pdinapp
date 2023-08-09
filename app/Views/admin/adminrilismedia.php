@@ -36,10 +36,10 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Judul</th>
+                    <th class="w-50">Judul</th>
                     <th>Tanggal</th>
                     <th>Status</th>
-                    <th class="th-lg">Aksi</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,14 +53,16 @@
                     </td>
                     <td><?= $a['status']?></td>
                     <td><a href="/DashboardAdmin/update-rilis-media/<?= $a['slug'] ?>"
-                            class="btn btn-warning">Edit</a>
+                            class="btn btn-warning" data-bs-toggle="tooltip" data-bs-title="Edit"><i
+                                class="bi bi-pencil-fill"></i></a>
                         <form
                             action="/DashboarAdmin/rilismedia/<?php echo $a['id']?>"
                             method="post" class="d-inline">
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger" type="submit"
-                                onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');"
+                                data-bs-toggle="tooltip" data-bs-title="Hapus"><i
+                                    class="bi bi-trash3-fill"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -70,3 +72,13 @@
     </div>
     <?= $pager->links('artikel', 'pager')?>
 </div>
+
+<script>
+    // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    // var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    //     return new bootstrap.Tooltip(tooltipTriggerEl)
+    // })
+    $(document).ready(function() {
+        $('[data-bs-toggle="tooltip"]').tooltip();
+    });
+</script>

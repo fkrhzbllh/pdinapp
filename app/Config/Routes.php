@@ -36,24 +36,31 @@ $routes->get('/', 'Beranda::index');
 $routes->get('/fasilitas', 'Fasilitas::index');
 $routes->get('/kegiatan', 'Kegiatan::index');
 $routes->get('/galeri', 'Galeri::index');
+
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
 $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');
+
 $routes->delete('/DashboardAdmin/ruang/(:num)', 'DashboardAdmin::deleteRuangan/$1');
 $routes->delete('/DashboardAdmin/alat/(:num)', 'DashboardAdmin::deleteAlat/$1');
 $routes->delete('/DashboardAdmin/rilismedia/(:num)', 'DashboardAdmin::deleteRilisMedia/$1');
 $routes->delete('/DashboardAdmin/kegiatan/(:num)', 'DashboardAdmin::deleteKegiatan/$1');
+
 $routes->get('/admin/ruang/(:any)', 'Admin::detailRuangan/$1');
 $routes->get('/admin/alat/(:any)', 'Admin::detailAlat/$1');
+
 $routes->get('/rilis-media/(:any)', 'RilisMedia::detail/$1');
 $routes->get('/rilis-media', 'RilisMedia::index');
 $routes->post('/rilis-media', 'RilisMedia::index');
+
 $routes->get('/ProfilPDIN', 'ProfilPdin::index');
 $routes->get('/kontak', 'Kontak::index');
+
 $routes->get('/DashboardAdmin', 'DashboardAdmin::index');
 $routes->get('/DashboardAdmin/rilis-media', 'DashboardAdmin::index');
 $routes->get('/DashboardAdmin/ruangan', 'DashboardAdmin::ruangan');
 $routes->get('/DashboardAdmin/alat', 'DashboardAdmin::alat');
 $routes->get('/DashboardAdmin/kegiatan', 'DashboardAdmin::kegiatan');
+
 $routes->get('/DashboardAdmin/tambah-alat', 'DashboardAdmin::tambahAlat');
 $routes->get('/DashboardAdmin/tambah-ruangan', 'DashboardAdmin::tambahRuangan');
 $routes->get('/DashboardAdmin/tambah-kegiatan', 'DashboardAdmin::tambahKegiatan');
@@ -62,6 +69,7 @@ $routes->post('/DashboardAdmin/saveTambahAlat', 'DashboardAdmin::saveTambahAlat/
 $routes->post('/DashboardAdmin/saveTambahRuangan', 'DashboardAdmin::saveTambahRuangan/$1');
 $routes->post('/DashboardAdmin/saveTambahKegiatan', 'DashboardAdmin::saveTambahKegiatan/$1');
 $routes->post('/DashboardAdmin/saveTambahRilisMedia', 'DashboardAdmin::saveTambahRilisMedia/$1');
+
 $routes->get('/DashboardAdmin/update-alat/(:any)', 'DashboardAdmin::updateAlat/$1');
 $routes->get('/DashboardAdmin/update-ruangan/(:any)', 'DashboardAdmin::updateRuangan/$1');
 $routes->get('/DashboardAdmin/update-kegiatan/(:any)', 'DashboardAdmin::updateKegiatan/$1');
@@ -70,6 +78,24 @@ $routes->post('/DashboardAdmin/saveUpdateAlat/(:num)', 'DashboardAdmin::saveUpda
 $routes->post('/DashboardAdmin/saveUpdateRuangan/(:num)', 'DashboardAdmin::saveUpdateRuangan/$1');
 $routes->post('/DashboardAdmin/saveUpdateKegiatan/(:num)', 'DashboardAdmin::saveUpdateKegiatan/$1');
 $routes->post('/DashboardAdmin/saveUpdateRilisMedia/(:num)', 'DashboardAdmin::saveUpdateRilisMedia/$1');
+
+$routes->get('/DashboardAdmin/sewa-alat/(:any)', 'DashboardAdmin::listSewaAlat/$1');
+$routes->get('/DashboardAdmin/sewa-ruangan/(:any)', 'DashboardAdmin::listSewaRuangan/$1');
+$routes->get('/DashboardAdmin/tambah-sewa-alat/(:any)', 'DashboardAdmin::tambahSewaAlat/$1');
+$routes->get('/DashboardAdmin/tambah-sewa-ruangan/(:any)', 'DashboardAdmin::tambahSewaRuangan/$1');
+$routes->get('/DashboardAdmin/tambah-sewa-alat/', 'DashboardAdmin::tambahSewaAlat');
+$routes->get('/DashboardAdmin/tambah-sewa-ruangan/', 'DashboardAdmin::tambahSewaRuangan');
+$routes->post('/DashboardAdmin/saveTambahSewaAlat', 'DashboardAdmin::saveTambahSewaAlat');
+$routes->post('/DashboardAdmin/saveTambahSewaRuangan', 'DashboardAdmin::saveTambahSewaRuangan');
+
+// $routes->get('/DashboardAdmin/update-sewa-alat/(:any)', 'DashboardAdmin::updateSewaAlat/$1');
+// $routes->get('/DashboardAdmin/update-sewa-ruangan/(:any)', 'DashboardAdmin::updateSewaRuangan/$1');
+$routes->post('/DashboardAdmin/update-sewa-alat', 'DashboardAdmin::updateSewaAlat');
+$routes->post('/DashboardAdmin/update-sewa-ruangan', 'DashboardAdmin::updateSewaRuangan');
+$routes->post('/DashboardAdmin/saveUpdateSewaAlat/(:num)/(:num)', 'DashboardAdmin::saveUpdateSewaAlat/$1/$2');
+$routes->post('/DashboardAdmin/saveUpdateSewaRuangan/(:num)/(:num)', 'DashboardAdmin::saveUpdateSewaRuangan/$1/$2');
+$routes->delete('/DashboardAdmin/sewaRuangan/(:num)', 'DashboardAdmin::deleteSewaRuangan/$1');
+$routes->delete('/DashboardAdmin/sewaAlat/(:num)', 'DashboardAdmin::deleteSewaAlat/$1');
 // $routes->get('/dashboard', 'Dashboardadmin::index');
 
 service('auth')->routes($routes);

@@ -21,7 +21,7 @@
 			<div class="row" data-aos="fade-up">
 				<!-- <div class="d-flex flex-row"> -->
 				<div class="col-12 col-md-6  ">
-					<ul class="nav nav-pills mb-3  " id="pills-tab" role="tablist">
+					<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 						<li class="nav-item pill-ruangan-alat me-1" role="presentation">
 							<button class="nav-link active" id="pills-ruangan-tab" data-bs-toggle="pill"
 								data-bs-target="#pills-ruangan" type="button" role="tab" aria-controls="pills-ruangan"

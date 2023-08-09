@@ -21,6 +21,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
         <!-- Import Custom CSS -->
         <link rel="stylesheet"
             href="<?= base_url() ?>assets/style.css" />
@@ -53,7 +54,7 @@
                 <li>
                     <a href="<?= base_url() ?>DashboardAdmin/rilis-media"
                         class="<?= ($current_page == 'adminrilismedia') ? 'active' : '' ?>"><i
-                            class="icon bi bi-pencil-fill"></i>Rilis Media</a>
+                            class="icon bi bi-newspaper"></i>Rilis Media</a>
                 </li>
 
                 <li class="divider" data-text="fasilitas">Fasilitas</li>
@@ -93,12 +94,12 @@
                         <img src="<?= base_url() ?>assets/galeri-9.jpg"
                             alt="" />
                         <ul class="profile-link">
-                            <li>
+                            <!-- <li>
                                 <a href="#"><i class="icon bi bi-person-circle"></i> Profile</a>
-                            </li>
+                            </li> -->
 
                             <li>
-                                <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                                <a href="/logout"><i class="bi bi-box-arrow-left"></i> Logout</a>
                             </li>
                         </ul>
                     </div>
