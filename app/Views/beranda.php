@@ -202,20 +202,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="row bg-white rounded-4 p-2 p-md-4 pb-xl-1 pb-xxl-2">
 
-			<!-- ig dan berita -->
-			<!-- <div class="col-md-12 col-xl-8 p-2"> -->
-			<!-- <div class="row m-0 p-0"> -->
-			<!-- post ig -->
-			<div class="col-md-7 col-lg-12 col-xl-5 col-xxl-7 m-0 p-0 mb-4 mb-xxl-0">
+		<!-- Sorotan, Artikel Pilihan, dan Kalender -->
+		<div class="row bg-white rounded-4 p-2 p-sm-4 pb-2">
+
+			<!-- Sorotan -->
+			<div class="col-md-12 col-xl-5 m-0 p-0 mb-4 mb-xl-0">
 				<h5 class="mb-4 ms-md-3 mb-xl-4 mb-xxl-4">Sorotan</h5>
 				<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 					<!-- <div class="carousel-indicators m-0 mb-1">
-								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-							</div> -->
+						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					</div> -->
 					<div class="ratio ratio-4x3 carousel-inner rounded-4">
 						<?php foreach ($artikelTerbaru as $i => $a) : ?>
 							<div class="carousel-item <?= $i == 0 ? 'active' : ''; ?>" data-bs-interval="10000">
@@ -243,8 +242,10 @@
 					</button>
 				</div>
 			</div>
+			<!-- Akhir sorotan -->
+
 			<!-- Section Artikel Pilihan -->
-			<div class="col-md-5 col-lg-6 col-xl-3 col-xxl-5 m-0 p-0 mb-2 mb-xxl-0">
+			<div class="col-md-6 col-xl-3 m-0 p-0 mb-2">
 				<!-- Judul artikel pilihan-->
 				<h6 class="mb-4 ms-md-3 mb-xl-4 mb-xxl-4">Artikel Pilihan</h6>
 				<?php foreach ($artikelPilihan as $i => $a) : ?>
@@ -272,9 +273,6 @@
 										<small class="card-text crop-text-2">
 											<?php echo $a['kategori']; ?> | <?php echo $a['tgl_terbit_terformat']; ?></small>
 									</div>
-									<!-- <div class="card-footer text-end text-muted">
-											Last updated today.
-										</div> -->
 								</div>
 							</div>
 						</div>
@@ -282,10 +280,10 @@
 					<!-- Akhir item artikel -->
 				<?php endforeach; ?>
 			</div>
-			<!-- </div> -->
-			<!-- </div> -->
+			<!-- Akhir section Artikel Pilihan -->
+
 			<!-- Calendar -->
-			<div class="col-md-12 col-lg-6 col-xl-4 p-2 mb-3">
+			<div class="col-md-6 col-xl-4 p-2 mb-3">
 				<div class="">
 					<div class="bg-pdin-hitam p-4 pb-2 rounded-top-4">
 						<h5 class="text-white mt-2">Agenda Kegiatan di PDIN</h5>
@@ -303,8 +301,9 @@
 			<!-- Akhir calendar -->
 
 		</div>
+		<!-- Akhir Sorotan, Artikel Pilihan, dan Kalender -->
 
-		<div class="text-center mt-4 mt-lg-5 mt-xl-4 mt-xxl-2">
+		<div class="text-center mt-4 mt-lg-5 mt-xl-4 mt-xxl-4">
 			<a class="btn btn-lg btn-outline-danger" href="/rilis-media" role="button">Lihat Semua
 				Kegiatan
 				<span class="ps-1 bi-arrow-right"></span></a>
