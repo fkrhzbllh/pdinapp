@@ -68,9 +68,10 @@
                     <thead>
                         <tr>
                             <!-- <td>No</td> -->
+                            <td>Nama Kegiatan</td>
                             <td>Nama Penyewa</td>
                             <td>No. Telepon</td>
-                            <td>Instansi</td>
+                            <!-- <td>Instansi</td> -->
                             <td>Waktu Mulai Sewa</td>
                             <td>Waktu selesai Sewa</td>
                             <td>Aksi</td>
@@ -80,14 +81,15 @@
                         <?php foreach ($jadwal as $key => $a):?>
                         <tr>
                             <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)?>
-                            -->
+                            </td> -->
+                            <td><?= $a['nama_kegiatan']?>
                             </td>
                             <td><?= $penyewa[$key]['nama']?>
                             </td>
                             <td><?= $penyewa[$key]['kontak']?>
                             </td>
-                            <td><?= $penyewa[$key]['nama_instansi'] ?>
-                            </td>
+                            <!-- <td><?= $penyewa[$key]['nama_instansi'] ?>
+                            </td> -->
                             <td
                                 data-sort="<?php echo strtotime($a['tgl_mulai_sewa'])?>">
                                 <?php if($ruangan['tipe'] == 'Pameran') {

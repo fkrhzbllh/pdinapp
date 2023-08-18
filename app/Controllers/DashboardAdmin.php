@@ -1226,8 +1226,14 @@ class DashboardAdmin extends BaseController
 	{
 		$this->data['current_page'] = 'adminruangan';
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
-		$id = $this->request->getVar('id');
 
+		if (session()->getFlashdata('Jadwal')) {
+			$id = session()->getFlashdata('Jadwal');
+		} else {
+			$id = $this->request->getVar('id');
+		}
+
+		// if ($id) {
 		// ambil data jadwal yang dipilih
 		$jadwal = $this->sewaRuanganModel->getJadwalByID($id);
 		$this->data['jadwal'] = $jadwal;
@@ -1241,6 +1247,26 @@ class DashboardAdmin extends BaseController
 		// ambil data penyewa berdasarkan jadwal
 		$penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
 		$this->data['penyewa'] = $penyewa;
+		// } else {
+		// d($this->request->getVar('idJadwal'));
+		// d($this->request->getVar('idPenyewa'));
+		// d($this->request->getVar('idRuangan'));
+		// $this->data['jadwal']['id'] = '';
+		// $this->data['jadwal']['nama_kegiatan'] = '';
+		// $this->data['jadwal']['deskripsi'] = '';
+		// $this->data['jadwal']['tgl_mulai_sewa'] = '';
+		// $this->data['jadwal']['tgl_akhir_sewa'] = '';
+		// $this->data['jadwal']['deskripsi'] = '';
+		// $this->data['ruangan']['nama'] = '';
+		// $this->data['ruangan']['id'] = '';
+		// $this->data['ruangan']['tipe'] = '';
+		// $this->data['id_ruangan'] = '';
+		// $this->data['penyewa']['id'] = '';
+		// $this->data['penyewa']['nama'] = '';
+		// $this->data['penyewa']['email'] = '';
+		// $this->data['penyewa']['kontak'] = '';
+		// $this->data['penyewa']['nama_instansi'] = '';
+		// }
 
 		$this->viewAdmin('formeditsewaruangan.php', $this->data);
 	}
@@ -1258,7 +1284,10 @@ class DashboardAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/tambah-sewa-ruangan/' . $slug)->withInput();
+			// return redirect()->to('/DashboardAdmin/update-sewa-ruangan/' . $slug)->withInput();
+			session()->setFlashdata('Jadwal', $idJadwal);
+
+			return redirect()->to('/DashboardAdmin/update-sewa-ruangan')->withInput();
 		}
 
 		// dd($this->request->getVar());
@@ -1341,6 +1370,97 @@ class DashboardAdmin extends BaseController
 			session()->setFlashdata('gagal', 'Data gagal dihapus.');
 
 			return redirect()->to('/DashboardAdmin/sewa-ruangan/' . $slug);
+		}
+	}
+
+	// form edit sewa alat
+	public function updateSewaAlat()
+	{
+		$this->data['current_page'] = 'adminalat';
+		$this->data['judul_halaman'] = 'Sewa Alat PDIN';
+		$id = $this->request->getVar('id');
+
+		// ambil data jadwal yang dipilih
+		$jadwal = $this->sewaAlatModel->getJadwalByID($id);
+		$this->data['jadwal'] = $jadwal;
+
+		// ambil data alat berdasarkan jadwal
+		// $alat = $this->alatModel->getalat($slug);
+		$alat = $this->alatModel->getAlatByID($jadwal['id_alat']);
+		$this->data['alat'] = $alat;
+		$this->data['id_alat'] = $jadwal['id_alat'];
+
+		// ambil data penyewa berdasarkan jadwal
+		$penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
+		$this->data['penyewa'] = $penyewa;
+
+		$this->viewAdmin('formeditsewaalat.php', $this->data);
+	}
+
+	// update data sewa alat
+	public function saveUpdateSewaAlat($idJadwal, $idPenyewa)
+	{
+		// $tipe = $this->request->getVar('tipe');
+		$idAlat = $this->request->getVar('alat');
+		$alat = $this->alatModel->getAlatByID($idAlat);
+		$slug = $alat['slug'];
+
+		// aturan validasi
+		$rules = $this->formRulesSewaAlat();
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			// return redirect()->to('/DashboardAdmin/update-sewa-alat/' . $slug)->withInput();
+			return redirect()->to('/DashboardAdmin/update-sewa-alat/')->withInput();
+		}
+
+		// dd($this->request->getVar());
+
+		// simpan data user
+		$this->usersModel->save([
+			'id' => $idPenyewa,
+			'email' => $this->request->getVar('email'),
+			'nama' => $this->request->getVar('nama'),
+			'kontak' => $this->request->getVar('nomorTelepon'),
+			'nama_instansi' => $this->request->getVar('instansi'),
+		]);
+
+		// simpan data sewa
+		$this->sewaAlatModel->save([
+			'id' => $idJadwal,
+			'id_alat' => $idAlat,
+			'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
+			'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
+			'id_user' => $idPenyewa,
+			'tgl_mulai_sewa' => $this->request->getVar('tanggalMulai'),
+			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesai'),
+		]);
+
+		// get slug
+		// $ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
+		// $namaRuangan = $ruangan['slug'];
+
+		session()->setFlashdata('sukses', 'Data berhasil diubah.');
+
+		return redirect()->to('/DashboardAdmin/sewa-alat/' . $slug);
+	}
+
+	// hapus sewa alat
+	public function deleteSewaAlat($id)
+	{
+		$sewaalat = $this->sewaAlatModel->getJadwalByID($id);
+		$alat = $this->alatModel->getAlatByID($sewaalat['id_alat']);
+		$slug = $alat['slug'];
+
+		if ($sewaalat) {
+			$this->sewaAlatModel->delete($id);
+			session()->setFlashdata('sukses', 'Data berhasil dihapus.');
+
+			return redirect()->to('/DashboardAdmin/sewa-alat/' . $slug);
+		} else {
+			session()->setFlashdata('gagal', 'Data gagal dihapus.');
+
+			return redirect()->to('/DashboardAdmin/sewa-alat/' . $slug);
 		}
 	}
 

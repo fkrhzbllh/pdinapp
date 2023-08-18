@@ -91,7 +91,7 @@
                 </label>
                 <select
                     class="form-select <?= (validation_show_error('ruangan')) ? 'is-invalid' : ''; ?>"
-                    aria-label="Default select" id="ruangan" name="ruangan" disabled>
+                    aria-label="Default select" id="ruangan" name="ruangan">
                     <option selected disabled>Pilih Ruangan</option>
                     <?php foreach($ruangan as $r) : ?>
                     <?php if($id_ruangan == $r['id'] || old('ruangan') == $r['id']) :?>

@@ -20,4 +20,9 @@ class SewaAlatModel extends \App\Models\BaseModel
         ->join($this->alatTable,$this->alatTable.".".$this->primaryKey."=".$this->table.".id_alat")
         ->where($this->alatTable.".id",$id)->get()->getResultArray();
     }
+
+    public function getJadwalByID($id)
+	{
+		return $this->where([$this->primaryKey => $id])->first();
+	}
 }
