@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2023 at 05:55 PM
+-- Generation Time: Aug 09, 2023 at 09:52 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -100,7 +100,8 @@ INSERT INTO `artikel` (`id`, `judul`, `konten`, `excerp`, `meta_description`, `s
 (4, 'Pameran Kaca: Glass Beyond Borders', '<p><b>Yogyakarta</b> - Glass Beyond Borders/Kaca Melampaui Batas-Batas merupakan sebuah proyek kolaborasi antar dua seniman kaca, yakni Ivan Bestari (Indonesia) dan Hannah Gibson (Inggris). Ivan dan Hannah dikenal sebagai seniman kaca yang menggunakan limbah kaca sebagai bahan utama mereka. Namun, masing-masing menggunakan metode olah kaca yang sangat berbeda secara teknis. Proyek kolaborasi ini bertujuan untuk menemukan peluang perpaduan dari dua metode olah kaca yang dikuasai oleh masing- masing seniman. Dalam proyek ini kedua seniman melakukan kolaborasi, baik dalam penciptaan karya bersama maupun dalam menyusun perencanaan dan materi lokakarya yang diikuti oleh mahasiswa Program Studi Desain Produk Universitas Kristen Duta Wacana (UKDW) dan juga peserta lokakarya umum.</p>\r\n<p>Perihal \"melampaui batas-batas\" yang dimaksudkan dalam judul proyek tersebut bisa dijabarkan dari beberapa sudut pandang. Batasan yang ingin coba dilampaui bisa berupa berbagai hal, misalkan batasan negara, batasan teknologi, batasan bahasa, bahkan juga batasan ranah lingkup kerja. Proyek ini tidak hanya bertumpu pada target pencapaian kolaborasi dari dua seniman dan hanya berhenti di ranah seni rupa, tetapi proyek ini diharapkan menjadi sarana untuk memperkenalkan metode olah limbah kaca kepada masyarakat luas melalui sisi akademis dan juga stakeholders! pemangku kepentingan yang mendukung jalannya proyek ini. Bahwa olah limbah kaca itu memungkinkan dilakukan di dalam skala studio seniman berarti mempunyai peluang untuk direplikasi menjadi skala usaha rumahan tanpa kebutuhan infrastruktur yang berskala industri besar. Atas pertimbangan tersebut maka Glass Beyond Borders juga mencoba untuk berbagi wawasan mengenai olah kaca terhadap berbagai pihak dengan melaksanakan lokakarya, paparan dalam bentuk temu wicara, serta presentasi metode olah kaca dalam bentuk pameran.\r\n</p>', 'abc', 'Glass Beyond Borders/Kaca Melampaui Batas-Batas merupakan sebuah proyek kolaborasi antar dua seniman kaca, yakni Ivan Bestari (Indonesia) dan Hannah Gibson (Inggris).', 'Pameran-Kaca-Glass-Beyond-Borders', 'Pameran', 'published', '', '', NULL, '2023-03-06 15:13:17', NULL, 0, NULL, 0, 'gambar-artikel-pameran-kaca.jpg'),
 (5, 'Kunjungan Sri Sultan Hamengku Buwono X ke Pusat Desain Industri Nasional', '<p><b>Yogyakarta</b> - Pusat Desain Industri Nasional (PDIN) dikunjungi oleh Gubernur Daerah Istimewa Yogyakarta, Sri Sultan Hamengku Buwono X didampingi beberapa struktural Pemerintah Daerah DIY. Kunjungan ini diterima oleh Pj Walikota Yogyakarta Bapak Sumadi, S.H., M.H., Asisten Perekonomian dan Pembangunan Bapak Drs. Kadri Renggono, M.Si., Kepala Dinas Perindustrian Koperasi UKM Bapak Drs. Tri Karyadi Riyanto Raharjo, S.H., M.Si., serta beberapa Kepala OPD di lingkungan Pemerintah Kota Yogyakarta.</p>\r\n<p>Kegiatan ini dalam rangka kunjungan kerja Gubernur DIY untuk melihat program kerja yang akan dilaksanakan di Pusat Desain Industri Nasional (PDIN) yang sudah diselesaikan pembangunannya pada akhir tahun 2022 lalu. </p>\r\n<p>Pusat Desain Industri Nasional (PDIN) merupakan hasil dari rencana kerja yang disepakati oleh Ditjen IKMA Kementerian Perindustrian, Pemda DIY dan Pemerintah Kota Yogyakarta dengan tujuan untuk menjadi pusat pengembangan desain guna meningkatkan daya saing industri kecil dan menengah nasional. PDIN akan dijadikan sebagai wadah dalam mempertemukan antara desainer, pelaku industri, akademisi, penyedia bahan baku, eksportir, dan berbagai pemangku kepentingan lainnya dalam pengembangan bisnis berbasis desain dan karakter industri. </p>\r\n<p>Kepala Dinas Perindustrian Koperasi UKM Kota Yogyakarta, Drs. Tri Karyadi Riyanto R, S.H. M.Si menyampaikan bahwa Kota Yogyakarta dipilih sebagai lokasi berdirinya PDIN oleh Kementerian Perindustrian dengan pertimbangan bahwa Yogyakarta dikenal sebagai pusat kerajinan dan produk kreatif di Indonesia, kekuatan dari sumber daya manusia dan pendidikan tersedia di Yogyakarta, Yogyakarta juga sebagai pusat perkembangan seni sebagai acuan tren dan kecenderungan masyarakat dunia serta potensi industri fashion Yogyakarta menuju kota pusat fashion dunia. Dalam jangka pendek, PDIN akan berfokus mendorong pengembangan desain pada 3 komoditas yaitu fesyen, logam, dan kayu. </p>\r\n<p>Gubernur DIY, Sri Sultan Hamengku Buwono X mengunjungi fasilitas yang ada di PDIN seperti ruang workshop kayu dan logam, ruang pameran, area plaza, area co-working, ruang rapat, rooftop, dan berbagai fasilitas lainnya, serta berkesempatan mendengar pemaparan program PDIN dari Kepala Dinas Perindustrian Koperasi UKM Kota Yogyakarta, Drs Tri Karyadi Riyanto Raharjo S.H., M.Si., serta mendengarkan laporan dari Kepala Dinas Perindustrian dan Perdagangan DIY Ibu Ir. Syam Arjanti, MPA. </p>\r\n<p>Sri Sultan Hamengku Buwono X memberikan beberapa arahan, yaitu agar pemerintah Kota Yogyakarta memperhatikan aspek kelembagaan dan manajemen pengelolaan PDIN terlebih dahulu agar segala program dapat dijalankan dengan profesional, PDIN harus dapat menjamin adanya standarisasi, kualitas, dan mutu produknya. serta agar PDIN dapat memberikan manfaat yang sebesar-besarnya dan memberikan kontribusi kepada masyarakat. Pihaknya juga berpesan untuk melibatkan anak muda jurusan desain dan grafis untuk menciptakan desain-desain eksklusif untuk menaikan harga dan daya saing produk fesyen di Jogja. </p>', 'abc', 'Pusat Desain Industri Nasional (PDIN) dikunjungi oleh Gubernur Daerah Istimewa Yogyakarta, Sri Sultan Hamengku Buwono X didampingi beberapa struktural Pemerintah Daerah DIY. Kunjungan ini diterima oleh Pj Walikota Yogyakarta Bapak Sumadi, S.H., M.H., Asisten Perekonomian dan Pembangunan Bapak Drs. Kadri Renggono, M.Si., Kepala Dinas Perindustrian Koperasi UKM Bapak Drs. Tri Karyadi Riyanto Raharjo, S.H., M.Si., serta beberapa Kepala OPD di lingkungan Pemerintah Kota Yogyakarta.', 'Kunjungan-Sri-Sultan-Hamengku-Buwono-X-ke-Pusat-Desain-Industri-Nasional', 'Pameran', 'published', '', '', NULL, '2023-03-06 16:43:50', NULL, 0, NULL, 0, 'gambar-artikel-kunjungan-sri-sultan.jpg'),
 (6, 'Pelatihan Batik di Pusat Desain Industri Nasional', '<p><b>Yogyakarta</b> —Dinas Perindustrian, Koperasi, dan UKM (Disperinkop UKM) Jogja mengadakan pelatihan batik yang diikuti 40 peserta selama Senin-Rabu (15-17/5/2023). Pelatihan tersebut dibagi dalam dua jenis, pelatihan batik cap dan pelatihan batik kontemporer yang semuanya digelar di Pusat Desain Industri Nasional (PDIN). </p>\r\n<p>Disperinkop UKM membuka pendaftaran peserta pelatihan secara terbuka dan umum dan diperoleh 120 pendaftar. “Lalu kami seleksi, kami pilih peserta pelatihan ini yang sudah punya usaha batik saja agar mereka bisa mengembangkan usahanya lebih inovatif lagi,” jelas Kepala Disperinkop UKM Jogja, Tri Karyadi Riyanto Raharjo, Senin (15/5/2023).\r\nTotok sapaan akrab Kepala Disperinkop UKM Jogja menjelaskan akan mengadakan pelatihan batik lagi semester depan. “Karena anggarannya dari APBN 2023, maka akan kami fasilitasi lagi nanti calon peserta pada semester depan setelah perubahan anggaran. Sangat baik sekali animonya ternyata,” katanya.\r\nPeserta pelatihan, jelas Totok, juga akan memamerkan hasil karya dari pelatihan ini lewat fashion show yang akan digelar  Senin (22/5/2023) mendatang. “Tujuan kami bikin pelatihan ini agar pembatik Jogja makin berkembang inovasinya dan bisa menyesuaikan permintaan pasar dengan baik,” ujarnya.\r\nSubkoordinator Kelompok Substansi Pembinaan Standarisasi Industri Disperinkop UKM Jogja Heri Karuniawan menyebut pelatihan tersebut diselenggarakan gratis dan intensif dari pagi pukul 08.00 sampai sore 15.00. “Pelatihan ini sangat intensif jadi ada target yang harus dicapai peserta, harapannya makin inovatif peserta ini dan bisa mengembangkan produk batiknya,” jelasnya, Senin siang.\r\nHeri menyebut pelatihan batik tersebut dilatih oleh praktisi ahli. “Pelatihan ini sangat membantu pelaku usaha batik karena dibimbing langsung oleh ahli, jadi dipastikan nanti hasil karya peserta juga sangat layak diapresiasi dalam fashion show,” terangnya.\r\nPelatih pelatihan batik Disperinkop UKM Jogja, Iwan Setiawan menjelaskan peserta sangat antusias dalam mengikuti pelatihan tersebut. “Saya mengisi materi batik kontemporer dimana mediumnya kaos, ini terutama untuk mengambil peluang pasar dari wisatawan yang berkunjung ke Jogja, karena masih sedikit yang berinovasi dengan batik kaos,” ucapnya.\r\nIwan berharap lewat pelatihan batik tersebut peserta dapat memaksimalkan materi dan mengembangkan karya sesuai inovasi dan kebutuhan pasar. “Saya juga aktif usaha di kaos batik peminatnya luar biasa, sehingga lewat pelatihan ini sama-sama berinovasi agar pasar batik kontemporer dapat terus diisi oleh pelaku usaha Jogja,” katanya. </p>', 'abc', 'Dinas Perindustrian, Koperasi, dan UKM (Disperinkop UKM) Jogja mengadakan pelatihan batik yang diikuti 40 peserta selama Senin-Rabu (15-17/5/2023). Pelatihan tersebut dibagi dalam dua jenis, pelatihan batik cap dan pelatihan batik kontemporer yang semuanya digelar di Pusat Desain Industri Nasional (PDIN).', 'Pelatihan-Batik-di-Pusat-Desain-Industri-Nasional', 'Pameran', 'published', '', '', NULL, '2023-03-06 19:43:50', NULL, 0, NULL, 0, 'gambar-artikel-pelatihan-batik.jpg'),
-(7, 'Pameran Kulit: Leather Innofashion Expo 2023', '<p>YOGYAKARTA (Simpony) – Setelah rampung dibangun pada Desember 2022, Pusat Desain Industri Nasional (PDIN) per Januari 2023 sudah mulai digunakan untuk kegiatan Industri Kecil Menengah (IKM). Salah satunya adalah Leather Innofashion Expo 2023, yang merupakan kerja sama antara Politeknik ATK Yogyakarta dengan Pemerintah Kota Yogyakarta melalui Dinas Perindustrian Koperasi dan UKM. </p>\r\n<p>Asisten Bidang Perekonomian dan Pembangunan Setda Kota Yogyakarta, Kadri Renggono mengatakan, setelah bangunan PDIN sudah selesai dikerjakan, strategi yang penting untuk dilakukan adalah membangun awareness. Dengan mengkomunikasikan kehadiran PDIN kepada seluruh masyarakat terutama stakeholder kunci.\r\n“Saat ini kami sedang menyusun dan memperkuat pada aspek manajemen, legalitas, dasar hukum untuk pengelolaan PDIN. Tentu harapan kita semua sebagaimana tujuan awal PDIN ini adalah menjadi sebuah sub sistem dari Industri Kecil Menengah dalam skala nasional dan secara keseluruhan agar semakin berkembang. Menjembatani serta memperkuat produk IKM yang berbasis desain,” jelasnya pada saat pembukaan Leather Innofashion Expo 2023, pada Jumat (13/1/2023).\r\nSelain itu, lanjut Kadri Renggono, PDIN ini tujuannya juga untuk mendorong IKM supaya mempunyai daya saing yang lebih baik dalam skala nasional sampai internasional. Sebab dari sisi Sumber Daya Manusia (SDM), Jogja punya banyak desainer, dan lembaga pendidikan yang menciptakan desainer berkualitas.\r\n“Manajemen dan sistem pemeliharaan operasional PDIN tengah disusun untuk meningkatkan kapasitas SDM serta pelaku IKM, agar lebih berkembang dalam melihat pasar dan memajukan daya saing produk. Kira-kira pada Juni nanti kami akan Grand Opening, dengan harapan semakin banyak pihak yang beraktivitas dan melihat peluang PDIN sebagai tempat untuk mengembangkan IKM,” imbuhnya.\r\nDirektur Politeknik ATK Yogyakarta, Sugiyanto menyampaikan, Leather Innofashion Expo 2023 merupakan wujud kerja sama dengan Pemerintah Kota Yogyakarta dalam memperkenalkan sebuah lembaga pengembangan desain yaitu PDIN, yang bertujuan untuk meningkatkan daya saing IKM nasional, termasuk bagi para 100 mahasiswa jurusan teknologi pengolahan produk kulit Politeknik ATK Yogyakarta dalam menampilkan hasil karyanya.\r\n“Berdasarkan dengan tujuannya, kami berharap PDIN bisa menjadi communal space yang berfungsi sebagai pusat informasi dan referensi desain berdasarkan jenis industri dan pasar dalam skala nasioal hingga global. Sebab Jogja merupakan kota yang potensial menjadi pasar global untuk produk inovatif dan kreatif yang dihasilkan oleh para pelaku IKM,” terangnya.\r\n\r\nSugiyanto juga mengungkapkan, dengan kehadiran PDIN sebagai tempat yang berskala nasional maka stakeholder yang terlibat sangat luas dan beragam. Sehingga inspirasi yang akan hadir tentunya bisa menciptakan kolaborasi dalam menghasilkan desain produk yang berdaya saing tinggi.\r\n\r\nLeather Innofashion Expo 2023 berlangsung hingga Juni mendatang. Dengan rangkaian kegiatan Leather Product Exibition pada 13 dan 14 Januari, Talkshow Entrepreneur 25 Februari, Worksop Ecodesign 18 Maret, National Footwear Design Competition 14 April, Workshop Tenan Corner 14 dan 15 Mei, dan Fashion Show 24 Juni 2023. </p>', 'abc', 'Setelah rampung dibangun pada Desember 2022, Pusat Desain Industri Nasional (PDIN) per Januari 2023 sudah mulai digunakan untuk kegiatan Industri Kecil Menengah (IKM). Salah satunya adalah Leather Innofashion Expo 2023, yang merupakan kerja sama antara Politeknik ATK Yogyakarta dengan Pemerintah Kota Yogyakarta melalui Dinas Perindustrian Koperasi dan UKM.\r\n', 'Pameran-Kulit-Leather-Innofashion-Expo-2023', 'Pameran', 'published', '', '', NULL, NULL, '2023-03-06 20:51:29', 0, NULL, 0, 'gambar-artikel-pameran-kulit.jpg');
+(7, 'Pameran Kulit: Leather Innofashion Expo 2023', '<p>YOGYAKARTA (Simpony) – Setelah rampung dibangun pada Desember 2022, Pusat Desain Industri Nasional (PDIN) per Januari 2023 sudah mulai digunakan untuk kegiatan Industri Kecil Menengah (IKM). Salah satunya adalah Leather Innofashion Expo 2023, yang merupakan kerja sama antara Politeknik ATK Yogyakarta dengan Pemerintah Kota Yogyakarta melalui Dinas Perindustrian Koperasi dan UKM. </p>\r\n<p>Asisten Bidang Perekonomian dan Pembangunan Setda Kota Yogyakarta, Kadri Renggono mengatakan, setelah bangunan PDIN sudah selesai dikerjakan, strategi yang penting untuk dilakukan adalah membangun awareness. Dengan mengkomunikasikan kehadiran PDIN kepada seluruh masyarakat terutama stakeholder kunci.\r\n“Saat ini kami sedang menyusun dan memperkuat pada aspek manajemen, legalitas, dasar hukum untuk pengelolaan PDIN. Tentu harapan kita semua sebagaimana tujuan awal PDIN ini adalah menjadi sebuah sub sistem dari Industri Kecil Menengah dalam skala nasional dan secara keseluruhan agar semakin berkembang. Menjembatani serta memperkuat produk IKM yang berbasis desain,” jelasnya pada saat pembukaan Leather Innofashion Expo 2023, pada Jumat (13/1/2023).\r\nSelain itu, lanjut Kadri Renggono, PDIN ini tujuannya juga untuk mendorong IKM supaya mempunyai daya saing yang lebih baik dalam skala nasional sampai internasional. Sebab dari sisi Sumber Daya Manusia (SDM), Jogja punya banyak desainer, dan lembaga pendidikan yang menciptakan desainer berkualitas.\r\n“Manajemen dan sistem pemeliharaan operasional PDIN tengah disusun untuk meningkatkan kapasitas SDM serta pelaku IKM, agar lebih berkembang dalam melihat pasar dan memajukan daya saing produk. Kira-kira pada Juni nanti kami akan Grand Opening, dengan harapan semakin banyak pihak yang beraktivitas dan melihat peluang PDIN sebagai tempat untuk mengembangkan IKM,” imbuhnya.\r\nDirektur Politeknik ATK Yogyakarta, Sugiyanto menyampaikan, Leather Innofashion Expo 2023 merupakan wujud kerja sama dengan Pemerintah Kota Yogyakarta dalam memperkenalkan sebuah lembaga pengembangan desain yaitu PDIN, yang bertujuan untuk meningkatkan daya saing IKM nasional, termasuk bagi para 100 mahasiswa jurusan teknologi pengolahan produk kulit Politeknik ATK Yogyakarta dalam menampilkan hasil karyanya.\r\n“Berdasarkan dengan tujuannya, kami berharap PDIN bisa menjadi communal space yang berfungsi sebagai pusat informasi dan referensi desain berdasarkan jenis industri dan pasar dalam skala nasioal hingga global. Sebab Jogja merupakan kota yang potensial menjadi pasar global untuk produk inovatif dan kreatif yang dihasilkan oleh para pelaku IKM,” terangnya.\r\n\r\nSugiyanto juga mengungkapkan, dengan kehadiran PDIN sebagai tempat yang berskala nasional maka stakeholder yang terlibat sangat luas dan beragam. Sehingga inspirasi yang akan hadir tentunya bisa menciptakan kolaborasi dalam menghasilkan desain produk yang berdaya saing tinggi.\r\n\r\nLeather Innofashion Expo 2023 berlangsung hingga Juni mendatang. Dengan rangkaian kegiatan Leather Product Exibition pada 13 dan 14 Januari, Talkshow Entrepreneur 25 Februari, Worksop Ecodesign 18 Maret, National Footwear Design Competition 14 April, Workshop Tenan Corner 14 dan 15 Mei, dan Fashion Show 24 Juni 2023. </p>', 'abc', 'Setelah rampung dibangun pada Desember 2022, Pusat Desain Industri Nasional (PDIN) per Januari 2023 sudah mulai digunakan untuk kegiatan Industri Kecil Menengah (IKM). Salah satunya adalah Leather Innofashion Expo 2023, yang merupakan kerja sama antara Politeknik ATK Yogyakarta dengan Pemerintah Kota Yogyakarta melalui Dinas Perindustrian Koperasi dan UKM.\r\n', 'Pameran-Kulit-Leather-Innofashion-Expo-2023', 'Pameran', 'published', '', '', NULL, NULL, '2023-03-06 20:51:29', 0, NULL, 0, 'gambar-artikel-pameran-kulit.jpg'),
+(8, 'KUNJUNGAN GUBERNUR DAERAH ISTIMEWA YOGYAKARTA DI PUSAT DESAIN INDUSTRI NASIONAL', '<p>Pada Senin, 6 Februari 2023, Pusat Desain Industri Nasional (PDIN) dikunjungi oleh Gubernur Daerah Istimewa Yogyakarta, Sri Sultan Hamengku Buwono X didampingi beberapa struktural Pemerintah Daerah DIY. Kunjungan ini diterima oleh Pj Walikota Yogyakarta Bapak&nbsp;<em>Sumadi</em>,&nbsp;<em>S.H., M.H.</em><em>, Asisten Perekonomian dan Pembangunan Bapak</em>&nbsp;Drs.&nbsp;<em>Kadri Renggono</em>, M.Si., Kepala Dinas Perindustrian Koperasi UKM Bapak&nbsp;Drs.&nbsp;<em>Tri Karyadi Riyanto</em>&nbsp;Raharjo, S.H., M.Si., serta&nbsp;beberapa&nbsp;Kepala&nbsp;OPD di&nbsp;lingkungan Pemerintah Kota Yogyakarta.</p>\r\n<p>Kegiatan ini dalam rangka kunjungan kerja Gubernur DIY untuk melihat program kerja yang akan dilaksanakan di Pusat Desain Industri Nasional&nbsp;(PDIN)&nbsp;yang sudah diselesaikan pembangunannya pada akhir tahun 2022 lalu.</p>\r\n<p>Pusat Desain Industri Nasional (PDIN) merupakan hasil dari&nbsp;rencana&nbsp;kerja yang disepakati oleh&nbsp;Ditjen&nbsp;IKMA&nbsp;Kementerian Perindustrian, Pemda DIY dan Pemerintah Kota Yogyakarta&nbsp;dengan tujuan untuk menjadi pusat pengembangan desain guna meningkatkan daya saing industri kecil dan menengah nasional. PDIN akan dijadikan sebagai wadah dalam mempertemukan antara desainer, pelaku industri, akademisi, penyedia bahan baku, eksportir, dan berbagai pemangku kepentingan lainnya dalam pengembangan bisnis berbasis desain dan karakter industri.</p>\r\n<p>&nbsp;Kepala Dinas Perindustrian Koperasi UKM Kota Yogyakarta, Drs. Tri Karyadi Riyanto R, S.H. M.Si menyampaikan bahwa Kota Yogyakarta dipilih sebagai lokasi berdirinya PDIN oleh&nbsp;Kementerian Perindustrian&nbsp;dengan pertimbangan bahwa&nbsp;Yogyakarta dikenal sebagai pusat kerajinan dan produk kreatif di Indonesia, kekuatan dari sumber daya manusia dan pendidikan tersedia di Yogyakarta, Yogyakarta&nbsp;juga sebagai pusat perkembangan seni sebagai acuan tren dan kecenderungan masyarakat dunia serta potensi industri fashion Yogyakarta menuju kota pusat fashion dunia.&nbsp;Dalam jangka pendek, PDIN akan berfokus mendorong pengembangan desain pada 3 komoditas yaitu fesyen, logam, dan kayu.</p>\r\n<p>Gubernur DIY, Sri Sultan Hamengku Buwono X mengunjungi fasilitas yang ada di PDIN seperti ruang workshop kayu dan logam, ruang pameran, area plaza, area co-working, ruang rapat, rooftop, dan berbagai fasilitas lainnya, serta berkesempatan mendengar pemaparan program PDIN dari Kepala Dinas Perindustrian Koperasi UKM Kota Yogyakarta, Drs Tri Karyadi Riyanto Raharjo S.H., M.Si., serta mendengarkan laporan dari Kepala Dinas Perindustrian dan Perdagangan DIY Ibu Ir. Syam Arjanti, MPA.</p>\r\n<p>Sri Sultan Hamengku Buwono X memberikan beberapa arahan, yaitu agar pemerintah Kota Yogyakarta memperhatikan aspek kelembagaan dan manajemen pengelolaan PDIN terlebih dahulu agar segala program dapat dijalankan dengan profesional, PDIN harus dapat menjamin adanya standarisasi, kualitas, dan mutu produknya. serta agar PDIN dapat memberikan manfaat yang sebesar-besarnya dan memberikan kontribusi kepada masyarakat.&nbsp;Pihaknya juga berpesan untuk melibatkan anak muda jurusan desain dan grafis untuk menciptakan desain-desain eksklusif untuk menaikan harga&nbsp;dan daya saing produk <em>fashion</em> di Jogja.</p>', 'abc', 'Pada Senin, 6 Februari 2023, Pusat Desain Industri Nasional (PDIN) dikunjungi oleh Gubernur Daerah Istimewa Yogyakarta, Sri Sultan Hamengku Buwono X didampingi beberapa struktural Pemerintah Daerah DIY. Kunjungan ini diterima oleh Pj Walikota Yogyakarta Bapak Sumadi, S.H., M.H., Asisten Perekonomian dan Pembangunan Bapak Drs. Kadri Renggono, M.Si., Kepala Dinas Perindustrian Koperasi UKM Bapak Drs. Tri Karyadi Riyanto Raharjo, S.H., M.Si., serta beberapa Kepala OPD di lingkungan Pemerintah Kota Yogyakarta.', 'KUNJUNGAN-GUBERNUR-DAERAH-ISTIMEWA-YOGYAKARTA-DI-PUSAT-DESAIN-INDUSTRI-NASIONAL', 'PDIN', 'published', '', 'Y', NULL, '2023-02-07 20:55:00', '2023-06-03 13:56:39', 0, '2023-06-03 14:33:28', 0, '20230207121202.jpg');
 
 -- --------------------------------------------------------
 
@@ -154,7 +155,7 @@ CREATE TABLE `auth_groups_users` (
 --
 
 INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
-(1, 1, 'user', '2023-05-15 12:29:42');
+(1, 1, 'admin', '2023-05-15 12:29:42');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,7 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-05-27 14:11:37', '2023-05-15 12:29:42', '2023-05-27 14:11:37');
+(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-08-02 08:06:24', '2023-05-15 12:29:42', '2023-08-02 08:06:24');
 
 -- --------------------------------------------------------
 
@@ -217,7 +218,12 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 (9, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/112.0', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-23 09:16:59', 1),
 (10, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-23 09:17:51', 1),
 (11, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-26 06:37:17', 1),
-(12, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-27 14:11:37', 1);
+(12, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-27 14:11:37', 1),
+(13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-05-31 12:35:19', 1),
+(14, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-06-01 11:19:53', 1),
+(15, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-06-02 08:09:29', 1),
+(16, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-08-02 07:56:36', 1),
+(17, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-08-02 08:06:24', 1);
 
 -- --------------------------------------------------------
 
@@ -253,10 +259,7 @@ CREATE TABLE `auth_remember_tokens` (
 --
 
 INSERT INTO `auth_remember_tokens` (`id`, `selector`, `hashedValidator`, `user_id`, `expires`, `created_at`, `updated_at`) VALUES
-(2, '2806c4820802f58060ea8001', '76184cc0fcdb44b7bbad489008ac9bae2c6ca9e6a949445f4b2142243268f1a7', 1, '2023-06-22 09:16:59', '2023-05-23 09:16:59', '2023-05-23 09:16:59'),
-(3, '9efd83c6cb0e393d8dddff27', '8643624b1417acfd951a8f927b4f7d4b5512b56178135f3e5c83028c4ec3693d', 1, '2023-06-25 05:47:24', '2023-05-23 09:17:51', '2023-05-26 05:47:24'),
-(4, 'e815c51267e9dc3eb91e9b4e', 'bb81b02b3d63646553b49b621d2d9883ceb236ca82f1e184d819ab8ac09c1c77', 1, '2023-06-26 10:11:41', '2023-05-26 06:37:17', '2023-05-27 10:11:41'),
-(5, '84e24af3e0403bf440832151', 'c3e5ab11a5425dcc89422fa69b7f3b3da25aca991e81a72d2c3c870f2ee2c8f3', 1, '2023-06-29 12:36:43', '2023-05-27 14:11:37', '2023-05-30 12:36:43');
+(9, 'db5b5bdf0a33e9eb9f974fb5', '43e86d35050a14b18d10695655b8ee9c1f919be9c4fe33975c9d748c1c19d752', 1, '2023-09-08 06:57:06', '2023-08-02 08:06:24', '2023-08-09 06:57:06');
 
 -- --------------------------------------------------------
 
@@ -371,13 +374,6 @@ CREATE TABLE `galeri_alat` (
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `galeri_alat`
---
-
-INSERT INTO `galeri_alat` (`id`, `id_alat`, `id_galeri`, `id_file_picker`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(4, 0, 75, NULL, NULL, '2023-05-30 04:36:07', NULL, '2023-05-30 04:36:07');
 
 -- --------------------------------------------------------
 
@@ -512,10 +508,11 @@ CREATE TABLE `kegiatan` (
 --
 
 INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `slug`, `jenis_kegiatan`, `tipe_kegiatan`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `link_pendaftaran`, `link_virtual`, `poster`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 'Pameran Seni', '', 'Pameran seni', NULL, NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
-(2, 'Pameran Busana', '', 'Pameran Busana', NULL, NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
-(3, 'Pameran Kaca: Glass Beyond Borders', '', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Pameran Busana Batik', '', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja membatik.JPG', NULL, NULL, NULL, NULL);
+(1, 'Pameran Seni', 'Pameran-Seni', 'Pameran seni', 'Offline', NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', '', '', NULL, NULL, '0000-00-00 00:00:00', NULL, '2023-06-03 09:02:40'),
+(2, 'Pameran Busana', 'Pameran-Busana', 'Pameran Busana', NULL, NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, NULL),
+(3, 'Pameran Kaca: Glass Beyond Borders', 'Pameran-Kaca-Glass-Beyond-Borders', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Pameran Busana Batik', 'Pameran-Busana-Batik', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja membatik.JPG', NULL, NULL, NULL, NULL),
+(6, 'Grand Launching Pusat Desain Industri Nasional', 'Grand-Launching-Pusat-Desain-Industri-Nasional', 'Pameran', 'Offline', NULL, 'Pusat Desain Industri Nasional', '2023-06-07 07:30:00', '2023-06-07 15:00:00', '', '', NULL, NULL, '2023-05-31 14:19:10', NULL, '2023-06-01 06:21:22');
 
 -- --------------------------------------------------------
 
@@ -613,12 +610,12 @@ INSERT INTO `ruangan` (`id`, `nama`, `slug`, `deskripsi`, `tipe`, `kegunaan`, `l
 (25, 'Roof Garden', 'Roof-Garden', '-', 'Lainnya', 'Bersantai', 2, 25, '14m x 10m x 10m', 140, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (26, 'Ruang Kantor Sewa', 'Ruang-Kantor-Sewa', '-', 'Kantor', 'Ruangan untuk disewakan sebagai kantor.', 3, 25, '10m x 10m x 5m', 100, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (27, 'Ruang Co-Working Space', 'Ruang-Co-Working-Space', '-', 'Kantor', '-', 3, 30, '12m x 7m x 5m', 84, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(28, 'Ruang Foto Produk', 'Ruang-Foto-Produk', '-', 'Lainnya', '-', 3, 0, '4m x 6m x 3m', 24, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(29, 'Ruang Cetak Produk', 'Ruang-Cetak-Produk', '-', 'Lainnya', '-', 3, 30, '5m x 5m x 3m', 25, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(30, 'Ruang Desainer', 'Ruang-Desainer', '-', 'Lainnya', '-', 3, 30, '14m x 6m x 3m', 84, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(28, 'Ruang Foto Produk', 'Ruang-Foto-Produk', '-', 'Pengembangan', '-', 3, 0, '4m x 6m x 3m', 24, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(29, 'Ruang Cetak Produk', 'Ruang-Cetak-Produk', '-', 'Pengembangan', '-', 3, 30, '5m x 5m x 3m', 25, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
+(30, 'Ruang Desainer', 'Ruang-Desainer', '-', 'Pengembangan', '-', 3, 30, '14m x 6m x 3m', 84, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
 (31, 'Ruang Kontemplasi', 'Ruang-Kontemplasi', 'Ruang untuk melakukan kontemplasi ', 'Lainnya', '-', 4, 30, '10m x 9m x 3m', 90, NULL, 0, NULL, '2023-05-22', NULL, '2023-05-30'),
 (32, 'Ruang Cafe Rooftop', 'Ruang-Cafe-Rooftop', '-', 'Lainnya', '-', 4, 30, '18m x 15m x 3m', 270, '', 0, NULL, '2023-05-22', NULL, '2023-05-22'),
-(33, 'Ruang Mitra PDIN', 'Ruang-Mitra-PDIN', '-', 'Lainnya', '-', 4, 40, '18m x 10m x 3m', 180, NULL, 0, NULL, '2023-05-22', NULL, '2023-05-30');
+(33, 'Ruang Mitra PDIN', 'Ruang-Mitra-PDIN', '-', 'Kantor', '-', 4, 40, '18m x 10m x 3m', 180, NULL, 0, NULL, '2023-05-22', NULL, '2023-05-30');
 
 -- --------------------------------------------------------
 
@@ -700,7 +697,60 @@ INSERT INTO `sewa_ruangan` (`id`, `id_ruangan`, `nama_kegiatan`, `deskripsi`, `n
 (1, 1, 'Products Showcase', 'Products showcase', 'abc', 1, '2023-04-25 16:54:30', NULL, '2023-04-25 16:54:30', '2023-04-27 21:54:31', 100, '2023-04-25 16:54:30', '', 'SUDAH DIBAYAR', 'SELESAI'),
 (14, 1, 'asdfasdf', 'asdfasdf', '', 6, '2023-05-05 12:30:07', '2023-05-05 12:30:07', '2023-05-13 00:00:00', '2023-05-18 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (15, 1, 'asdfasdf', 'a', '', 7, '2023-05-05 13:11:24', '2023-05-05 13:11:24', '2023-05-06 00:00:00', '2023-05-04 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
-(16, 1, 'kjnkhk', 'iiijiij', '', 13, '2023-05-11 06:00:26', '2023-05-11 06:00:26', '2023-05-19 00:00:00', '2023-05-25 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL);
+(16, 1, 'kjnkhk', 'iiijiij', '', 13, '2023-05-11 06:00:26', '2023-05-11 06:00:26', '2023-05-19 00:00:00', '2023-05-25 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(17, 9, 'asdfasdf', 'bbb', '', 1, '2023-08-03 07:01:39', '2023-08-03 07:01:39', '2023-08-07 00:00:00', '2023-08-10 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(18, 9, 'kjnkhk', 'bbb', '', 2, '2023-08-03 07:06:35', '2023-08-03 07:06:35', '2023-08-06 00:00:00', '2023-08-12 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(19, 9, 'asdfasdf', 'iiijiij', '', 3, '2023-08-03 07:08:03', '2023-08-03 12:59:54', '2023-08-17 00:00:00', '2023-08-25 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(20, 9, 'kjnkhk', 'bbb', '', 4, '2023-08-03 07:11:51', '2023-08-08 12:58:17', '2023-09-01 00:00:00', '2023-09-01 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(22, 9, 'ahdksfklajskdfacj jenaunsdkncklansdifa fkajskdmckaj sdjfuaioejwf dfhgdfhdfghdfghdgfh', 'aksjefji  asdkfjakdf ', '', 21, '2023-08-08 10:31:36', '2023-08-08 10:53:02', '2023-08-08 00:00:00', '2023-08-11 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(23, 29, 'foto produk', 'memfoto produk', '', 22, '2023-08-08 13:16:54', '2023-08-08 20:57:38', '2023-08-11 08:00:00', '2023-08-11 15:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(24, 29, 'apa ya', 'memfoto produk', '', 23, '2023-08-08 21:03:48', '2023-08-08 21:03:48', '2023-08-10 11:00:00', '2023-08-10 15:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `kontak` varchar(15) DEFAULT NULL,
+  `nama_instansi` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `nama`, `kontak`, `nama_instansi`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'flaminggooo50@gmail.com', 'adsfasdf', '123412341234', 'adsf', '2023-08-03 07:01:39', '2023-08-03 07:01:39', NULL),
+(2, 'flaminggooo50@gmail.com', 'asd', '13241234', 'a', '2023-08-03 07:06:35', '2023-08-03 07:06:35', NULL),
+(3, 'flaminggooo50@gmail.com', 'h', '13241234978', 'jghjkj', '2023-08-03 07:08:03', '2023-08-03 12:59:54', NULL),
+(4, 'flaminggooo50@gmail.com', 'asd', '13241234', 'adsf', '2023-08-03 07:11:51', '2023-08-08 12:58:17', NULL),
+(5, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:10:38', '2023-08-08 10:10:38', NULL),
+(6, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:15:39', '2023-08-08 10:15:39', NULL),
+(7, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:16:49', '2023-08-08 10:16:49', NULL),
+(8, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:16:53', '2023-08-08 10:16:53', NULL),
+(9, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:18:18', '2023-08-08 10:18:18', NULL),
+(10, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:18:26', '2023-08-08 10:18:26', NULL),
+(11, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:18:48', '2023-08-08 10:18:48', NULL),
+(12, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:19:28', '2023-08-08 10:19:28', NULL),
+(13, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:20:30', '2023-08-08 10:20:30', NULL),
+(14, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:21:51', '2023-08-08 10:21:51', NULL),
+(15, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:22:30', '2023-08-08 10:22:30', NULL),
+(16, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:23:04', '2023-08-08 10:23:04', NULL),
+(17, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:23:10', '2023-08-08 10:23:10', NULL),
+(18, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:25:00', '2023-08-08 10:25:00', NULL),
+(19, 'flaminggooo50@gmail.com', 'asdfasdfas', '13241234', 'asdfasdfa', '2023-08-08 10:25:34', '2023-08-08 10:27:31', NULL),
+(20, 'flaminggooo50@gmail.com', 'asd', '13241234', 'adsf', '2023-08-08 10:29:13', '2023-08-08 10:29:13', NULL),
+(21, 'flaminggooo50@gmail.com', 'asd', '13241234', 'adsf', '2023-08-08 10:31:36', '2023-08-08 10:53:02', NULL),
+(22, 'flaminggooo50@gmail.com', 'Joko', '13241234', 'Joko corp', '2023-08-08 13:16:54', '2023-08-08 20:57:38', NULL),
+(23, 'flaminggooo50@gmail.com', 'Muhammad Fikri Hizbullah', '7657656585675', 'Joko corp', '2023-08-08 21:03:48', '2023-08-08 21:03:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -725,7 +775,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'fikwkwk', NULL, NULL, 1, '2023-05-30 15:53:45', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
+(1, 'fikwkwk', NULL, NULL, 1, '2023-08-09 07:03:18', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
 
 --
 -- Indexes for dumped tables
@@ -900,6 +950,12 @@ ALTER TABLE `sewa_ruangan`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -926,7 +982,7 @@ ALTER TABLE `alat`
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `author`
@@ -950,7 +1006,7 @@ ALTER TABLE `auth_identities`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -962,7 +1018,7 @@ ALTER TABLE `auth_permissions_users`
 -- AUTO_INCREMENT for table `auth_remember_tokens`
 --
 ALTER TABLE `auth_remember_tokens`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `auth_token_logins`
@@ -1016,7 +1072,7 @@ ALTER TABLE `kategori_galeri`
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `layanan`
@@ -1052,7 +1108,13 @@ ALTER TABLE `sewa_alat`
 -- AUTO_INCREMENT for table `sewa_ruangan`
 --
 ALTER TABLE `sewa_ruangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`

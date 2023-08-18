@@ -1,9 +1,11 @@
 <div class="container">
-    <form id="sewaruangan" class="mt-3"
-        action="/DashboardAdmin/saveUpdateSewaRuangan/<?= $jadwal['id'] . '/' . $penyewa['id']?>"
-        method="post">
+    <form id="sewaruangan" class="mt-3" action="/DashboardAdmin/saveUpdateSewaRuangan/<?= $jadwal['id'] . '/' . $penyewa['id']
+    ?>" method="post">
         <?php echo csrf_field()?>
         <div class="row g-3">
+            <?= d(old('idPenyewa'));
+    d($penyewa['id']);
+    d(old('idJadwal')) ?>
             <h3>Ubah Sewa <?= $ruangan['nama']?>
             </h3>
             <?= \Config\Services::validation()->listErrors() ?>
@@ -198,8 +200,8 @@
             <div class="Pengembangan mb-3" id="Pengembangan" style="display: none;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="tanggalMulai3" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai3"
+                        <label for="tanggalMulai4" class="form-label">Tanggal Mulai</label>
+                        <input id="tanggalMulai4"
                             class="form-control <?= (validation_show_error('tanggalMulaiPengembangan')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalMulaiPengembangan"
                             value="<?= (old('tanggalMulaiPengembangan')) ? old('tanggalMulaiPengembangan') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>" />
@@ -208,8 +210,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <label for="tanggalSelesai3" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai3"
+                        <label for="tanggalSelesai4" class="form-label">Tanggal Selesai</label>
+                        <input id="tanggalSelesai4"
                             class="form-control <?= (validation_show_error('tanggalSelesaiPengembangan')) ? 'is-invalid' : ''; ?>"
                             type="datetime-local" name="tanggalSelesaiPengembangan"
                             value="<?= (old('tanggalSelesaiPengembangan')) ? old('tanggalSelesaiPengembangan') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
@@ -222,7 +224,13 @@
             <?= d($jadwal['tgl_mulai_sewa']) ?>
 
             <input id="tipe" class="form-control" type="hidden" name="tipe"
-                value="<?= old('tipe') ?>" />
+                value="<?= (old('tipe')) ? old('tipe') : $ruangan['tipe'] ?>" />
+            <input id="idRuangan" class="form-control" type="hidden" name="idRuangan"
+                value="<?= (old('idRuangan')) ? old('idRuangan') : $ruangan['id'] ?> ?>" />
+            <input id="idJadwal" class="form-control" type="hidden" name="idJadwal"
+                value="<?= (old('idJadwal')) ? old('idJadwal') : $jadwal['id'] ?> ?>" />
+            <input id="idPenyewa" class="form-control" type="hidden" name="idPenyewa"
+                value="<?= (old('idPenyewa')) ? old('idPenyewa') : $penyewa['id'] ?> ?>" />
 
             <script>
                 $(document).ready(function() {
@@ -326,23 +334,42 @@
                         start2.max = end2.value;
                 }, false);
 
-                var start = document.getElementById('tanggalMulai');
-                var end = document.getElementById('tanggalSelesai');
+                var start3 = document.getElementById('tanggalMulai3');
+                var end3 = document.getElementById('tanggalSelesai3');
                 // var tanggal = new Date();
                 // var dd = String(tanggal.getDate()).padStart(2, '0');
                 // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
                 // var yyyy = tanggal.getFullYear();
 
                 // var today = dd + '-' + mm + '-' + yyyy;
-                // start.min = new Date(today);
+                // start3.min = new Date(today);
 
-                start.addEventListener('change', function() {
-                    if (start.value)
-                        end.min = start.value;
+                start3.addEventListener('change', function() {
+                    if (start3.value)
+                        end3.min = start3.value;
                 }, false);
-                end.addEventLiseter('change', function() {
-                    if (end.value)
-                        start.max = end.value;
+                end3.addEventLiseter('change', function() {
+                    if (end3.value)
+                        start3.max = end3.value;
+                }, false);
+
+                var start4 = document.getElementById('tanggalMulai4');
+                var end4 = document.getElementById('tanggalSelesai4');
+                // var tanggal = new Date();
+                // var dd = String(tanggal.getDate()).padStart(2, '0');
+                // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+                // var yyyy = tanggal.getFullYear();
+
+                // var today = dd + '-' + mm + '-' + yyyy;
+                // start4.min = new Date(today);
+
+                start4.addEventListener('change', function() {
+                    if (start4.value)
+                        end4.min = start4.value;
+                }, false);
+                end4.addEventLiseter('change', function() {
+                    if (end4.value)
+                        start4.max = end4.value;
                 }, false);
             </script>
 
