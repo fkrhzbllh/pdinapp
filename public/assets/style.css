@@ -547,9 +547,6 @@ h6 {
   border-color: #fff;
 }
 
-/* #calendar-breanda-bawah {
-  min-height: 350px;
-} */
 /* Extra small devices (phones, 576px and down) */
 @media only screen and (max-width: 576px) {
   #heri {
@@ -686,9 +683,6 @@ h6 {
     color: #fff;
     line-height: 24px;
   }
-  #calendar-breanda-bawah {
-    height: 510px;
-  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -725,10 +719,6 @@ h6 {
     font-size: 12px;
     padding: 10px 20px;
     margin-top: 16px;
-  }
-
-  #calendar-breanda-bawah {
-    height: 340px;
   }
 }
 /* Extra extra large devices (large laptops and desktops, 1400px and up) */
@@ -774,10 +764,6 @@ h6 {
     color: #fff;
     background: #e03a3c;
     border: 2px solid #e03a3c;
-  }
-
-  #calendar-breanda-bawah {
-    height: 350px;
   }
 }
 
