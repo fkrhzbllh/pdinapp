@@ -64,7 +64,7 @@
       <div class="wrapper">
         <div class="masonry masonry--h">
           <?php foreach ($galeri as $g) : ?>
-            <figure class="masonry-brick masonry-brick--h">
+            <figure class="masonry-brick masonry-brick--h" style="width: fit-content;">
               <a href="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" data-toggle="lightbox">
                 <img src="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" class="masonry-img" alt="Masonry Brick #1">
               </a>
