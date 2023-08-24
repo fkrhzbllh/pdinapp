@@ -52,6 +52,17 @@ class Fasilitas extends BaseController
 	public function index()
 	{
 		$ruangan = $this->ruanganModel->getRuangan();
+
+		////// TODO
+		$tipe_ruangan_array = [];
+		foreach ($ruangan as $key => $r) {
+			$tipe_ruangan = $r['tipe'];
+			if (!in_array($tipe_ruangan, $tipe_ruangan_array)) {
+				array_push($tipe_ruangan_array, $tipe_ruangan);
+			}
+		}
+		$this->data['tipe_ruangan'] = $tipe_ruangan_array;
+
 		foreach ($ruangan as $key => $r) {
 			// $this->data['fotoruangan'][$key] = $this->galeriRuanganModel->where('id_ruangan', $r['id'])->first();
 			$foto = $this->galeriRuanganModel->getGaleriByRuangan($r['id']);

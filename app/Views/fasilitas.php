@@ -23,14 +23,10 @@
 				<div class="col-12 col-md-6  ">
 					<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 						<li class="nav-item pill-ruangan-alat me-1" role="presentation">
-							<button class="nav-link active" id="pills-ruangan-tab" data-bs-toggle="pill"
-								data-bs-target="#pills-ruangan" type="button" role="tab" aria-controls="pills-ruangan"
-								aria-selected="true">Ruangan</button>
+							<button class="nav-link active" id="pills-ruangan-tab" data-bs-toggle="pill" data-bs-target="#pills-ruangan" type="button" role="tab" aria-controls="pills-ruangan" aria-selected="true">Ruangan</button>
 						</li>
 						<li class="nav-item pill-ruangan-alat" role="presentation">
-							<button class="nav-link" id="pills-alat-tab" data-bs-toggle="pill"
-								data-bs-target="#pills-alat" type="button" role="tab" aria-controls="pills-alat"
-								aria-selected="false">Alat</button>
+							<button class="nav-link" id="pills-alat-tab" data-bs-toggle="pill" data-bs-target="#pills-alat" type="button" role="tab" aria-controls="pills-alat" aria-selected="false">Alat</button>
 						</li>
 					</ul>
 				</div>
@@ -41,11 +37,9 @@
 								<!-- <span class="input-group-text">Filter</span> -->
 								<select class="form-select ms-auto " aria-label="Default select example" id="filter">
 									<option selected value="all">Semua Tipe Ruangan</option>
-									<option value="Pameran">Pameran</option>
-									<option value="Kantor">Kantor</option>
-									<option value="Meeting">Ruang Pertemuan</option>
-									<option value="Pengembangan">Ruang Pengembangan</option>
-									<option value="Lainnya">Lainnya</option>
+									<?php foreach ($tipe_ruangan as $key => $tr) : ?>
+										<option value="<?= $tr ?>"><?= $tr ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 						</div>
@@ -103,127 +97,104 @@
 			</div> -->
 
 			<div class="tab-content" id="pills-tabContent" data-aos="fade-up">
-				<div class="tab-pane fade show active" id="pills-ruangan" role="tabpanel"
-					aria-labelledby="pills-ruangan-tab" tabindex="0">
+				<div class="tab-pane fade show active" id="pills-ruangan" role="tabpanel" aria-labelledby="pills-ruangan-tab" tabindex="0">
 					<?php if ($admin) : ?>
-					<a class="btn btn-success mb-3"
-						href="<?= base_url() . 'admin/tambahruangan'?>">Tambah
-						Ruangan</a>
+						<a class="btn btn-success mb-3" href="<?= base_url() . 'admin/tambahruangan' ?>">Tambah
+							Ruangan</a>
 					<?php endif; ?>
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
 
+						<p id="ruangan-tidak-ditemukan">Tidak ditemukan</p>
+
 						<!-- card ruangan -->
-						<?php foreach($ruangan as $key => $r) : ?>
+						<?php foreach ($ruangan as $key => $r) : ?>
 
-						<div
-							class="col <?= $r['tipe']?> mb-3">
-							<div class="card">
+							<div class="col <?= $r['tipe'] ?> mb-3">
+								<div class="card">
 
-								<?php if (!is_null($fotoruangan[$key])) :?>
-								<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>"
-									class="">
-									<img class="card-img-top object-fit-cover"
-										src="<?= base_url()?>uploads/<?= $fotoruangan[$key]['nama_file'] ?>"
-										width="100%" height="200">
-								</a>
-								<?php else :?>
-								<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>"
-									class="">
-									<img class="card-img-top object-fit-scale"
-										src="<?php echo base_url() ?>assets/Logo-PDIN.png"
-										onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'"
-										width="100%" height="200">
-								</a>
-								<?php endif; ?>
-								<!-- <h5 class="card-header">Featured</h5> -->
-								<div class="card-title px-3 pt-3">
-									<p class="text-danger fw-bold mb-2">Lantai
-										<?php if($r['lantai'] == 0) {
-											echo 'Floor Ground';
-										} else {
-											echo $r['lantai'];
-										} ?>
-									</p>
-									<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>"
-										class="">
-										<h5 class="crop-text-1" id="namaruangan">
-											<?= $r['nama'] ?>
-										</h5>
-									</a>
-								</div>
-								<div class="card-body pt-0">
-
-									<p class="card-text crop-text-2">
-										<?= $r['deskripsi'] ?>
-									</p>
-									<?php if ($admin) : ?>
-									<a href="/admin/updateruangan/<?= $r['slug'] ?>"
-										class="btn btn-warning">Edit</a>
-									<form
-										action="/admin/ruang/<?php echo $r['id']?>"
-										method="post" class="d-inline">
-										<?= csrf_field(); ?>
-										<input type="hidden" name="_method" value="DELETE">
-										<button class="btn btn-danger" type="submit"
-											onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-									</form>
-
+									<?php if (!is_null($fotoruangan[$key])) : ?>
+										<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
+											<img class="card-img-top object-fit-cover" src="<?= base_url() ?>uploads/<?= $fotoruangan[$key]['nama_file'] ?>" width="100%" height="200">
+										</a>
+									<?php else : ?>
+										<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
+											<img class="card-img-top object-fit-scale" src="<?php echo base_url() ?>assets/Logo-PDIN.png" onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" width="100%" height="200">
+										</a>
 									<?php endif; ?>
-									<!-- <a href="/fasilitas/ruang/<?php echo $r['slug']; ?>"
+									<!-- <h5 class="card-header">Featured</h5> -->
+									<div class="card-title px-3 pt-3">
+										<p class="text-danger fw-bold mb-2">Lantai
+											<?php if ($r['lantai'] == 0) {
+												echo 'Floor Ground';
+											} else {
+												echo $r['lantai'];
+											} ?>
+										</p>
+										<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
+											<h5 class="crop-text-1" id="namaruangan">
+												<?= $r['nama'] ?>
+											</h5>
+										</a>
+									</div>
+									<div class="card-body pt-0">
+
+										<p class="card-text crop-text-2">
+											<?= $r['deskripsi'] ?>
+										</p>
+										<?php if ($admin) : ?>
+											<a href="/admin/updateruangan/<?= $r['slug'] ?>" class="btn btn-warning">Edit</a>
+											<form action="/admin/ruang/<?php echo $r['id'] ?>" method="post" class="d-inline">
+												<?= csrf_field(); ?>
+												<input type="hidden" name="_method" value="DELETE">
+												<button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+											</form>
+
+										<?php endif; ?>
+										<!-- <a href="/fasilitas/ruang/<?php echo $r['slug']; ?>"
 									class="btn btn-primary">Detail
 									</a> -->
+									</div>
 								</div>
 							</div>
-						</div>
 
 						<?php endforeach; ?>
 
 					</div>
 				</div>
-				<div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-alat-tab"
-					tabindex="0">
+				<div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-alat-tab" tabindex="0">
 					<?php if ($admin) : ?>
-					<a class="btn btn-success mb-3"
-						href="<?= base_url() . 'admin/tambahalat'?>">Tambah
-						Alat</a>
+						<a class="btn btn-success mb-3" href="<?= base_url() . 'admin/tambahalat' ?>">Tambah
+							Alat</a>
 					<?php endif; ?>
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
 						<!-- card alat -->
-						<?php foreach($alat as $key => $r) : ?>
-						<div class="col mb-3">
-							<div class="card">
-								<?php if (!is_null($fotoalat[$key])) :?>
-								<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>"
-									class="">
-									<img class="card-img-top object-fit-cover"
-										src="<?= base_url()?>uploads/<?= $fotoalat[$key]['nama_file'] ?>"
-										width="100%" height="200">
-								</a>
-								<?php else :?>
-								<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>"
-									class="">
-									<img class="card-img-top object-fit-scale"
-										src="<?php echo base_url() ?>assets/Logo-PDIN.png"
-										onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'"
-										width="100%" height="200">
-								</a>
-								<?php endif; ?>
-								<!-- <h5 class="card-header">Featured</h5> -->
-								<div class="card-title px-3 pt-3">
-									<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>"
-										class="">
-										<h5 class="crop-text-1" id="namaalat">
-											<?= $r['nama'] ?>
-										</h5>
-									</a>
-								</div>
-								<div class="card-body pt-0">
-									<p class="card-text">
-										<?= $r['deskripsi'] ?>
-									</p>
+						<?php foreach ($alat as $key => $r) : ?>
+							<div class="col mb-3">
+								<div class="card">
+									<?php if (!is_null($fotoalat[$key])) : ?>
+										<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>" class="">
+											<img class="card-img-top object-fit-cover" src="<?= base_url() ?>uploads/<?= $fotoalat[$key]['nama_file'] ?>" width="100%" height="200">
+										</a>
+									<?php else : ?>
+										<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>" class="">
+											<img class="card-img-top object-fit-scale" src="<?php echo base_url() ?>assets/Logo-PDIN.png" onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" width="100%" height="200">
+										</a>
+									<?php endif; ?>
+									<!-- <h5 class="card-header">Featured</h5> -->
+									<div class="card-title px-3 pt-3">
+										<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>" class="">
+											<h5 class="crop-text-1" id="namaalat">
+												<?= $r['nama'] ?>
+											</h5>
+										</a>
+									</div>
+									<div class="card-body pt-0">
+										<p class="card-text">
+											<?= $r['deskripsi'] ?>
+										</p>
+									</div>
 								</div>
 							</div>
-						</div>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -238,19 +209,28 @@
 <!-- fitur cari ruangan dan alat -->
 <script>
 	$(document).ready(function() {
+		$("#ruangan-tidak-ditemukan").hide();
 		$("#cariruangan").on("keyup", function() {
 			var keyword = $(this).val().toLowerCase();
-			$("#pills-ruangan").children().children().filter(function() {
-				$(this).toggle($(this).find('#namaruangan').text().toLowerCase().indexOf(keyword) >
-					-1)
+			var ruanganNotFound = true; // Flag to track if matching element is not found
+
+			$("#pills-ruangan").children().children().each(function() {
+				var namaruanganText = $(this).find('#namaruangan').text().toLowerCase();
+				var isMatch = namaruanganText.indexOf(keyword) > -1;
+
+				$(this).toggle(isMatch);
+
+				if (isMatch) {
+					ruanganNotFound = false; // At least one matching element found
+				}
 			});
-		});
-		$("#carialat").on("keyup", function() {
-			var keyword = $(this).val().toLowerCase();
-			$("#pills-alat").children().children().filter(function() {
-				$(this).toggle($(this).find('#namaalat').text().toLowerCase().indexOf(keyword) > -
-					1)
-			});
+
+			// Show/hide "ruangan-tidak-ditemukan" based on the flag
+			if (ruanganNotFound) {
+				$("#ruangan-tidak-ditemukan").show();
+			} else {
+				$("#ruangan-tidak-ditemukan").hide();
+			}
 		});
 	});
 </script>
