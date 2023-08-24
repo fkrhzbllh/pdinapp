@@ -26,7 +26,7 @@ class ArtikelModel extends \App\Models\BaseModel
 			);
 		}
 
-		return $this->formatTanggal(
+		return $this->formatTanggalSingle(
 			$this->where(['slug' => $slug])->first()
 		);
 	}
@@ -37,7 +37,7 @@ class ArtikelModel extends \App\Models\BaseModel
 	 */
 	public function getArtikelByID($id)
 	{
-		return $this->formatTanggal($this->where([$this->primaryKey => $id])->first());
+		return $this->formatTanggalSingle($this->where([$this->primaryKey => $id])->first());
 	}
 
 	/**
@@ -84,6 +84,23 @@ class ArtikelModel extends \App\Models\BaseModel
 		}
 		return $data;
 	}
+
+	public function formatTanggalSingle($data)
+	{
+
+		$timestamp = strtotime($data['tgl_terbit']); // Ubah ke timestamp
+
+		$bulan_indonesia = array(
+			1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 => 'Mei', 6 => 'Juni',
+			7 => 'Juli', 8 => 'Agustus', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+		);
+
+		$data['tgl_terbit_terformat'] = date('d', $timestamp) . ' ' . $bulan_indonesia[date('n', $timestamp)] . ' ' . date('Y', $timestamp);
+
+		return $data;
+	}
+
+
 
 	public function search($keyword)
 	{

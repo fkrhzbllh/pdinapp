@@ -12,7 +12,7 @@ class GaleriKegiatanModel extends \App\Models\BaseModel
 
 	protected $tableGaleri = 'galeri';
 
-	protected $allowedFields = ['nama_file', 'id_kegiatan', 'judul', 'kategori'];
+	protected $allowedFields = ['nama_file', 'id_kegiatan', 'judul', 'kategori', 'id_galeri'];
 
 	public function __construct()
 	{

@@ -17,8 +17,7 @@
   <div class="container p-3">
     <div class="bg-white rounded-5 p-5 shadow-sm" id="">
       <!-- judul section -->
-      <div class="d-flex flex-column flex-sm-row text-center justify-content-center justify-content-md-between mb-4 p-2"
-        data-aos="fade-up">
+      <div class="d-flex flex-column flex-sm-row text-center justify-content-center justify-content-md-between mb-4 p-2" data-aos="fade-up">
         <!-- garis -->
         <div class="d-none d-md-block flex-md-grow-1 p-0">
           <hr />
@@ -49,8 +48,7 @@
         <div class="ps-md-4">
           <form action="" method="post">
             <div class="input-group mb-3">
-              <input type="text" class="form-control bg-light text-secondary" placeholder="Cari Dokumentasi"
-                aria-label="" aria-describedby="" id="" name="keyword" />
+              <input type="text" class="form-control bg-light text-secondary" placeholder="Cari Dokumentasi" aria-label="" aria-describedby="" id="" name="keyword" />
               <div class="input-group-append">
                 <div class="tooltip"></div>
                 <button class="btn btn-danger rounded-start-0" type="submit">
@@ -66,14 +64,11 @@
       <div class="wrapper">
         <div class="masonry masonry--h">
           <?php foreach ($galeri as $g) : ?>
-          <figure class="masonry-brick masonry-brick--h">
-            <a href="<?= base_url() . 'uploads/' . $g['nama_file']?>"
-              data-toggle="lightbox">
-              <img
-                src="<?= base_url() . 'uploads/' . $g['nama_file']?>"
-                class="masonry-img" alt="Masonry Brick #1">
-            </a>
-          </figure>
+            <figure class="masonry-brick masonry-brick--h" style="width: fit-content;">
+              <a href="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" data-toggle="lightbox">
+                <img src="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" class="masonry-img" alt="Masonry Brick #1">
+              </a>
+            </figure>
           <?php endforeach; ?>
         </div>
       </div>

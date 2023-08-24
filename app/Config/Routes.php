@@ -36,6 +36,7 @@ $routes->get('/', 'Beranda::index');
 $routes->get('/fasilitas', 'Fasilitas::index');
 $routes->get('/kegiatan', 'Kegiatan::index');
 $routes->get('/galeri', 'Galeri::index');
+$routes->post('/galeri', 'Galeri::index');
 
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
 $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');

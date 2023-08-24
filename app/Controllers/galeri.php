@@ -35,7 +35,9 @@ class Galeri extends BaseController
 		$keyword = $this->request->getVar('keyword');
 
 		if ($keyword) {
-			$galeri = $this->galeriModel->search($keyword);
+			if ($this->galeriModel->search($keyword)) {
+				$galeri = $this->galeriModel->search($keyword);
+			}
 		} else {
 			$galeri = $this->galeriModel;
 		}
