@@ -7,14 +7,14 @@
             </li>
         </ol>
     </nav>
-    <?php if(session()->getFlashdata('sukses')) : ?>
-    <div class="alert alert-success" role="alert">
-        <?= session()->getFlashdata('sukses') ?>
-    </div>
-    <?php elseif(session()->getFlashdata('gagal')) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?= session()->getFlashdata('gagal') ?>
-    </div>
+    <?php if (session()->getFlashdata('sukses')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('sukses') ?>
+        </div>
+    <?php elseif (session()->getFlashdata('gagal')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashdata('gagal') ?>
+        </div>
     <?php endif; ?>
     <h3 class="mb-3">Sewa <?= $ruangan['nama'] ?>
     </h3>
@@ -22,22 +22,17 @@
         <div class="col-12 col-md-12">
             <div class="row">
                 <div class="col-6 col-md-6">
-                    <a class="btn btn-outline-danger mb-3"
-                        href="<?= base_url() . 'DashboardAdmin/tambah-sewa-ruangan/' . $ruangan['slug']?>">Tambah
+                    <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-sewa-ruangan/' . $ruangan['slug'] ?>">Tambah
                         Sewa Ruangan</a>
                 </div>
                 <!-- === Nav === -->
                 <div class="col-6 col-md-6">
                     <ul class="nav nav-underline justify-content-end" role="tablist" id="navs-tab">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tabel-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-tabel" role="tab" aria-controls="nav-tabel" aria-selected="true"><i
-                                    class="bi bi-table me-1"></i>Tabel</button>
+                            <button class="nav-link active" id="nav-tabel-tab" data-bs-toggle="tab" data-bs-target="#nav-tabel" role="tab" aria-controls="nav-tabel" aria-selected="true"><i class="bi bi-table me-1"></i>Tabel</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-kalender-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-kalender" role="tab" aria-controls="nav-kalender"
-                                aria-selected="false"><i class="bi bi-calendar-event me-1"></i>Kalender</button>
+                            <button class="nav-link" id="nav-kalender-tab" data-bs-toggle="tab" data-bs-target="#nav-kalender" role="tab" aria-controls="nav-kalender" aria-selected="false"><i class="bi bi-calendar-event me-1"></i>Kalender</button>
                         </li>
                     </ul>
                 </div>
@@ -61,8 +56,7 @@
         </div> -->
     </div>
     <div class="tab-content" id="navs-tabContent">
-        <div class="tab-pane fade show active" id="nav-tabel" role="tabpanel" aria-labelledby="nav-tabel-tab"
-            tabindex="0">
+        <div class="tab-pane fade show active" id="nav-tabel" role="tabpanel" aria-labelledby="nav-tabel-tab" tabindex="0">
             <div class="table-responsive">
                 <table class="table align-middle table-bordered" id="tablejadwal" style="width: 100%;">
                     <thead>
@@ -78,67 +72,61 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($jadwal as $key => $a):?>
-                        <tr>
-                            <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)?>
+                        <?php foreach ($jadwal as $key => $a) : ?>
+                            <tr>
+                                <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
+                                            ?>
                             </td> -->
-                            <td><?= $a['nama_kegiatan']?>
-                            </td>
-                            <td><?= $penyewa[$key]['nama']?>
-                            </td>
-                            <td><?= $penyewa[$key]['kontak']?>
-                            </td>
-                            <!-- <td><?= $penyewa[$key]['nama_instansi'] ?>
+                                <td><?= $a['nama_kegiatan'] ?>
+                                </td>
+                                <td><?= $penyewa[$key]['nama'] ?>
+                                </td>
+                                <td><?= $penyewa[$key]['kontak'] ?>
+                                </td>
+                                <!-- <td><?= $penyewa[$key]['nama_instansi'] ?>
                             </td> -->
-                            <td
-                                data-sort="<?php echo strtotime($a['tgl_mulai_sewa'])?>">
-                                <?php if($ruangan['tipe'] == 'Pameran') {
-                                	$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-                                	echo $formatter->format(date_create($a['tgl_mulai_sewa']));
-                                } else {
-                                	$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
-                                	echo $formatter->format(date_create($a['tgl_mulai_sewa']));
-                                } ?>
-                            </td>
-                            <td
-                                data-sort="<?php echo strtotime($a['tgl_mulai_sewa'])?>">
-                                <?php if($ruangan['tipe'] == 'Pameran') {
-                                	$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-                                	echo $formatter->format(date_create($a['tgl_akhir_sewa']));
-                                } else {
-                                	$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
-                                	echo $formatter->format(date_create($a['tgl_akhir_sewa']));
-                                } ?>
-                            </td>
-                            <td>
-                                <!-- <a href="/DashboardAdmin/update-sewa-ruangan/<?= $a['id'] ?>"
-                                class="btn btn-warning">Edit</a> -->
-                                <form action="/DashboardAdmin/update-sewa-ruangan" method="post" class="d-inline">
+                                <td data-sort="<?php echo strtotime($a['tgl_mulai_sewa']) ?>">
+                                    <?php if ($ruangan['tipe'] == 'Pameran') {
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
+                                        echo $formatter->format(date_create($a['tgl_mulai_sewa']));
+                                    } else {
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
+                                        echo $formatter->format(date_create($a['tgl_mulai_sewa']));
+                                    } ?>
+                                </td>
+                                <td data-sort="<?php echo strtotime($a['tgl_mulai_sewa']) ?>">
+                                    <?php if ($ruangan['tipe'] == 'Pameran') {
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
+                                        echo $formatter->format(date_create($a['tgl_akhir_sewa']));
+                                    } else {
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
+                                        echo $formatter->format(date_create($a['tgl_akhir_sewa']));
+                                    } ?>
+                                </td>
+                                <td>
+                                    <a href="/DashboardAdmin/update-sewa-ruangan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
+                                    <!-- <form action="/DashboardAdmin/update-sewa-ruangan" method="post" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden"
-                                        value="<?php echo $a['id']?>"
+                                        value="<?php echo $a['id'] ?>"
                                         name="id">
-                                    <button class="btn btn-warning" type="submit">Edit</button>
-                                </form>
-                                <form
-                                    action="/DashboardAdmin/sewaRuangan/<?php echo $a['id']?>"
-                                    method="post" class="d-inline">
-                                    <?= csrf_field(); ?>
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn btn-danger" type="submit"
-                                        onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php endforeach?>
+                                    <button class="btn btn-warning" type="submit">Edit</button> -->
+                                    </form>
+                                    <form action="/DashboardAdmin/sewaRuangan/<?php echo $a['id'] ?>" method="post" class="d-inline">
+                                        <?= csrf_field(); ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="tab-pane fade" id="nav-kalender" role="tabpanel" aria-labelledby="nav-kalender-tab" tabindex="0">
             <div id="calendar"></div>
-            <div class="modal fade" id="modalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="modalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header bg-black border border-0">
@@ -146,8 +134,7 @@
                                 Detail Kegiatan Penyewaan
                             </h1>
 
-                            <button type="button" class="btn-close bg-secondary me-1" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <button type="button" class="btn-close bg-secondary me-1" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="bg-danger w-100" style="height: 4px"></div>
                         <div class="modal-body">
@@ -210,8 +197,7 @@
                                     <div class="row p-0 m-0 mb-1">
                                         <div class="col-1 m-0 p-0 align-self-start">
                                             <div class="text-center">
-                                                <i class="bi bi-calendar-event"
-                                                    style="font-size: 14px; color: 8c8c8c"></i>
+                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
                                             </div>
                                         </div>
                                         <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
@@ -225,8 +211,7 @@
                                     <div class="row p-0 m-0 mb-1">
                                         <div class="col-1 m-0 p-0 align-self-start">
                                             <div class="text-center">
-                                                <i class="bi bi-calendar-event"
-                                                    style="font-size: 14px; color: 8c8c8c"></i>
+                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
                                             </div>
                                         </div>
                                         <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
@@ -242,8 +227,9 @@
                     </div>
                 </div>
             </div>
-            <?php  echo d($events)?>
-            <?php // echo $pager->links('artikel', 'pager')?>
+            <?php echo d($events) ?>
+            <?php // echo $pager->links('artikel', 'pager')
+            ?>
         </div>
 
         <script>
@@ -277,7 +263,7 @@
                     },
                     selectable: true,
                     locale: 'id',
-                    events: <?php echo json_encode($events)?> , //array sewa -> objek sewa
+                    events: <?php echo json_encode($events) ?>, //array sewa -> objek sewa
 
                     eventTimeFormat: { // like '14:30:00'
                         // day: '2-digit',

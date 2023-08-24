@@ -1,14 +1,13 @@
 <div class="p-5 col-12 bg-white">
-    <?php if(session()->getFlashdata('sukses')) : ?>
-    <div class="alert alert-success" role="alert">
-        <?= session()->getFlashdata('sukses') ?>
-    </div>
+    <?php if (session()->getFlashdata('sukses')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('sukses') ?>
+        </div>
     <?php endif; ?>
     <h3 class="mb-3">Ruangan</h3>
     <div class="row">
         <div class="col-12 col-md-6">
-            <a class="btn btn-outline-danger mb-3"
-                href="<?= base_url() . 'DashboardAdmin/tambah-ruangan'?>">Tambah
+            <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-ruangan' ?>">Tambah
                 Ruangan</a>
         </div>
         <!-- input pencarian -->
@@ -39,43 +38,46 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($ruangan as $key => $a):?>
-                <tr>
-                    <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)?>
+                <?php foreach ($ruangan as $key => $a) : ?>
+                    <tr>
+                        <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
+                                    ?>
                     -->
-                    </td>
-                    <td><?= $a['nama']?></td>
-                    <td><?= $a['tipe']?>
-                    </td>
-                    <td><?= ($a['lantai'] == 0) ? '0 (Floor Ground)' : $a['lantai'] ?>
-                    </td>
-                    <td><a href="/DashboardAdmin/update-ruangan/<?= $a['slug'] ?>"
-                            class="btn btn-warning">Edit</a>
-                        <form
-                            action="/DashboardAdmin/ruangan/<?php echo $a['id']?>"
-                            method="post" class="d-inline">
-                            <?= csrf_field(); ?>
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger" type="submit"
-                                onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-                        </form>
-                        <!-- <form
-                            action="/DashboardAdmin/sewaRuangan/<?php echo $a['id']?>"
+                        </td>
+                        <td><?= $a['nama'] ?></td>
+                        <td><?= $a['tipe'] ?>
+                        </td>
+                        <td><?= ($a['lantai'] == 0) ? '0 (Floor Ground)' : $a['lantai'] ?>
+                        </td>
+                        <td>
+                            <a href="/DashboardAdmin/update-ruangan/<?= $a['slug'] ?>" class="btn btn-warning">Edit</a>
+                            <!-- <form action="/DashboardAdmin/update-ruangan" method="post" class="d-inline">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="idRuangan" value="<?= $a['id'] ?>">
+                                <button class="btn btn-warning" type="submit">Edit</button>
+                            </form> -->
+                            <form action="/DashboardAdmin/ruangan/<?php echo $a['id'] ?>" method="post" class="d-inline">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+                            </form>
+                            <!-- <form
+                            action="/DashboardAdmin/sewaRuangan/<?php echo $a['id'] ?>"
                         method="post" class="d-inline">
                         <?= csrf_field(); ?>
                         <button class="btn btn-success" type="submit">Sewa</button>
                         </form> -->
-                        <?php if($a['tipe'] != 'Lainnya'): ?>
-                        <a href="/DashboardAdmin/sewa-ruangan/<?= $a['slug']?>"
-                            class="btn btn-success">Sewa</a>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach?>
+                            <?php if ($a['tipe'] != 'Lainnya') : ?>
+                                <a href="/DashboardAdmin/sewa-ruangan/<?= $a['slug'] ?>" class="btn btn-success">Sewa</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
             </tbody>
         </table>
     </div>
-    <?php // echo $pager->links('artikel', 'pager')?>
+    <?php // echo $pager->links('artikel', 'pager')
+    ?>
 </div>
 
 <script>

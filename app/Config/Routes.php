@@ -88,12 +88,8 @@ $routes->get('/DashboardAdmin/tambah-sewa-ruangan/', 'DashboardAdmin::tambahSewa
 $routes->post('/DashboardAdmin/saveTambahSewaAlat', 'DashboardAdmin::saveTambahSewaAlat');
 $routes->post('/DashboardAdmin/saveTambahSewaRuangan', 'DashboardAdmin::saveTambahSewaRuangan');
 
-// $routes->get('/DashboardAdmin/update-sewa-alat/(:any)', 'DashboardAdmin::updateSewaAlat/$1');
-// $routes->get('/DashboardAdmin/update-sewa-ruangan/(:any)', 'DashboardAdmin::updateSewaRuangan/$1');
-$routes->post('/DashboardAdmin/update-sewa-alat', 'DashboardAdmin::updateSewaAlat');
-$routes->post('/DashboardAdmin/update-sewa-ruangan', 'DashboardAdmin::updateSewaRuangan');
-$routes->get('/DashboardAdmin/update-sewa-alat', 'DashboardAdmin::updateSewaAlat');
-$routes->get('/DashboardAdmin/update-sewa-ruangan', 'DashboardAdmin::updateSewaRuangan');
+$routes->get('/DashboardAdmin/update-sewa-alat/(:any)', 'DashboardAdmin::updateSewaAlat/$1');
+$routes->get('/DashboardAdmin/update-sewa-ruangan/(:any)', 'DashboardAdmin::updateSewaRuangan/$1');
 $routes->post('/DashboardAdmin/saveUpdateSewaAlat/(:num)/(:num)', 'DashboardAdmin::saveUpdateSewaAlat/$1/$2');
 $routes->post('/DashboardAdmin/saveUpdateSewaRuangan/(:num)/(:num)', 'DashboardAdmin::saveUpdateSewaRuangan/$1/$2');
 $routes->delete('/DashboardAdmin/sewaRuangan/(:num)', 'DashboardAdmin::deleteSewaRuangan/$1');

@@ -15,6 +15,7 @@ use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Models\ArtikelModel;
 use App\Models\KegiatanModel;
+
 use IntlDateFormatter;
 
 class DashboardAdmin extends BaseController
@@ -40,6 +41,7 @@ class DashboardAdmin extends BaseController
 	protected $kegiatanModel;
 
 	protected $helpers = ['form'];
+	protected $faker;
 
 	public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
 	{
@@ -60,6 +62,7 @@ class DashboardAdmin extends BaseController
 		$this->data['current_page'] = 'adminrilismedia';
 		$this->data['admin'] = true;
 		date_default_timezone_set('Asia/Jakarta');
+		$this->faker = \Faker\Factory::create();
 	}
 
 	public function index()
@@ -192,8 +195,17 @@ class DashboardAdmin extends BaseController
 	public function updateRuangan($slug)
 	{
 		$this->data['current_page'] = 'adminruangan';
-		$ruangan = $this->ruanganModel->getRuangan($slug);
-		session();
+		if ($slug) {
+			$ruangan = $this->ruanganModel->getRuangan($slug);
+			// tampilan error kalau tidak ada nama ruangan yang ada di database
+			if (empty($ruangan)) {
+				throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan "' . $slug . '" tidak ditemukan.');
+			}
+		}
+		// tampilan error kalau tidak ada nama ruangan yang ada di database
+		else if (empty($slug)) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan "' . $slug . '" tidak ditemukan.');
+		}
 
 		if ($ruangan['ukuran'] != null || $ruangan['ukuran'] != '-') {
 			$ukuran = explode(' x ', str_replace('m', '', $ruangan['ukuran']));
@@ -229,7 +241,7 @@ class DashboardAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/update-ruangan')->withInput();
+			return redirect()->to('/DashboardAdmin/update-ruangan/')->withInput();
 		}
 
 		// dd($this->request->getVar());
@@ -404,12 +416,23 @@ class DashboardAdmin extends BaseController
 	public function updateAlat($slug)
 	{
 		$this->data['current_page'] = 'adminalat';
-		$alat = $this->alatModel->getAlat($slug);
-		session();
+		// $alat = $this->alatModel->getAlat($slug);
+
+		if ($slug) {
+			$alat = $this->alatModel->getAlat($slug);
+			// tampilan error kalau tidak ada nama alat yang ada di database
+			if (empty($alat)) {
+				throw new \CodeIgniter\Exceptions\PageNotFoundException('Alat "' . $slug . '" tidak ditemukan.');
+			}
+		}
+		// tampilan error kalau tidak ada nama alat yang ada di database
+		else if (empty($slug)) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Alat "' . $slug . '" tidak ditemukan.');
+		}
 
 		$this->data['admin'] = true;
 		$this->data['alat'] = $alat;
-		// $this->data['judul_halaman'] = 'Tambah Ruangan';
+		// $this->data['judul_halaman'] = 'Tambah Alat';
 		$this->data['fotoalat'] = $this->galeriAlatModel->getGaleriByAlat($alat['id']);
 
 		$this->viewAdmin('formeditalat.php', $this->data);
@@ -427,7 +450,7 @@ class DashboardAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/update-alat')->withInput();
+			return redirect()->to('/DashboardAdmin/update-alat/' . $slugLama)->withInput();
 		}
 
 		// dd($this->request->getVar());
@@ -1129,6 +1152,7 @@ class DashboardAdmin extends BaseController
 			// $selesai = $this->request->getVar('tanggalSelesaiPameran');
 			// dd($selesai);
 			$this->sewaRuanganModel->save([
+				'uuid' => $this->faker->uuid(),
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
@@ -1222,20 +1246,25 @@ class DashboardAdmin extends BaseController
 	}
 
 	// form edit sewa ruangan
-	public function updateSewaRuangan()
+	public function updateSewaRuangan($uuid)
 	{
 		$this->data['current_page'] = 'adminruangan';
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
 
-		if (session()->getFlashdata('Jadwal')) {
-			$id = session()->getFlashdata('Jadwal');
-		} else {
-			$id = $this->request->getVar('id');
-		}
+		// if (session()->getFlashdata('Jadwal')) {
+		// 	$id = session()->getFlashdata('Jadwal');
+		// } else
+		// if (old('idJadwal')) {
+		// 	$id = old('idJadwal');
+		// } else {
+		// 	$id = $this->request->getVar('id');
+		// dd($id);
+		// }
 
+		// d(old('idJadwal'));
 		// if ($id) {
 		// ambil data jadwal yang dipilih
-		$jadwal = $this->sewaRuanganModel->getJadwalByID($id);
+		$jadwal = $this->sewaRuanganModel->getJadwalByUUID($uuid);
 		$this->data['jadwal'] = $jadwal;
 
 		// ambil data ruangan berdasarkan jadwal
@@ -1276,6 +1305,7 @@ class DashboardAdmin extends BaseController
 	{
 		$tipe = $this->request->getVar('tipe');
 		$idRuangan = $this->request->getVar('ruangan');
+		$uuid = $this->request->getVar('uuid');
 		$ruangan = $this->ruanganModel->getRuanganByID($idRuangan);
 		$slug = $ruangan['slug'];
 
@@ -1285,9 +1315,9 @@ class DashboardAdmin extends BaseController
 		// cek validasi
 		if (!$this->validate($rules)) {
 			// return redirect()->to('/DashboardAdmin/update-sewa-ruangan/' . $slug)->withInput();
-			session()->setFlashdata('Jadwal', $idJadwal);
+			// session()->setFlashdata('Jadwal', $idJadwal);
 
-			return redirect()->to('/DashboardAdmin/update-sewa-ruangan')->withInput();
+			return redirect()->to('/DashboardAdmin/update-sewa-ruangan/' . $uuid)->withInput();
 		}
 
 		// dd($this->request->getVar());

@@ -1,21 +1,13 @@
 <div class="container">
-    <form id="sewaruangan" class="mt-3" action="/DashboardAdmin/saveUpdateSewaRuangan/<?= $jadwal['id'] . '/' . $penyewa['id']
-    ?>" method="post">
-        <?php echo csrf_field()?>
+    <form id="sewaruangan" class="mt-3" action="/DashboardAdmin/saveUpdateSewaRuangan/<?= $jadwal['id'] . '/' . $penyewa['id'] ?>" method="post">
+        <?php echo csrf_field() ?>
         <div class="row g-3">
-            <?= d(old('idPenyewa'));
-    d($penyewa['id']);
-    d(old('idJadwal')) ?>
-            <h3>Ubah Sewa <?= $ruangan['nama']?>
+            <h3>Ubah Sewa <?= $ruangan['nama'] ?>
             </h3>
             <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
                 <label for="nama" class="form-label">Nama Penyewa</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>"
-                    id="nama" placeholder=""
-                    value="<?= (old('nama')) ? old('nama') : $penyewa['nama'] ?>"
-                    name="nama" autofocus>
+                <input type="text" class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>" id="nama" placeholder="" value="<?= (old('nama')) ? old('nama') : $penyewa['nama'] ?>" name="nama" autofocus>
                 <div class="invalid-feedback">
                     <?= validation_show_error('nama'); ?>
                 </div>
@@ -34,10 +26,7 @@
 
             <div class="col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email"
-                    class="form-control <?= (validation_show_error('email')) ? 'is-invalid' : ''; ?>"
-                    id="email" placeholder="you@example.com" name="email"
-                    value="<?= (old('email')) ? old('email') : $penyewa['email'] ?>">
+                <input type="email" class="form-control <?= (validation_show_error('email')) ? 'is-invalid' : ''; ?>" id="email" placeholder="you@example.com" name="email" value="<?= (old('email')) ? old('email') : $penyewa['email'] ?>">
                 <div class="invalid-feedback">
                     <?= validation_show_error('email'); ?>
                 </div>
@@ -45,10 +34,7 @@
 
             <div class="col-md-6">
                 <label for="nomorTelepon" class="form-label">Nomor Telepon</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('nomorTelepon')) ? 'is-invalid' : ''; ?>"
-                    id="nomorTelepon" placeholder="6281234567890" name="nomorTelepon"
-                    value="<?= (old('nomorTelepon')) ? old('nomorTelepon') : $penyewa['kontak'] ?>">
+                <input type="text" class="form-control <?= (validation_show_error('nomorTelepon')) ? 'is-invalid' : ''; ?>" id="nomorTelepon" placeholder="6281234567890" name="nomorTelepon" value="<?= (old('nomorTelepon')) ? old('nomorTelepon') : $penyewa['kontak'] ?>">
                 <div class="invalid-feedback">
                     <?= validation_show_error('nomorTelepon'); ?>
                 </div>
@@ -56,11 +42,7 @@
 
             <div class="col-12">
                 <label for="instansi" class="form-label">Instansi</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('instansi')) ? 'is-invalid' : ''; ?>"
-                    id="instansi" placeholder=""
-                    value="<?= (old('instansi')) ? old('instansi') : $penyewa['nama_instansi'] ?>"
-                    name="instansi">
+                <input type="text" class="form-control <?= (validation_show_error('instansi')) ? 'is-invalid' : ''; ?>" id="instansi" placeholder="" value="<?= (old('instansi')) ? old('instansi') : $penyewa['nama_instansi'] ?>" name="instansi">
                 <div class="invalid-feedback">
                     <?= validation_show_error('instansi'); ?>
                 </div>
@@ -68,11 +50,7 @@
 
             <div class="col-12">
                 <label for="kegiatan" class="form-label">Nama Kegiatan</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('namaKegiatan')) ? 'is-invalid' : ''; ?>"
-                    id="kegiatan" placeholder=""
-                    value="<?= (old('namaKegiatan')) ? old('namaKegiatan') : $jadwal['nama_kegiatan'] ?>"
-                    name="namaKegiatan">
+                <input type="text" class="form-control <?= (validation_show_error('namaKegiatan')) ? 'is-invalid' : ''; ?>" id="kegiatan" placeholder="" value="<?= (old('namaKegiatan')) ? old('namaKegiatan') : $jadwal['nama_kegiatan'] ?>" name="namaKegiatan">
                 <div class="invalid-feedback">
                     <?= validation_show_error('namaKegiatan'); ?>
                 </div>
@@ -80,11 +58,7 @@
 
             <div class="col-12">
                 <label for="deskripsiKegiatan" class="form-label">Deskripsi Kegiatan</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('deskripsiKegiatan')) ? 'is-invalid' : ''; ?>"
-                    id="deskripsiKegiatan" placeholder=""
-                    value="<?= (old('deskripsiKegiatan')) ? old('deskripsiKegiatan') : $jadwal['deskripsi'] ?>"
-                    name="deskripsiKegiatan">
+                <input type="text" class="form-control <?= (validation_show_error('deskripsiKegiatan')) ? 'is-invalid' : ''; ?>" id="deskripsiKegiatan" placeholder="" value="<?= (old('deskripsiKegiatan')) ? old('deskripsiKegiatan') : $jadwal['deskripsi'] ?>" name="deskripsiKegiatan">
                 <div class="invalid-feedback">
                     <?= validation_show_error('deskripsiKegiatan'); ?>
                 </div>
@@ -92,25 +66,21 @@
 
             <div class="col-12">
                 <label hidden for="ruangan" class="form-label">Ruang yang Dipinjam</label>
-                <select hidden
-                    class="form-select <?= (validation_show_error('ruangan')) ? 'is-invalid' : ''; ?>"
-                    aria-label="Default select" id="ruangan" name="ruangan" type="hidden">
+                <select hidden class="form-select <?= (validation_show_error('ruangan')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="ruangan" name="ruangan" type="hidden">
                     <option selected disabled>Pilih Ruangan</option>
-                    <?php // foreach($ruangan as $r) :?>
-                    <?php if($id_ruangan == $ruangan['id'] || old('ruangan') == $ruangan['id']) :?>
-                    <option selected
-                        value="<?= $ruangan['id'] ?>"
-                        class="<?= $ruangan['tipe'] ?>">
-                        <?= $ruangan['nama'] ?>
-                    </option>
+                    <?php // foreach($ruangan as $r) :
+                    ?>
+                    <?php if ($id_ruangan == $ruangan['id'] || old('ruangan') == $ruangan['id']) : ?>
+                        <option selected value="<?= $ruangan['id'] ?>" class="<?= $ruangan['tipe'] ?>">
+                            <?= $ruangan['nama'] ?>
+                        </option>
                     <?php else : ?>
-                    <option
-                        value="<?= $ruangan['id'] ?>"
-                        class="<?= $ruangan['tipe'] ?>">
-                        <?= $ruangan['nama'] ?>
-                    </option>
+                        <option value="<?= $ruangan['id'] ?>" class="<?= $ruangan['tipe'] ?>">
+                            <?= $ruangan['nama'] ?>
+                        </option>
                     <?php endif ?>
-                    <?php // endforeach?>
+                    <?php // endforeach
+                    ?>
                 </select>
                 <div class="invalid-feedback">
                     <?= validation_show_error('ruangan'); ?>
@@ -124,20 +94,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai"
-                            class="form-control <?= (validation_show_error('tanggalMulaiPameran')) ? 'is-invalid' : ''; ?>"
-                            type="date" name="tanggalMulaiPameran"
-                            value="<?= (old('tanggalMulaiPameran')) ? old('tanggalMulaiPameran') : $formatter->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
+                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulaiPameran')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalMulaiPameran" value="<?= (old('tanggalMulaiPameran')) ? old('tanggalMulaiPameran') : $formatter->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiPameran'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai"
-                            class="form-control <?= (validation_show_error('tanggalSelesaiPameran')) ? 'is-invalid' : ''; ?>"
-                            type="date" date name="tanggalSelesaiPameran"
-                            value="<?= (old('tanggalSelesaiPameran')) ? old('tanggalSelesaiPameran') : $formatter->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
+                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesaiPameran')) ? 'is-invalid' : ''; ?>" type="date" date name="tanggalSelesaiPameran" value="<?= (old('tanggalSelesaiPameran')) ? old('tanggalSelesaiPameran') : $formatter->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiPameran'); ?>
                         </div>
@@ -149,22 +113,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai2" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai2"
-                            class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>"
-                            type="datetime-local" name="tanggalMulaiKantor"
-                            value="<?= (old('tanggalMulaiKantor')) ? old('tanggalMulaiKantor') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>"
-                            step="3600" />
+                        <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= (old('tanggalMulaiKantor')) ? old('tanggalMulaiKantor') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" step="3600" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiKantor'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai2" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai2"
-                            class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>"
-                            type="datetime-local" name="tanggalSelesaiKantor"
-                            value="<?= (old('tanggalSelesaiKantor')) ? old('tanggalSelesaiKantor') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>"
-                            step="60" />
+                        <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= (old('tanggalSelesaiKantor')) ? old('tanggalSelesaiKantor') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" step="60" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiKantor'); ?>
                         </div>
@@ -176,20 +132,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai3" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai3"
-                            class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>"
-                            type="datetime-local" name="tanggalMulaiMeeting"
-                            value="<?= (old('tanggalMulaiMeeting')) ? old('tanggalMulaiMeeting') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
+                        <input id="tanggalMulai3" class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiMeeting" value="<?= (old('tanggalMulaiMeeting')) ? old('tanggalMulaiMeeting') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiMeeting'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai3" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai3"
-                            class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>"
-                            type="datetime-local" name="tanggalSelesaiMeeting"
-                            value="<?= (old('tanggalSelesaiMeeting')) ? old('tanggalSelesaiMeeting') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
+                        <input id="tanggalSelesai3" class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiMeeting" value="<?= (old('tanggalSelesaiMeeting')) ? old('tanggalSelesaiMeeting') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiMeeting'); ?>
                         </div>
@@ -201,36 +151,28 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai4" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai4"
-                            class="form-control <?= (validation_show_error('tanggalMulaiPengembangan')) ? 'is-invalid' : ''; ?>"
-                            type="datetime-local" name="tanggalMulaiPengembangan"
-                            value="<?= (old('tanggalMulaiPengembangan')) ? old('tanggalMulaiPengembangan') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>" />
+                        <input id="tanggalMulai4" class="form-control <?= (validation_show_error('tanggalMulaiPengembangan')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiPengembangan" value="<?= (old('tanggalMulaiPengembangan')) ? old('tanggalMulaiPengembangan') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiPengembangan'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai4" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai4"
-                            class="form-control <?= (validation_show_error('tanggalSelesaiPengembangan')) ? 'is-invalid' : ''; ?>"
-                            type="datetime-local" name="tanggalSelesaiPengembangan"
-                            value="<?= (old('tanggalSelesaiPengembangan')) ? old('tanggalSelesaiPengembangan') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
+                        <input id="tanggalSelesai4" class="form-control <?= (validation_show_error('tanggalSelesaiPengembangan')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiPengembangan" value="<?= (old('tanggalSelesaiPengembangan')) ? old('tanggalSelesaiPengembangan') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiPengembangan'); ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <?= d($jadwal['tgl_mulai_sewa']) ?>
+            <!-- <?= d($jadwal['tgl_mulai_sewa']) ?>
+            -->
 
-            <input id="tipe" class="form-control" type="hidden" name="tipe"
-                value="<?= (old('tipe')) ? old('tipe') : $ruangan['tipe'] ?>" />
-            <input id="idRuangan" class="form-control" type="hidden" name="idRuangan"
-                value="<?= (old('idRuangan')) ? old('idRuangan') : $ruangan['id'] ?> ?>" />
-            <input id="idJadwal" class="form-control" type="hidden" name="idJadwal"
-                value="<?= (old('idJadwal')) ? old('idJadwal') : $jadwal['id'] ?> ?>" />
-            <input id="idPenyewa" class="form-control" type="hidden" name="idPenyewa"
-                value="<?= (old('idPenyewa')) ? old('idPenyewa') : $penyewa['id'] ?> ?>" />
+            <input id="tipe" class="form-control" type="hidden" name="tipe" value="<?= (old('tipe')) ? old('tipe') : $ruangan['tipe'] ?>" />
+            <input id="uuid" class="form-control" type="hidden" name="uuid" value="<?= (old('uuid')) ? old('uuid') : $jadwal['uuid'] ?>" />
+            <input id="idRuangan" class="form-control" type="hidden" name="idRuangan" value="<?= (old('idRuangan')) ? old('idRuangan') : $ruangan['id'] ?>" />
+            <input id="idJadwal" class="form-control" type="hidden" name="idJadwal" value="<?= (old('idJadwal')) ? old('idJadwal') : $jadwal['id'] ?>" />
+            <input id="idPenyewa" class="form-control" type="hidden" name="idPenyewa" value="<?= (old('idPenyewa')) ? old('idPenyewa') : $penyewa['id'] ?>" />
 
             <script>
                 $(document).ready(function() {
@@ -310,7 +252,7 @@
                     if (start.value)
                         end.min = start.value;
                 }, false);
-                end.addEventLiseter('change', function() {
+                end.addEventListener('change', function() {
                     if (end.value)
                         start.max = end.value;
                 }, false);
@@ -329,7 +271,7 @@
                     if (start2.value)
                         end2.min = start2.value;
                 }, false);
-                end2.addEventLiseter('change', function() {
+                end2.addEventListener('change', function() {
                     if (end2.value)
                         start2.max = end2.value;
                 }, false);
@@ -348,7 +290,7 @@
                     if (start3.value)
                         end3.min = start3.value;
                 }, false);
-                end3.addEventLiseter('change', function() {
+                end3.addEventListener('change', function() {
                     if (end3.value)
                         start3.max = end3.value;
                 }, false);
@@ -367,7 +309,7 @@
                     if (start4.value)
                         end4.min = start4.value;
                 }, false);
-                end4.addEventLiseter('change', function() {
+                end4.addEventListener('change', function() {
                     if (end4.value)
                         start4.max = end4.value;
                 }, false);
