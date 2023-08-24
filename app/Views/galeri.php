@@ -1,4 +1,4 @@
-<!-- ======= Judul Section ======= -->
+<!-- Judul Section -->
 <section id="background-hitam-atas" class="d-flex align-items-center">
   <div class="container">
     <div class="text-center">
@@ -12,7 +12,7 @@
 </section>
 <!-- End  -->
 
-<!-- ======= isi Section ======= -->
+<!-- Konten Section -->
 <section id="isi-section">
   <div class="container p-3">
     <div class="bg-white rounded-5 p-5 shadow-sm" id="">
@@ -44,7 +44,7 @@
                 </ul>
               </div>
             </div> -->
-        <!-- input pencarian -->
+        <!-- Input pencarian -->
         <div class="ps-md-4">
           <form action="" method="post">
             <div class="input-group mb-3">
@@ -60,11 +60,11 @@
         </div>
       </div>
 
-      <!-- foto -->
+      <!-- Foto -->
       <div class="wrapper">
         <div class="masonry masonry--h">
           <?php foreach ($galeri as $g) : ?>
-            <figure class="masonry-brick masonry-brick--h" style="width: fit-content;">
+            <figure class="masonry-brick masonry-brick--h">
               <a href="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" data-toggle="lightbox">
                 <img src="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" class="masonry-img" alt="Masonry Brick #1">
               </a>
@@ -72,7 +72,7 @@
           <?php endforeach; ?>
         </div>
       </div>
-      <!-- pagination -->
+      <!-- Pagination -->
       <div class="row mt-4 mb-2 justify-content-center ">
         <div class="col-6 p-3 m-0 justify-content-center">
           <?php echo $pager->links('galeri', 'pager') ?>

@@ -1,4 +1,4 @@
-<!-- ======= Hero Section ======= -->
+<!-- Section Hero -->
 <section id="hero" class="d-flex align-items-end m-0 p-0" style="background-image: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.1),
@@ -28,16 +28,16 @@
 </section>
 <!-- End Hero -->
 
-
 <!-- Garis Batas -->
 <div class="bg-pdin-abu-gelap w-100">
 	<div class="container bg-pdin-merah" style="height: 8px"></div>
 </div>
 <!-- End Garis Batas -->
-<!-- ======= Layanan Section ======= -->
+
+<!-- Section Layanan -->
 <section id="layanan" class="layanan section-bg-white">
 	<div class="container" data-aos="fade-up">
-		<!-- judul section -->
+		<!-- Section judul -->
 		<div class="text-center">
 			<h3 class="text-black highlight-header mb-4">LAYANAN</h3>
 			<div class="row justify-content-center mb-5">
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- konten layanan -->
+		<!-- Konten layanan -->
 		<div class="row justify-content-around">
 			<div class="col-md-6 mt-4 mt-md-0">
 				<div class="icon-box" data-aos="fade-up" data-aos-delay="100">
@@ -302,12 +302,12 @@
 
 		</div>
 		<!-- Akhir Sorotan, Artikel Pilihan, dan Kalender -->
-
 		<div class="text-center mt-4 mt-lg-5 mt-xl-4 mt-xxl-4">
 			<a class="btn btn-lg btn-outline-danger" href="/rilis-media" role="button">Lihat Semua
 				Kegiatan
 				<span class="ps-1 bi-arrow-right"></span></a>
 		</div>
+
 	</div>
 </section>
 <!-- End Kegiatan Section -->
@@ -355,7 +355,7 @@
 </section>
 <!-- End Galeri Section -->
 
-<!-- script change background hero section -->
+<!-- Script change background hero section -->
 <script>
 	function changeBgHero() {
 		const images = [
