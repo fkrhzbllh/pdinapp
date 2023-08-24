@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2023 at 09:52 AM
+-- Generation Time: Aug 18, 2023 at 08:56 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -155,7 +155,8 @@ CREATE TABLE `auth_groups_users` (
 --
 
 INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
-(1, 1, 'admin', '2023-05-15 12:29:42');
+(1, 1, 'admin', '2023-05-15 12:29:42'),
+(2, 2, 'user', '2023-08-11 04:42:37');
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,8 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-08-02 08:06:24', '2023-05-15 12:29:42', '2023-08-02 08:06:24');
+(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-08-02 08:06:24', '2023-05-15 12:29:42', '2023-08-02 08:06:24'),
+(2, 2, 'email_password', NULL, 'ibn.damr@gmail.com', '$2y$10$hjxZGMHF5oKhwStaC50CuOPptIZSo4eB8oJ9aj7AOUIoqpOeG9N3a', NULL, NULL, 0, '2023-08-17 03:44:36', '2023-08-11 04:42:37', '2023-08-17 03:44:36');
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,8 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 (14, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-06-01 11:19:53', 1),
 (15, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-06-02 08:09:29', 1),
 (16, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-08-02 07:56:36', 1),
-(17, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-08-02 08:06:24', 1);
+(17, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-08-02 08:06:24', 1),
+(18, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203', 'email_password', 'ibn.damr@gmail.com', 2, '2023-08-17 03:44:36', 1);
 
 -- --------------------------------------------------------
 
@@ -356,7 +359,17 @@ INSERT INTO `galeri` (`id`, `id_file_picker`, `nama_file`, `judul`, `kategori`, 
 (41, NULL, 'foto-ruang-desainer-1.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
 (42, NULL, 'foto-ruang-desainer-2.jpg', NULL, NULL, NULL, '2023-05-22 12:25:41', NULL, '2023-05-22 12:25:41'),
 (88, NULL, 'foto-ruang-audio-visual-1.jpg', NULL, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25'),
-(89, NULL, 'foto-ruang-audio-visual-2.jpg', NULL, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25');
+(89, NULL, 'foto-ruang-audio-visual-2.jpg', NULL, NULL, NULL, '2023-05-30 15:45:25', NULL, '2023-05-30 15:45:25'),
+(90, NULL, 'galeri-1.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(91, NULL, 'galeri-2.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(92, NULL, 'galeri-3.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(93, NULL, 'galeri-4.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(94, NULL, 'galeri-5.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(95, NULL, 'galeri-6.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(96, NULL, 'galeri-7.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(97, NULL, 'galeri-8.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(98, NULL, 'galeri-9.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(99, NULL, 'galeri-10.jpg', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -384,13 +397,29 @@ CREATE TABLE `galeri_alat` (
 CREATE TABLE `galeri_kegiatan` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_kegiatan` int(11) UNSIGNED DEFAULT NULL,
-  `id_gale` int(11) UNSIGNED NOT NULL,
+  `id_galeri` int(11) UNSIGNED NOT NULL,
   `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
   `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `galeri_kegiatan`
+--
+
+INSERT INTO `galeri_kegiatan` (`id`, `id_kegiatan`, `id_galeri`, `id_file_picker`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(1, NULL, 90, NULL, NULL, NULL, NULL, NULL),
+(2, NULL, 91, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, 92, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, 93, NULL, NULL, NULL, NULL, NULL),
+(5, NULL, 94, NULL, NULL, NULL, NULL, NULL),
+(6, NULL, 95, NULL, NULL, NULL, NULL, NULL),
+(7, NULL, 96, NULL, NULL, NULL, NULL, NULL),
+(8, NULL, 97, NULL, NULL, NULL, NULL, NULL),
+(9, NULL, 98, NULL, NULL, NULL, NULL, NULL),
+(10, NULL, 99, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -775,7 +804,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'fikwkwk', NULL, NULL, 1, '2023-08-09 07:03:18', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL);
+(1, 'fikwkwk', NULL, NULL, 1, '2023-08-09 07:03:18', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL),
+(2, 'damarbob', NULL, NULL, 1, '2023-08-17 04:42:40', '2023-08-11 04:42:37', '2023-08-11 04:42:37', NULL);
 
 --
 -- Indexes for dumped tables
@@ -994,19 +1024,19 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `auth_groups_users`
 --
 ALTER TABLE `auth_groups_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `auth_identities`
 --
 ALTER TABLE `auth_identities`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -1036,7 +1066,7 @@ ALTER TABLE `file_picker`
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `galeri_alat`
@@ -1048,7 +1078,7 @@ ALTER TABLE `galeri_alat`
 -- AUTO_INCREMENT for table `galeri_kegiatan`
 --
 ALTER TABLE `galeri_kegiatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `galeri_ruangan`
@@ -1120,7 +1150,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

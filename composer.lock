@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8417b388bd8e627717a0096f72a76f93",
+    "content-hash": "b6741898791e3ddd4423b1558c6e10bf",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -141,12 +141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeigniter4/shield.git",
-                "reference": "22443d071c6f865512c5a3d4ead8250f112494a7"
+                "reference": "78cac5485ff92a51743fe0f84e561c25add3d5e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeigniter4/shield/zipball/22443d071c6f865512c5a3d4ead8250f112494a7",
-                "reference": "22443d071c6f865512c5a3d4ead8250f112494a7",
+                "url": "https://api.github.com/repos/codeigniter4/shield/zipball/78cac5485ff92a51743fe0f84e561c25add3d5e4",
+                "reference": "78cac5485ff92a51743fe0f84e561c25add3d5e4",
                 "shasum": ""
             },
             "require": {
@@ -201,13 +201,13 @@
                 "codeigniter4"
             ],
             "support": {
-                "docs": "https://github.com/codeigniter4/shield/blob/develop/docs/index.md",
+                "docs": "https://codeigniter4.github.io/shield/",
                 "forum": "https://github.com/codeigniter4/shield/discussions",
                 "issues": "https://github.com/codeigniter4/shield/issues",
                 "slack": "https://codeigniterchat.slack.com",
                 "source": "https://github.com/codeigniter4/shield"
             },
-            "time": "2023-05-12T23:11:49+00:00"
+            "time": "2023-08-15T22:31:02+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -2295,11 +2295,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "codeigniter4/shield": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4 || ^8.1"
