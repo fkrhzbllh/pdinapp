@@ -9,6 +9,8 @@ use Psr\Log\LoggerInterface;
 
 class RilisMedia extends BaseController
 {
+
+	// Model
 	protected $artikelModel;
 
 	protected $helpers = ['form'];
@@ -33,8 +35,16 @@ class RilisMedia extends BaseController
 			$artikel = $this->artikelModel;
 		}
 
-		$this->data['artikel'] = $artikel->paginate(3, 'artikel');
+		$this->data['artikel'] = $this->artikelModel->formatTanggal($artikel->paginate(3, 'artikel'));
 		$this->data['pager'] = $this->artikelModel->pager;
+
+		// Section artikel terbaru, ambil 3 artikel terbaru untuk Sorotan
+		$artikelTerbaru = $this->artikelModel->getArtikelTerbaru(3);
+		$this->data['artikelTerbaru'] = $artikelTerbaru;
+
+		// Section artikel, ambil 4 artikel pilihan dari Model Artikel untuk dimasukkan ke list Artikel Pilihan
+		$artikelPilihan = $this->artikelModel->getArtikelPilihan(4, 12);
+		$this->data['artikelPilihan'] = $artikelPilihan;
 
 		$this->view('rilismedia.php', $this->data);
 	}
