@@ -168,7 +168,7 @@
 			document.getElementById('logo').style.height = '64px';
 		} else {
 			document.getElementById('navbar').style.backgroundColor =
-				'rgba(255, 255, 255, 0.5)';
+				'rgba(255, 255, 255, 0)';
 			document.getElementById('logo').style.padding = '32px';
 			document.getElementById('logo').style.height = '128px';
 		}

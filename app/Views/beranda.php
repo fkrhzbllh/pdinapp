@@ -1,16 +1,16 @@
 <!-- Section Hero -->
-<section id="hero" class="shadow-lg d-flex align-items-end" style="background-image: url('./assets/hero-bg-1.jpg')">
-	<div class="col-12 w-full" id="hero-container">
+<section id="hero" class="shadow-lg d-flex align-items-end" data-aos="fade-in">
+	<div class="col-12 w-full" id="hero-container" data-aos="slide-up">
 		<div class="row justify-content-center">
 			<div class="text-center">
 				<h1 class="text-light">
-					<font style="color: #e03a3c">Pusat Desain</font> Industri Nasional
+					Pusat Desain Industri Nasional
 				</h1>
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-md-8 col-lg-6 col-xxl-5 text-center">
-				<p class="text-light">
+				<p class="fs-5 text-light">
 					Sebuah ekosistem kreatif yang mendukung pelaku industri kreatif
 					untuk berkolaborasi memajukan industri kreatif Indonesia
 				</p>
