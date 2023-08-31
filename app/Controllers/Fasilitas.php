@@ -63,17 +63,32 @@ class Fasilitas extends BaseController
 		}
 		$this->data['tipe_ruangan'] = $tipe_ruangan_array;
 
+		// Ruangan yang ada fotonya
+		$ruangan_berfoto = [];
+		$foto_ruangan_berfoto = [];
+
 		foreach ($ruangan as $key => $r) {
-			// $this->data['fotoruangan'][$key] = $this->galeriRuanganModel->where('id_ruangan', $r['id'])->first();
 			$foto = $this->galeriRuanganModel->getGaleriByRuangan($r['id']);
-			if ($foto) {
+
+			// Apakah foto ditemukan
+			if ($foto) { // Jika foto ditemukan
+
+				// Masukkan foto ke data foto_ruangan dengan key sama dengan ruangan
 				$this->data['fotoruangan'][$key] = $foto[0];
-			} else {
-				// $this->data['fotoruangan'][$key]['nama_file'] = '...';
+
+				// Masukkan ruangan ke array ruangan_berfoto
+				array_push($ruangan_berfoto, $r);
+				// Masukkan juga foto ke array foto_ruangan_berfoto
+				array_push($foto_ruangan_berfoto, $foto[0]);
+			} else { // Jika foto tidak ditemukan
+
+				// Masukkan null ke data foto_ruangan TODO: Ganti ke gambar placeholder
 				$this->data['fotoruangan'][$key] = null;
 			}
 		}
-		$this->data['ruangan'] = $ruangan;
+		$this->data['ruangan'] = $ruangan; // Seluruh ruangan
+		$this->data['ruangan_berfoto'] = $ruangan_berfoto; // Khusus ruangan yang berfoto
+		$this->data['foto_ruangan_berfoto'] = $foto_ruangan_berfoto; // Khusus ruangan yang berfoto
 
 		$alat = $this->alatModel->getAlat();
 		foreach ($alat as $key => $a) {

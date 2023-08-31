@@ -26,6 +26,15 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+:root {
+  --background-primary: $fff;
+  --background-secondary: #fff;
+
+  --border-radius-primary: 1rem;
+
+  --padding-container: 4rem;
+  --padding-container-s: 2rem;
+}
 * {
   margin: 0;
   padding: 0;
@@ -62,12 +71,6 @@ ul li {
   .fit-cover {
     position: absolute;
   }
-}
-
-.swiper-container {
-  overflow: visible;
-  border-radius: 15px;
-  /* overflow: hidden; */
 }
 
 .fc .fc-prev-button {
@@ -231,16 +234,19 @@ h6 {
 /*--------------------------------------------------------------
   # Navbar
   --------------------------------------------------------------*/
-#navbar {
-  padding: 10px 0px;
+
+/* By Damar */
+.navbar {
+  transition: all 0.25 ease;
+}
+.navbar img {
   transition: 0.4s;
-  background-color: rgba(221, 222, 222, 0.8);
-  padding-right:0 !important;
-  /* background-color: rgba(255, 255, 255, 0.8); */
+  margin: -0.825rem 0;
+  /* background: #fff; */
+  padding: 32px;
+  height: 128px;
 }
-#navbar:hover {
-  background-color: rgba(256, 256, 256, 1);
-}
+/* End By Damar */
 
 #navbarNav a {
   font-size: 14px;
@@ -269,7 +275,7 @@ h6 {
   height: 140px;
   width: 330px;
   margin: 0px;
-  margin-top: -30px;
+  margin-top: 0px;
   padding-top: 20px;
   border-radius: 0px 0px 41px 41px;
 }
@@ -281,23 +287,23 @@ h6 {
 }
 
 /* Extra small devices (phones, 576px and down) */
-@media only screen and (max-width: 576px) {
+/* @media only screen and (max-width: 576px) {
   #navBrand {
     height: 100px;
     width: 160px;
     border-radius: 0px 0px 24px 24px;
     margin-top: -30px;
     padding-top: 30px;
-    /* margin: 0px; */
+    margin: 0px;
   }
   #logoPdin {
     height: 40px;
-    /* margin-top: 0px; */
+    margin-top: 0px;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 576px) {
+/* @media only screen and (min-width: 576px) {
   #navBrand {
     position: absolute;
     background-color: rgba(256, 256, 256, 1);
@@ -316,10 +322,10 @@ h6 {
     height: 55px;
     transition: 0.4s;
   }
-}
+} */
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   #navBrand {
     position: absolute;
     background-color: rgba(256, 256, 256, 1);
@@ -338,10 +344,10 @@ h6 {
     height: 55px;
     transition: 0.4s;
   }
-}
+} */
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
   #navBrand {
     position: absolute;
     background-color: rgba(256, 256, 256, 1);
@@ -360,10 +366,10 @@ h6 {
     height: 60px;
     transition: 0.4s;
   }
-}
+} */
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   #navBrand {
     position: absolute;
     background-color: rgba(256, 256, 256, 1);
@@ -382,9 +388,9 @@ h6 {
     height: 70px;
     transition: 0.4s;
   }
-}
+} */
 /* Extra extra large devices (large laptops and desktops, 1400px and up) */
-@media only screen and (min-width: 1400px) {
+/* @media only screen and (min-width: 1400px) {
   #navBrand {
     position: absolute;
     background-color: rgba(256, 256, 256, 1);
@@ -403,11 +409,31 @@ h6 {
     height: 85px;
     transition: 0.4s;
   }
-}
+} */
 .padding-tambahan {
   padding-top: 55px;
   padding-bottom: 55px;
 }
+
+/*----------------------------------------------------------------
+  Content Container
+  ----------------------------------------------------------------*/
+  .container-konten {
+    background: var(--background-primary);
+    border-radius: var(--border-radius-primary);
+    padding: var(--padding-container);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+  }
+
+  /* Extra small devices (phones, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .container-content {
+    background: var(--background-secondary);
+    border-radius: var(--border-radius-primary);
+    padding: var(--padding-container-s);
+  }
+}
+
 /*--------------------------------------------------------------
   # Footer
   --------------------------------------------------------------*/
@@ -452,26 +478,18 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-  # Hero Section 
-  p-5 = 48, p-4 = 24, p-3 = 16, p-2 = 8, p-1 = 4
+  # Hero Section
   --------------------------------------------------------------*/
 
 #hero {
-  width: 100%;
-  height: 100vh;
-  background: top center no-repeat;
-  background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.1)
-    ),
-    url('./assets/hero-bg-1.jpg');
+  height: calc(100vh - 128px) !important;
+  background: center center no-repeat;
   background-size: cover;
+  margin:0;
+  margin-top: 128px;
   position: relative;
-  /* padding-top: 40px; */
-  padding-bottom: 20px;
+  padding: 0;
   transition: 0.8s;
-  /* transition-timing-function: ease-out; */
 }
 
 .highlight-header {
@@ -496,34 +514,26 @@ h6 {
   left: 0;
 }
 
-#heri {
-  /* width: 100%; */
-  /* height: 30vh; */
-  /* background: top center no-repeat; */
-  background-image: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0.6)
-  );
+#hero-container {
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) 90%, rgba(0,0,0,0) 100%);
   margin: 0px;
-  padding-top: 24px;
-  padding-bottom: 48px;
-  padding-right: 48px;
-  padding-left: 48px;
+  padding-top: 16px;
+  padding-bottom: 24px;
+  padding-right: 24px;
+  padding-left: 24px;
 }
 
 #hero h1 {
   margin: 0;
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 700;
-  color: #fff;
   line-height: 82px;
 }
 #hero p {
   margin: 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  color: #fff;
   line-height: 26px;
 }
 
@@ -544,231 +554,6 @@ h6 {
 #hero .btn-lihat-profil:hover {
   background: transparent;
   border-color: #fff;
-}
-
-/* Extra small devices (phones, 576px and down) */
-@media only screen and (max-width: 576px) {
-  #heri {
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  #hero h1 {
-    margin: 0;
-    font-size: 34px;
-    line-height: 46px;
-    font-weight: 700;
-    color: #fff;
-  }
-  #hero p {
-    margin: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 24px;
-  }
-  #hero .btn-lihat-profil {
-    font-weight: 500;
-    font-size: 12px;
-    padding: 10px 20px;
-    margin-top: 16px;
-  }
-}
-
-/* Small devices (portrait tablets and large phones, 576px and up) */
-@media only screen and (min-width: 576px) {
-  #heri {
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  #hero h1 {
-    margin: 0;
-    font-size: 42px;
-    line-height: 52px;
-    font-weight: 700;
-    color: #fff;
-  }
-  #hero p {
-    margin: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 24px;
-  }
-  #hero .btn-lihat-profil {
-    font-weight: 500;
-    font-size: 12px;
-    padding: 10px 20px;
-    margin-top: 16px;
-  }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  #heri {
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    line-height: 58px;
-    font-weight: 700;
-    color: #fff;
-  }
-  #hero p {
-    margin: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 24px;
-  }
-  #hero .btn-lihat-profil {
-    font-weight: 500;
-    font-size: 12px;
-    padding: 10px 20px;
-    margin-top: 16px;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  #heri {
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  #hero h1 {
-    margin: 0;
-    font-size: 56px;
-    line-height: 66px;
-    font-weight: 700;
-    color: #fff;
-  }
-  #hero p {
-    margin: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 24px;
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  #heri {
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    line-height: 58px;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  #hero p {
-    margin: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 24px;
-  }
-  #hero .btn-lihat-profil {
-    font-weight: 500;
-    font-size: 12px;
-    padding: 10px 20px;
-    margin-top: 16px;
-  }
-}
-/* Extra extra large devices (large laptops and desktops, 1400px and up) */
-@media only screen and (min-width: 1400px) {
-  #heri {
-    background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    );
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-
-  #hero h1 {
-    margin: 0;
-    font-size: 64px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 82px;
-  }
-  #hero p {
-    margin: 16px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 26px;
-  }
-
-  #hero .btn-lihat-profil {
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 10px 30px;
-    border-radius: 4px;
-    transition: 0.5s;
-    margin-top: 16px;
-    color: #fff;
-    background: #e03a3c;
-    border: 2px solid #e03a3c;
-  }
-}
-
-@media (max-height: 500px) {
-  #hero {
-    height: 120vh;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -876,6 +661,37 @@ section {
     font-size: 16px;
   }
 }
+
+/* Swiper */
+.swiper-container {
+  overflow: visible;
+  border-radius: 15px;
+  /* overflow: hidden; */
+}
+
+.swiper {
+  padding-bottom: 45px;
+  /* padding-bottom: 30px !important; */
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  /* width: 12px; */
+  /* height: 12px; */
+  background-color: #fff;
+  opacity: 0.9;
+  border: 0.2px solid #e03a3c;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #e03a3c;
+}
+.swiper-button-next {
+  
+}
+.swiper-button-prev {
+
+}
+
 /*--------------------------------------------------------------
   # layanan Halaman Beranda
   --------------------------------------------------------------*/
@@ -936,10 +752,6 @@ section {
   background-size: cover;
 }
 
-/* .swiper-pagination {
-  margin-top: 300px;
-} */
-
 .cardi {
   height: 250px;
 }
@@ -998,7 +810,7 @@ section {
 .foto-galeri:hover {
   /* background: #ffffff; */
   transform: scale(1.05);
-  transition: 0.9s; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition: 0.9s; /* (150% zoom - Note: if the zoom isi-sectnavbais too large, it will go outside of the viewport) */
 }
 /*--------------------------------------------------------------
   #  Halaman Lain selain Beranda dan detail
@@ -1006,18 +818,23 @@ section {
 
 #background-hitam-atas {
   width: 100%;
-  height: 45vh;
+  height: 512px;
   background: top center no-repeat;
-  background: #1e1919;
-
+  /* background: #1e1919; */
+  background: #ddd;
   border-bottom: 4px solid #d82328;
   position: relative;
+  margin-top: 128px;
 }
-#isi-section {
-  margin-top: -150px;
+#section-konten {
+  margin-top: 68px;
+}
+#section-konten-secondary {
+  padding: 32px 0;
+  margin-top: 32px;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   #background-hitam-atas {
     height: 55vh;
   }
@@ -1032,7 +849,7 @@ section {
   #isi-section {
     margin-top: -150px;
   }
-}
+} */
 
 /*--------------------------------------------------------------
   # Tab Nav Halaman Profil 
@@ -1226,31 +1043,6 @@ section {
   border-color: #d82328;
 }
 
-.swiper {
-  padding-bottom: 45px;
-  /* padding-bottom: 30px !important; */
-}
-
-.swiper-pagination .swiper-pagination-bullet {
-  /* width: 12px; */
-  /* height: 12px; */
-  background-color: #fff;
-  opacity: 0.9;
-  border: 0.2px solid #e03a3c;
-}
-
-.swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #e03a3c;
-}
-
-/* .swiper-container {
-    padding-bottom: 25px;
-  }
-  .swiper-container-horizontal > .swiper-pagination {
-    position: absolute;
-    bottom: 0;
-  } */
-
 .fs-18 {
   font-size: 18px;
 }
@@ -1330,12 +1122,12 @@ section {
 
 /* border-radius: 15px 50px 30px 5px; ( top-left corner, top-right corner, 
  to bottom-right corner,  bottom-left corner): */
-.img-slider-artikel {
+/* .img-slider-artikel {
   border-radius: 24px 24px 24px 24px;
 }
 .text-slider-artikel {
   border-radius: 24px 24px 24px 24px;
-}
+} */
 
 /* Extra small devices (phones, 576px and down) */
 @media only screen and (max-width: 576px) {

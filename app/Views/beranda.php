@@ -1,19 +1,16 @@
 <!-- Section Hero -->
-<section id="hero" class="d-flex align-items-end m-0 p-0" style="background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.1)
-    ),
-    url('./assets/hero-bg-1.jpg');">
-	<div class="col-12 w-full" id="heri">
+<section id="hero" class="shadow-lg d-flex align-items-end" data-aos="fade-in">
+	<div class="col-12 w-full" id="hero-container" data-aos="slide-up">
 		<div class="row justify-content-center">
-			<div class="col-11 col-sm-8 col-md-7 col-lg-12 col-xl-12 col-xxl-12 text-center">
-				<h1>Pusat Desain Industri Nasional</h1>
+			<div class="text-center">
+				<h1 class="text-light">
+					Pusat Desain Industri Nasional
+				</h1>
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-12 col-sm-10 col-md-9 col-lg-6 col-xl-5 col-xxl-5 text-center">
-				<p class="">
+			<div class="col-md-8 col-lg-6 col-xxl-5 text-center">
+				<p class="fs-5 text-light">
 					Sebuah ekosistem kreatif yang mendukung pelaku industri kreatif
 					untuk berkolaborasi memajukan industri kreatif Indonesia
 				</p>
@@ -357,12 +354,14 @@
 
 <!-- Script change background hero section -->
 <script>
+	const images = [
+		'url("./assets/hero-bg-1.jpg")', 'url("./assets/hero-bg-3.jpg")', 'url("./assets/hero-bg-4.jpg")', 'url("./assets/hero-bg-5.jpg")',
+	];
+	const bg = images[Math.floor(Math.random() * images.length)];
+	hero.style.backgroundImage = bg;
+
 	function changeBgHero() {
-		const images = [
-			'url("./assets/hero-bg-3.jpg")', 'url("./assets/hero-bg-4.jpg")', 'url("./assets/hero-bg-5.jpg")',
-		];
 		const bg = images[Math.floor(Math.random() * images.length)];
-		// const bggrad = `linear-gradient(rgba(38, 70, 235, 0.4), rgba(38, 70, 235, 0.4)), ${bg}`;
 		hero.style.backgroundImage = bg;
 	}
 	setInterval(changeBgHero, 3000);
