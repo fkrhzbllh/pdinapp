@@ -43,7 +43,7 @@ class AlatAdmin extends BaseController
 	{
 		$this->data['current_page'] = 'adminalat';
 		$this->data['alat'] = $this->alatModel->findAll();
-		return view('admin/adminralat.php', $this->data);
+		return view('admin/adminalat.php', $this->data);
 	}
 
 	public function alat()
