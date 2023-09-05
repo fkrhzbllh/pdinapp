@@ -1,17 +1,15 @@
+<?= $this->extend('layout/admin/admin-template') ?>
+
+<?= $this->section('content') ?>
 <div class="bg-white col-12 p-5" id="">
     <h3 class="mb-3">Tambah Alat</h3>
-    <form id="formalat" class="mt-3" action="/DashboardAdmin/saveTambahAlat" method="post"
-        enctype="multipart/form-data">
-        <?php echo csrf_field()?>
+    <form id="formalat" class="mt-3" action="/DashboardAdmin/saveTambahAlat" method="post" enctype="multipart/form-data">
+        <?php echo csrf_field() ?>
         <div class="row g-3">
             <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
                 <label for="nama" class="form-label">Nama Alat</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>"
-                    id="nama" placeholder=""
-                    value="<?= old('nama') ?>"
-                    name="nama" autofocus>
+                <input type="text" class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>" id="nama" placeholder="" value="<?= old('nama') ?>" name="nama" autofocus>
                 <div class="invalid-feedback">
                     <?= validation_show_error('nama'); ?>
                 </div>
@@ -19,11 +17,7 @@
 
             <div class="col-12">
                 <label for="deskripsiAlat" class="form-label">Deskripsi Alat</label>
-                <textarea
-                    class="form-control <?= (validation_show_error('deskripsiAlat')) ? 'is-invalid' : ''; ?>"
-                    id="deskripsiAlat" placeholder=""
-                    value="<?= old('deskripsiAlat') ?>"
-                    name="deskripsiAlat"></textarea>
+                <textarea class="form-control <?= (validation_show_error('deskripsiAlat')) ? 'is-invalid' : ''; ?>" id="deskripsiAlat" placeholder="" value="<?= old('deskripsiAlat') ?>" name="deskripsiAlat"></textarea>
                 <div class="invalid-feedback">
                     <?= validation_show_error('deskripsiAlat'); ?>
                 </div>
@@ -33,11 +27,7 @@
                 <label for="biaya-sewa" class="form-label">Biaya Sewa</label>
                 <div class="input-group">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" step="1000"
-                        class="form-control biaya-sewa <?= (validation_show_error('fasilitas')) ? 'is-invalid' : ''; ?>"
-                        id="biaya-sewa"
-                        value="<?= old('biayasewa') ?>"
-                        name="biayasewa">
+                    <input type="number" step="1000" class="form-control biaya-sewa <?= (validation_show_error('fasilitas')) ? 'is-invalid' : ''; ?>" id="biaya-sewa" value="<?= old('biayasewa') ?>" name="biayasewa">
                 </div>
                 <div class="invalid-feedback">
                     <?= validation_show_error('biayasewa'); ?>
@@ -46,11 +36,7 @@
 
             <div class="col-6">
                 <label for="fotoalat" class="form-label">Pilih Foto Alat</label>
-                <input
-                    class="form-control <?= (validation_show_error('fotoalat[]')) ? 'is-invalid' : ''; ?>"
-                    type="file" id="fotoalat" multiple
-                    value="<?= old('fotoalat[]') ?>"
-                    name="fotoalat[]" onchange="onFileUpload(this);">
+                <input class="form-control <?= (validation_show_error('fotoalat[]')) ? 'is-invalid' : ''; ?>" type="file" id="fotoalat" multiple value="<?= old('fotoalat[]') ?>" name="fotoalat[]" onchange="onFileUpload(this);">
                 <div class="invalid-feedback">
                     <?= validation_show_error('fotoalat[]'); ?>
                 </div>
@@ -98,7 +84,9 @@
         }
     }
 </script>
+<?= $this->endSection() ?>
 
+<?= $this->section('script') ?>
 <script>
     $(document).ready(function() {
         $(".biaya-sewa").on("keyup", null, function() {
@@ -112,3 +100,4 @@
         });
     });
 </script>
+<?= $this->endSection() ?>

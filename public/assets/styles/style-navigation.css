@@ -1,0 +1,20 @@
+/* Breadcrumb */
+.breadcrumb .breadcrumb-item a{
+    color: var(--color-primary);
+  }
+  
+  /* Pager */
+  .page-link{
+    color: var(--color-on-surface);
+  }
+  
+  .page-link:hover{
+    color: var(--color-primary);
+  }
+  
+  .active>.page-link, .page-link.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    z-index: 3;
+    color: var(--color-on-primary);
+  }

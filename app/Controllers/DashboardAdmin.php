@@ -73,7 +73,7 @@ class DashboardAdmin extends BaseController
 		$this->data['artikel'] = $this->artikelModel->paginate($perPage, 'artikel');
 		$this->data['pager'] = $this->artikelModel->pager;
 		$this->data['pager_current'] = $this->artikelModel->pager->getCurrentPage('artikel');
-		$this->viewAdmin('adminrilismedia.php', $this->data);
+		return view('admin/adminrilismedia.php', $this->data);
 	}
 
 	public function alat()

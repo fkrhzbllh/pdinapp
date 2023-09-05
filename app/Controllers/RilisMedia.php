@@ -46,11 +46,12 @@ class RilisMedia extends BaseController
 		$artikelPilihan = $this->artikelModel->getArtikelPilihan(4, 12);
 		$this->data['artikelPilihan'] = $artikelPilihan;
 
-		$this->view('rilismedia.php', $this->data);
+		return view('rilismedia.php', $this->data);
 	}
 
 	public function detail($slug)
 	{
+
 		$artikel = $this->artikelModel->getArtikel($slug);
 
 		// tampilan error kalau tidak ada slug artikel yang ada di database
@@ -58,7 +59,13 @@ class RilisMedia extends BaseController
 			throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan ' . $slug . ' tidak ditemukan.');
 		}
 
+		// Artikel yang sedang ditampilkan
 		$this->data['artikel'] = $artikel;
-		$this->view('detailrilismedia.php', $this->data);
+
+		// Section artikel, ambil 4 artikel pilihan dari Model Artikel untuk dimasukkan ke list Artikel Pilihan
+		$artikelPilihan = $this->artikelModel->getArtikelPilihan(4, 12);
+		$this->data['artikelPilihan'] = $artikelPilihan;
+
+		return view('detailrilismedia.php', $this->data);
 	}
 }

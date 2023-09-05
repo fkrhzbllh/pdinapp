@@ -1,20 +1,10 @@
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper("#swiper-galeri", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 1000,
-      modifier: 1,
-      slideShadows: false,
-    }
-  });
-</script>
+<?= $this->extend('layout/template') ?>
 
+<?= $this->section('content') ?>
+<link rel="stylesheet" href="<?= base_url(); ?>assets/styles/style-galeri.css" type="text/css" />
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
 <!-- Section konten  -->
 <section id="section-konten">
   <div class="container container-konten">
@@ -73,3 +63,23 @@
   </div>
   <div class="container p-3"></div>
 </section>
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper("#swiper-galeri", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 1000,
+      modifier: 1,
+      slideShadows: false,
+    }
+  });
+</script>
+<?= $this->endSection() ?>

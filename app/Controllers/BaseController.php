@@ -64,31 +64,31 @@ abstract class BaseController extends Controller
 		$this->data['judul_halaman'] = 'PDIN';
 	}
 
-	protected function view(string $view, array $data = [], array $options = [])
-	{
-		if (is_array($view)) {
-			foreach ($view as $file_item) {
-				echo view($file_item, $data);
-			}
-		} else {
-			echo view('layout/header.php', $data);
-			echo view('layout/navbar.php');
-			echo view($view, $data);
-			echo view('layout/footer.php');
-		}
-	}
+	// protected function view(string $view, array $data = [], array $options = [])
+	// {
+	// 	if (is_array($view)) {
+	// 		foreach ($view as $file_item) {
+	// 			echo view($file_item, $data);
+	// 		}
+	// 	} else {
+	// 		echo view('layout/header.php', $data);
+	// 		echo view('layout/navbar.php');
+	// 		echo view($view, $data);
+	// 		echo view('layout/footer.php');
+	// 	}
+	// }
 
-	protected function viewAdmin(string $view, array $data = [], array $options = [])
-	{
-		if (is_array($view)) {
-			foreach ($view as $file_item) {
-				echo view($file_item, $data);
-			}
-		} else {
-			echo view('admin/sidebaradmin.php', $data);
+	// protected function viewAdmin(string $view, array $data = [], array $options = [])
+	// {
+	// 	if (is_array($view)) {
+	// 		foreach ($view as $file_item) {
+	// 			echo view($file_item, $data);
+	// 		}
+	// 	} else {
+	// 		echo view('admin/sidebaradmin.php', $data);
 
-			echo view('admin/' . $view, $data);
-			echo view('admin/footeradmin.php');
-		}
-	}
+	// 		echo view('admin/' . $view, $data);
+	// 		echo view('admin/footeradmin.php');
+	// 	}
+	// }
 }

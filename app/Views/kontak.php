@@ -1,3 +1,28 @@
+<?= $this->extend('layout/template') ?>
+
+<?= $this->section('content') ?>
+<style>
+  .mapouter {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    height: 200px;
+  }
+
+  .gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    height: 200px;
+  }
+
+  .gmap_iframe {
+    height: 200px !important;
+  }
+</style>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
 <!-- Section isi -->
 <section id="section-konten">
   <div class="container container-konten">
@@ -24,7 +49,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">WhatsApp</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">+62 812 390 093 93</p>
+                <p class="p-0 ms-3 fw-bold">+62 812 390 093 93</p>
               </div>
             </div>
           </div>
@@ -39,7 +64,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">Email</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">
+                <p class="p-0 ms-3 fw-bold">
                   pdin.yogyakarta@gmail.com
                 </p>
               </div>
@@ -59,7 +84,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">Instagram</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">@pdin.id</p>
+                <p class="p-0 ms-3 fw-bold">@pdin.id</p>
               </div>
             </div>
             <!-- Youtube -->
@@ -71,7 +96,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">YouTube</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">PDIN Yogyakarta</p>
+                <p class="p-0 ms-3 fw-bold">PDIN Yogyakarta</p>
               </div>
             </div>
             <!-- Facebook -->
@@ -83,7 +108,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">TikTok</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">@pdin_id</p>
+                <p class="p-0 ms-3 fw-bold">@pdin_id</p>
               </div>
             </div>
           </div>
@@ -97,7 +122,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">Twitter</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">@pdin.id</p>
+                <p class="p-0 ms-3 fw-bold">@pdin.id</p>
               </div>
             </div>
             <!-- Facebook -->
@@ -109,7 +134,7 @@
               </div>
               <div class="col-10 text-start p-0 m-0 align-self-end">
                 <small class="p-0 m-0 ms-3">Facebook</small>
-                <p class="p-0 ms-3 fs-15 fw-bold">PDIN Yogyakarta</p>
+                <p class="p-0 ms-3 fw-bold">PDIN Yogyakarta</p>
               </div>
             </div>
           </div>
@@ -137,34 +162,10 @@
                 <div class="gmap_canvas">
                   <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=230&amp;height=200&amp;hl=en&amp;q=pusat desain industri nasional&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a>
                 </div>
-                <style>
-                  .mapouter {
-                    position: relative;
-                    text-align: right;
-                    width: 100%;
-                    height: 200px;
-                  }
 
-                  .gmap_canvas {
-                    overflow: hidden;
-                    background: none !important;
-                    width: 100%;
-                    height: 200px;
-                  }
-
-                  .gmap_iframe {
-                    height: 200px !important;
-                  }
-                </style>
               </div>
             </div>
-            <!-- <div class="pe-2">
-                    <img
-                      src="./map-pdin.png"
-                      class="img-fluid object-fit-cover"
-                      alt=""
-                    />
-                  </div> -->
+
           </div>
         </div>
       </div>
@@ -174,3 +175,4 @@
 
   </div>
 </section>
+<?= $this->endSection() ?>

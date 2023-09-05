@@ -1,0 +1,75 @@
+/* Hero */
+  #hero {
+    height: calc(100vh - 128px) !important;
+    background: center center no-repeat;
+    background-size: cover;
+    margin:0;
+    margin-top: 128px;
+    position: relative;
+    padding: 0;
+    transition: 0.8s;
+  }
+  
+  .highlight-header {
+    position: relative;
+    display: inline-block;
+  }
+  .highlight-header:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: '';
+    display: block;
+    margin-bottom: -10px;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: red;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  .highlight-header:hover:after {
+    width: 100%;
+    left: 0;
+  }
+  
+  #hero-container {
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) 90%, rgba(0,0,0,0) 100%);
+    margin: 0px;
+    padding-top: 16px;
+    padding-bottom: 24px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  
+  #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 82px;
+  }
+  #hero p {
+    margin: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+  
+  #hero .btn-lihat-profil {
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 4px;
+    transition: 0.5s;
+    margin-top: 20px;
+    color: #fff;
+    background: #e03a3c;
+    border: 2px solid #e03a3c;
+  }
+  
+  #hero .btn-lihat-profil:hover {
+    background: transparent;
+    border-color: #fff;
+  }

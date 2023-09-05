@@ -1,0 +1,38 @@
+
+
+/* Footer */
+  #logo-footer {
+    max-height: 80px;
+  }
+  .icon-footer {
+    margin: 0px 0px;
+    padding: 8px 0px;
+  }
+  
+  .logo-pemda img {
+    width: 25%;
+    opacity: 0.5;
+    transition: 0.3s;
+    filter: grayscale(50);
+  }
+  
+  .logo-jogja img {
+    width: 75%;
+    opacity: 0.5;
+    transition: 0.3s;
+    filter: grayscale(50);
+  }
+  
+  .logo-yk img {
+    width: 37%;
+    opacity: 0.5;
+    transition: 0.3s;
+    filter: grayscale(50);
+  }
+  
+  .logo-jogja img:hover,
+  .logo-pemda img:hover,
+  .logo-yk img:hover {
+    opacity: 1;
+    filter: none;
+  }

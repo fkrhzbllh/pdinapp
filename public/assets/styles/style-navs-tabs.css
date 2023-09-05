@@ -1,0 +1,33 @@
+/* Nav tab pill styling */
+.pill-merah .nav-item .nav-link {
+    background-color: var(--color-primary);
+    margin-right: 1rem;
+    color: var(--color-on-primary);
+}
+
+.pill-merah .nav-item .nav-link:not(.active) {
+    background-color: var(--color-surface-variant);
+    color: var(--color-primary);
+}
+
+/* Tab nav halaman profil */
+  .responsive-tab-menu .nav-pills .nav-link.active,
+  .responsive-tab-menu .nav-pills .show > .nav-link {
+    color: var(--color-primary);
+    background: var(--color-surface-variant);
+    font-weight: 700;
+  }
+  
+  .responsive-tab-menu .nav-pills .nav-link,
+  .responsive-tab-menu .nav-pills .show > .nav-link {
+    color: var(--color-on-surface);
+  }
+  ul#v-pills-tab {
+    display: block;
+  }
+  @media (max-width: 991px) {
+    ul#v-pills-tab {
+      display: none;
+    }
+  }
+  

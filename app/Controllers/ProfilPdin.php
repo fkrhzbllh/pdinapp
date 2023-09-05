@@ -9,6 +9,6 @@ class ProfilPdin extends BaseController
 		$this->data['judul_halaman'] = 'Profil | Pusat Desain Industri Nasional';
 		$this->data['current_page'] = 'profil';
 
-		$this->view('profilpdin.php', $this->data);
+		return view('main/profil/profil-pdin.php', $this->data);
 	}
 }
