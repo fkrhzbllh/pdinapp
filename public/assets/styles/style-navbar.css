@@ -4,43 +4,43 @@
 
 /* By Damar */
 .navbar {
-    transition: all 0.25 ease;
-  }
-  .navbar img {
+    transition: all 0.25s ease;
+}
+.navbar img {
     transition: 0.4s;
     margin: -0.825rem 0;
     /* background: #fff; */
     padding: 32px;
     height: 128px;
-  }
-  /* End By Damar */
-  
-  #navbar-nav a {
+}
+/* End By Damar */
+
+#navbar-nav a {
     font-size: 14px;
     color: #111111;
     font-weight: 600;
     text-decoration: none;
-  }
-  
-  #navbar-nav a:hover {
+}
+
+#navbar-nav a:hover {
     color: #d82328;
     text-decoration: none;
     font-weight: 700;
-  }
-  
-  #navbar-nav .active {
+}
+
+#navbar-nav .active {
     color: #d82328;
     text-decoration: none;
     font-weight: 700;
-  }
-  
-  #logo-pdin {
+}
+
+#logo-pdin {
     margin: 0px;
     height: 85px;
     transition: 0.4s;
-  }
-  
-  .padding-tambahan {
+}
+
+.padding-tambahan {
     padding-top: 55px;
     padding-bottom: 55px;
-  }
+}
