@@ -12,7 +12,7 @@ use App\Models\GaleriRuanganModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
 
-class DashboardAdmin extends BaseController
+class RuanganAdmin extends BaseController
 {
 	protected $ruanganModel;
 	protected $sewaRuanganModel;

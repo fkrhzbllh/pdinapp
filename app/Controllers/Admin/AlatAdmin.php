@@ -12,7 +12,7 @@ use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
 
-class DashboardAdmin extends BaseController
+class AlatAdmin extends BaseController
 {
 	protected $alatModel;
 	protected $sewaAlatModel;
