@@ -105,7 +105,7 @@ $routes->post('/DashboardAdmin/saveTambahRuangan', 'Admin\RuanganAdmin::saveTamb
 $routes->get('/DashboardAdmin/update-ruangan/(:any)', 'Admin\RuanganAdmin::updateRuangan/$1');
 $routes->post('/DashboardAdmin/saveUpdateRuangan/(:num)', 'Admin\RuanganAdmin::saveUpdateRuangan/$1');
 
-$routes->delete('/DashboardAdmin/ruang/(:num)', 'Admin\RuanganAdmin::deleteRuangan/$1');
+$routes->delete('/DashboardAdmin/ruangan/(:num)', 'Admin\RuanganAdmin::deleteRuangan/$1');
 
 $routes->get('/DashboardAdmin/sewa-ruangan/(:any)', 'Admin\RuanganAdmin::listSewaRuangan/$1');
 
