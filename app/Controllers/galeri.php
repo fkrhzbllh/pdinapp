@@ -54,6 +54,6 @@ class Galeri extends BaseController
 		$galeri = array_merge($this->galeriAlatModel->findAll(), $this->galeriKegiatanModel->findAll(), $this->galeriRuanganModel->findAll());
 		// $this->data['galeri'] = $galeri->paginate(10, 'galeri');
 
-		$this->view('galeri.php', $this->data);
+		return view('galeri.php', $this->data);
 	}
 }

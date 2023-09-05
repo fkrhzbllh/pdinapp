@@ -134,7 +134,7 @@
                                 Detail Kegiatan Penyewaan
                             </h1>
 
-                            <button type="button" class="btn-close bg-secondary me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close bg-pdin-secondary me-1" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="bg-danger w-100" style="height: 4px"></div>
                         <div class="modal-body">

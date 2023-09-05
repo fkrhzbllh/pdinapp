@@ -33,7 +33,7 @@ class ArtikelModel extends \App\Models\BaseModel
 
 	/**
 	 * Ambil artikel spesifik berdasarkan ID
-	 * $id = ID artikel
+	 * @param id ID artikel
 	 */
 	public function getArtikelByID($id)
 	{
@@ -42,7 +42,7 @@ class ArtikelModel extends \App\Models\BaseModel
 
 	/**
 	 * Ambil artikel terbaru sebanyak $jumlah.
-	 * $jumlah = jumlah artikel yang ingin diambil
+	 * @param jumlah berapa artikel yang ingin diambil
 	 */
 	public function getArtikelTerbaru($jumlah)
 	{
@@ -54,8 +54,8 @@ class ArtikelModel extends \App\Models\BaseModel
 
 	/**
 	 * Ambil artikel pilihan yang dipilih secara random sebanyak $jumlah dalam $bulan bulan terakhir.
-	 * $jumlah = banyaknya artikel yang akan diambil
-	 * $bulan = berapa bulan terakhir
+	 * @param jumlah berapa artikel yang akan diambil
+	 * @param bulan berapa bulan terakhir
 	 */
 	public function getArtikelPilihan($jumlah, $bulan)
 	{

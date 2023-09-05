@@ -1,19 +1,21 @@
-<div class="bg-pdin-abu-terang px-2">
-	<div class="container padding-tambahan bg-pdin-abu-terang"></div>
+<?= $this->extend('layout/template') ?>
+
+<?= $this->section('content') ?>
+<div class="bg-pdin-tertiary px-2">
+	<div class="container padding-tambahan bg-pdin-tertiary"></div>
 	<div class="container mt-5">
 		<div class="mt-5 px-2">
 			<div class="row p-5 pt-4 g-3 bg-white shadow-sm rounded-5">
-				<?php if(session()->getFlashdata('sukses')) : ?>
-				<div class="alert alert-success" role="alert">
-					<?= session()->getFlashdata('sukses') ?>
-				</div>
+				<?php if (session()->getFlashdata('sukses')) : ?>
+					<div class="alert alert-success" role="alert">
+						<?= session()->getFlashdata('sukses') ?>
+					</div>
 				<?php endif; ?>
 				<!-- breadcrumb -->
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/">Beranda</a></li>
-						<li class="breadcrumb-item"><a
-								href="<?= ($admin) ? '/admin' : '/fasilitas' ?>">Fasilitas</a>
+						<li class="breadcrumb-item"><a href="<?= ($admin) ? '/admin' : '/fasilitas' ?>">Fasilitas</a>
 						</li>
 						<li class="breadcrumb-item active" aria-current="page">
 							<?php echo $alat['nama'] ?>
@@ -21,20 +23,16 @@
 					</ol>
 				</nav>
 				<div class="col-lg-8">
-					<h4 class="mt-2 text-pdin-merah">
+					<h4 class="mt-2 text-color-primary">
 						<?= $alat['nama'] ?>
 						<span class="m-3">
 							<?php if ($admin) : ?>
-							<a href="/admin/updatealat/<?= $alat['slug'] ?>"
-								class="btn btn-warning">Edit</a>
-							<form
-								action="/admin/alat/<?php echo $alat['id']?>"
-								method="post" class="d-inline">
-								<?= csrf_field(); ?>
-								<input type="hidden" name="_method" value="DELETE">
-								<button class="btn btn-danger" type="submit"
-									onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-							</form>
+								<a href="/admin/updatealat/<?= $alat['slug'] ?>" class="btn btn-warning">Edit</a>
+								<form action="/admin/alat/<?php echo $alat['id'] ?>" method="post" class="d-inline">
+									<?= csrf_field(); ?>
+									<input type="hidden" name="_method" value="DELETE">
+									<button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+								</form>
 							<?php endif; ?>
 						</span>
 					</h4>
@@ -62,49 +60,42 @@
 						</div>
 					</div>
 
-					<?php // echo dd($fotoalat)?>
+					<?php // echo dd($fotoalat)
+					?>
 
 					<h5 class="mt-4 mb-3">Foto Alat</h5>
-					<?php if (is_array($fotoalat) && sizeof($fotoalat) > 1): ?>
-					<!-- Swiper -->
-					<div class="swiper mySwiper mb-2 pe-2">
-						<div class="swiper-wrapper">
-							<?php foreach ($fotoalat as $key => $f): ?>
-							<div class="swiper-slide">
-								<img src="<?= base_url() . 'uploads/' . $f['nama_file'] ?>"
-									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
-									style="width: 100%; max-height: 450px" />
+					<?php if (is_array($fotoalat) && sizeof($fotoalat) > 1) : ?>
+						<!-- Swiper -->
+						<div class="swiper mySwiper mb-2 pe-2">
+							<div class="swiper-wrapper">
+								<?php foreach ($fotoalat as $key => $f) : ?>
+									<div class="swiper-slide">
+										<img src="<?= base_url() . 'uploads/' . $f['nama_file'] ?>" alt="" class="img-fluid object-fit-cover rounded-4 mb-3" style="width: 100%; max-height: 450px" />
+									</div>
+								<?php endforeach; ?>
 							</div>
-							<?php endforeach; ?>
+							<div class="swiper-pagination"></div>
 						</div>
-						<div class="swiper-pagination"></div>
-					</div>
-					<?php elseif (is_array($fotoalat) && isset($fotoalat[0])) :?>
-					<!-- Swiper -->
-					<div class="swiper mySwiper mb-2 pe-2">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<img src="<?= base_url() . 'uploads/' . $fotoalat[0]['nama_file'] ?>"
-									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
-									style="width: 100%; max-height: 450px"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
+					<?php elseif (is_array($fotoalat) && isset($fotoalat[0])) : ?>
+						<!-- Swiper -->
+						<div class="swiper mySwiper mb-2 pe-2">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="<?= base_url() . 'uploads/' . $fotoalat[0]['nama_file'] ?>" alt="" class="img-fluid object-fit-cover rounded-4 mb-3" style="width: 100%; max-height: 450px" onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
+								</div>
 							</div>
+							<div class="swiper-pagination"></div>
 						</div>
-						<div class="swiper-pagination"></div>
-					</div>
-					<?php else :?>
-					<!-- Swiper -->
-					<div class="swiper mySwiper mb-2 pe-2">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<img src="<?= base_url() . 'uploads/' . $fotoalat['nama_file'] ?>"
-									alt="" class="img-fluid object-fit-cover rounded-4 mb-3"
-									style="width: 100%; max-height: 450px"
-									onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
+					<?php else : ?>
+						<!-- Swiper -->
+						<div class="swiper mySwiper mb-2 pe-2">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="<?= base_url() . 'uploads/' . $fotoalat['nama_file'] ?>" alt="" class="img-fluid object-fit-cover rounded-4 mb-3" style="width: 100%; max-height: 450px" onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" />
+								</div>
 							</div>
+							<div class="swiper-pagination"></div>
 						</div>
-						<div class="swiper-pagination"></div>
-					</div>
 					<?php endif; ?>
 					<!-- <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div> -->
@@ -157,9 +148,7 @@
                       </dd>
                     </dl> -->
 								<div class="w-100 mt-4 mb-2">
-									<a class="btn btn-danger d-block m-2 m-xl-0 mb-lg-2"
-										href="/fasilitas/sewaalat/<?= $alat['id'] ?>"
-										target="_blank">Sewa</a>
+									<a class="btn btn-danger d-block m-2 m-xl-0 mb-lg-2" href="/fasilitas/sewaalat/<?= $alat['id'] ?>" target="_blank">Sewa</a>
 								</div>
 							</div>
 						</div>
@@ -223,8 +212,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="container padding-tambahan bg-pdin-abu-terang"></div>
+	<div class="container padding-tambahan bg-pdin-tertiary"></div>
 </div>
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
@@ -252,7 +244,7 @@
 			initialView: 'dayGridMonth',
 			themeSystem: 'bootstrap5',
 			locale: 'id',
-			events: <?php echo (isset($jadwal_sewa)) ? json_encode($jadwal_sewa) : null; ?> , //array kegiatan -> objek kegiatan
+			events: <?php echo (isset($jadwal_sewa)) ? json_encode($jadwal_sewa) : null; ?>, //array kegiatan -> objek kegiatan
 		});
 		calendar.render();
 	});
@@ -269,8 +261,9 @@
 			//maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 		});
 		var
-			$biaya = <?php echo $alat['biaya_sewa']; ?> ;
+			$biaya = <?php echo $alat['biaya_sewa']; ?>;
 		$('#sewa').text(formatter.format($biaya));
 	});
 </script>
 </div>
+<?= $this->endSection() ?>

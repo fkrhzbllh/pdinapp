@@ -1,3 +1,6 @@
+<?= $this->extend('layout/admin/admin-template') ?>
+
+<?= $this->section('content') ?>
 <div class="bg-white col-12 p-5" id="">
     <h3 class="mb-3">Ubah Ruangan</h3>
     <form id="formruangan" class="mt-3" action="/DashboardAdmin/saveUpdateRuangan/<?= $ruangan['id'] ?>" method="post" enctype="multipart/form-data">
@@ -217,7 +220,9 @@
 </div>
 </div>
 </section>
+<?= $this->endSection() ?>
 
+<?= $this->section('script') ?>
 <script>
     const dt = new DataTransfer(); // Permet de manipuler les fichiers de l'input file
 
@@ -418,7 +423,4 @@
     });
 </script>
 
-<!-- <script>
-    var input = $('#fotoruangan');
-    input.files = <?php $fotoruangan ?> ;
-</script> -->
+<?= $this->endSection() ?>

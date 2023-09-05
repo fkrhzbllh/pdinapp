@@ -26,7 +26,7 @@ class Kegiatan extends BaseController
 	public function index()
 	{
 		$kegiatan = $this->kegiatanModel->findAll();
-		// $this->data['kegiatan'] = $kegiatan;
+
 		foreach ($kegiatan as $key => $value) {
 			$this->data['kegiatan'][$key]['title'] = $value['nama_kegiatan'];
 			$this->data['kegiatan'][$key]['start'] = $value['tgl_mulai'];
@@ -37,20 +37,9 @@ class Kegiatan extends BaseController
 			$this->data['kegiatan'][$key]['link_pendaftaran'] = $value['link_pendaftaran'];
 			$this->data['kegiatan'][$key]['link_virtual'] = $value['link_virtual'];
 
-			// if ($this->galeriKegiatanModel->getGaleriByKegiatan($kegiatan['id'])) {
-			// 	$fotokegiatan = $this->galeriKegiatanModel->getGaleriByKegiatan($kegiatan['id']);
-			// } else {
-			// 	$fotokegiatan['nama_file'] = '...';
-			// }
 			$this->data['kegiatan'][$key]['poster'] = base_url() . 'uploads/' . $value['poster'];
-			// $this->data['kegiatan'][$key]['backgroundColor'] = '#00a65a';
 		}
 
-		// $this->data['kegiatan']['title'] = $kegiatan[0]['nama_kegiatan'];
-		// $this->data['kegiatan']['start'] = $kegiatan[0]['tgl_mulai'];
-		// $this->data['kegiatan']['end'] = $kegiatan[0]['tgl_selesai'];
-		// $this->data['kegiatan']['backgroundColor'] = "#00a65a";
-
-		$this->view('kegiatan.php', $this->data);
+		return view('kegiatan.php', $this->data);
 	}
 }

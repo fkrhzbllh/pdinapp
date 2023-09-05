@@ -83,11 +83,11 @@ class Beranda extends BaseController
 		$galeriKegiatan = $this->galeriKegiatanModel->getGaleri(5);
 		$this->data['galeri_kegiatan'] = $galeriKegiatan;
 
-		$this->view('beranda.php', $this->data);
+		return view('main/beranda/beranda.php', $this->data);
 	}
 
 	public function coba()
 	{
-		$this->view('coba.php');
+		return view('coba.php');
 	}
 }

@@ -7,7 +7,9 @@
      */
 
     helper('text'); ?>
+    <?= $this->extend('layout/template') ?>
 
+    <?= $this->section('content') ?>
     <!-- Konten section -->
     <section id="section-konten">
       <div class="container container-konten">
@@ -25,7 +27,7 @@
 
                       <!-- Gambar artikel -->
                       <div class="col-md-6 position-relative">
-                        <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="ratio ratio-4x3 fit-cover h-100" alt="..." />
+                        <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="ratio ratio-4x3 object-fit-cover h-100" alt="..." />
                       </div>
 
                       <!-- Body artikel -->
@@ -33,7 +35,7 @@
                         <div class="card-body p-md-5">
 
                           <!-- Kategori -->
-                          <p class="text-danger mb-3 fs-18"><b><?php echo $a['kategori']; ?></b></p>
+                          <p class="text-danger mb-3"><b><?php echo $a['kategori']; ?></b></p>
 
                           <!-- Judul -->
                           <h3 class="card-title mb-3">
@@ -110,7 +112,7 @@
                       <div class="card-text crop-text-2 mb-3">
                         <?php echo $a['konten'] ?>
                       </div>
-                      <!-- <span class="badge rounded-pill bg-dark">Tag1</span> -->
+
                       <p class="card-text crop-text-2 mb-3">
                         <b>Pusat Desain Industri Nasional</b>
                       </p>
@@ -161,7 +163,7 @@
 
                   <!-- Gambar kegiatan -->
                   <div class="col-3 position-relative">
-                    <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="card-img fit-cover w-100 h-100" alt="..." />
+                    <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="card-img object-fit-cover w-100 h-100" alt="..." />
                   </div>
 
                   <!-- Ringkasan kegiatan -->
@@ -202,7 +204,9 @@
       </div>
     </section>
     <!-- Akhir konten section -->
+    <?= $this->endSection() ?>
 
+    <?= $this->section('script') ?>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
@@ -225,3 +229,4 @@
         },
       });
     </script>
+    <?= $this->endSection() ?>

@@ -7,55 +7,66 @@
  */
 
 helper('text'); ?>
+<?= $this->extend('layout/template') ?>
 
-<!-- Section judul -->
+<?= $this->section('style') ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<!-- Swiper style -->
+<style>
+	.swiper-slide {
+		background-position: center;
+		background-size: cover;
+		width: 512px;
+		height: 256px;
+		border-radius: var(--border-radius-primary);
+	}
+
+	.swiper-slide img {
+		display: block;
+		object-fit: cover;
+		width: 512px;
+		height: 256px;
+		border-radius: var(--border-radius-primary);
+	}
+</style>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+<!-- Section judul -->
 <section class="d-flex align-items-center p-0" style="margin-top: 160px;">
 	<div class="container">
 		<div class="col-12">
 
-			<!-- Demo styles -->
-			<style>
-				.swiper-slide {
-					background-position: center;
-					background-size: cover;
-					width: 512px;
-					height: 256px;
-					border-radius: var(--border-radius-primary);
-				}
-
-				.swiper-slide img {
-					display: block;
-					object-fit: cover;
-					width: 512px;
-					height: 256px;
-					border-radius: var(--border-radius-primary);
-				}
-			</style>
-
-			<!-- Swiper -->
-			<div class=" swiper swiper-fasilitas">
+			<!-- Swiper fasilitas -->
+			<div class="swiper swiper-fasilitas">
 				<div class="swiper-wrapper">
+
+					<!-- Tampilkan ruangan berfoto -->
 					<?php foreach ($ruangan_berfoto as $key => $r) : ?>
-						<?php //if (!is_null($fotoruangan[$key])) : 
-						?>
 						<div class="swiper-slide rounded-4">
 							<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>">
 								<img src="<?= base_url() ?>uploads/<?= $foto_ruangan_berfoto[$key]['nama_file'] ?>" id="foto-ruangan-<?= $key ?>">
 							</a>
 						</div>
-						<?php //endif 
-						?>
 					<?php endforeach; ?>
 				</div>
+
+				<!-- Paginasi -->
 				<div class="swiper-pagination"></div>
 			</div>
 
+			<!-- Penjelasan fasilitas -->
 			<div class="text-center">
 				<div class="row">
 					<div class="col-12 col-xl-6 mx-auto">
+
+						<!-- Lantai fasilitas -->
 						<p class="text-danger fw-bold mt-4 mb-2" id="fasilitas-lantai">Lantai</p>
+
+						<!-- Nama fasilitas -->
 						<h2 class="mb-4" id="fasilitas-judul">Fasilitas</h2>
+
+						<!-- Deskripsi pendek fasilitas -->
 						<p id="fasilitas-deskripsi" class="fs-6">Deskripsi fasilitas</p>
 					</div>
 				</div>
@@ -63,171 +74,255 @@ helper('text'); ?>
 
 		</div>
 	</div>
-	</div>
-	</div>
 </section>
 <!-- Akhir section judul  -->
 
 
-<!-- ======= isi Section ======= -->
+<!-- Section konten -->
 <section id="section-konten-secondary">
 	<div class="container container-konten">
 
-		<!-- judul section -->
+		<!-- Section judul konten -->
 		<div class="row" data-aos="fade-up">
-			<!-- <div class="d-flex flex-row"> -->
+
+			<!-- Kolom tab navigasi -->
 			<div class="col-12 col-md-6  ">
-				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-					<li class="nav-item pill-ruangan-alat me-1" role="presentation">
-						<button class="nav-link active" id="pills-ruangan-tab" data-bs-toggle="pill" data-bs-target="#pills-ruangan" type="button" role="tab" aria-controls="pills-ruangan" aria-selected="true">Ruangan</button>
+
+				<!-- Tab navigasi -->
+				<ul class="nav nav-pills pill-merah mb-3" id="pills-tab" role="tablist">
+
+					<!-- Tab Ruangan -->
+					<li class="nav-item" role="presentation">
+						<button class="nav-link  active" id="pills-ruangan-tab" data-bs-toggle="pill" data-bs-target="#pills-ruangan" type="button" role="tab" aria-controls="pills-ruangan" aria-selected="true">Ruangan</button>
 					</li>
-					<li class="nav-item pill-ruangan-alat" role="presentation">
+
+					<!-- Tab Alat -->
+					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="pills-alat-tab" data-bs-toggle="pill" data-bs-target="#pills-alat" type="button" role="tab" aria-controls="pills-alat" aria-selected="false">Alat</button>
 					</li>
+
 				</ul>
 			</div>
+
+			<!-- Kolom filter -->
 			<div class="col-12 col-md-6">
-				<div class="row mb-3">
+				<div class="row">
+
+					<!-- Filter tipe ruangan -->
 					<div class="col-12 col-sm-6 my-1">
 						<div class="input-group" id="input-group">
-							<!-- <span class="input-group-text">Filter</span> -->
-							<select class="form-select ms-auto " aria-label="Default select example" id="filter">
+							<select class="form-select ms-auto" aria-label="Default select example" id="filter">
 								<option selected value="all">Semua Tipe Ruangan</option>
 								<?php foreach ($tipe_ruangan as $key => $tr) : ?>
-									<option value="<?= $tr ?>"><?= $tr ?></option>
+									<option value="<?= $tr['tipe'] ?>"><?= $tr['tipe'] ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
 					</div>
+
+					<!-- Filter pencarian -->
 					<div class="col-12 col-sm-6 my-1">
 						<div id="input-cari-ruangan" class="input-group mb-3">
+
+							<!-- Input pencarian ruangan -->
 							<input type="text" class="form-control " id="cariruangan" placeholder="Cari ruangan...">
 							<span class="input-group-text bi-search text-bg-danger" id=""></span>
+
 						</div>
+
 						<div id="input-cari-alat" style=" display:none;" class="input-group mb-3">
+
+							<!-- Input pencarian alat -->
 							<input type="text" class="form-control " id="carialat" placeholder="Cari alat...">
 							<span class="input-group-text bi-search text-bg-danger" id=""></span>
+
 						</div>
-						<!-- <input type="text" class="form-control " style="" id="cariruangan" placeholder="Cari ruangan..."> -->
-						<!-- <input type="text" class="form-control " style=" display:none;" id="carialat" placeholder="Cari alat..."> -->
 					</div>
-					<!-- <div class="input-group mb-3">
-							<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-							<div class="btn btn-danger" type="button"><span class="bi bi-search"></span></div>
-						</div> -->
+					<!-- Akhir filter pencarian -->
+
 				</div>
 			</div>
-		</div>
+			<!-- Akhir kolom filter -->
 
+		</div>
+		<!-- Akhir section judul konten -->
+
+		<!-- Section konten tab -->
 		<div class="tab-content" id="pills-tabContent" data-aos="fade-up">
+
+			<!-- Konten tab ruangan -->
 			<div class="tab-pane fade show active" id="pills-ruangan" role="tabpanel" aria-labelledby="pills-ruangan-tab" tabindex="0">
+
 				<?php if ($admin) : ?>
 					<a class="btn btn-success mb-3" href="<?= base_url() . 'admin/tambahruangan' ?>">Tambah
 						Ruangan</a>
 				<?php endif; ?>
+
+				<!-- Daftar ruangan -->
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
 
+					<!-- Ruangan tidak ditemukan -->
 					<p id="ruangan-tidak-ditemukan">Tidak ditemukan</p>
 
-					<!-- card ruangan -->
+					<!-- Card ruangan -->
 					<?php foreach ($ruangan as $key => $r) : ?>
 
-						<div class="col <?= $r['tipe'] ?> mb-3">
+						<?php
+						$tipe_ruangan = $r['tipe']; // Masukkan tipe ke class untuk filter 
+						?>
+						<div class="col <?= $tipe_ruangan ?> mb-3">
 							<div class="card">
+								<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
 
-								<?php if (!is_null($fotoruangan[$key])) : ?>
-									<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
+									<!-- Foto ruangan -->
+									<?php if (!is_null($fotoruangan[$key])) : ?>
+
+										<!-- Gambar ruangan -->
 										<img class="card-img-top object-fit-cover" src="<?= base_url() ?>uploads/<?= $fotoruangan[$key]['nama_file'] ?>" width="100%" height="200">
-									</a>
-								<?php else : ?>
-									<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
+
+									<?php else : ?>
+
+										<!-- Gambar ruangan default -->
 										<img class="card-img-top object-fit-scale" src="<?php echo base_url() ?>assets/Logo-PDIN.png" onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" width="100%" height="200">
-									</a>
-								<?php endif; ?>
-								<!-- <h5 class="card-header">Featured</h5> -->
-								<div class="card-title px-3 pt-3">
-									<p class="text-danger fw-bold mb-2">Lantai
-										<?php if ($r['lantai'] == 0) {
-											echo 'Floor Ground';
-										} else {
-											echo $r['lantai'];
-										} ?>
-									</p>
-									<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>" class="">
+
+									<?php endif; ?>
+									<!-- Akhir foto ruangan -->
+
+									<!-- Judul ruangan -->
+									<div class="card-title px-3 pt-3">
+
+										<!-- Lantai ruangan -->
+										<p class="text-danger fw-bold mb-2">Lantai
+											<?php if ($r['lantai'] == 0) {
+												echo 'Floor Ground';
+											} else {
+												echo $r['lantai'];
+											} ?>
+										</p>
+
+										<!-- Judul ruangan -->
 										<h5 class="crop-text-1" id="namaruangan">
 											<?= $r['nama'] ?>
 										</h5>
-									</a>
-								</div>
-								<div class="card-body pt-0">
 
-									<p class="card-text crop-text-2">
-										<?= $r['deskripsi'] ?>
-									</p>
-									<?php if ($admin) : ?>
-										<a href="/admin/updateruangan/<?= $r['slug'] ?>" class="btn btn-warning">Edit</a>
-										<form action="/admin/ruang/<?php echo $r['id'] ?>" method="post" class="d-inline">
-											<?= csrf_field(); ?>
-											<input type="hidden" name="_method" value="DELETE">
-											<button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-										</form>
+									</div>
+									<!-- Akhir judul ruangan -->
 
-									<?php endif; ?>
+									<!-- Deskripsi ruangan -->
+									<div class="card-body pt-0">
 
-								</div>
+										<!-- Teks deskripsi -->
+										<p class="card-text crop-text-2">
+											<?= $r['deskripsi'] ?>
+										</p>
+
+										<!-- Admin -->
+										<?php if ($admin) : ?>
+
+											<!-- Edit ruangan -->
+											<a href="/admin/updateruangan/<?= $r['slug'] ?>" class="btn btn-warning">Edit</a>
+
+											<!-- Hapus ruangan -->
+											<form action="/admin/ruang/<?php echo $r['id'] ?>" method="post" class="d-inline">
+												<?= csrf_field(); ?>
+												<input type="hidden" name="_method" value="DELETE">
+												<button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+											</form>
+
+										<?php endif; ?>
+
+									</div>
+									<!-- Akhir deskripsi ruangan -->
+								</a>
 							</div>
 						</div>
 
 					<?php endforeach; ?>
+					<!-- Akhir card ruangan -->
 
 				</div>
+				<!-- Akhir daftar ruangan -->
+
 			</div>
+			<!-- Akhir konten tab ruangan -->
+
+			<!-- Konten tab alat -->
 			<div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-alat-tab" tabindex="0">
+
 				<?php if ($admin) : ?>
+					<!-- Admin -->
 					<a class="btn btn-success mb-3" href="<?= base_url() . 'admin/tambahalat' ?>">Tambah
 						Alat</a>
 				<?php endif; ?>
+
+				<!-- Daftar alat -->
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3 mb-4">
-					<!-- card alat -->
+
+					<!-- Card alat -->
 					<?php foreach ($alat as $key => $r) : ?>
 						<div class="col mb-3">
 							<div class="card">
-								<?php if (!is_null($fotoalat[$key])) : ?>
-									<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>" class="">
+
+								<!-- Link alat -->
+								<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>">
+
+									<!-- Foto alat -->
+									<?php if (!is_null($fotoalat[$key])) : // Apabila alat memiliki foto 
+									?>
+
+										<!-- Gambar alat -->
 										<img class="card-img-top object-fit-cover" src="<?= base_url() ?>uploads/<?= $fotoalat[$key]['nama_file'] ?>" width="100%" height="200">
-									</a>
-								<?php else : ?>
-									<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>" class="">
+
+
+									<?php else : // Apabila alat tidak memiliki foto 
+									?>
+
+										<!-- Gambar alat default -->
 										<img class="card-img-top object-fit-scale" src="<?php echo base_url() ?>assets/Logo-PDIN.png" onerror="this.onerror=null; this.src='<?php echo base_url() ?>assets/Logo-PDIN.png'" width="100%" height="200">
-									</a>
-								<?php endif; ?>
-								<!-- <h5 class="card-header">Featured</h5> -->
-								<div class="card-title px-3 pt-3">
-									<a href="<?= ($admin) ? '/admin/alat/' . $r['slug'] : '/fasilitas/alat/' . $r['slug']; ?>" class="">
+
+									<?php endif; ?>
+									<!-- Akhir foto alat -->
+
+									<!-- Nama alat -->
+									<div class="card-title px-3 pt-3">
 										<h5 class="crop-text-1" id="namaalat">
 											<?= $r['nama'] ?>
 										</h5>
-									</a>
-								</div>
-								<div class="card-body pt-0">
-									<p class="card-text">
-										<?= $r['deskripsi'] ?>
-									</p>
-								</div>
+									</div>
+									<!-- Akhir nama alat -->
+
+									<!-- Deskripsi alat -->
+									<div class="card-body pt-0">
+										<p class="card-text">
+											<?= $r['deskripsi'] ?>
+										</p>
+									</div>
+									<!-- Akhir deskripsi alat -->
+								</a>
+
 							</div>
 						</div>
 					<?php endforeach; ?>
+					<!-- Akhir card alat -->
+
 				</div>
+				<!-- Akhir daftar alat -->
+
 			</div>
+			<!-- Akhir konten tab alat -->
+
 		</div>
+		<!-- Akhir section isi konten -->
 
 
 	</div>
 	<div class="container p-3"></div>
 </section>
 
+<?= $this->endSection() ?>
 
-<!-- fitur cari ruangan dan alat -->
+<?= $this->section('script') ?>
+<!-- Fitur cari ruangan dan alat -->
 <script>
 	$(document).ready(function() {
 		$("#ruangan-tidak-ditemukan").hide();
@@ -256,7 +351,7 @@ helper('text'); ?>
 	});
 </script>
 
-<!-- toggle kolom filter dan cari -->
+<!-- Toggle kolom filter dan cari -->
 <script>
 	$(document).ready(function() {
 		$('#pills-tab').find('button').on('show.bs.tab', function() {
@@ -378,3 +473,4 @@ helper('text'); ?>
 
 	});
 </script>
+<?= $this->endSection() ?>

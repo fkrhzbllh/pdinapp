@@ -1,0 +1,56 @@
+/* Layanan */
+.layanan .icon-box {
+  background: var(--color-surface-variant);
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: var(--border-radius-primary);
+  transition: 0.3s;
+  height: 85%;
+}
+
+.layanan .icon-box:hover {
+  background: var(--color-surface);
+  /* Perbesar */
+  transform: scale(
+    1.1
+  );
+}
+
+.layanan .icon-box i {
+  float: left;
+  color: var(--color-primary);
+  font-size: 40px;
+  line-height: 0;
+}
+
+.layanan .icon-box h4 {
+  margin-left: 70px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.layanan .icon-box h4 a {
+  color: var(--color-on-surface);
+  transition: 0.3s;
+}
+
+.layanan .icon-box h4 a:hover {
+  text-decoration: bold;
+  color: var(--color-primary);
+}
+
+.layanan .icon-box p {
+  margin-left: 70px;
+  line-height: 24px;
+  font-size: 14px;
+  color: var(--color-on-surface);
+}
+
+/* Kegiatan */
+.carousel-caption {
+  background-color: var(--color-surface-inverse-transparent);
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}

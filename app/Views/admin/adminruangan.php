@@ -1,3 +1,6 @@
+<?= $this->extend('layout/admin/admin-template') ?>
+
+<?= $this->section('content') ?>
 <div class="p-5 col-12 bg-white">
     <?php if (session()->getFlashdata('sukses')) : ?>
         <div class="alert alert-success" role="alert">
@@ -79,7 +82,9 @@
     <?php // echo $pager->links('artikel', 'pager')
     ?>
 </div>
+<?= $this->endSection() ?>
 
+<?= $this->section('script') ?>
 <script>
     $(document).ready(function() {
         $('#tableruangan').DataTable({
@@ -94,3 +99,4 @@
         });
     });
 </script>
+<?= $this->endSection() ?>

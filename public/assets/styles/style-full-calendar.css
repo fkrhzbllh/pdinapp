@@ -1,0 +1,83 @@
+.fc .fc-prev-button {
+    font-size: 10px;
+    background: #d82328;
+    border-color: #d82328;
+    
+  }
+  .fc .fc-prev-button:active {
+    font-size: 10px;
+    background: #940002;
+    border-color: #940002;
+    
+  }
+  .fc .fc-prev-button:hover {
+    font-size: 10px;
+    background: #b30003;
+    border-color: #b30003;
+    
+  }
+  .fc .fc-next-button {
+    font-size: 10px;
+    background: #d82328;
+    border-color: #d82328;
+  }
+  .fc .fc-next-button:active {
+    font-size: 10px;
+    background: #940002;
+    border-color: #940002;
+  }
+  .fc .fc-next-button:hover {
+    font-size: 10px;
+    background: #b30003;
+    border-color: #b30003;
+  }
+  .fc .fc-today-button {
+    font-size: 10px;
+    background: #d82328;
+    border-color: #d82328;
+  }
+  .fc .fc-today-button:active {
+    font-size: 10px;
+    background: #940002;
+    border-color: #940002;
+  }
+  .fc .fc-today-button:hover {
+    font-size: 10px;
+    background: #b30003;
+    border-color:#b30003;
+  }
+  
+  .fc .fc-dayGridMonth-button {
+    font-size: 10px;
+    background: #d82328;
+    border-color: #d82328;
+  }
+  .fc .fc-dayGridMonth-button.active {
+    font-size: 10px;
+    background: #940002;
+    border-color: #940002;
+  }
+  .fc .fc-dayGridMonth-button:hover {
+    font-size: 10px;
+    background: #b30003;
+    border-color:#b30003;
+  }
+  
+  .fc .fc-listMonth-button {
+    font-size: 10px;
+    background: #d82328;
+    border-color: #d82328;
+  }
+  .fc .fc-listMonth-button.active {
+    font-size: 10px;
+    background: #940002;
+    border-color: #940002;
+  }
+  .fc .fc-listMonth-button:hover {
+    font-size: 10px;
+    background: #b30003;
+    border-color:#b30003;
+  }
+  .fc .fc-toolbar-title {
+    font-size: 18px;
+  }

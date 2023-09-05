@@ -1,18 +1,15 @@
+<?= $this->extend('layout/admin/admin-template') ?>
+
+<?= $this->section('content') ?>
 <div class="bg-white col-12 p-5" id="">
     <h3 class="mb-3">Ubah Alat</h3>
-    <form id="formalat" class="mt-3"
-        action="/DashboardAdmin/saveUpdateAlat/<?= $alat['id'] ?>"
-        method="post" enctype="multipart/form-data">
-        <?php echo csrf_field()?>
+    <form id="formalat" class="mt-3" action="/DashboardAdmin/saveUpdateAlat/<?= $alat['id'] ?>" method="post" enctype="multipart/form-data">
+        <?php echo csrf_field() ?>
         <div class="row g-3">
             <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
                 <label for="nama" class="form-label">Nama Alat</label>
-                <input type="text"
-                    class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>"
-                    id="nama" placeholder=""
-                    value="<?= (old('nama')) ? old('nama') : $alat['nama'] ?>"
-                    name="nama" autofocus>
+                <input type="text" class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>" id="nama" placeholder="" value="<?= (old('nama')) ? old('nama') : $alat['nama'] ?>" name="nama" autofocus>
                 <div class="invalid-feedback">
                     <?= validation_show_error('nama'); ?>
                 </div>
@@ -20,10 +17,7 @@
 
             <div class="col-12">
                 <label for="deskripsiAlat" class="form-label">Deskripsi Alat</label>
-                <textarea
-                    class="form-control <?= (validation_show_error('deskripsiAlat')) ? 'is-invalid' : ''; ?>"
-                    id="deskripsiAlat" placeholder="" value=""
-                    name="deskripsiAlat"><?= (old('deskripsiAlat')) ? old('deskripsiAlat') : $alat['deskripsi'] ?></textarea>
+                <textarea class="form-control <?= (validation_show_error('deskripsiAlat')) ? 'is-invalid' : ''; ?>" id="deskripsiAlat" placeholder="" value="" name="deskripsiAlat"><?= (old('deskripsiAlat')) ? old('deskripsiAlat') : $alat['deskripsi'] ?></textarea>
                 <div class="invalid-feedback">
                     <?= validation_show_error('deskripsiAlat'); ?>
                 </div>
@@ -33,11 +27,7 @@
                 <label for="biaya-sewa" class="form-label">Biaya Sewa</label>
                 <div class="input-group">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" step="1000"
-                        class="form-control biaya-sewa <?= (validation_show_error('fasilitas')) ? 'is-invalid' : ''; ?>"
-                        id="biaya-sewa"
-                        value="<?= (old('biayasewa')) ? old('biayasewa') : $alat['biaya_sewa'] ?>"
-                        name="biayasewa">
+                    <input type="number" step="1000" class="form-control biaya-sewa <?= (validation_show_error('fasilitas')) ? 'is-invalid' : ''; ?>" id="biaya-sewa" value="<?= (old('biayasewa')) ? old('biayasewa') : $alat['biaya_sewa'] ?>" name="biayasewa">
                 </div>
                 <div class="invalid-feedback">
                     <?= validation_show_error('biayasewa'); ?>
@@ -52,8 +42,7 @@
                     <a class="btn btn-danger text-light" role="button" aria-disabled="false">+ Tambah Gambar</a>
 
                 </label>
-                <input type="file" name="fotoalat[]" id="fotoalat" style="visibility: hidden; position: absolute;"
-                    multiple />
+                <input type="file" name="fotoalat[]" id="fotoalat" style="visibility: hidden; position: absolute;" multiple />
 
             </p>
             <div id="files-area">
@@ -63,14 +52,15 @@
                 </div>
             </div>
 
-            <input type="hidden" name="slug"
-                value="<?= $alat['slug'] ?>">
+            <input type="hidden" name="slug" value="<?= $alat['slug'] ?>">
 
             <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
         </div>
     </form>
 </div>
+<?= $this->endSection() ?>
 
+<?= $this->section('script') ?>
 <script>
     const dt = new DataTransfer(); // Permet de manipuler les fichiers de l'input file
 
@@ -124,80 +114,79 @@
         });
     });
 
-    <?php foreach($fotoalat as $f) : ?>
-    {
-        let fileBloc = $('<span/>', {
-                class: 'file-block'
-            }),
-            fileName = $('<span/>', {
-                class: 'name',
-                text: '<?= $f['nama_file'] ?>'
-            });
-        // console.log(this.files.item(i));
-        // const reader = new FileReader();
-        let image = new Image();
-        image.height = 100;
-        // image.title = file.name;
-        // image.src = this.files.item(i).name;
-        image
-            .src =
-            '<?= base_url() . 'uploads/' . $f['nama_file'] ?>';
-        // image
-        //     .src = '';
-        // console.log(this.result);
-        // reader.onload = function(e) {
-        // }
-        // reader.readAsDataURL(this.files.item(i));
+    <?php foreach ($fotoalat as $f) : ?> {
+            let fileBloc = $('<span/>', {
+                    class: 'file-block'
+                }),
+                fileName = $('<span/>', {
+                    class: 'name',
+                    text: '<?= $f['nama_file'] ?>'
+                });
+            // console.log(this.files.item(i));
+            // const reader = new FileReader();
+            let image = new Image();
+            image.height = 100;
+            // image.title = file.name;
+            // image.src = this.files.item(i).name;
+            image
+                .src =
+                '<?= base_url() . 'uploads/' . $f['nama_file'] ?>';
+            // image
+            //     .src = '';
+            // console.log(this.result);
+            // reader.onload = function(e) {
+            // }
+            // reader.readAsDataURL(this.files.item(i));
 
-        fileBloc.append('<span class="file-delete"><span>+</span></span>')
-            .append(fileName).append(image);
-        $("#filesList > #files-names").append(fileBloc);
+            fileBloc.append('<span class="file-delete"><span>+</span></span>')
+                .append(fileName).append(image);
+            $("#filesList > #files-names").append(fileBloc);
 
-        // ***Here is the code for converting "image source" (url) to "Base64".***
+            // ***Here is the code for converting "image source" (url) to "Base64".***
 
-        let url =
-            // 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'
-            '<?= base_url() . 'uploads/' . $f['nama_file'] ?>'
-        const toDataURL = url => fetch(url)
-            .then(response => response.blob())
-            .then(blob => new Promise((resolve, reject) => {
-                const reader = new FileReader()
-                reader.onloadend = () => resolve(reader.result)
-                reader.onerror = reject
-                reader.readAsDataURL(blob)
-            }))
+            let url =
+                // 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'
+                '<?= base_url() . 'uploads/' . $f['nama_file'] ?>'
+            const toDataURL = url => fetch(url)
+                .then(response => response.blob())
+                .then(blob => new Promise((resolve, reject) => {
+                    const reader = new FileReader()
+                    reader.onloadend = () => resolve(reader.result)
+                    reader.onerror = reject
+                    reader.readAsDataURL(blob)
+                }))
 
 
-        // ***Here is code for converting "Base64" to javascript "File Object".***
+            // ***Here is code for converting "Base64" to javascript "File Object".***
 
-        function dataURLtoFile(dataurl, filename) {
-            var arr = dataurl.split(','),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
+            function dataURLtoFile(dataurl, filename) {
+                var arr = dataurl.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new File([u8arr], filename, {
+                    type: mime
+                });
             }
-            return new File([u8arr], filename, {
-                type: mime
-            });
-        }
 
 
-        // *** Calling both function ***
+            // *** Calling both function ***
 
-        toDataURL(url)
-            .then(dataUrl => {
-                console.log('Here is Base64 Url', dataUrl)
-                var fileData = dataURLtoFile(dataUrl,
-                    "<?= $f['nama_file'] ?>");
-                console.log("Here is JavaScript File Object", fileData)
-                // fileArr.push(fileData)
-                dt.items.add(fileData);
-                console.log("Here is Data Transfer", dt.files.item)
-            })
-    };
+            toDataURL(url)
+                .then(dataUrl => {
+                    console.log('Here is Base64 Url', dataUrl)
+                    var fileData = dataURLtoFile(dataUrl,
+                        "<?= $f['nama_file'] ?>");
+                    console.log("Here is JavaScript File Object", fileData)
+                    // fileArr.push(fileData)
+                    dt.items.add(fileData);
+                    console.log("Here is Data Transfer", dt.files.item)
+                })
+        };
     <?php endforeach; ?>
     // Ajout des fichiers dans l'objet DataTransfer
     // for (let file of this.files) {
@@ -276,3 +265,4 @@
     var input = $('#fotoruangan');
     input.files = <?php $fotoruangan ?> ;
 </script> -->
+<?= $this->endSection() ?>

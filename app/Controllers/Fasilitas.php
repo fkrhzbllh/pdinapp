@@ -12,10 +12,12 @@ use App\Models\SewaAlatModel;
 use App\Models\UsersModel;
 use App\Models\GaleriRuanganModel;
 use App\Models\GaleriAlatModel;
+use App\Models\RuanganTipeModel;
 
 class Fasilitas extends BaseController
 {
 	protected $ruanganModel;
+	protected $ruanganTipeModel;
 
 	protected $alatModel;
 
@@ -36,6 +38,7 @@ class Fasilitas extends BaseController
 		parent::initController($request, $response, $logger);
 
 		$this->ruanganModel = new RuanganModel();
+		$this->ruanganTipeModel = new RuanganTipeModel();
 		$this->alatModel = new AlatModel();
 		$this->sewaRuanganModel = new SewaRuanganModel();
 		$this->sewaAlatModel = new SewaAlatModel();
@@ -52,16 +55,10 @@ class Fasilitas extends BaseController
 	public function index()
 	{
 		$ruangan = $this->ruanganModel->getRuangan();
+		$ruangan_tipe = $this->ruanganTipeModel->findAll();
 
-		////// TODO
-		$tipe_ruangan_array = [];
-		foreach ($ruangan as $key => $r) {
-			$tipe_ruangan = $r['tipe'];
-			if (!in_array($tipe_ruangan, $tipe_ruangan_array)) {
-				array_push($tipe_ruangan_array, $tipe_ruangan);
-			}
-		}
-		$this->data['tipe_ruangan'] = $tipe_ruangan_array;
+		// Tipe ruangan
+		$this->data['tipe_ruangan'] = $ruangan_tipe;
 
 		// Ruangan yang ada fotonya
 		$ruangan_berfoto = [];
@@ -103,17 +100,7 @@ class Fasilitas extends BaseController
 		}
 		$this->data['alat'] = $alat;
 
-		// $this->data = [
-		//     'ruangan' => $this->ruanganModel->getRuangan(),
-		//     // 'ruangan' => $this->ruanganModel->paginate(1,'ruangan'),
-		//     // 'pager' => $this->ruanganModel->pager,
-		//     'alat' => $this->alatModel->getAlat(),
-		//     // 'alat' => $this->alatModel->paginate(1,'alat'),
-		//     // 'pager' => $this->alatModel->pager,
-		//     'judul_halaman' => 'Fasilitas PDIN'
-		// ];
-
-		$this->view('fasilitas.php', $this->data);
+		return view('fasilitas.php', $this->data);
 	}
 
 	public function detailRuangan($slug)
@@ -148,7 +135,7 @@ class Fasilitas extends BaseController
 		$this->data['judul_halaman'] = 'Detail Ruangan';
 		$this->data['fotoruangan'] = $fotoruangan;
 
-		$this->view('detailruangan.php', $this->data);
+		return view('detailruangan.php', $this->data);
 	}
 
 	public function detailAlat($slug)
@@ -184,7 +171,7 @@ class Fasilitas extends BaseController
 		$this->data['judul_halaman'] = 'Detail Alat';
 		$this->data['fotoalat'] = $fotoalat;
 
-		$this->view('detailalat.php', $this->data);
+		return view('detailalat.php', $this->data);
 	}
 
 	// form sewa ruangan
@@ -195,7 +182,7 @@ class Fasilitas extends BaseController
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
 		$this->data['ruangan'] = $this->ruanganModel->getRuangan();
 
-		$this->view('sewaruangan.php', $this->data);
+		return view('sewaruangan.php', $this->data);
 	}
 
 	// form sewa alat
@@ -206,7 +193,7 @@ class Fasilitas extends BaseController
 		$this->data['judul_halaman'] = 'Sewa Alat PDIN';
 		$this->data['alat'] = $this->alatModel->getAlat();
 
-		$this->view('sewaalat.php', $this->data);
+		return view('sewaalat.php', $this->data);
 	}
 
 	// simpan data sewa ruangan

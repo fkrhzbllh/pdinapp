@@ -1,0 +1,123 @@
+  /* Galeri */
+  .wrapper {
+    max-width: 1200px;
+  }
+  
+  .masonry {
+    display: flex;
+    width: 100%;
+  }
+  
+  .masonry--h {
+    flex-flow: row wrap;
+  }
+  
+  .masonry--v {
+    flex-flow: column wrap;
+    max-height: 1080px;
+  }
+  
+  .masonry--h,
+  .masonry--v {
+    counter-reset: brick;
+  }
+  
+  .masonry-brick {
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 0 8px 16px 8px;
+    color: white;
+    position: relative;
+  }
+  
+  .masonry-brick--h {
+    flex: auto;
+    height: 250px;
+    min-width: 150px;
+  }
+  
+  @media only screen and (min-width: 992px) {
+    /* Horizontal masonry bricks on desktop-sized screen */
+    .masonry-brick--h:nth-child(4n+1) {
+      width: 250px;
+    }
+    .masonry-brick--h:nth-child(4n+2) {
+      width: 325px;
+    }
+    .masonry-brick--h:nth-child(4n+3) {
+      width: 180px;
+    }
+    .masonry-brick--h:nth-child(4n+4) {
+      width: 380px;
+    }
+  
+    /* Adjusting vertical masonry height on desktop-sized screen */
+    .masonry--v {
+      max-height: 1600px;
+    }
+  
+    /* Vertical masonry bricks on desktop-sized screen */
+    .masonry-brick--v {
+      width: 33.33333%;
+    }
+  }
+  
+  
+  @media only screen and (min-width: 1200px) {
+    /* Horizontal masonry bricks on desktop-sized screen */
+    .masonry-brick--h:nth-child(4n+1) {
+      width: 300px;
+    }
+    .masonry-brick--h:nth-child(4n+2) {
+      width: 375px;
+    }
+    .masonry-brick--h:nth-child(4n+3) {
+      width: 230px;
+    }
+    .masonry-brick--h:nth-child(4n+4) {
+      width: 430px;
+    }
+  
+    /* Adjusting vertical masonry height on desktop-sized screen */
+    .masonry--v {
+      max-height: 1600px;
+    }
+  
+    /* Vertical masonry bricks on desktop-sized screen */
+    .masonry-brick--v {
+      width: 33.33333%;
+    }
+  }
+  
+  @media only screen and (max-width: 992px) and (min-width: 768px) {
+    /* Horizontal masonry bricks on tabled-sized screen */
+    .masonry-brick--h:nth-child(4n+1) {
+      width: 200px;
+    }
+    .masonry-brick--h:nth-child(4n+2) {
+      width: 250px;
+    }
+    .masonry-brick--h:nth-child(4n+3) {
+      width: 120px;
+    }
+    .masonry-brick--h:nth-child(4n+4) {
+      width: 280px;
+    }
+  
+    /* Adjusting vertical masonry height on tablet-sized screen */
+    .masonry--v {
+      max-height: 2000px;
+    }
+  
+    /* Vertical masonry bricks on tablet-sized screen */
+    .masonry-brick--v {
+      width: 50%;
+    }
+  }
+  
+  .masonry-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  

@@ -1,0 +1,16 @@
+/* Container konten */
+.container-konten {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-primary);
+  padding: var(--padding-container);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+/* Extra small devices (phones, 768px and down) */
+@media only screen and (max-width: 768px) {
+  .container-konten {
+    background: var(--color-surface);
+    border-radius: var(--border-radius-primary);
+    padding: var(--padding-container-s);
+  }
+}

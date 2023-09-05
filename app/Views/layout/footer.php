@@ -1,8 +1,8 @@
 <!-- ======= Footer Section ======= -->
-<footer class="bg-pdin-hitam">
+<footer class="bg-pdin-quaternary">
 	<div class="container px-sm-4 px-md-3 py-4">
 		<div class="my-4">
-			<img src="<?= base_url() ?>assets/logo-pdin-merah-putih.png" id="logoFooter" alt="logo pdin putih" />
+			<img src="<?= base_url() ?>assets/logo-pdin-merah-putih.png" id="logo-footer" alt="logo pdin putih" />
 		</div>
 		<div class="row justify-content-between m-0 p-0">
 			<!-- Alamat Gedung -->
@@ -174,7 +174,3 @@
 		}
 	}
 </script>
-
-</body>
-
-</html>

@@ -1,0 +1,11 @@
+/* Modal Kegiatan */
+  .modal-dialog
+  .modal-content
+  .modal-body
+  a:hover {
+  color: var(--color-primary);
+}
+
+.modal-dialog .modal-content .modal-body #link-virtual-modal-kegiatan a:hover {
+  color: var(--color-primary);
+}
