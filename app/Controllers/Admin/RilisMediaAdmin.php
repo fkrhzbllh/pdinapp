@@ -10,7 +10,7 @@ use App\Models\GaleriModel;
 use App\Models\ArtikelModel;
 use App\Controllers\BaseController;
 
-class DashboardAdmin extends BaseController
+class RilisMediaAdmin extends BaseController
 {
 	protected $usersModel;
 	protected $galeriModel;

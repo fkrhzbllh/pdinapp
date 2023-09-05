@@ -10,7 +10,7 @@ use App\Models\GaleriModel;
 use App\Models\KegiatanModel;
 use App\Controllers\BaseController;
 
-class DashboardAdmin extends BaseController
+class KegiatanAdmin extends BaseController
 {
 	protected $usersModel;
 	protected $galeriModel;
@@ -38,9 +38,9 @@ class DashboardAdmin extends BaseController
 		$this->data['current_page'] = 'adminkegiatan';
 		$perPage = 10;
 		$this->data['per_page'] = $perPage;
-		$this->data['artikel'] = $this->artikelModel->paginate($perPage, 'artikel');
-		$this->data['pager'] = $this->artikelModel->pager;
-		$this->data['pager_current'] = $this->artikelModel->pager->getCurrentPage('artikel');
+		$this->data['kegiatan'] = $this->kegiatanModel->paginate($perPage, 'kegiatan');
+		$this->data['pager'] = $this->kegiatanModel->pager;
+		$this->data['pager_current'] = $this->kegiatanModel->pager->getCurrentPage('kegiatan');
 		return view('admin/adminkegiatan.php', $this->data);
 	}
 
