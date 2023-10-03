@@ -29,6 +29,8 @@ class Filters extends BaseConfig
 		'permission' => \CodeIgniter\Shield\Filters\PermissionFilter::class,
 		'force-reset' => \CodeIgniter\Shield\Filters\ForcePasswordResetFilter::class,
 		'jwt' => \CodeIgniter\Shield\Filters\JWTAuth::class,
+
+		'admin' => \App\Filters\AdminFilter::class,
 	];
 
 	/**

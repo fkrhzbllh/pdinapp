@@ -2,10 +2,10 @@
 
 <?= $this->section('content') ?>
 <div class="container">
-    <form id="sewaruangan" class="mt-3" action="/DashboardAdmin/saveTambahSewaRuangan" method="post">
+    <form id="sewaalat" class="mt-3" action="/DashboardAdmin/saveTambahSewaAlat" method="post">
         <?php echo csrf_field() ?>
         <div class="row g-3">
-            <h3>Sewa Ruangan</h3>
+            <h3>Sewa Alat</h3>
             <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
                 <label for="nama" class="form-label">Nama Penyewa</label>
@@ -67,119 +67,53 @@
             </div>
 
             <div class="col-12">
-                <label for="ruangan" class="form-label">Ruang yang Dipinjam &emsp;
+                <label for="alat" class="form-label">Alat yang Dipinjam &emsp;
                     <!-- <span id="ubahruangan">ubah</span> -->
                 </label>
-                <select class="form-select <?= (validation_show_error('ruangan')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="ruangan" name="ruangan">
-                    <option selected disabled>Pilih Ruangan</option>
-                    <?php foreach ($ruangan as $r) : ?>
-                        <?php if ($id_ruangan == $r['id'] || old('ruangan') == $r['id']) : ?>
-                            <option selected value="<?= $r['id'] ?>" class="<?= $r['tipe'] ?>">
-                                <?= $r['nama'] ?>
+                <select class="form-select <?= (validation_show_error('alat')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="alat" name="alat">
+                    <option selected disabled>Pilih Alat</option>
+                    <?php foreach ($alat as $a) : ?>
+                        <?php if ($id_alat == $a['id'] || old('alat') == $a['id']) : ?>
+                            <option selected value="<?= $a['id'] ?>">
+                                <?= $a['nama'] ?>
                             </option>
                         <?php else : ?>
-                            <option value="<?= $r['id'] ?>" class="<?= $r['tipe'] ?>">
-                                <?= $r['nama'] ?>
+                            <option value="<?= $a['id'] ?>">
+                                <?= $a['nama'] ?>
                             </option>
-                            <?= d($r['id']) ?>
+                            <?= d($a['id']) ?>
                         <?php endif ?>
                     <?php endforeach ?>
                 </select>
                 <div class="invalid-feedback">
-                    <?= validation_show_error('ruangan'); ?>
+                    <?= validation_show_error('alat'); ?>
                 </div>
             </div>
 
+            <?php $formatter2 = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'yyyy-MM-ddThh:mm'); ?>
 
-            <div class="Pameran mb-3" id="Pameran" style="display: none;">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulaiPameran')) ? 'is-invalid' : ''; ?>" type="date" name="tanggalMulaiPameran" value="<?= old('tanggalMulaiPameran') ?>" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalMulaiPameran'); ?>
-                        </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
+                    <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulai')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulai" value="<?= old('tanggalMulai') ?>" step="3600" />
+                    <div class="invalid-feedback">
+                        <?= validation_show_error('tanggalMulai'); ?>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesaiPameran')) ? 'is-invalid' : ''; ?>" type="date" date name="tanggalSelesaiPameran" value="<?= old('tanggalSelesaiPameran') ?>" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalSelesaiPameran'); ?>
-                        </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
+                    <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesai')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesai" value="<?= old('tanggalSelesai') ?>" step="60" />
+                    <div class="invalid-feedback">
+                        <?= validation_show_error('tanggalSelesai'); ?>
                     </div>
                 </div>
             </div>
-
-            <div class="Kantor mb-3" id="Kantor" style="display: none;">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="tanggalMulai2" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= old('tanggalMulaiKantor') ?>" step="3600" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalMulaiKantor'); ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="tanggalSelesai2" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= old('tanggalSelesaiKantor') ?>" step="60" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalSelesaiKantor'); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Meeting mb-3" id="Meeting" style="display: none;">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="tanggalMulai3" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai3" class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiMeeting" value="<?= old('tanggalMulaiMeeting') ?>" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalMulaiMeeting'); ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="tanggalSelesai3" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai3" class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiMeeting" value="<?= old('tanggalSelesaiMeeting') ?>" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalSelesaiMeeting'); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Pengembangan mb-3" id="Pengembangan" style="display: none;">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="tanggalMulai4" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai4" class="form-control <?= (validation_show_error('tanggalMulaiPengembangan')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiPengembangan" value="<?= old('tanggalMulaiPengembangan') ?>" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalMulaiPengembangan'); ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="tanggalSelesai4" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai4" class="form-control <?= (validation_show_error('tanggalSelesaiPengembangan')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiPengembangan" value="<?= old('tanggalSelesaiPengembangan') ?>" />
-                        <div class="invalid-feedback">
-                            <?= validation_show_error('tanggalSelesaiPengembangan'); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <input id="tipe" class="form-control" type="hidden" name="tipe" value="<?= old('tipe') ?>" />
-            <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Sewa Ruangan</button>
-
         </div>
     </form>
 </div>
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
-<!-- Calendar -->
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.7/locales-all.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.7/index.global.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -329,6 +263,8 @@
             start4.max = end4.value;
     }, false);
 </script>
+
+<button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Sewa Ruangan</button>
 
 <script>
     var submit = document.getElementById('submit');

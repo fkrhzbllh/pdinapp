@@ -35,6 +35,14 @@
         <li>
             <a href="<?= base_url() ?>DashboardAdmin/kegiatan" class="<?= ($current_page == 'adminkegiatan') ? 'active' : '' ?>"><i class="icon bi bi-activity"></i>Kegiatan</a>
         </li>
+        <li class="divider" data-text="layanan">Layanan</li>
+
+        <li>
+            <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-ruangan" class="<?= ($current_page == 'adminsewaruangan') ? 'active' : '' ?>"><i class="icon bi bi-door-open-fill"></i>Sewa Ruangan</a>
+        </li>
+        <li>
+            <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-alat" class="<?= ($current_page == 'adminsewaalat') ? 'active' : '' ?>"><i class="icon bi bi-tools"></i>Sewa Alat</a>
+        </li>
 
     </ul>
 </div>

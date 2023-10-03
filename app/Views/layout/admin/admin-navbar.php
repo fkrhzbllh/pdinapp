@@ -7,7 +7,7 @@
         <!-- <span class="divider"></span> -->
         <div class="profile">
             <div class="divider"></div>
-            <img src="<?= base_url() ?>assets/galeri-9.jpg" alt="" />
+            <img src="<?= base_url() ?>assets/logo-pd.png" alt="" />
             <ul class="profile-link">
                 <!-- <li>
                                 <a href="#"><i class="icon bi bi-person-circle"></i> Profile</a>
