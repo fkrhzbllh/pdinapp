@@ -43,6 +43,15 @@
         <li>
             <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-alat" class="<?= ($current_page == 'adminsewaalat') ? 'active' : '' ?>"><i class="icon bi bi-tools"></i>Sewa Alat</a>
         </li>
+        <li>
+            <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-alat" class="<?= ($current_page == 'adminpelatihan') ? 'active' : '' ?>"><i class="icon bi bi-person-arms-up"></i>Pelatihan</a>
+        </li>
+
+        <li class="divider" data-text="user">User</li>
+
+        <li>
+            <a href="<?= base_url() ?>DashboardAdmin/manajemen-user" class="<?= ($current_page == 'adminmanajemenuser') ? 'active' : '' ?>"><i class="icon bi bi-people-fill"></i>Manajemen User</a>
+        </li>
 
     </ul>
 </div>

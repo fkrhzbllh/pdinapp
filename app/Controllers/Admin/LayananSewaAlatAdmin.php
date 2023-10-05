@@ -46,7 +46,7 @@ class LayananSewaAlatAdmin extends BaseController
 		return view('admin/adminlayanansewaalat.php', $this->data);
 	}
 
-	public function ruangan()
+	public function alat()
 	{
 		$this->data['current_page'] = 'adminsewaalat';
 		// $perPage = 10;
@@ -88,6 +88,7 @@ class LayananSewaAlatAdmin extends BaseController
 					];
 
 					$alatData = [];
+					$eventData = [];
 
 					if ($alat) {
 						$alatData = [

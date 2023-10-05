@@ -236,8 +236,9 @@ class KegiatanAdmin extends BaseController
 				]
 			],
 			'poster' => [
-				'rules' => 'max_size[poster,2048]|is_image[poster]|mime_in[poster,image/jpg,image/jpeg,image/png]',
+				'rules' => 'uploaded[poster]|max_size[poster,2048]|is_image[poster]|mime_in[poster,image/jpg,image/jpeg,image/png]',
 				'errors' => [
+					'uploaded' => 'poster harus diunggah',
 					'max_size' => 'ukuran foto ruangan maksimal 2MB',
 					'is_image' => 'file yang Anda pilih bukan gambar',
 					'mime_in' => 'file yang Anda pilih bukan gambar'

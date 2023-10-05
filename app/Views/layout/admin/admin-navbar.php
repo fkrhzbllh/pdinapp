@@ -8,7 +8,7 @@
         <div class="profile">
             <div class="divider"></div>
             <img src="<?= base_url() ?>assets/logo-pd.png" alt="" />
-            <ul class="profile-link">
+            <ul class="profile-link" data-bs-auto-close="true">
                 <!-- <li>
                                 <a href="#"><i class="icon bi bi-person-circle"></i> Profile</a>
                             </li> -->

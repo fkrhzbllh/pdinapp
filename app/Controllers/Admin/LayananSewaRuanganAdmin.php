@@ -232,6 +232,7 @@ class LayananSewaRuanganAdmin extends BaseController
 					];
 
 					$ruanganData = [];
+					$eventData = [];
 
 					if ($ruangan) {
 						$ruanganData = [
