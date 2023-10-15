@@ -245,7 +245,7 @@ helper('text'); ?>
 <?php //include('garis-pembatas.php'); 
 ?>
 <!-- Section Hero -->
-<section id="hero" class="shadow-lg d-flex align-items-center">
+<section id="hero" class="section shadow-lg d-flex align-items-center">
 	<div class="pic-wrapper">
 		<figure class="pic-1"></figure>
 		<figure class="pic-2"></figure>
@@ -253,7 +253,7 @@ helper('text'); ?>
 		<figure class="pic-4"></figure>
 	</div>
 	<div class="container p-5 text-light" id="hero-container" data-aos="slide-up">
-		<div class="col-12 col-md-10 col-lg-8 col-xxl-6">
+		<div class="col-12 col-md-10 col-lg-8 col-xxl-6 ms-md-5">
 			<!-- <h1 class="display-1" style="color: var(--color-secondary)">
 			<font style="color: var(--color-primary)">Pusat Desain</font> Industri Nasional
 		</h1> -->
@@ -263,7 +263,7 @@ helper('text'); ?>
 			<p class="display-4 mb-4 lh-sm fw-bold">
 				Memajukan Industri Kecil dan Menengah di Indonesia.
 			</p>
-			<img class="logo mb-4" src="<?= base_url() ?>assets/logo-pdin-putih.png" id="logo" alt="Logo_PDIN" />
+			<img class="mb-4" style="width:25vw" src="<?= base_url() ?>assets/logo-pdin-putih.png" id="logo" alt="Logo_PDIN" />
 			<!-- <a href="/ProfilPDIN" class="btn-lihat-profil">Lihat Profil</a> -->
 		</div>
 	</div>
@@ -271,13 +271,13 @@ helper('text'); ?>
 <!-- End Hero -->
 
 <!-- Section Layanan -->
-<section id="layanan" class="layanan">
-	<div class="container">
+<section id="layanan" class="section layanan">
+	<div class="container" data-aos="fade-up">
 
 		<!-- Konten layanan -->
 		<div class="row justify-content-around">
 			<div class="col-md-6 col-xl-4 mt-4 mt-md-0">
-				<div class="icon-box">
+				<div class="icon-box" data-aos="fade-up" data-aos-delay="100">
 					<i class="bi bi-lightbulb"></i>
 					<h4><a href="#">Pengembangan Produk</a></h4>
 					<p class="me-md-4">
@@ -288,7 +288,7 @@ helper('text'); ?>
 				</div>
 			</div>
 			<div class="col-md-6 col-xl-4 mt-4 mt-md-0">
-				<div class="icon-box">
+				<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
 					<i class="bi bi-door-open"></i>
 					<h4><a href="#">Sewa Ruang & Alat</a></h4>
 					<p>
@@ -299,7 +299,7 @@ helper('text'); ?>
 				</div>
 			</div>
 			<div class="col-md-6 col-xl-4 mt-4 mt-md-0">
-				<div class="icon-box">
+				<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
 					<i class="bi bi-easel"></i>
 					<h4><a href="#">Workshop Pelatihan</a></h4>
 					<p>
@@ -310,7 +310,7 @@ helper('text'); ?>
 				</div>
 			</div>
 			<div class="col-md-6 col-xl-4 mt-4 mt-md-0">
-				<div class="icon-box">
+				<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
 					<i class="bi bi-people"></i>
 					<h4><a href="#">Konsultasi</a></h4>
 					<p>
@@ -321,7 +321,7 @@ helper('text'); ?>
 				</div>
 			</div>
 			<div class="col-md-6 col-xl-4 mt-4 mt-md-0">
-				<div class="icon-box">
+				<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
 					<i class="bi bi-megaphone"></i>
 					<h4><a href="#">Promosi</a></h4>
 					<p>
@@ -332,7 +332,7 @@ helper('text'); ?>
 				</div>
 			</div>
 			<div class="col-md-6 col-xl-4 mt-4 mt-md-0">
-				<div class="icon-box">
+				<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
 					<i class="bi bi-collection"></i>
 					<h4><a href="#">Bank Data</a></h4>
 					<p>
@@ -348,37 +348,40 @@ helper('text'); ?>
 <!-- End Layanan Section -->
 
 <!-- Fasilitas Section -->
-<section id="section-fasilitas" class="d-flex align-items-center
-">
-	<div class="section-slideshow"></div>
-
-	<? //Harus relative agar tidak tertimpa overlay 
-	?>
-	<div class="container position-relative">
+<section id="section-fasilitas" class="section section-bg-pdin-quaternary d-flex align-items-center">
+	<div class="container">
 
 		<!--Judul -->
-		<div class="container p-3 mb-3">
+		<div class="container p-3">
 
-			<div class="row justify-content-center text-center">
-				<div class="col-12 col-lg-10 col-xl-7 col-xxl-7">
+			<div class="text-center">
+				<!-- <h3 class="text-light highlight-header mb-4" data-aos="fade-up" data-aos-delay="300">
+					FASILITAS
+				</h3> -->
+				<div class="row justify-content-center">
+					<div class="col-12 col-lg-10 col-xl-7 col-xxl-7">
+						<h3 class="text-light mb-3 lh-base fw-normal" data-aos="fade-up" data-aos-delay="350">
+							"Nadi Desain untuk IKM Unggul, Sinergi dan Inovasi Merajut, Desain Membentuk Masa Depan, Bersama Industri Kreatif, Indonesia Berkilau di Mata Dunia."
+						</h3>
 
-					<!-- Kutipan -->
-					<p class="tagline-fasilitas text-light mb-3 lh-base z-3">
-						"Nadi Desain untuk IKM Unggul, Sinergi dan Inovasi Merajut, Desain Membentuk Masa Depan, Bersama Industri Kreatif, Indonesia Berkilau di Mata Dunia."
-					</p>
+						<!-- Tombol lihat semua fasilitas -->
+						<a class="btn btn-outline-light position-relative z-3 text-light" href="/fasilitas">
+							Lihat Semua Fasilitas <span class="ps-1 bi-arrow-right "></span>
+						</a>
 
-					<!-- Tombol lihat semua fasilitas -->
-					<a class="btn btn-outline-light  text-light" href="/fasilitas">
-						Lihat Semua Fasilitas <span class="ps-1 bi-arrow-right "></span>
-					</a>
-
+					</div>
 				</div>
 			</div>
 
 		</div>
 
+		<div class="container p-3">
+			<div class="col-12 text-center">
+			</div>
+		</div>
+
 		<!-- Konten fasilitas -->
-		<div class="container px-4">
+		<div class="container px-4" data-aos="fade-left" data-aos-delay="500">
 			<div class="col-12 text-center">
 
 				<!-- Swiper -->
@@ -398,6 +401,8 @@ helper('text'); ?>
 					<!-- <div class="swiper-pagination"></div> -->
 				</div>
 
+
+
 			</div>
 		</div>
 
@@ -406,10 +411,11 @@ helper('text'); ?>
 <!-- End Fasilitas Section -->
 
 <!-- Kegiatan -->
-<section id="section-kegiatan" class="d-flex align-items-center">
-	<div class="section-slideshow"></div>
+<section id="section-kegiatan" class="section d-flex align-items-center">
+	<div class="section-slideshow">
 
-	<div class="container position-relative">
+	</div>
+	<div class="container p-3" data-aos="fade-up">
 
 		<!-- Swiper kegiatan -->
 		<div class="row mb-4">
@@ -483,11 +489,11 @@ helper('text'); ?>
 <!-- End Kegiatan Section -->
 
 <!-- Galeri Section -->
-<section class="section-bg-pdin-quaternary">
-	<div class="container">
+<section class="section section-bg-pdin-quaternary">
+	<div class="container p-3">
 		<!-- judul section -->
 		<div class="text-center">
-			<h3 class="text-light highlight-header mb-4">
+			<h3 class="text-light highlight-header mb-4" data-aos="fade-up" data-aos-delay="300">
 				GALERI
 			</h3>
 			<!-- <div class="row justify-content-center mb-5">
@@ -502,9 +508,9 @@ helper('text'); ?>
 		</div>
 
 		<!-- Konten galeri  -->
-		<div class="row">
+		<div class="row" data-aos="fade-up" data-aos-delay="300">
 			<?php foreach ($galeri_kegiatan as $i => $g) : ?>
-				<div class="col-md-4 mt-4 <?= ($i <= 3) ? 'col-6 col-md-6 col-lg-3' : (($i == 0) ? 'col-12 col-sm-12 col-md-6 col-lg-3' : 'col-6 col-lg-2'); ?>">
+				<div class="col-md-4 mt-4 <?= ($i <= 3) ? 'col-6 col-md-6 col-lg-3' : (($i == 0) ? 'col-12 col-sm-12 col-md-6 col-lg-3' : 'col-6 col-lg-2'); ?>" data-aos="fade-up" data-aos-delay="200">
 					<a href="<?= base_url() . 'uploads/' . $g['nama_file'] ?>" data-toggle="lightbox">
 						<img src="./uploads/<?= $g['nama_file']; ?>" class="img-fluid" alt="image" />
 					</a>
@@ -583,7 +589,7 @@ helper('text'); ?>
 
 		// Function to change the background image of the section
 		function ubahBackgroundSectionFasilitas(imageUrl) {
-			$('#section-fasilitas .section-slideshow').css('background-image', 'url(' + imageUrl + ')');
+			$('#section-fasilitas').css('background-image', 'url(' + imageUrl + ')');
 		}
 	});
 </script>

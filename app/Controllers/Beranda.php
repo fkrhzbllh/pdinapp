@@ -45,8 +45,8 @@ class Beranda extends BaseController
 	public function index()
 	{
 
-		// Section artikel, ambil 2 artikel terbaru untuk Sorotan
-		$artikelTerbaru = $this->artikelModel->getArtikelTerbaru(2);
+		// Section artikel, ambil 4 artikel terbaru untuk Sorotan
+		$artikelTerbaru = $this->artikelModel->getArtikelTerbaru(4);
 		$this->data['artikelTerbaru'] = $artikelTerbaru;
 
 		// Section artikel, ambil 4 artikel pilihan dari Model Artikel untuk dimasukkan ke list Artikel Pilihan
@@ -64,7 +64,33 @@ class Beranda extends BaseController
 				$this->data['fotoruangan'][$key] = null;
 			}
 		}
+
+		// Ruangan yang ada fotonya
+		$ruangan_berfoto = [];
+		$foto_ruangan_berfoto = [];
+
+		foreach ($ruangan as $key => $r) {
+			$foto = $this->galeriRuanganModel->getGaleriByRuangan($r['id']);
+
+			// Apakah foto ditemukan
+			if ($foto) { // Jika foto ditemukan
+
+				// Masukkan foto ke data foto_ruangan dengan key sama dengan ruangan
+				$this->data['fotoruangan'][$key] = $foto[0];
+
+				// Masukkan ruangan ke array ruangan_berfoto
+				array_push($ruangan_berfoto, $r);
+				// Masukkan juga foto ke array foto_ruangan_berfoto
+				array_push($foto_ruangan_berfoto, $foto[0]);
+			} else { // Jika foto tidak ditemukan
+
+				// Masukkan null ke data foto_ruangan TODO: Ganti ke gambar placeholder
+				$this->data['fotoruangan'][$key] = null;
+			}
+		}
 		$this->data['ruangan'] = $ruangan; // Simpan data ruangan untuk view
+		$this->data['ruangan_berfoto'] = $ruangan_berfoto; // Khusus ruangan yang berfoto
+		$this->data['foto_ruangan_berfoto'] = $foto_ruangan_berfoto; // Khusus ruangan yang berfoto
 
 		// Section kegiatan
 		$kegiatan = $this->kegiatanModel->findAll();
@@ -80,7 +106,7 @@ class Beranda extends BaseController
 		}
 
 		// Section galeri
-		$galeriKegiatan = $this->galeriKegiatanModel->getGaleri(5);
+		$galeriKegiatan = $this->galeriKegiatanModel->getGaleri(10);
 		$this->data['galeri_kegiatan'] = $galeriKegiatan;
 
 		return view('main/beranda/beranda.php', $this->data);

@@ -1,10 +1,9 @@
 /* Hero */
   #hero {
-    height: calc(100vh - 128px) !important;
+    height: 100vh !important;
     background: center center no-repeat;
     background-size: cover;
     margin:0;
-    margin-top: 128px;
     position: relative;
     padding: 0;
     transition: 0.8s;
@@ -33,26 +32,17 @@
   }
   
   #hero-container {
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) 90%, rgba(0,0,0,0) 100%);
-    margin: 0px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-    padding-right: 24px;
-    padding-left: 24px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-top: var(--navbar-height-collapsed);
   }
   
   #hero h1 {
-    margin: 0;
-    font-size: 48px;
     font-weight: 700;
-    line-height: 82px;
   }
   #hero p {
-    margin: 16px;
-    font-size: 16px;
     font-weight: 500;
-    line-height: 26px;
   }
   
   #hero .btn-lihat-profil {

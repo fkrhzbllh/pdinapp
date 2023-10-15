@@ -27,7 +27,7 @@
 
                       <!-- Gambar artikel -->
                       <div class="col-md-6 position-relative">
-                        <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="ratio ratio-4x3 object-fit-cover h-100" alt="..." />
+                        <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="object-fit-cover w-100" style="height: 384px" alt="..." />
                       </div>
 
                       <!-- Body artikel -->
@@ -43,7 +43,7 @@
                           </h3>
 
                           <!-- Ringkasan -->
-                          <p class="card-text crop-text-4 mb-3">
+                          <p class="card-text crop-text-2 mb-3">
                             <?= word_limiter($a['meta_description'], 10); ?>
                           </p>
 
@@ -83,7 +83,7 @@
 
                   <!-- Gambar artikel -->
                   <div class="col-md-4">
-                    <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="img-fluid rounded-start object-fit-cover h-100" alt="..." />
+                    <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="img-fluid rounded-start object-fit-cover w-100" style="height: 256px" alt="..." />
                   </div>
 
                   <!-- Ringkasan artikel -->
@@ -152,48 +152,7 @@
             </div>
 
             <!-- Artikel pilihan -->
-            <div class="row">
-              <h5 class="mb-3">Artikel Pilihan</h5>
-            </div>
-
-            <?php foreach ($artikelPilihan as $i => $a) : ?>
-              <!-- Item artikel -->
-              <div class="card mb-2">
-                <div class="row g-0">
-
-                  <!-- Gambar kegiatan -->
-                  <div class="col-3 position-relative">
-                    <img src="<?php echo base_url() . 'uploads/' . $a['featured_image'] ?>" class="card-img object-fit-cover w-100 h-100" alt="..." />
-                  </div>
-
-                  <!-- Ringkasan kegiatan -->
-                  <div class="col-9">
-
-                    <!-- Body kegiatan -->
-                    <div class="card-body p-2">
-
-                      <!-- Judul kegiatan -->
-                      <p class="card-title">
-                        <a class="link-dark text-decoration-none crop-text-2" href="#" target="_blank">
-                          <b>
-                            <?php echo $a['judul']; ?>
-                          </b>
-                        </a>
-                      </p>
-
-                      <!-- Kategori dan tanggal terbit -->
-                      <small class="card-text crop-text-2">
-                        <?php echo $a['kategori']; ?> | <?php echo $a['tgl_terbit_terformat']; ?></small>
-                    </div>
-                    <!-- Akhir body kegiatan -->
-
-                  </div>
-                  <!-- Akhir ringkasan kegiatan -->
-
-                </div>
-              </div>
-              <!-- Akhir item artikel -->
-            <?php endforeach; ?>
+            <?= $this->include('main/rilis-media/artikel-pilihan') ?>
 
           </div>
           <!-- Akhir sidebar kanan -->

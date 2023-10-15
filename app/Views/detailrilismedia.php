@@ -133,3 +133,15 @@
 	</div>
 </section>
 <?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+<!-- Copy input -->
+<script>
+	function myFunction() {
+		var copyText = document.getElementById('myInput');
+		copyText.select();
+		copyText.setSelectionRange(0, 99999);
+		navigator.clipboard.writeText(copyText.value);
+	}
+</script>
+<?= $this->endSection() ?>

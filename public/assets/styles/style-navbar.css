@@ -11,27 +11,23 @@
     margin: -0.825rem 0;
     /* background: #fff; */
     padding: 32px;
-    height: 128px;
+    height: var(--navbar-height);
 }
 /* End By Damar */
 
 #navbar-nav a {
     font-size: 14px;
-    color: #111111;
     font-weight: 600;
     text-decoration: none;
 }
 
 #navbar-nav a:hover {
-    color: #d82328;
-    text-decoration: none;
-    font-weight: 700;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
 }
 
 #navbar-nav .active {
-    color: #d82328;
-    text-decoration: none;
-    font-weight: 700;
+    color: var(--color-primary);
 }
 
 #logo-pdin {

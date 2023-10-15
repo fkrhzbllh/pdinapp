@@ -40,6 +40,9 @@ class Kegiatan extends BaseController
 			$this->data['kegiatan'][$key]['poster'] = base_url() . 'uploads/' . $value['poster'];
 		}
 
+		$this->data['kegiatan_mendatang_atau_terakhir'] = $this->kegiatanModel->getKegiatanMendatangAtauTerakhir();
+		$this->data['kegiatan_terakhir'] = $this->kegiatanModel->getKegiatanTerakhir(5);
+
 		return view('kegiatan.php', $this->data);
 	}
 }

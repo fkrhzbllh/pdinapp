@@ -3,7 +3,7 @@
 	<div class="container container-fluid">
 		<div class="navbar-brand text-center">
 			<a class="" href="/">
-				<img src="<?= base_url() ?>assets/logo-pdin-merah-abu.png" id="logo" alt="Logo_PDIN" />
+				<img src="<?= base_url() ?>assets/logo-pdin-merah-abu.png" id="logo" alt="Logo_PDIN" <?= ($current_page == 'beranda') ? 'style="opacity: 0"' : '' ?> />
 			</a>
 		</div>
 
@@ -50,3 +50,60 @@
 	</div>
 </nav>
 <!-- End Navbar -->
+
+<?= $this->section('script') ?>
+<!-- Navbar scroll FX  -->
+<script>
+	// When the user scrolls down 64px from the top of the document, resize the navbar's padding and the logo's size
+	$(document).ready(function() {
+		scrollFX(); // Update pertama kali
+
+		$(window).scroll(function() {
+			scrollFX();
+		});
+		$(window).resize(function() {
+			scrollFX();
+		});
+
+		function isLgOrBigger() {
+			return $(window).width() >= 992;
+		}
+
+		function collapseNavbar() {
+			return $(window).scrollTop() > 32;
+		}
+
+		function scrollFX() {
+			if (collapseNavbar()) {
+				<?php if (($current_page == 'beranda')) : ?>
+					// $('#logo').attr('src', '<?= base_url() ?>assets/logo-pdin-merah-abu.png');
+					$('#logo').css('opacity', '1');
+
+					if (isLgOrBigger()) {
+						console.log("AAA");
+						$('#navbar-nav a').removeClass('text-light');
+					}
+				<?php endif ?>
+				$('#navbar').css('backgroundColor', 'white');
+				$('#logo').css('padding', '16px');
+				$('#logo').css('height', '64px');
+			} else {
+				<?php if (($current_page == 'beranda')) : ?>
+					// $('#logo').attr('src', '<?= base_url() ?>assets/logo-pdin-merah-putih.png');
+					$('#logo').css('opacity', '0');
+
+					if (isLgOrBigger()) {
+						$('#navbar-nav a').addClass('text-light');
+					} else {
+						$('#navbar-nav a').removeClass('text-light');
+					}
+				<?php endif ?>
+				$('#navbar').css('backgroundColor', 'transparent');
+				$('#logo').css('padding', '32px');
+				$('#logo').css('height', '128px');
+			}
+		}
+	});
+</script>
+
+<?= $this->endSection() ?>

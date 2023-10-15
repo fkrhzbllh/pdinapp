@@ -34,11 +34,16 @@
   --color-tertiary: #eaeaea;
   --color-quaternary: #1e1919;
 
+  /* Warna tema transparan */
+  --color-primary-transparent: rgba(216, 35, 40, 0.5);
+
   /* Warna objek di atas warna tema */
   --color-on-primary: #ffffff;
 
   /* Warna permukaan */
   --color-surface: #ffffff;
+  --color-surface-transparent: rgba(255, 255, 255, 0.5);
+  --color-surface-transparent-8: rgba(255, 255, 255, 0.8);
   --color-surface-inverse-transparent: rgba(0, 0, 0, 0.5);
   --color-surface-variant: #fafafa;
 
@@ -48,9 +53,13 @@
 
   /* Lainnya */
   --border-radius-primary: 1rem;
+  --border-radius-large: 2rem;
 
   --padding-container: 4rem;
   --padding-container-s: 2rem;
+
+  --navbar-height: 128px;
+  --navbar-height-collapsed: 64px;
 
 }
 /* Warna background */
@@ -82,7 +91,7 @@ body {
 }
 
 a {
-  color: #000000;
+  color: var(--color-on-surface);
   text-decoration: none;
 }
 
@@ -126,13 +135,15 @@ h6 {
 }
 
 .swiper-pagination .swiper-pagination-bullet {
-  background-color: #fff;
-  opacity: 0.9;
-  border: 0.2px solid #e03a3c;
+  transition: 0.3s;
+  background-color: var(--color-primary-transparent);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #e03a3c;
+  background-color: var(--color-primary);
+  /* box-shadow: 0px 0px 10px var(--color-primary); */
 }
 
 /*  */
