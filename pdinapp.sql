@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2023 at 05:27 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Oct 15, 2023 at 09:13 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -157,7 +157,9 @@ CREATE TABLE `auth_groups_users` (
 INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
 (1, 1, 'admin', '2023-05-15 12:29:42'),
 (3, 3, 'user', '2023-09-05 11:51:27'),
-(4, 4, 'user', '2023-09-05 14:13:44');
+(4, 4, 'user', '2023-09-05 14:13:44'),
+(5, 5, 'user', '2023-09-29 10:50:13'),
+(6, 6, 'user', '2023-10-05 21:35:27');
 
 -- --------------------------------------------------------
 
@@ -185,9 +187,11 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-08-24 10:33:41', '2023-05-15 12:29:42', '2023-08-24 10:33:41'),
+(1, 1, 'email_password', NULL, 'flaminggooo50@gmail.com', '$2y$10$pKADotXOGD2RARj2BKdyQu4eHcJZNHRsD5cGza4prdYSQF369VOku', NULL, NULL, 0, '2023-10-14 13:45:00', '2023-05-15 12:29:42', '2023-10-14 13:45:00'),
 (3, 3, 'email_password', NULL, 'ibn.damr@gmail.com', '$2y$10$etQm0Ae3AFWSJd4itcg0h.saHhgsdKmJsELFIhGo1XtWLnvYuqq7i', NULL, NULL, 0, NULL, '2023-09-05 11:51:27', '2023-09-05 11:51:27'),
-(4, 4, 'email_password', NULL, 'harzreich@gmail.com', '$2y$10$xsSWa5tsItEc/n3UcBJNQuvXQMe0Hl/XcVcIlvCDqdNuPSBonAhKG', NULL, NULL, 0, NULL, '2023-09-05 14:13:44', '2023-09-05 14:13:44');
+(4, 4, 'email_password', NULL, 'harzreich@gmail.com', '$2y$10$xsSWa5tsItEc/n3UcBJNQuvXQMe0Hl/XcVcIlvCDqdNuPSBonAhKG', NULL, NULL, 0, NULL, '2023-09-05 14:13:44', '2023-09-05 14:13:44'),
+(5, 5, 'email_password', NULL, 'untabalap47@gmail.com', '$2y$10$zCGkMD2dZW8Ef/vvAM1n8O/vPWu/Dg.WVjSMKyvp.ykDi4aHtSqTO', NULL, NULL, 0, '2023-09-29 19:59:28', '2023-09-29 10:50:13', '2023-09-29 19:59:28'),
+(6, 6, 'email_password', NULL, 'mfikrih100@gmail.com', '$2y$10$QVAZBAwGO5jXF.WD2uG6DOgZ24Y15uXqaahLV9jplRlzP9iewNTHK', NULL, NULL, 0, NULL, '2023-10-05 21:35:27', '2023-10-05 21:35:27');
 
 -- --------------------------------------------------------
 
@@ -236,7 +240,17 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 (23, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62', 'email_password', 'ibn.damr@gmail.com', NULL, '2023-09-05 14:12:51', 0),
 (24, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62', 'email_password', 'ibn.damr@gmail.com', NULL, '2023-09-05 14:12:57', 0),
 (25, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62', 'email_password', 'ibn.damr@gmail.com', NULL, '2023-09-05 14:13:02', 0),
-(26, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62', 'email_password', 'ibn.damr@gmail.com', NULL, '2023-09-05 14:13:09', 0);
+(26, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.62', 'email_password', 'ibn.damr@gmail.com', NULL, '2023-09-05 14:13:09', 0),
+(27, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-09-26 07:46:16', 1),
+(28, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-09-27 07:06:15', 1),
+(29, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Mobile Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-09-29 18:18:45', 1),
+(30, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Mobile Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-09-29 18:58:19', 1),
+(31, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Mobile Safari/537.36', 'email_password', 'untabalap47@gmail.com', 5, '2023-09-29 19:55:39', 1),
+(32, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-09-29 19:57:10', 1),
+(33, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'email_password', 'untabalap47@gmail.com', 5, '2023-09-29 19:59:28', 1),
+(34, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-09-29 20:02:18', 1),
+(35, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'google_oauth', 'mfikrih100@gmail.com', 6, '2023-10-05 21:35:27', 1),
+(36, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'email_password', 'flaminggooo50@gmail.com', 1, '2023-10-14 13:45:00', 1);
 
 -- --------------------------------------------------------
 
@@ -272,8 +286,7 @@ CREATE TABLE `auth_remember_tokens` (
 --
 
 INSERT INTO `auth_remember_tokens` (`id`, `selector`, `hashedValidator`, `user_id`, `expires`, `created_at`, `updated_at`) VALUES
-(9, 'db5b5bdf0a33e9eb9f974fb5', 'be2247836c66f9d75a09ae8a4adc4e08734060423dd39a93187ba17e4c895e51', 1, '2023-09-23 10:08:01', '2023-08-02 08:06:24', '2023-08-24 10:08:01'),
-(10, 'f96f2b18164f432470a8f864', '8272568740dafccce77167b5cc75f0c0a94d59f0e43315cbc7dce6afea6e55bd', 1, '2023-09-27 03:59:28', '2023-08-24 10:33:41', '2023-08-28 03:59:28');
+(17, 'adfddbf8f16cc914688b17fd', 'a590534cd6ffb69e91118e0b843603d0f9dbd19282f3db6a2f02f4f2a85a27a1', 1, '2023-11-13 06:45:00', '2023-10-14 13:45:00', '2023-10-14 13:45:00');
 
 -- --------------------------------------------------------
 
@@ -602,6 +615,39 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pelatihan`
+--
+
+CREATE TABLE `pelatihan` (
+  `id` int(10) NOT NULL,
+  `nama_pelatihan` varchar(255) NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `waktu_mulai` time NOT NULL,
+  `waktu_selesai` time NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `peserta_pelatihan`
+--
+
+CREATE TABLE `peserta_pelatihan` (
+  `id` int(10) NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `id_pelatihan` int(10) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ruangan`
 --
 
@@ -703,6 +749,7 @@ CREATE TABLE `settings` (
 
 CREATE TABLE `sewa_alat` (
   `id` int(11) NOT NULL,
+  `uuid` varchar(255) NOT NULL,
   `id_alat` int(11) NOT NULL,
   `nama_kegiatan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
@@ -723,8 +770,8 @@ CREATE TABLE `sewa_alat` (
 -- Dumping data for table `sewa_alat`
 --
 
-INSERT INTO `sewa_alat` (`id`, `id_alat`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_user`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
-(1, 1, 'Print action figure', 'Print action figure', 'abc', 1, '2023-04-25 16:54:30', NULL, '2023-04-25 16:54:30', '2023-04-27 21:54:31', 100, '2023-04-25 16:54:30', '', 'SUDAH DIBAYAR', 'SELESAI');
+INSERT INTO `sewa_alat` (`id`, `uuid`, `id_alat`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_user`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
+(1, 'asdfasdf', 6, 'Print action figure', 'Print action figure', 'abc', 1, '2023-04-25 16:54:30', NULL, '2023-04-25 16:54:30', '2023-04-27 21:54:31', 100, '2023-04-25 16:54:30', '', 'BELUM DIBAYAR', 'SELESAI');
 
 -- --------------------------------------------------------
 
@@ -756,10 +803,6 @@ CREATE TABLE `sewa_ruangan` (
 --
 
 INSERT INTO `sewa_ruangan` (`id`, `uuid`, `id_ruangan`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_user`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
-(1, 'a', 1, 'Products Showcase', 'Products showcase', 'abc', 1, '2023-04-25 16:54:30', NULL, '2023-04-25 16:54:30', '2023-04-27 21:54:31', 100, '2023-04-25 16:54:30', '', 'SUDAH DIBAYAR', 'SELESAI'),
-(14, 's', 1, 'asdfasdf', 'asdfasdf', '', 6, '2023-05-05 12:30:07', '2023-05-05 12:30:07', '2023-05-13 00:00:00', '2023-05-18 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
-(15, 'd', 1, 'asdfasdf', 'a', '', 7, '2023-05-05 13:11:24', '2023-05-05 13:11:24', '2023-05-06 00:00:00', '2023-05-04 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
-(16, 'f', 1, 'kjnkhk', 'iiijiij', '', 13, '2023-05-11 06:00:26', '2023-05-11 06:00:26', '2023-05-19 00:00:00', '2023-05-25 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (17, 'g', 9, 'asdfasdf', 'bbb', '', 1, '2023-08-03 07:01:39', '2023-08-03 07:01:39', '2023-08-07 00:00:00', '2023-08-10 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (18, 'h', 9, 'kjnkhk', 'bbb', '', 2, '2023-08-03 07:06:35', '2023-08-03 07:06:35', '2023-08-06 00:00:00', '2023-08-12 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (19, 'j', 9, 'asdfasdf', 'iiijiij', '', 3, '2023-08-03 07:08:03', '2023-08-03 12:59:54', '2023-08-17 00:00:00', '2023-08-25 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
@@ -768,7 +811,9 @@ INSERT INTO `sewa_ruangan` (`id`, `uuid`, `id_ruangan`, `nama_kegiatan`, `deskri
 (23, 'q', 29, 'foto produk', 'memfoto produk', '', 22, '2023-08-08 13:16:54', '2023-08-08 20:57:38', '2023-08-11 08:00:00', '2023-08-11 15:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (24, 'w', 29, 'apa ya', 'memfoto produk', '', 23, '2023-08-08 21:03:48', '2023-08-08 21:03:48', '2023-08-10 11:00:00', '2023-08-10 15:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (26, 'UUID()', 9, 'ahdksfklajskdfacj jenaunsdkncklansdifa fkajskdmckaj sdjfuaioejwf dfhgdfhdfghdfghdgfh', 'asdfasdf', '', 24, '2023-08-24 17:34:37', '2023-08-24 17:34:37', '2023-08-24 00:00:00', '2023-08-24 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
-(27, '6470a21d-ab59-31a6-813e-95989909d99f', 9, 'llll', 'llll', '', 25, '2023-08-24 17:44:47', '2023-08-24 17:44:47', '2023-08-25 00:00:00', '2023-08-26 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL);
+(27, '6470a21d-ab59-31a6-813e-95989909d99f', 9, 'llll', 'llll', '', 25, '2023-08-24 17:44:47', '2023-08-24 17:44:47', '2023-08-25 00:00:00', '2023-08-26 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(28, '752df789-f91b-347a-b403-b0f8cc48888b', 28, 'JFGHTY', 'memfoto produk', '', 26, '2023-09-28 18:38:36', '2023-09-28 19:55:42', '2023-09-29 08:38:00', '2023-09-30 20:38:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
+(29, '94eafd51-3882-3ff6-8c16-2ff17902e58f', 10, 'asdfasdf', 'iiijiij', '', 27, '2023-09-28 18:40:25', '2023-09-28 18:48:05', '2023-09-28 00:00:00', '2023-09-28 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -816,7 +861,9 @@ INSERT INTO `user` (`id`, `email`, `nama`, `kontak`, `nama_instansi`, `created_a
 (22, 'flaminggooo50@gmail.com', 'Joko', '13241234', 'Joko corp', '2023-08-08 13:16:54', '2023-08-08 20:57:38', NULL),
 (23, 'flaminggooo50@gmail.com', 'Muhammad Fikri Hizbullah', '7657656585675', 'Joko corp', '2023-08-08 21:03:48', '2023-08-08 21:03:48', NULL),
 (24, 'flaminggooo50@gmail.com', 'kasjdflkjaskldjf', '13241234', 'asdfasdfa', '2023-08-24 17:34:37', '2023-08-24 17:34:37', NULL),
-(25, 'flaminggooo50@gmail.com', 'adfasdfasdf', '13241234', 'adsf', '2023-08-24 17:44:47', '2023-08-24 17:44:47', NULL);
+(25, 'flaminggooo50@gmail.com', 'adfasdfasdf', '13241234', 'adsf', '2023-08-24 17:44:47', '2023-08-24 17:44:47', NULL),
+(26, 'untabalap47@gmail.com', 'asdf', '7657656585675', 'Joko corp', '2023-09-28 18:38:36', '2023-09-28 19:55:42', NULL),
+(27, 'untabalap47@gmail.com', 'asdfasdfas', '123412341234', 'Joko corp', '2023-09-28 18:40:25', '2023-09-28 18:48:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -828,6 +875,9 @@ CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
   `username` varchar(30) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL,
   `status_message` varchar(255) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
   `last_active` datetime DEFAULT NULL,
@@ -840,10 +890,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'fikwkwk', NULL, NULL, 1, '2023-08-28 04:05:43', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL),
-(3, 'admin', NULL, NULL, 1, '2023-09-05 12:10:05', '2023-09-05 11:51:27', '2023-09-05 11:51:27', NULL),
-(4, 'harzreich', NULL, NULL, 1, '2023-09-05 15:13:56', '2023-09-05 14:13:44', '2023-09-05 14:13:44', NULL);
+INSERT INTO `users` (`id`, `username`, `status`, `first_name`, `last_name`, `avatar`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'fikwkwk', NULL, '', '', '', NULL, 1, '2023-10-14 14:37:40', '2023-05-15 12:29:42', '2023-05-15 12:29:42', NULL),
+(3, 'admin', NULL, '', '', '', NULL, 1, '2023-09-05 12:10:05', '2023-09-05 11:51:27', '2023-09-05 11:51:27', NULL),
+(4, 'harzreich', NULL, '', '', '', NULL, 1, '2023-09-05 15:13:56', '2023-09-05 14:13:44', '2023-09-05 14:13:44', NULL),
+(5, 'bukanadmin', NULL, '', '', '', NULL, 1, '2023-09-29 20:02:10', '2023-09-29 10:50:13', '2023-09-29 10:50:13', NULL),
+(6, 'mfikrih100@gmail.com', NULL, 'Muhammad', 'Fikri', 'https://lh3.googleusercontent.com/a/ACg8ocKtuTzR2LtWIB84SPq_7CS-g2JWkDtzNOD5MOh1udWf=s96-c', NULL, 1, '2023-10-05 21:38:00', '2023-10-05 21:35:27', '2023-10-05 21:35:27', NULL);
 
 --
 -- Indexes for dumped tables
@@ -994,6 +1046,18 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pelatihan`
+--
+ALTER TABLE `pelatihan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `peserta_pelatihan`
+--
+ALTER TABLE `peserta_pelatihan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ruangan`
 --
 ALTER TABLE `ruangan`
@@ -1016,7 +1080,8 @@ ALTER TABLE `settings`
 -- Indexes for table `sewa_alat`
 --
 ALTER TABLE `sewa_alat`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `uuid` (`uuid`);
 
 --
 -- Indexes for table `sewa_ruangan`
@@ -1070,19 +1135,19 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `auth_groups_users`
 --
 ALTER TABLE `auth_groups_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `auth_identities`
 --
 ALTER TABLE `auth_identities`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -1094,7 +1159,7 @@ ALTER TABLE `auth_permissions_users`
 -- AUTO_INCREMENT for table `auth_remember_tokens`
 --
 ALTER TABLE `auth_remember_tokens`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `auth_token_logins`
@@ -1163,10 +1228,22 @@ ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `pelatihan`
+--
+ALTER TABLE `pelatihan`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `peserta_pelatihan`
+--
+ALTER TABLE `peserta_pelatihan`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ruangan`
 --
 ALTER TABLE `ruangan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `ruangan_tipe`
@@ -1190,19 +1267,19 @@ ALTER TABLE `sewa_alat`
 -- AUTO_INCREMENT for table `sewa_ruangan`
 --
 ALTER TABLE `sewa_ruangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

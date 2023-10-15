@@ -142,6 +142,10 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 	$routes->post('/DashboardAdmin/saveUpdateSewaAlat/(:num)/(:num)', 'Admin\LayananSewaAlatAdmin::saveUpdateSewaAlat/$1/$2');
 
 	$routes->delete('/DashboardAdmin/sewaAlat/(:num)', 'Admin\LayananSewaAlatAdmin::deleteSewaAlat/$1');
+
+
+
+	$routes->get('/DashboardAdmin/manajemen-user', 'Admin\ManajemenUserAdmin::index');
 });
 
 service('auth')->routes($routes);
