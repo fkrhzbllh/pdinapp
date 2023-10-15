@@ -56,7 +56,7 @@ class AlatAdmin extends BaseController
 	// form tambah alat
 	public function tambahAlat()
 	{
-		session();
+
 		$this->data['current_page'] = 'adminalat';
 		$this->data['admin'] = true;
 		$this->data['judul_halaman'] = 'Tambah Alat';
@@ -470,7 +470,7 @@ class AlatAdmin extends BaseController
 		}
 	}
 
-	// aturan validasi form sewa ruangan
+	// aturan validasi form sewa alat
 	public function formRulesSewaAlat()
 	{
 		$rules = [

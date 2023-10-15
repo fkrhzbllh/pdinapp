@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="container">
-    <form id="sewaruangan" class="mt-3" action="/DashboardAdmin/saveUpdateSewaAlat/<?= $jadwal['id'] . '/' . $penyewa['id'] ?>" method="post">
+    <form id="sewaalat" class="mt-3" action="/DashboardAdmin/saveUpdateSewaAlat/<?= $jadwal['id'] . '/' . $penyewa['id'] ?>" method="post">
         <?php echo csrf_field() ?>
         <div class="row g-3">
             <h3>Ubah Sewa <?= $alat['nama'] ?>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-12">
-                <label hidden for="alat" class="form-label">Ruang yang Dipinjam</label>
+                <label hidden for="alat" class="form-label">Alat yang Dipinjam</label>
                 <select hidden class="form-select <?= (validation_show_error('alat')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="alat" name="alat" type="hidden">
                     <option selected disabled>Pilih Alat</option>
                     <?php // foreach($alat as $r) :
@@ -111,23 +111,13 @@
             </div>
         </div>
 
-        <?= d($jadwal['tgl_mulai_sewa']) ?>
-
-        <!-- <input id="tipe" class="form-control" type="hidden" name="tipe"
-                value="<?= old('tipe') ?>" />
-        -->
-
-        <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit">Edit Sewa Ruangan</button>
+        <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit">Edit Sewa Alat</button>
 </div>
 </form>
 </div>
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
-<!-- Calendar -->
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.7/locales-all.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.7/index.global.min.js"></script>
 
 <script>
     var start = document.getElementById('tanggalMulai');

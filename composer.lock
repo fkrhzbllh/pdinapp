@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6741898791e3ddd4423b1558c6e10bf",
+    "content-hash": "ac92efb9121ba9a1623475540cbfccfb",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -208,6 +208,71 @@
                 "source": "https://github.com/codeigniter4/shield"
             },
             "time": "2023-08-15T22:31:02+00:00"
+        },
+        {
+            "name": "datamweb/shield-oauth",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datamweb/shield-oauth.git",
+                "reference": "12c1252ac7e790b6b945e1a4bac81f732fe76bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datamweb/shield-oauth/zipball/12c1252ac7e790b6b945e1a4bac81f732fe76bb9",
+                "reference": "12c1252ac7e790b6b945e1a4bac81f732fe76bb9",
+                "shasum": ""
+            },
+            "require": {
+                "codeigniter4/shield": "dev-develop",
+                "ext-curl": "*",
+                "php": "^7.4.3 || ^8.0 || ^8.1 || ^8.2"
+            },
+            "require-dev": {
+                "codeigniter4/devkit": "^1.0",
+                "codeigniter4/framework": "^4.2.7",
+                "codeigniter4/shield": "dev-develop",
+                "rector/rector": "0.18.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datamweb\\ShieldOAuth\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "**/Database/Migrations/**"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pooya Parsa Dadashi",
+                    "email": "pooya_parsa_dadashi@yahoo.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth for CodeIgniter Shield",
+            "homepage": "https://github.com/datamweb/shield-oauth",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "codeigniter4",
+                "githubOauth",
+                "googleoauth",
+                "oauth",
+                "shield"
+            ],
+            "support": {
+                "docs": "https://www.shield-oauth.codeigniter4.ir",
+                "forum": "https://github.com/datamweb/shield-oauth/discussions",
+                "issues": "https://github.com/datamweb/shield-oauth/issues",
+                "source": "https://github.com/datamweb/shield-oauth"
+            },
+            "time": "2023-09-26T12:00:07+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -2297,7 +2362,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "codeigniter4/shield": 20
+        "codeigniter4/shield": 20,
+        "datamweb/shield-oauth": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

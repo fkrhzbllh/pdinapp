@@ -7,6 +7,7 @@
             <?= session()->getFlashdata('sukses') ?>
         </div>
     <?php endif; ?>
+
     <h3 class="mb-3">Alat</h3>
     <div class="row">
         <div class="col-12 col-md-6">
@@ -71,7 +72,10 @@
                     "width": "80%"
                 },
                 null,
-            ]
+            ],
+            "language": {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
+            }
         });
     });
 </script>

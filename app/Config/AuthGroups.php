@@ -48,6 +48,26 @@ class AuthGroups extends ShieldAuthGroups
             'title'       => 'User',
             'description' => 'General users of the site. Often customers.',
         ],
+        'perusahaan' => [
+            'title'       => 'Perusahaan',
+            'description' => 'User dengan role perusahaan.',
+        ],
+        'pelajar' => [
+            'title'       => 'Pelajar',
+            'description' => 'User dengan role pelajar atau guru.',
+        ],
+        'pemerintah' => [
+            'title'       => 'Pemerintah',
+            'description' => 'User dengan role pemerintah.',
+        ],
+        'mitra' => [
+            'title'       => 'Mitra',
+            'description' => 'User dengan role mitra.',
+        ],
+        // 'user' => [
+        //     'title'       => 'User',
+        //     'description' => 'General users of the site. Often customers.',
+        // ],
         'beta' => [
             'title'       => 'Beta User',
             'description' => 'Has access to beta-level features.',
@@ -101,6 +121,10 @@ class AuthGroups extends ShieldAuthGroups
             'beta.access',
         ],
         'user' => [],
+        'perusahaan' => [],
+        'pelajar' => [],
+        'pemerintah' => [],
+        'mitra' => [],
         'beta' => [
             'beta.access',
         ],

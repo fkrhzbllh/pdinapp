@@ -29,6 +29,8 @@ class Filters extends BaseConfig
 		'permission' => \CodeIgniter\Shield\Filters\PermissionFilter::class,
 		'force-reset' => \CodeIgniter\Shield\Filters\ForcePasswordResetFilter::class,
 		'jwt' => \CodeIgniter\Shield\Filters\JWTAuth::class,
+
+		'admin' => \App\Filters\AdminFilter::class,
 	];
 
 	/**
@@ -40,7 +42,7 @@ class Filters extends BaseConfig
 			// 'honeypot',
 			// 'csrf',
 			// 'invalidchars',
-			'session' => ['except' => ['login*', 'register', 'auth/a/*', 'beranda', 'kegiatan', 'kontak', 'layanan', 'profilpdin', 'fasilitas', 'fasilitas/ruang/*', 'fasilitas/alat/*', 'galeri', '', 'rilis-media*']],
+			'session' => ['except' => ['login*', 'register', 'auth/a/*','oauth*', 'beranda', 'kegiatan', 'kontak', 'layanan', 'profilpdin', 'fasilitas', 'fasilitas/ruang/*', 'fasilitas/alat/*', 'galeri', '', 'rilis-media*']],
 		],
 		'after' => [
 			'toolbar',

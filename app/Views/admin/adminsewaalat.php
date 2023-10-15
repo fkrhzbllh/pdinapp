@@ -5,9 +5,9 @@
 <div class="p-5 col-12 bg-white">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/DashboardAdmin/ruangan">Ruangan</a></li>
+            <li class="breadcrumb-item"><a href="/DashboardAdmin/alat">Alat</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <?php echo 'Sewa' . $ruangan['nama'] ?>
+                <?php echo 'Sewa' . $alat['nama'] ?>
             </li>
         </ol>
     </nav>
@@ -20,14 +20,14 @@
             <?= session()->getFlashdata('gagal') ?>
         </div>
     <?php endif; ?>
-    <h3 class="mb-3">Sewa <?= $ruangan['nama'] ?>
+    <h3 class="mb-3">Sewa <?= $alat['nama'] ?>
     </h3>
     <div class="row">
         <div class="col-12 col-md-12">
             <div class="row">
                 <div class="col-6 col-md-6">
-                    <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-sewa-ruangan/' . $ruangan['slug'] ?>">Tambah
-                        Sewa Ruangan</a>
+                    <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-sewa-alat/' . $alat['slug'] ?>">Tambah
+                        Sewa Alat</a>
                 </div>
                 <!-- === Nav === -->
                 <div class="col-6 col-md-6">
@@ -90,33 +90,20 @@
                                 <!-- <td><?= $penyewa[$key]['nama_instansi'] ?>
                             </td> -->
                                 <td data-sort="<?php echo strtotime($a['tgl_mulai_sewa']) ?>">
-                                    <?php if ($ruangan['tipe'] == 'Pameran') {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-                                        echo $formatter->format(date_create($a['tgl_mulai_sewa']));
-                                    } else {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
-                                        echo $formatter->format(date_create($a['tgl_mulai_sewa']));
-                                    } ?>
+                                    <?php
+                                    $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
+                                    echo $formatter->format(date_create($a['tgl_mulai_sewa']));
+                                    ?>
                                 </td>
                                 <td data-sort="<?php echo strtotime($a['tgl_mulai_sewa']) ?>">
-                                    <?php if ($ruangan['tipe'] == 'Pameran') {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-                                        echo $formatter->format(date_create($a['tgl_akhir_sewa']));
-                                    } else {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
-                                        echo $formatter->format(date_create($a['tgl_akhir_sewa']));
-                                    } ?>
+                                    <?php
+                                    $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy HH:mm z');
+                                    echo $formatter->format(date_create($a['tgl_akhir_sewa']));
+                                    ?>
                                 </td>
                                 <td>
-                                    <a href="/DashboardAdmin/update-sewa-ruangan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
-                                    <!-- <form action="/DashboardAdmin/update-sewa-ruangan" method="post" class="d-inline">
-                                    <?= csrf_field(); ?>
-                                    <input type="hidden"
-                                        value="<?php echo $a['id'] ?>"
-                                        name="id">
-                                    <button class="btn btn-warning" type="submit">Edit</button>
-                                </form> -->
-                                    <form action="/DashboardAdmin/sewaRuangan/<?php echo $a['id'] ?>" method="post" class="d-inline">
+                                    <a href="/DashboardAdmin/update-sewa-alat/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
+                                    <form action="/DashboardAdmin/sewaAlat/<?php echo $a['id'] ?>" method="post" class="d-inline">
                                         <?= csrf_field(); ?>
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
@@ -231,8 +218,7 @@
                     </div>
                 </div>
             </div>
-            <?php // echo d($events) 
-            ?>
+            <?php echo d($events) ?>
             <?php // echo $pager->links('artikel', 'pager')
             ?>
         </div>
@@ -315,18 +301,10 @@
                     timeZoneName: "short",
                     timeZone: "Asia/Jakarta",
                 });
-                if (arg.event.extendedProps.tipe_ruangan == "Pameran") {
-                    mulai = formatter.format(arg.event.start);
-                    //  selesai = formatter2.format(arg.event.end);
-                    selesai = formatter.format(new Date(arg.event.extendedProps
-                        .selesai));
-
-                } else {
-                    mulai = formatter2.format(arg.event.start);
-                    //  selesai = formatter2.format(arg.event.end);
-                    selesai = formatter2.format(new Date(arg.event.extendedProps
-                        .selesai));
-                };
+                mulai = formatter2.format(arg.event.start);
+                //  selesai = formatter2.format(arg.event.end);
+                selesai = formatter2.format(new Date(arg.event.extendedProps
+                    .selesai));;
 
                 $('.modal-body').find('#judul_kegiatan').text(arg.event
                     .title);
