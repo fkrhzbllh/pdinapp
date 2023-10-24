@@ -41,7 +41,8 @@ helper('text'); ?>
 	}
 
 	.swiper-slide-fasilitas img.active {
-		box-shadow: 0px 0px 20px var(--color-surface-transparent);
+		/* box-shadow: 0px 0px 20px var(--color-surface-transparent); */
+		border: 0.25rem solid var(--color-primary-transparent);
 	}
 
 	.pic-wrapper {

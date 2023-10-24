@@ -1,3 +1,11 @@
+<?php
+/*
+Belum dirapikan
+- Pindahkan css
+- Pakai css khusus halaman kegiatan
+- Rapikan modal
+*/
+?>
 <?= $this->extend('layout/template') ?>
 
 <?= $this->section('content') ?>
@@ -32,15 +40,15 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(to right,
-                var(--color-surface),
-                var(--color-surface-transparent-8) 40%,
+        background-image: linear-gradient(to top,
+                var(--color-quaternary),
+                var(--color-quaternary-transparent-8) 40%,
                 transparent 60%);
         pointer-events: none;
     }
 
     /* Medium devices (landscape tablets, 768px and up) */
-    @media only screen and (max-width: 768px) {
+    @media only screen and (min-width: 768px) {
         #section-kegiatan-terakhir .section-slideshow::after {
             content: '';
             position: absolute;
@@ -48,21 +56,217 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(to bottom,
-                    var(--color-surface),
-                    var(--color-surface-transparent-8) 40%,
+            background-image: linear-gradient(to right,
+                    var(--color-quaternary),
+                    var(--color-quaternary-transparent-8) 40%,
                     transparent 60%);
             pointer-events: none;
         }
     }
 
     /* Ikon kegiatan */
-    .bi-kegiatan {
+    h2 .bi,
+    .judul-kegiatan .bi {
         margin-right: 16px;
     }
 
-    .card-title.judul-kegiatan:hover {
+    .btn-sosmed .bi {
+        margin-right: 8px;
+    }
+
+    .card-text.judul-kegiatan:hover {
         cursor: pointer;
+    }
+
+    /* Slideshow */
+    .pic-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    figure {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        opacity: 0;
+        /*animation*/
+
+        animation: slideShow 24s linear infinite 0s;
+        -o-animation: slideShow 24s linear infinite 0s;
+        -moz-animation: slideShow 24s linear infinite 0s;
+        -webkit-animation: slideShow 24s linear infinite 0s;
+    }
+
+    figure::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--color-surface-transparent-8);
+        pointer-events: none;
+    }
+
+    figurecaption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #fff;
+    }
+
+    .pic-1 {
+        opacity: 1;
+        background: url(./assets/hero-bg-1.jpg) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .pic-2 {
+        animation-delay: 6s;
+        -o-animation-delay: 6s;
+        -moz--animation-delay: 6s;
+        -webkit-animation-delay: 6s;
+        background: url(./assets/hero-bg-3.jpg) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .pic-3 {
+        animation-delay: 12s;
+        -o-animation-delay: 12s;
+        -moz--animation-delay: 12s;
+        -webkit-animation-delay: 12s;
+        background: url(./assets/hero-bg-4.jpg) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .pic-4 {
+        animation-delay: 18s;
+        -o-animation-delay: 18s;
+        -moz--animation-delay: 18s;
+        -webkit-animation-delay: 18s;
+        background: url(./assets/hero-bg-5.jpg) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    /* keyframes*/
+
+    @keyframes slideShow {
+        0% {
+            opacity: 0;
+            transform: scale(1);
+            -ms-transform: scale(1);
+        }
+
+        5% {
+            opacity: 1
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: 0;
+            transform: scale(1.1);
+            -ms-transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(1);
+            -ms-transformm: scale(1);
+        }
+    }
+
+    @-o-keyframes slideShow {
+        0% {
+            opacity: 0;
+            -o-transform: scale(1);
+        }
+
+        5% {
+            opacity: 1
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: 0;
+            -o-transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 0;
+            -o-transformm: scale(1);
+        }
+    }
+
+    @-moz-keyframes slideShow {
+        0% {
+            opacity: 0;
+            -moz-transform: scale(1);
+        }
+
+        5% {
+            opacity: 1
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: 0;
+            -moz-transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 0;
+            -moz-transformm: scale(1);
+        }
+    }
+
+    @-webkit-keyframes slideShow {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(1);
+        }
+
+        5% {
+            opacity: 1
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: 0;
+            -webkit-transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 0;
+            -webkit-transformm: scale(1);
+        }
     }
 </style>
 <?= $this->endSection(); ?>
@@ -72,55 +276,56 @@
 <section id="hero" class="shadow-lg d-flex align-items-center">
     <div class="section-slideshow" style="background-image:url('<?= base_url() . 'uploads/' . $kegiatan_mendatang_atau_terakhir['poster']; ?>')"></div>
     <div class="container position-relative" id="hero-container">
-        <div class="row d-flex align-items-center">
-            <div class="col-9">
+        <div class="row gy-5 justify-content-center">
+            <div class="col-12 col-xl-9 text-center">
                 <!-- Kategori -->
-                <p class="text-danger fs-3 mb-3"><b><?= $kegiatan_mendatang_atau_terakhir['hari_tersisa']; ?></b></p>
+                <p class="text-danger fs-3 mb-4"><b><?= $kegiatan_mendatang_atau_terakhir['hari_tersisa']; ?></b></p>
 
                 <!-- Judul -->
-                <h3 class="card-title fs-1 mb-3">
+                <h1 class="card-title fs-1 mb-3">
                     <a class="link-dark text-decoration-none crop-text-2" href="rilis-media/"><?= $kegiatan_mendatang_atau_terakhir['nama_kegiatan']; ?></a>
-                </h3>
+                </h1>
+
+                <hr class="border border-danger border-1 opacity-100">
 
                 <!-- Tanggal -->
-                <p class="card-text crop-text-2 mb-3">
-                    <b><?= $kegiatan_mendatang_atau_terakhir['tgl_mulai_terformat']; ?></b>
+                <p class="card-text fs-3 crop-text-2 mb-5">
+                    <b><i class="bi bi-clock me-3"></i><?= $kegiatan_mendatang_atau_terakhir['tgl_mulai_terformat']; ?></b>
                 </p>
 
-                <!-- Ringkasan -->
-                <p class="card-text fs-4 crop-text-4 mb-3">
-                    <?= $kegiatan_mendatang_atau_terakhir['tempat']; ?>
-                </p>
-
-                <button class="btn btn-danger btn-lg">Selengkapnya</button>
-            </div>
-            <div class="col-3">
-                <img class="w-100 rounded-4" src="<?= base_url() . 'uploads/' . $kegiatan_mendatang_atau_terakhir['poster']; ?>">
+                <button id="btn-hero-kegiatan" class="btn btn-outline-dark btn-lg">Selengkapnya<i class="bi bi-arrow-right ms-2"></i></button>
             </div>
         </div>
     </div>
+
+    <!-- Tombol pergi ke kalender -->
+    <div class="d-flex position-absolute w-100 justify-content-center align-self-end">
+        <i id="btn-pergi-ke-kalender" class="display-4 bi bi-arrow-down-circle m-4"></i>
+    </div>
+
 </section>
+
 <!-- Section konten -->
-<section id="section-konten">
+<section id="section-konten" style="min-height: 100vh">
     <div class="container">
         <div class="row">
 
             <!-- Kalender -->
-            <div class="col-6">
-                <div id="calendar"></div>
+            <div class="col-lg-6">
+                <div class="card p-3 mb-2 rounded-0" id="calendar"></div>
             </div>
 
             <!-- Daftar acara -->
-            <div class="col-6">
+            <div class="col-lg-6">
 
                 <!-- Acara -->
-                <div class="fc" id="container-acara">
+                <div class="card fc p-3 mb-2 rounded-0" id="container-acara">
                     <div class="fc-header-toolbar fc-toolbar">
                         <div class="fc-toolbar-chunk">
-                            <h2 class="fc-toolbar-title">Acara</h2>
+                            <h2 class="fc-toolbar-title"><i class="bi bi-bookmarks"></i>Acara</h2>
                         </div>
                         <div class="fc-toolbar-chunk">
-                            <button type="button" id="btn-acara-bulan-ini" class="fc-today-button btn btn-primary"><i class="bi bi-info-circle"></i></button>
+                            <a tabindex="0" role="button" id="btn-acara-bulan-ini" class="fc-today-button btn btn-primary" data-bs-toggle="popover" data-bs-title="Daftar Acara" data-bs-trigger="focus" data-bs-content="Menampilkan daftar acara pada bulan terpilih"><i class="bi bi-info-circle"></i></a>
                         </div>
                     </div>
 
@@ -130,13 +335,14 @@
                 </div>
 
                 <!-- Acara akan datang -->
-                <div class="fc" id="container-acara-mendatang">
+                <div class="card fc p-3 mb-2 rounded-0" id="container-acara-mendatang">
                     <div class="fc-header-toolbar fc-toolbar">
                         <div class="fc-toolbar-chunk">
-                            <h2 id="heading-acara-mendatang" class="fc-toolbar-title">Acara Mendatang</h2>
+                            <h2 id="heading-acara-mendatang" class="fc-toolbar-title"><i class="bi bi-bookmark"></i>Acara Mendatang</h2>
                         </div>
                         <div class="fc-toolbar-chunk">
                             <button type="button" id="btn-acara-mendatang" class="fc-today-button btn btn-primary"><i class="bi bi-calendar2-event"></i></button>
+                            <a tabindex="0" role="button" id="btn-acara-mendatang-info" class="fc-today-button btn btn-primary" data-bs-toggle="popover" data-bs-title="Acara Mendatang" data-bs-trigger="focus" data-bs-content="Menampilkan acara terdekat yang akan diselenggarakan"><i class="bi bi-info-circle"></i></a>
                         </div>
                     </div>
 
@@ -146,13 +352,14 @@
                 </div>
 
                 <!-- Acara terakhir -->
-                <div class="fc" id="container-acara-terakhir">
+                <div class="card fc p-3 mb-2 rounded-0" id="container-acara-terakhir">
                     <div class="fc-header-toolbar fc-toolbar">
                         <div class="fc-toolbar-chunk">
-                            <h2 class="fc-toolbar-title">Acara Terakhir</h2>
+                            <h2 class="fc-toolbar-title"><i class="bi bi-bookmark-check"></i>Acara Terakhir</h2>
                         </div>
                         <div class="fc-toolbar-chunk">
                             <button type="button" id="btn-acara-terakhir" class="fc-today-button btn btn-primary"><i class="bi bi-calendar2-event"></i></button>
+                            <a tabindex="0" role="button" id="btn-acara-terakhir-info" class="fc-today-button btn btn-primary" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Acara Terakhir" data-bs-content="Menampilkan acara terakhir yang telah diselenggarakan"><i class="bi bi-info-circle"></i></a>
                         </div>
                     </div>
 
@@ -169,8 +376,10 @@
 </section>
 <!-- Akhir section konten -->
 
-<!-- Kegiatan -->
-<section id="section-kegiatan-terakhir" class="d-flex align-items-center">
+<!-- Kegiatan terakhir -->
+<section id="section-kegiatan-terakhir" class="d-flex align-items-center bg-pdin-quaternary">
+
+    <!-- Background slideshow -->
     <div class="section-slideshow"></div>
 
     <div class="container position-relative">
@@ -184,30 +393,29 @@
                     <?php foreach ($kegiatan_terakhir as $i => $k) :
                     ?>
                         <div class="swiper-slide d-flex align-items-center">
-                            <div class="container">
+                            <div class="container p-4">
                                 <div class="row">
 
                                     <!-- Body artikel -->
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 order-2 order-md-1">
                                         <div class="card-body p-md-5">
 
                                             <!-- Kategori -->
                                             <p class="text-danger fs-5 mb-3"><b><?= $k['jenis_kegiatan'] ?></b></p>
 
-
                                             <!-- Judul -->
                                             <h3 class="card-title fs-2 mb-3">
-                                                <a class="link-dark text-decoration-none crop-text-2" href="rilis-media/"><?= $k['nama_kegiatan'] ?></a>
+                                                <a id="link-kegiatan-terakhir-<?= $i ?>" class="link-light text-decoration-none crop-text-2"><?= $k['nama_kegiatan'] ?></a>
                                             </h3>
 
                                             <!-- Tanggal -->
-                                            <p class="card-text crop-text-2 mb-3">
-                                                <b><?= $k['tgl_mulai_terformat'] ?></b>
+                                            <p class="card-text text-light crop-text-2 mb-1">
+                                                <i class="bi bi-clock me-2"></i><b><?= $k['tgl_mulai_terformat'] ?></b>
                                             </p>
 
                                             <!-- Ringkasan -->
-                                            <p class="card-text fs-5 crop-text-4 mb-3">
-                                                <?= $k['tempat'] ?>
+                                            <p class="card-text text-light crop-text-4 mb-3">
+                                                <i class="bi bi-geo-alt me-2"></i><?= $k['tempat'] ?>
                                             </p>
 
                                         </div>
@@ -216,7 +424,7 @@
                                     <!-- Akhir body artikel -->
 
                                     <!-- Gambar artikel -->
-                                    <div class="col-md-6 position-relative" style="height: 256px;">
+                                    <div class="col-md-6 order-1 order-md-2" style="height: 256px;">
 
                                     </div>
 
@@ -235,18 +443,44 @@
         </div>
         <!-- Akhir swiper kegiatan -->
 
-
-
     </div>
-
-    <!-- <div class="container align-self-end">
-		<a class="btn btn-danger rounded-4" href="/rilis-media" role="button">Lihat Semua
-			Kegiatan
-			<span class="ps-1 bi-arrow-right"></span></a>
-	</div> -->
 
 </section>
 <!-- End Kegiatan Section -->
+
+<!-- Media Sosial -->
+<section class="d-flex align-items-center" style="height: 100vh">
+    <div class="pic-wrapper">
+        <figure class="pic-1"></figure>
+        <figure class="pic-2"></figure>
+        <figure class="pic-3"></figure>
+        <figure class="pic-4"></figure>
+    </div>
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-10 col-xl-8 text-center mx-auto">
+
+                <p class="fs-3 lh-base mb-4">Temukan informasi terkini tentang acara, seminar, workshop, dan berbagai kegiatan lain yang kami selenggarakan. Tetap terhubung bersama kami</p>
+
+                <div class="d-flex flex-md-row flex-column mb-3 justify-content-center gx-1 btn-sosmed px-4">
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-instagram"></i>
+                        Instagram
+                    </a>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-facebook"></i>
+                        Facebook
+                    </a>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-twitter"></i>
+                        Twitter
+                    </a>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-youtube"></i>
+                        Youtube
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Modal detail kegiatan -->
 <div class="modal fade" id="modalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -387,6 +621,52 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
+
+<script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    const popover = new bootstrap.Popover('.popover-dismiss', {
+        trigger: 'focus'
+    })
+</script>
+
+<!-- Pergi ke kalender -->
+<script>
+    $(document).ready(function() {
+        // Pergi ke kalender
+        $('#btn-pergi-ke-kalender').click(function() {
+            $('html, body').animate({
+                scrollTop: $('#section-konten').offset().top
+            }, 500);
+        });
+    });
+</script>
+
+<!-- Efek fade out tombol pergi ke kalender -->
+<script>
+    $(document).ready(function() {
+        var $scrollButton = $('#btn-pergi-ke-kalender');
+
+        // Calculate half of the viewport height
+        var viewportHeight = $(window).height();
+        var maxScrollPosition = viewportHeight / 2;
+
+        // Adjust the opacity of the button as the page is scrolled
+        $(window).scroll(function() {
+            var scrollPosition = $(this).scrollTop();
+
+            // Calculate the opacity based on the scroll position
+            var opacity = 1 - (scrollPosition / maxScrollPosition);
+
+            // Ensure the opacity is within a 0 to 1 range
+            opacity = Math.min(1, Math.max(0, opacity));
+
+            // Update the button's opacity
+            $scrollButton.css('opacity', opacity);
+        });
+    });
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
@@ -394,7 +674,7 @@
             initialView: 'dayGridMonth',
             selectable: true,
             locale: 'id',
-            events: <?php echo json_encode($kegiatan) ?>, //array kegiatan -> objek kegiatan
+            events: <?= json_encode($kegiatan) ?>, //array kegiatan -> objek kegiatan
 
             eventTimeFormat: {
                 hour: '2-digit',
@@ -412,6 +692,11 @@
         });
         calendar.render();
 
+        // Tampilkan modal kegiatan untuk tombol hero kegiatan
+        document.getElementById("btn-hero-kegiatan").addEventListener("click", function() {
+            tampilkanModalHeroKegiatan(calendar);
+        });
+
         displayCurrentMonthEvent(calendar);
         displayLatestPastEvent(calendar);
         displayNextUpcomingEvent(calendar)
@@ -425,11 +710,75 @@
             displayCurrentMonthEvent(calendar);
         });
 
+        // Section kegiatan terakhir
+        var kegiatanTerakhir = filterEvents(calendar.getEvents(), <?= json_encode($kegiatan_terakhir) ?>)
+
+        kegiatanTerakhir.forEach(function(k, i) {
+
+            // Find the element with the matching id
+            var elementId = "link-kegiatan-terakhir-" + i;
+            var element = document.getElementById(elementId);
+
+            if (element) {
+                element.onclick = function() {
+                    tampilkanModalKegiatan(k);
+                }
+            }
+        });
+
     });
 </script>
 
 <script>
-    /////////////////////////////
+    function filterEvents(existingEvents, jsonData) {
+        // Initialize an array to store the filtered events
+        var filteredEvents = [];
+
+        // Loop through the JSON data
+        for (var i = 0; i < jsonData.length; i++) {
+            var eventData = jsonData[i];
+
+            // Filter the existing events based on a condition (e.g., matching event name)
+            var matchingEvent = existingEvents.find(function(event) {
+                // Customize this condition to match your criteria
+                return event.title === eventData.nama_kegiatan;
+            });
+
+            // If a matching event is found, add it to the filtered events array
+            if (matchingEvent) {
+                filteredEvents.push(matchingEvent);
+            }
+        }
+
+        return filteredEvents;
+    }
+
+
+    // Untuk kegiatan yang ada di section hero
+    function tampilkanModalHeroKegiatan(calendar) {
+        var nextUpcomingEvent = null;
+        var latestPastEvent = null;
+
+        calendar.getEvents().forEach(function(event) {
+            if (event.start > new Date() && (!nextUpcomingEvent || event.start < nextUpcomingEvent.start)) {
+                nextUpcomingEvent = event;
+            }
+
+            if (event.end < new Date() && (!latestPastEvent || event.end > latestPastEvent.end)) {
+                latestPastEvent = event;
+            }
+        });
+
+        if (nextUpcomingEvent) {
+            tampilkanModalKegiatan(nextUpcomingEvent);
+        } else if (latestPastEvent) {
+            tampilkanModalKegiatan(latestPastEvent);
+        } else {
+            // Handle the case where there are no upcoming or past events
+            console.log("No upcoming or past events found.");
+        }
+    }
+
     // Tampilkan acara bulan ini
     function displayCurrentMonthEvent(calendar) {
 
@@ -462,12 +811,15 @@
         container.innerHTML = ''; // Bersihkan list untuk refresh list acara
 
         var heading = document.getElementById('heading-acara-mendatang');
-        heading.innerHTML = ''; // Bersihkan heading untuk refresh hitungan hari
+        // heading.innerHTML = ''; // Bersihkan heading untuk refresh hitungan hari
 
         var nextUpcomingEvent = null;
 
         var eventIdPrefix = 'acara-mendatang-';
         var eventId = 0;
+
+        // Tombol pergi ke acara mendatang
+        var btnAcaraMendatang = document.getElementById("btn-acara-mendatang");
 
         calendar.getEvents().forEach(function(event) {
             // Check if the event is in the future and earlier than the nextUpcomingEvent
@@ -487,13 +839,13 @@
             heading.textContent = `dalam ${daysLeft} hari...`;
         } else {
             // Handle the case where there are no upcoming events
-            container.innerHTML = '<p>No upcoming events found.</p>';
+            container.innerHTML = '<p>Nantikan acara mendatang dari kami.</p>';
 
-            heading.textContent = 'No Upcoming Events';
+            // heading.textContent = 'Acara Mendatang';
+            btnAcaraMendatang.hidden = true;
         }
 
         // Update fungsi onclick pada tombol Pergi ke Acara Mendatang
-        var btnAcaraMendatang = document.getElementById("btn-acara-mendatang");
         btnAcaraMendatang.onclick = function() {
             goToFormattedDate(calendar, nextUpcomingEvent.start);
         }
@@ -510,6 +862,9 @@
         var eventIdPrefix = 'acara-terahir-';
         var eventId = 0;
 
+        // Tombol pergi ke acara terakhir
+        var btnAcaraTerakhir = document.getElementById("btn-acara-terakhir");
+
         calendar.getEvents().forEach(function(event) {
             // Check if the event is in the past and earlier than the latestPastEvent
             if (event.end < new Date() && (!latestPastEvent || event.end > latestPastEvent.end)) {
@@ -518,17 +873,16 @@
             }
         });
 
-        console.log(latestPastEvent);
-
         if (latestPastEvent != null) {
             displayEventCard('list-acara-terakhir', latestPastEvent, eventIdPrefix + eventId);
         } else {
             // Handle the case where there are no past events
             container.innerHTML = '<p>No past events found.</p>';
+
+            btnAcaraTerakhir.hidden = true;
         }
 
         // Update fungsi onclick pada tombol Pergi ke Acara Terakhir
-        var btnAcaraTerakhir = document.getElementById("btn-acara-terakhir");
         btnAcaraTerakhir.onclick = function() {
             goToFormattedDate(calendar, latestPastEvent.end);
         }
@@ -536,7 +890,6 @@
 </script>
 
 <script type="text/javascript">
-    ////////////////////////////////////////////////////////////////
     function displayEventCard(listId, event, eventId) {
 
         var container = document.getElementById(listId);
@@ -552,7 +905,7 @@
         card.innerHTML = `
             <div class="card rounded-0 shadow">
                 <div class="card-body">
-                    <h5 class="card-title judul-kegiatan" id="${eventId}"><i class="bi bi-pin-angle bi-kegiatan"></i>${event.title}</h5>
+                    <p class="card-text judul-kegiatan" id="${eventId}"><i class="bi bi-pin-angle bi-kegiatan"></i>${event.title}</p>
                 </div>
             </div>
         `;

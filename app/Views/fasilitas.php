@@ -3,21 +3,36 @@
 /**
  * TODO: 
  * Rapikan & kasih dokumentasi
- * Pindah script ke footer
  */
 
 helper('text'); ?>
 <?= $this->extend('layout/template') ?>
 
 <?= $this->section('style') ?>
+<link rel="stylesheet" href="<?= base_url(); ?>assets/styles/style-beranda.css" type="text/css" />
+<link rel="stylesheet" href="<?= base_url(); ?>assets/styles/style-hero.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <!-- Swiper style -->
 <style>
+	#hero .section-slideshow::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: linear-gradient(to bottom,
+				var(--color-surface-transparent-8),
+				var(--color-surface-transparent-8) 80%,
+				var(--color-surface));
+		pointer-events: none;
+	}
+
 	.swiper-slide {
 		background-position: center;
 		background-size: cover;
 		width: 512px;
-		height: 256px;
+		height: 30vh;
 		border-radius: var(--border-radius-primary);
 	}
 
@@ -25,16 +40,19 @@ helper('text'); ?>
 		display: block;
 		object-fit: cover;
 		width: 512px;
-		height: 256px;
+		height: 30vh;
 		border-radius: var(--border-radius-primary);
 	}
 </style>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+
 <!-- Section judul -->
-<section class="d-flex align-items-center p-0" style="margin-top: 160px;">
-	<div class="container">
+<section id="hero" class="d-flex align-items-center">
+	<div class="section-slideshow"></div>
+
+	<div class="container position-relative pt-5">
 		<div class="col-12">
 
 			<!-- Swiper fasilitas -->
@@ -64,16 +82,24 @@ helper('text'); ?>
 						<p class="text-danger fw-bold mt-4 mb-2" id="fasilitas-lantai">Lantai</p>
 
 						<!-- Nama fasilitas -->
-						<h2 class="mb-4" id="fasilitas-judul">Fasilitas</h2>
+						<a href="<?= ($admin) ? '/admin/ruang/' . $r['slug'] : '/fasilitas/ruang/' . $r['slug']; ?>">
+							<h2 class="mb-4" id="fasilitas-judul">Fasilitas</h2>
+						</a>
 
 						<!-- Deskripsi pendek fasilitas -->
-						<p id="fasilitas-deskripsi" class="fs-6">Deskripsi fasilitas</p>
+						<p id="fasilitas-deskripsi" class="fs-5">Deskripsi fasilitas</p>
 					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
+
+	<!-- Tombol pergi ke kalender -->
+	<div class="d-flex position-absolute w-100 justify-content-center align-self-end">
+		<i id="btn-pergi-ke-list-fasilitas" class="display-4 bi bi-grid-3x2-gap m-4"></i>
+	</div>
+
 </section>
 <!-- Akhir section judul  -->
 
@@ -83,7 +109,8 @@ helper('text'); ?>
 	<div class="container container-konten">
 
 		<!-- Section judul konten -->
-		<div class="row" data-aos="fade-up">
+		<div class="row">
+			<!-- data-aos="fade-up" -->
 
 			<!-- Kolom tab navigasi -->
 			<div class="col-12 col-md-6  ">
@@ -148,7 +175,8 @@ helper('text'); ?>
 		<!-- Akhir section judul konten -->
 
 		<!-- Section konten tab -->
-		<div class="tab-content" id="pills-tabContent" data-aos="fade-up">
+		<div class="tab-content" id="pills-tabContent">
+			<!-- data-aos="fade-up" -->
 
 			<!-- Konten tab ruangan -->
 			<div class="tab-pane fade show active" id="pills-ruangan" role="tabpanel" aria-labelledby="pills-ruangan-tab" tabindex="0">
@@ -322,6 +350,129 @@ helper('text'); ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- Initialisasi swiper fasilitas -->
+<script>
+	var swiperFasilitas = new Swiper(".swiper-fasilitas", {
+		effect: "coverflow",
+		grabCursor: true,
+		centeredSlides: true,
+		slidesPerView: "auto",
+		loop: true,
+		coverflowEffect: {
+			rotate: -35,
+			stretch: 0,
+			scale: 0.9,
+			depth: 200,
+			modifier: 1,
+			slideShadows: false,
+		},
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		autoplay: {
+			delay: 2500,
+			disableOnInteraction: false,
+		}
+	});
+
+	$(document).ready(function() {
+		const wordLimit = 20;
+		var ruanganBerfoto = <?= json_encode($ruangan_berfoto); ?>;
+		var currentSlideIndex = 0;
+		var namaRuangan = ruanganBerfoto[0].nama;
+		var lantaiRuangan = "Lantai " + ruanganBerfoto[0].lantai;
+		var deskripsiRuangan = ruanganBerfoto[0].deskripsi;
+
+		// Truncate the description to the specified word limit
+		var words = deskripsiRuangan.split(' ').slice(0, wordLimit);
+		deskripsiRuangan = words.join(' ') + "...";
+
+		$("#fasilitas-judul").text(namaRuangan);
+		$("#fasilitas-lantai").text(lantaiRuangan);
+		$("#fasilitas-deskripsi").text(deskripsiRuangan);
+
+		swiperFasilitas.on('slideChange', function() {
+
+			const index = swiperFasilitas.realIndex;
+
+			namaRuangan = ruanganBerfoto[index].nama;
+			lantaiRuangan = "Lantai " + ruanganBerfoto[index].lantai;
+			deskripsiRuangan = ruanganBerfoto[index].deskripsi;
+
+			// Truncate the description to the specified word limit
+			var words = deskripsiRuangan.split(' ').slice(0, wordLimit);
+			deskripsiRuangan = words.join(' ') + "...";
+
+			$("#fasilitas-judul").text(namaRuangan);
+			$("#fasilitas-lantai").text(lantaiRuangan);
+			$("#fasilitas-deskripsi").text(deskripsiRuangan);
+
+			// Change background image
+			changeBackgroundImage(index);
+		});
+
+
+		var fotoRuanganBerfoto = <?= json_encode($foto_ruangan_berfoto); ?>;
+		var currentIndex = swiperFasilitas.realIndex;
+
+		function changeBackgroundImage(index) {
+			$('#hero .section-slideshow').fadeOut('slow', function() {
+				// Update the background image
+				$(this).css('background-image', 'url(' + "<?= base_url() . 'uploads/' ?>" + fotoRuanganBerfoto[index].nama_file + ')');
+				// Fade back in
+				$(this).fadeIn('slow');
+				console.log(fotoRuanganBerfoto[index].nama_file);
+			});
+		}
+
+		// Initialize with the first image
+		changeBackgroundImage(currentIndex);
+
+	});
+</script>
+
+<!-- Pergi ke list fasilitas -->
+<script>
+	$(document).ready(function() {
+		// Pergi ke kalender
+		$('#btn-pergi-ke-list-fasilitas').click(function() {
+			$('html, body').animate({
+				scrollTop: $('#section-konten-secondary').offset().top
+			}, 500);
+		});
+	});
+</script>
+
+<!-- Efek fade out tombol pergi ke list fasilitas -->
+<script>
+	$(document).ready(function() {
+		var $scrollButton = $('#btn-pergi-ke-list-fasilitas');
+
+		// Calculate half of the viewport height
+		var viewportHeight = $(window).height();
+		var maxScrollPosition = viewportHeight / 2;
+
+		// Adjust the opacity of the button as the page is scrolled
+		$(window).scroll(function() {
+			var scrollPosition = $(this).scrollTop();
+
+			// Calculate the opacity based on the scroll position
+			var opacity = 1 - (scrollPosition / maxScrollPosition);
+
+			// Ensure the opacity is within a 0 to 1 range
+			opacity = Math.min(1, Math.max(0, opacity));
+
+			// Update the button's opacity
+			$scrollButton.css('opacity', opacity);
+		});
+	});
+</script>
+
 <!-- Fitur cari ruangan dan alat -->
 <script>
 	$(document).ready(function() {
@@ -409,68 +560,4 @@ helper('text'); ?>
 	});
 </script>
 
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-<!-- Initialisasi swiper fasilitas -->
-<script>
-	var swiperFasilitas = new Swiper(".swiper-fasilitas", {
-		effect: "coverflow",
-		grabCursor: true,
-		centeredSlides: true,
-		slidesPerView: "auto",
-		loop: true,
-		coverflowEffect: {
-			rotate: -35,
-			stretch: 0,
-			scale: 0.9,
-			depth: 200,
-			modifier: 1,
-			slideShadows: false,
-		},
-		pagination: {
-			el: ".swiper-pagination",
-			clickable: true,
-		},
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction: false,
-		}
-	});
-
-	$(document).ready(function() {
-		const wordLimit = 20;
-		var ruanganBerfoto = <?= json_encode($ruangan_berfoto); ?>;
-		var currentSlideIndex = 0;
-		var namaRuangan = ruanganBerfoto[0].nama;
-		var lantaiRuangan = "Lantai " + ruanganBerfoto[0].lantai;
-		var deskripsiRuangan = ruanganBerfoto[0].deskripsi;
-
-		// Truncate the description to the specified word limit
-		var words = deskripsiRuangan.split(' ').slice(0, wordLimit);
-		deskripsiRuangan = words.join(' ') + "...";
-
-		$("#fasilitas-judul").text(namaRuangan);
-		$("#fasilitas-lantai").text(lantaiRuangan);
-		$("#fasilitas-deskripsi").text(deskripsiRuangan);
-
-		swiperFasilitas.on('slideChange', function() {
-
-			const index = swiperFasilitas.realIndex;
-
-			namaRuangan = ruanganBerfoto[index].nama;
-			lantaiRuangan = "Lantai " + ruanganBerfoto[index].lantai;
-			deskripsiRuangan = ruanganBerfoto[index].deskripsi;
-
-			// Truncate the description to the specified word limit
-			var words = deskripsiRuangan.split(' ').slice(0, wordLimit);
-			deskripsiRuangan = words.join(' ') + "...";
-
-			$("#fasilitas-judul").text(namaRuangan);
-			$("#fasilitas-lantai").text(lantaiRuangan);
-			$("#fasilitas-deskripsi").text(deskripsiRuangan);
-		});
-
-	});
-</script>
 <?= $this->endSection() ?>

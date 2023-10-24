@@ -98,7 +98,7 @@ class KegiatanModel extends \App\Models\BaseModel
 		$tgl_terformat = date('d', $tgl_unix) . ' ' . $bulan[date('n', $tgl_unix)] . ' ' . date('Y', $tgl_unix);
 
 		if (date('H:i', $tgl_unix) !== '00:00') {
-			$tgl_terformat .= ' pukul ' . date('H:i', $tgl_unix);
+			$tgl_terformat .= ' Pukul ' . date('H:i', $tgl_unix);
 		}
 
 		return $tgl_terformat;

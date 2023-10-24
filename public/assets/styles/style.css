@@ -33,6 +33,7 @@
   --color-secondary: #8c8c8c;
   --color-tertiary: #eaeaea;
   --color-quaternary: #1e1919;
+  --color-quaternary-transparent-8: rgba(31, 26, 26, 0.8);
 
   /* Warna tema transparan */
   --color-primary-transparent: rgba(216, 35, 40, 0.5);

@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 09:13 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Host: 127.0.0.1:3306
+-- Generation Time: Oct 24, 2023 at 08:04 AM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,16 +27,20 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
-  `id_admin` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id_admin` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `verified` tinyint(4) NOT NULL,
+  `verified` tinyint NOT NULL,
   `status` enum('active','suspended','deleted') NOT NULL DEFAULT 'active',
-  `created` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='Tabel user untuk login' ROW_FORMAT=COMPACT;
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_admin`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COMMENT='Tabel user untuk login' ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -44,17 +48,19 @@ CREATE TABLE `admin` (
 -- Table structure for table `alat`
 --
 
-CREATE TABLE `alat` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `nama` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `biaya_sewa` int(10) UNSIGNED DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `alat`;
+CREATE TABLE IF NOT EXISTS `alat` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `biaya_sewa` int UNSIGNED DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` date DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `alat`
@@ -71,25 +77,27 @@ INSERT INTO `alat` (`id`, `nama`, `slug`, `deskripsi`, `biaya_sewa`, `id_admin_c
 -- Table structure for table `artikel`
 --
 
-CREATE TABLE `artikel` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `konten` text NOT NULL,
-  `excerp` text NOT NULL,
-  `meta_description` text NOT NULL,
-  `slug` varchar(255) NOT NULL DEFAULT '',
-  `kategori` varchar(255) DEFAULT NULL,
-  `status` enum('draft','published') NOT NULL,
-  `template_file` varchar(255) NOT NULL,
-  `search_engine_index` enum('Y','N') NOT NULL,
-  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `artikel`;
+CREATE TABLE IF NOT EXISTS `artikel` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `judul` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `konten` text COLLATE utf8mb4_general_ci NOT NULL,
+  `excerp` text COLLATE utf8mb4_general_ci NOT NULL,
+  `meta_description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `kategori` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` enum('draft','published') COLLATE utf8mb4_general_ci NOT NULL,
+  `template_file` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `search_engine_index` enum('Y','N') COLLATE utf8mb4_general_ci NOT NULL,
+  `id_file_picker` int UNSIGNED DEFAULT NULL,
   `tgl_terbit` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED NOT NULL,
+  `id_admin_create` int UNSIGNED NOT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED NOT NULL,
-  `featured_image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED NOT NULL,
+  `featured_image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `artikel`
@@ -109,9 +117,11 @@ INSERT INTO `artikel` (`id`, `judul`, `konten`, `excerp`, `meta_description`, `s
 -- Table structure for table `artikel_author`
 --
 
-CREATE TABLE `artikel_author` (
-  `id_artikel` int(10) UNSIGNED NOT NULL,
-  `id_author` smallint(5) UNSIGNED NOT NULL
+DROP TABLE IF EXISTS `artikel_author`;
+CREATE TABLE IF NOT EXISTS `artikel_author` (
+  `id_artikel` int UNSIGNED NOT NULL,
+  `id_author` smallint UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_artikel`,`id_author`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -120,9 +130,11 @@ CREATE TABLE `artikel_author` (
 -- Table structure for table `artikel_kategori`
 --
 
-CREATE TABLE `artikel_kategori` (
-  `id_artikel` int(10) UNSIGNED NOT NULL,
-  `id_kategori` smallint(5) UNSIGNED NOT NULL
+DROP TABLE IF EXISTS `artikel_kategori`;
+CREATE TABLE IF NOT EXISTS `artikel_kategori` (
+  `id_artikel` int UNSIGNED NOT NULL,
+  `id_kategori` smallint UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_artikel`,`id_kategori`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -131,11 +143,13 @@ CREATE TABLE `artikel_kategori` (
 -- Table structure for table `author`
 --
 
-CREATE TABLE `author` (
-  `id_author` smallint(6) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `author`;
+CREATE TABLE IF NOT EXISTS `author` (
+  `id_author` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
   `nama_author` varchar(50) NOT NULL,
-  `id_admin_author` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_author` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_author`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -143,12 +157,15 @@ CREATE TABLE `author` (
 -- Table structure for table `auth_groups_users`
 --
 
-CREATE TABLE `auth_groups_users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `auth_groups_users`;
+CREATE TABLE IF NOT EXISTS `auth_groups_users` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int UNSIGNED NOT NULL,
   `group` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `auth_groups_users_user_id_foreign` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `auth_groups_users`
@@ -167,20 +184,24 @@ INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
 -- Table structure for table `auth_identities`
 --
 
-CREATE TABLE `auth_identities` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `auth_identities`;
+CREATE TABLE IF NOT EXISTS `auth_identities` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int UNSIGNED NOT NULL,
   `type` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `secret` varchar(255) NOT NULL,
   `secret2` varchar(255) DEFAULT NULL,
   `expires` datetime DEFAULT NULL,
-  `extra` text DEFAULT NULL,
-  `force_reset` tinyint(1) NOT NULL DEFAULT 0,
+  `extra` text,
+  `force_reset` tinyint(1) NOT NULL DEFAULT '0',
   `last_used_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type_secret` (`type`,`secret`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `auth_identities`
@@ -199,16 +220,20 @@ INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secre
 -- Table structure for table `auth_logins`
 --
 
-CREATE TABLE `auth_logins` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `auth_logins`;
+CREATE TABLE IF NOT EXISTS `auth_logins` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(255) NOT NULL,
   `user_agent` varchar(255) DEFAULT NULL,
   `id_type` varchar(255) NOT NULL,
   `identifier` varchar(255) NOT NULL,
-  `user_id` int(11) UNSIGNED DEFAULT NULL,
+  `user_id` int UNSIGNED DEFAULT NULL,
   `date` datetime NOT NULL,
-  `success` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `success` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_type_identifier` (`id_type`,`identifier`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `auth_logins`
@@ -258,12 +283,15 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 -- Table structure for table `auth_permissions_users`
 --
 
-CREATE TABLE `auth_permissions_users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `auth_permissions_users`;
+CREATE TABLE IF NOT EXISTS `auth_permissions_users` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int UNSIGNED NOT NULL,
   `permission` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `auth_permissions_users_user_id_foreign` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -271,15 +299,19 @@ CREATE TABLE `auth_permissions_users` (
 -- Table structure for table `auth_remember_tokens`
 --
 
-CREATE TABLE `auth_remember_tokens` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `auth_remember_tokens`;
+CREATE TABLE IF NOT EXISTS `auth_remember_tokens` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `selector` varchar(255) NOT NULL,
   `hashedValidator` varchar(255) NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
+  `user_id` int UNSIGNED NOT NULL,
   `expires` datetime NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `selector` (`selector`),
+  KEY `auth_remember_tokens_user_id_foreign` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `auth_remember_tokens`
@@ -294,16 +326,20 @@ INSERT INTO `auth_remember_tokens` (`id`, `selector`, `hashedValidator`, `user_i
 -- Table structure for table `auth_token_logins`
 --
 
-CREATE TABLE `auth_token_logins` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `auth_token_logins`;
+CREATE TABLE IF NOT EXISTS `auth_token_logins` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(255) NOT NULL,
   `user_agent` varchar(255) DEFAULT NULL,
   `id_type` varchar(255) NOT NULL,
   `identifier` varchar(255) NOT NULL,
-  `user_id` int(11) UNSIGNED DEFAULT NULL,
+  `user_id` int UNSIGNED DEFAULT NULL,
   `date` datetime NOT NULL,
-  `success` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `success` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_type_identifier` (`id_type`,`identifier`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -311,19 +347,21 @@ CREATE TABLE `auth_token_logins` (
 -- Table structure for table `file_picker`
 --
 
-CREATE TABLE `file_picker` (
-  `id_file_picker` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `caption` text NOT NULL,
-  `description` text NOT NULL,
-  `alt_text` varchar(255) DEFAULT NULL,
-  `nama_file` varchar(255) NOT NULL,
-  `mime_type` varchar(255) NOT NULL,
-  `size` int(10) UNSIGNED NOT NULL,
-  `tgl_upload` datetime NOT NULL DEFAULT current_timestamp(),
-  `id_admin_upload` int(10) UNSIGNED NOT NULL,
-  `meta_file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS `file_picker`;
+CREATE TABLE IF NOT EXISTS `file_picker` (
+  `id_file_picker` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `caption` text COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `alt_text` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_file` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `mime_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `size` int UNSIGNED NOT NULL,
+  `tgl_upload` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_admin_upload` int UNSIGNED NOT NULL,
+  `meta_file` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id_file_picker`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -331,17 +369,19 @@ CREATE TABLE `file_picker` (
 -- Table structure for table `galeri`
 --
 
-CREATE TABLE `galeri` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `nama_file` varchar(255) DEFAULT NULL,
-  `judul` varchar(255) DEFAULT NULL,
-  `kategori` varchar(255) DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `galeri`;
+CREATE TABLE IF NOT EXISTS `galeri` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_file_picker` int UNSIGNED DEFAULT NULL,
+  `nama_file` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kategori` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `galeri`
@@ -399,16 +439,18 @@ INSERT INTO `galeri` (`id`, `id_file_picker`, `nama_file`, `judul`, `kategori`, 
 -- Table structure for table `galeri_alat`
 --
 
-CREATE TABLE `galeri_alat` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `id_alat` int(11) UNSIGNED NOT NULL,
-  `id_galeri` int(11) UNSIGNED NOT NULL,
-  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `galeri_alat`;
+CREATE TABLE IF NOT EXISTS `galeri_alat` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_alat` int UNSIGNED NOT NULL,
+  `id_galeri` int UNSIGNED NOT NULL,
+  `id_file_picker` int UNSIGNED DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -416,16 +458,18 @@ CREATE TABLE `galeri_alat` (
 -- Table structure for table `galeri_kegiatan`
 --
 
-CREATE TABLE `galeri_kegiatan` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `id_kegiatan` int(11) UNSIGNED DEFAULT NULL,
-  `id_galeri` int(11) UNSIGNED NOT NULL,
-  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `galeri_kegiatan`;
+CREATE TABLE IF NOT EXISTS `galeri_kegiatan` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_kegiatan` int UNSIGNED DEFAULT NULL,
+  `id_galeri` int UNSIGNED NOT NULL,
+  `id_file_picker` int UNSIGNED DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `galeri_kegiatan`
@@ -449,16 +493,18 @@ INSERT INTO `galeri_kegiatan` (`id`, `id_kegiatan`, `id_galeri`, `id_file_picker
 -- Table structure for table `galeri_ruangan`
 --
 
-CREATE TABLE `galeri_ruangan` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `id_ruangan` int(11) UNSIGNED NOT NULL,
-  `id_galeri` int(11) UNSIGNED NOT NULL,
-  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `galeri_ruangan`;
+CREATE TABLE IF NOT EXISTS `galeri_ruangan` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_ruangan` int UNSIGNED NOT NULL,
+  `id_galeri` int UNSIGNED NOT NULL,
+  `id_file_picker` int UNSIGNED DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `galeri_ruangan`
@@ -502,11 +548,13 @@ INSERT INTO `galeri_ruangan` (`id`, `id_ruangan`, `id_galeri`, `id_file_picker`,
 -- Table structure for table `kategori`
 --
 
-CREATE TABLE `kategori` (
-  `id_kategori` smallint(5) UNSIGNED NOT NULL,
-  `judul_kategori` varchar(255) NOT NULL,
-  `id_admin_author` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS `kategori`;
+CREATE TABLE IF NOT EXISTS `kategori` (
+  `id_kategori` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `judul_kategori` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_admin_author` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_kategori`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -514,18 +562,20 @@ CREATE TABLE `kategori` (
 -- Table structure for table `kategori_galeri`
 --
 
-CREATE TABLE `kategori_galeri` (
-  `id_kategori_galeri` smallint(5) UNSIGNED NOT NULL,
-  `judul_kategori` varchar(255) DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `urut` smallint(5) UNSIGNED DEFAULT NULL,
-  `aktif` enum('Y','N') DEFAULT 'Y',
-  `layout` enum('grid','masonry') DEFAULT 'grid',
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
-  `tgl_create` datetime DEFAULT current_timestamp(),
-  `id_admin_update` int(11) DEFAULT NULL,
-  `tgl_update` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS `kategori_galeri`;
+CREATE TABLE IF NOT EXISTS `kategori_galeri` (
+  `id_kategori_galeri` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `judul_kategori` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `urut` smallint UNSIGNED DEFAULT NULL,
+  `aktif` enum('Y','N') COLLATE utf8mb4_general_ci DEFAULT 'Y',
+  `layout` enum('grid','masonry') COLLATE utf8mb4_general_ci DEFAULT 'grid',
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
+  `tgl_create` datetime DEFAULT CURRENT_TIMESTAMP,
+  `id_admin_update` int DEFAULT NULL,
+  `tgl_update` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_kategori_galeri`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -533,35 +583,38 @@ CREATE TABLE `kategori_galeri` (
 -- Table structure for table `kegiatan`
 --
 
-CREATE TABLE `kegiatan` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `nama_kegiatan` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) NOT NULL,
-  `jenis_kegiatan` varchar(255) DEFAULT NULL,
-  `tipe_kegiatan` enum('Online','Offline','Online dan Offline') DEFAULT NULL,
-  `id_file_picker` int(10) UNSIGNED DEFAULT NULL,
-  `tempat` varchar(255) DEFAULT NULL,
+DROP TABLE IF EXISTS `kegiatan`;
+CREATE TABLE IF NOT EXISTS `kegiatan` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nama_kegiatan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `deskripsi` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `jenis_kegiatan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipe_kegiatan` enum('Online','Offline','Online dan Offline') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_file_picker` int UNSIGNED DEFAULT NULL,
+  `tempat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tgl_mulai` datetime DEFAULT NULL,
   `tgl_selesai` datetime DEFAULT NULL,
-  `link_pendaftaran` varchar(255) DEFAULT NULL,
-  `link_virtual` varchar(255) DEFAULT NULL,
-  `poster` varchar(255) DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+  `link_pendaftaran` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `link_virtual` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `poster` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `kegiatan`
 --
 
-INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `slug`, `jenis_kegiatan`, `tipe_kegiatan`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `link_pendaftaran`, `link_virtual`, `poster`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
-(1, 'Pameran Seni', 'Pameran-Seni', 'Pameran seni', 'Offline', NULL, 'alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', '', '', NULL, NULL, '0000-00-00 00:00:00', NULL, '2023-06-03 09:02:40'),
-(2, 'Pameran Busana', 'Pameran-Busana', 'Pameran Busana', 'Offline', NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', '', '', NULL, NULL, '0000-00-00 00:00:00', NULL, '2023-08-24 20:39:32'),
-(3, 'Pameran Kaca: Glass Beyond Borders', 'Pameran-Kaca-Glass-Beyond-Borders', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'Pameran Busana Batik', 'Pameran-Busana-Batik', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja membatik.JPG', NULL, NULL, NULL, NULL),
-(6, 'Grand Launching Pusat Desain Industri Nasional', 'Grand-Launching-Pusat-Desain-Industri-Nasional', 'Pameran', 'Offline', NULL, 'Pusat Desain Industri Nasional', '2023-06-07 07:30:00', '2023-06-07 15:00:00', '', '', NULL, NULL, '2023-05-31 14:19:10', NULL, '2023-06-01 06:21:22');
+INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `deskripsi`, `slug`, `jenis_kegiatan`, `tipe_kegiatan`, `id_file_picker`, `tempat`, `tgl_mulai`, `tgl_selesai`, `link_pendaftaran`, `link_virtual`, `poster`, `id_admin_create`, `created_at`, `id_admin_update`, `updated_at`) VALUES
+(1, 'Pameran Seni', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,', 'Pameran-Seni', 'Pameran seni', 'Offline', NULL, 'Alun-alun', '2023-04-24 16:34:44', '2023-04-25 14:34:44', '', '', 'gambar-artikel-pameran-kulit.jpg', NULL, '0000-00-00 00:00:00', NULL, '2023-06-03 09:02:40'),
+(2, 'Pameran Busana', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,', 'Pameran-Busana', 'Pameran Busana', 'Offline', NULL, 'Ruang bawah', '2023-04-27 10:31:50', '2023-04-28 10:31:50', '', '', 'foto-ruang-pameran-1-2.jpg', NULL, '0000-00-00 00:00:00', NULL, '2023-08-24 20:39:32'),
+(3, 'Pameran Kaca: Glass Beyond Borders', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,', 'Pameran-Kaca-Glass-Beyond-Borders', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-23 08:00:00', '2023-05-23 16:00:00', 'https://bit.ly/PendaftaranPameranKriyaKayu', NULL, 'gambar-artikel-pameran-kaca.jpg', NULL, NULL, NULL, NULL),
+(4, 'Pameran Busana Batik', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,', 'Pameran-Busana-Batik', 'Pameran', 'Offline', NULL, 'Gedung Pusat Desain Industri Nasional', '2023-05-24 08:00:00', '2023-05-24 16:00:00', 'https://bit.ly/PendaftaranPameranBusanaBatik', NULL, 'jogja-membatik.JPG', NULL, NULL, NULL, NULL),
+(6, 'Grand Launching Pusat Desain Industri Nasional', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,', 'Grand-Launching-Pusat-Desain-Industri-Nasional', 'Pameran', 'Offline', NULL, 'Pusat Desain Industri Nasional', '2023-06-07 07:30:00', '2023-06-07 15:00:00', '', '', 'foto-alun-alun-3.jpg', NULL, '2023-05-31 14:19:10', NULL, '2023-06-01 06:21:22');
 
 -- --------------------------------------------------------
 
@@ -569,14 +622,16 @@ INSERT INTO `kegiatan` (`id`, `nama_kegiatan`, `slug`, `jenis_kegiatan`, `tipe_k
 -- Table structure for table `layanan`
 --
 
-CREATE TABLE `layanan` (
-  `id` int(10) NOT NULL,
-  `nama_layanan` varchar(255) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `icon` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `layanan`;
+CREATE TABLE IF NOT EXISTS `layanan` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nama_layanan` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `layanan`
@@ -593,15 +648,17 @@ INSERT INTO `layanan` (`id`, `nama_layanan`, `deskripsi`, `icon`, `created_at`, 
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `version` varchar(255) NOT NULL,
   `class` varchar(255) NOT NULL,
   `group` varchar(255) NOT NULL,
   `namespace` varchar(255) NOT NULL,
-  `time` int(11) NOT NULL,
-  `batch` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `time` int NOT NULL,
+  `batch` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `migrations`
@@ -618,16 +675,18 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- Table structure for table `pelatihan`
 --
 
-CREATE TABLE `pelatihan` (
-  `id` int(10) NOT NULL,
-  `nama_pelatihan` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `pelatihan`;
+CREATE TABLE IF NOT EXISTS `pelatihan` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nama_pelatihan` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `tgl_mulai` date NOT NULL,
   `tgl_selesai` date NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -636,13 +695,15 @@ CREATE TABLE `pelatihan` (
 -- Table structure for table `peserta_pelatihan`
 --
 
-CREATE TABLE `peserta_pelatihan` (
-  `id` int(10) NOT NULL,
-  `id_user` int(10) NOT NULL,
-  `id_pelatihan` int(10) NOT NULL,
+DROP TABLE IF EXISTS `peserta_pelatihan`;
+CREATE TABLE IF NOT EXISTS `peserta_pelatihan` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_pelatihan` int NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
+  `deleted_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -651,25 +712,28 @@ CREATE TABLE `peserta_pelatihan` (
 -- Table structure for table `ruangan`
 --
 
-CREATE TABLE `ruangan` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `nama` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `tipe` enum('Pameran','Kantor','Meeting','Pengembangan','Lainnya') DEFAULT NULL,
-  `id_tipe` int(11) DEFAULT NULL,
-  `kegunaan` varchar(255) DEFAULT NULL,
-  `lantai` int(1) DEFAULT NULL,
-  `kapasitas` int(10) UNSIGNED DEFAULT NULL,
-  `ukuran` varchar(100) DEFAULT NULL,
-  `luas` int(3) NOT NULL,
-  `fasilitas` text DEFAULT NULL,
-  `biaya_sewa` int(10) UNSIGNED DEFAULT NULL,
-  `id_admin_create` int(10) UNSIGNED DEFAULT NULL,
+DROP TABLE IF EXISTS `ruangan`;
+CREATE TABLE IF NOT EXISTS `ruangan` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `tipe` enum('Pameran','Kantor','Meeting','Pengembangan','Lainnya') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_tipe` int DEFAULT NULL,
+  `kegunaan` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lantai` int DEFAULT NULL,
+  `kapasitas` int UNSIGNED DEFAULT NULL,
+  `ukuran` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `luas` int NOT NULL,
+  `fasilitas` text COLLATE utf8mb4_general_ci,
+  `biaya_sewa` int UNSIGNED DEFAULT NULL,
+  `id_admin_create` int UNSIGNED DEFAULT NULL,
   `created_at` date DEFAULT NULL,
-  `id_admin_update` int(10) UNSIGNED DEFAULT NULL,
-  `updated_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+  `id_admin_update` int UNSIGNED DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `fk_ruangan_id_tipe` (`id_tipe`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `ruangan`
@@ -706,12 +770,14 @@ INSERT INTO `ruangan` (`id`, `nama`, `slug`, `deskripsi`, `tipe`, `id_tipe`, `ke
 -- Table structure for table `ruangan_tipe`
 --
 
-CREATE TABLE `ruangan_tipe` (
-  `id` int(11) NOT NULL,
-  `tipe` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `ruangan_tipe`;
+CREATE TABLE IF NOT EXISTS `ruangan_tipe` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipe` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ruangan_tipe`
@@ -730,16 +796,18 @@ INSERT INTO `ruangan_tipe` (`id`, `tipe`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `settings`
 --
 
-CREATE TABLE `settings` (
-  `id` int(9) NOT NULL,
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `class` varchar(255) NOT NULL,
   `key` varchar(255) NOT NULL,
-  `value` text DEFAULT NULL,
+  `value` text,
   `type` varchar(31) NOT NULL DEFAULT 'string',
   `context` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -747,24 +815,27 @@ CREATE TABLE `settings` (
 -- Table structure for table `sewa_alat`
 --
 
-CREATE TABLE `sewa_alat` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sewa_alat`;
+CREATE TABLE IF NOT EXISTS `sewa_alat` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) NOT NULL,
-  `id_alat` int(11) NOT NULL,
+  `id_alat` int NOT NULL,
   `nama_kegiatan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `no_invoice` char(13) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_user` int NOT NULL,
   `created_at` datetime DEFAULT NULL COMMENT 'tanggal transaksi',
   `updated_at` datetime DEFAULT NULL,
   `tgl_mulai_sewa` datetime NOT NULL,
   `tgl_akhir_sewa` datetime NOT NULL,
-  `total_biaya` int(11) NOT NULL,
+  `total_biaya` int NOT NULL,
   `tgl_pembayaran` datetime NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
   `status_pembayaran` enum('SUDAH DIBAYAR','BELUM DIBAYAR') NOT NULL,
-  `status_transaksi` enum('SELESAI','TERTUNDA') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+  `status_transaksi` enum('SELESAI','TERTUNDA') NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uuid` (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `sewa_alat`
@@ -779,24 +850,27 @@ INSERT INTO `sewa_alat` (`id`, `uuid`, `id_alat`, `nama_kegiatan`, `deskripsi`, 
 -- Table structure for table `sewa_ruangan`
 --
 
-CREATE TABLE `sewa_ruangan` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sewa_ruangan`;
+CREATE TABLE IF NOT EXISTS `sewa_ruangan` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) NOT NULL,
-  `id_ruangan` int(11) NOT NULL,
+  `id_ruangan` int NOT NULL,
   `nama_kegiatan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `no_invoice` char(13) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_user` int NOT NULL,
   `created_at` datetime NOT NULL COMMENT 'tanggal transaksi',
   `updated_at` datetime DEFAULT NULL,
   `tgl_mulai_sewa` datetime NOT NULL,
   `tgl_akhir_sewa` datetime NOT NULL,
-  `total_biaya` int(11) NOT NULL,
+  `total_biaya` int NOT NULL,
   `tgl_pembayaran` datetime NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
   `status_pembayaran` enum('SUDAH DIBAYAR','BELUM DIBAYAR') DEFAULT NULL,
-  `status_transaksi` enum('SELESAI','TERTUNDA') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+  `status_transaksi` enum('SELESAI','TERTUNDA') DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uuid` (`uuid`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `sewa_ruangan`
@@ -821,16 +895,18 @@ INSERT INTO `sewa_ruangan` (`id`, `uuid`, `id_ruangan`, `nama_kegiatan`, `deskri
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `nama` varchar(255) DEFAULT NULL,
-  `kontak` varchar(15) DEFAULT NULL,
-  `nama_instansi` varchar(255) DEFAULT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kontak` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama_instansi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -871,20 +947,23 @@ INSERT INTO `user` (`id`, `email`, `nama`, `kontak`, `nama_instansi`, `created_a
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(30) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `avatar` varchar(255) NOT NULL,
   `status_message` varchar(255) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
   `last_active` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `users`
@@ -896,390 +975,6 @@ INSERT INTO `users` (`id`, `username`, `status`, `first_name`, `last_name`, `ava
 (4, 'harzreich', NULL, '', '', '', NULL, 1, '2023-09-05 15:13:56', '2023-09-05 14:13:44', '2023-09-05 14:13:44', NULL),
 (5, 'bukanadmin', NULL, '', '', '', NULL, 1, '2023-09-29 20:02:10', '2023-09-29 10:50:13', '2023-09-29 10:50:13', NULL),
 (6, 'mfikrih100@gmail.com', NULL, 'Muhammad', 'Fikri', 'https://lh3.googleusercontent.com/a/ACg8ocKtuTzR2LtWIB84SPq_7CS-g2JWkDtzNOD5MOh1udWf=s96-c', NULL, 1, '2023-10-05 21:38:00', '2023-10-05 21:35:27', '2023-10-05 21:35:27', NULL);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_admin`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `alat`
---
-ALTER TABLE `alat`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `artikel`
---
-ALTER TABLE `artikel`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `artikel_author`
---
-ALTER TABLE `artikel_author`
-  ADD PRIMARY KEY (`id_artikel`,`id_author`) USING BTREE;
-
---
--- Indexes for table `artikel_kategori`
---
-ALTER TABLE `artikel_kategori`
-  ADD PRIMARY KEY (`id_artikel`,`id_kategori`) USING BTREE;
-
---
--- Indexes for table `author`
---
-ALTER TABLE `author`
-  ADD PRIMARY KEY (`id_author`) USING BTREE;
-
---
--- Indexes for table `auth_groups_users`
---
-ALTER TABLE `auth_groups_users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `auth_groups_users_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `auth_identities`
---
-ALTER TABLE `auth_identities`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `type_secret` (`type`,`secret`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `auth_logins`
---
-ALTER TABLE `auth_logins`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_type_identifier` (`id_type`,`identifier`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `auth_permissions_users`
---
-ALTER TABLE `auth_permissions_users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `auth_permissions_users_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `auth_remember_tokens`
---
-ALTER TABLE `auth_remember_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `selector` (`selector`),
-  ADD KEY `auth_remember_tokens_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `auth_token_logins`
---
-ALTER TABLE `auth_token_logins`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_type_identifier` (`id_type`,`identifier`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `file_picker`
---
-ALTER TABLE `file_picker`
-  ADD PRIMARY KEY (`id_file_picker`) USING BTREE;
-
---
--- Indexes for table `galeri`
---
-ALTER TABLE `galeri`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `galeri_alat`
---
-ALTER TABLE `galeri_alat`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `galeri_kegiatan`
---
-ALTER TABLE `galeri_kegiatan`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `galeri_ruangan`
---
-ALTER TABLE `galeri_ruangan`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `kategori`
---
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kategori`) USING BTREE;
-
---
--- Indexes for table `kategori_galeri`
---
-ALTER TABLE `kategori_galeri`
-  ADD PRIMARY KEY (`id_kategori_galeri`) USING BTREE;
-
---
--- Indexes for table `kegiatan`
---
-ALTER TABLE `kegiatan`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `layanan`
---
-ALTER TABLE `layanan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pelatihan`
---
-ALTER TABLE `pelatihan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `peserta_pelatihan`
---
-ALTER TABLE `peserta_pelatihan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ruangan`
---
-ALTER TABLE `ruangan`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `fk_ruangan_id_tipe` (`id_tipe`);
-
---
--- Indexes for table `ruangan_tipe`
---
-ALTER TABLE `ruangan_tipe`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sewa_alat`
---
-ALTER TABLE `sewa_alat`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `uuid` (`uuid`);
-
---
--- Indexes for table `sewa_ruangan`
---
-ALTER TABLE `sewa_ruangan`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `uuid` (`uuid`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id_admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `alat`
---
-ALTER TABLE `alat`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `artikel`
---
-ALTER TABLE `artikel`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `author`
---
-ALTER TABLE `author`
-  MODIFY `id_author` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `auth_groups_users`
---
-ALTER TABLE `auth_groups_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `auth_identities`
---
-ALTER TABLE `auth_identities`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `auth_logins`
---
-ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `auth_permissions_users`
---
-ALTER TABLE `auth_permissions_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `auth_remember_tokens`
---
-ALTER TABLE `auth_remember_tokens`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `auth_token_logins`
---
-ALTER TABLE `auth_token_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `file_picker`
---
-ALTER TABLE `file_picker`
-  MODIFY `id_file_picker` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- AUTO_INCREMENT for table `galeri`
---
-ALTER TABLE `galeri`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
-
---
--- AUTO_INCREMENT for table `galeri_alat`
---
-ALTER TABLE `galeri_alat`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `galeri_kegiatan`
---
-ALTER TABLE `galeri_kegiatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `galeri_ruangan`
---
-ALTER TABLE `galeri_ruangan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
-
---
--- AUTO_INCREMENT for table `kategori`
---
-ALTER TABLE `kategori`
-  MODIFY `id_kategori` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `kategori_galeri`
---
-ALTER TABLE `kategori_galeri`
-  MODIFY `id_kategori_galeri` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `kegiatan`
---
-ALTER TABLE `kegiatan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `layanan`
---
-ALTER TABLE `layanan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `pelatihan`
---
-ALTER TABLE `pelatihan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `peserta_pelatihan`
---
-ALTER TABLE `peserta_pelatihan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ruangan`
---
-ALTER TABLE `ruangan`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT for table `ruangan_tipe`
---
-ALTER TABLE `ruangan_tipe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `settings`
---
-ALTER TABLE `settings`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sewa_alat`
---
-ALTER TABLE `sewa_alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `sewa_ruangan`
---
-ALTER TABLE `sewa_ruangan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
