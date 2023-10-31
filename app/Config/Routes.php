@@ -143,9 +143,31 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 
 	$routes->delete('/DashboardAdmin/sewaAlat/(:num)', 'Admin\LayananSewaAlatAdmin::deleteSewaAlat/$1');
 
+	// Dashboard Admin Layanan Pelatihan
+	$routes->get('/DashboardAdmin/layanan-pelatihan', 'Admin\LayananPelatihanAdmin::listPelatihan');
 
+	$routes->get('/DashboardAdmin/tambah-pelatihan/(:any)', 'Admin\LayananPelatihanAdmin::tambahPelatihan/$1');
+	$routes->get('/DashboardAdmin/tambah-pelatihan/', 'Admin\LayananPelatihanAdmin::tambahPelatihan');
+	$routes->post('/DashboardAdmin/saveTambahPelatihan', 'Admin\LayananPelatihanAdmin::saveTambahPelatihan');
 
+	$routes->get('/DashboardAdmin/update-pelatihan/(:any)', 'Admin\LayananPelatihanAdmin::updatePelatihan/$1');
+	$routes->post('/DashboardAdmin/update-pelatihan', 'Admin\LayananPelatihanAdmin::updatePelatihan');
+	$routes->post('/DashboardAdmin/saveUpdatePelatihan', 'Admin\LayananPelatihanAdmin::saveUpdatePelatihan');
+
+	$routes->delete('/DashboardAdmin/pelatihan/(:num)', 'Admin\LayananPelatihanAdmin::deletePelatihan/$1');
+
+	// Manajemen User
 	$routes->get('/DashboardAdmin/manajemen-user', 'Admin\ManajemenUserAdmin::index');
+	$routes->get('/DashboardAdmin/tambah-user', 'Admin\ManajemenUserAdmin::tambahUser');
+	$routes->post('/DashboardAdmin/saveTambahUser', 'Admin\ManajemenUserAdmin::saveTambahUser/$1');
+
+	$routes->get('/DashboardAdmin/update-user/(:any)', 'Admin\ManajemenUserAdmin::updateUser/$1');
+	$routes->post('/DashboardAdmin/update-user', 'Admin\ManajemenUserAdmin::updateUser');
+	$routes->get('/DashboardAdmin/update-user', 'Admin\ManajemenUserAdmin::updateUser');
+
+	$routes->post('/DashboardAdmin/saveUpdateUser/(:num)', 'Admin\ManajemenUserAdmin::saveUpdateUser/$1');
+	$routes->post('/DashboardAdmin/saveUpdateUser/', 'Admin\ManajemenUserAdmin::saveUpdateUser/$1');
+	$routes->delete('/DashboardAdmin/manajemen-user/(:num)', 'Admin\ManajemenUserAdmin::deleteUser/$1');
 });
 
 service('auth')->routes($routes);

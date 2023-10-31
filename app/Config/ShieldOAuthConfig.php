@@ -15,6 +15,8 @@ namespace Config;
 
 use Datamweb\ShieldOAuth\Config\ShieldOAuthConfig as OAuthConfig;
 
+include_once('SecretKey.php');
+
 class ShieldOAuthConfig extends OAuthConfig
 {
     /**
@@ -39,8 +41,10 @@ class ShieldOAuthConfig extends OAuthConfig
             'allow_login' => true,
         ],
         'google' => [
-            'client_id'     => '772306012789-o3g7apdbt6g6smmlanjhup04ia7qnktn.apps.googleusercontent.com',
-            'client_secret' => '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',
+            // 'client_id'     => '772306012789-o3g7apdbt6g6smmlanjhup04ia7qnktn.apps.googleusercontent.com',
+            // 'client_secret' => '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',
+            'client_id'     => GOOGLE_CLIENT_ID,
+            'client_secret' => GOOGLE_CLIENT_SECRET,
 
             'allow_login' => true,
         ],
