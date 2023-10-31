@@ -44,7 +44,7 @@
             <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-alat" class="<?= ($current_page == 'adminsewaalat') ? 'active' : '' ?>"><i class="icon bi bi-tools"></i>Sewa Alat</a>
         </li>
         <li>
-            <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-alat" class="<?= ($current_page == 'adminpelatihan') ? 'active' : '' ?>"><i class="icon bi bi-person-arms-up"></i>Pelatihan</a>
+            <a href="<?= base_url() ?>DashboardAdmin/layanan-pelatihan" class="<?= ($current_page == 'adminpelatihan') ? 'active' : '' ?>"><i class="icon bi bi-person-arms-up"></i>Pelatihan</a>
         </li>
 
         <li class="divider" data-text="user">User</li>

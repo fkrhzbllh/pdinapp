@@ -42,10 +42,6 @@
             <tbody>
                 <?php foreach ($alat as $key => $a) : ?>
                     <tr>
-                        <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
-                                    ?>
-                    -->
-                        </td>
                         <td><?= $a['nama'] ?></td>
                         <td><a href="/DashboardAdmin/update-alat/<?= $a['slug'] ?>" class="btn btn-warning">Edit</a>
                             <form action="/DashboardAdmin/alat/<?php echo $a['id'] ?>" method="post" class="d-inline">

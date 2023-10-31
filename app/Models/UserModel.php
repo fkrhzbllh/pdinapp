@@ -18,14 +18,21 @@ class UserModel extends ShieldUserModel
             'first_name',
             'last_name',
             'avatar',
+            'uuid'
         ];
     }
 
     public function findAllButAdmins()
     {
         // return $this->where('auth_groups_users.group != admin')->findAll();
-        return $this->db->table('users')
-            ->join('auth_groups_users', "users.id=auth_groups_users.user_id")
-            ->where('auth_groups_users.group !=', 'admin')->get()->getResultArray();
+        // return $this->db->table('users')
+        //     ->join('auth_groups_users', "users.id=auth_groups_users.user_id")
+        //     ->where('auth_groups_users.group !=', 'admin')->get()->getResultArray();
+        return $this->db->query('SELECT u.username, u.first_name, u.last_name, u.uuid, agu.group, ai.secret FROM users u JOIN auth_groups_users agu ON u.id = agu.user_id JOIN auth_identities ai ON u.id = ai.user_id WHERE agu.group != "admin"')->getResultArray();
+    }
+    public function findByIdForEdit($uuid)
+    {
+        // return $this->where('auth_groups_users.group != admin')->findAll();
+        return $this->db->query('SELECT u.id, u.username, u.first_name, u.last_name, u.uuid, agu.group, ai.secret FROM users u JOIN auth_groups_users agu ON u.id = agu.user_id JOIN auth_identities ai ON u.id = ai.user_id WHERE u.uuid = "' . $uuid . '"')->getRowArray();
     }
 }
