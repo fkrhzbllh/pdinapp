@@ -20,7 +20,10 @@ Belum dirapikan
         left: 0;
         width: 100%;
         height: 100%;
-        background: var(--color-surface-transparent-8);
+        background-image: linear-gradient(to bottom,
+                var(--color-surface-transparent-8),
+                var(--color-surface-transparent-8) 80%,
+                var(--color-surface));
         pointer-events: none;
     }
 
@@ -273,7 +276,7 @@ Belum dirapikan
 
 <?= $this->section('content') ?>
 <!-- Section Hero -->
-<section id="hero" class="shadow-lg d-flex align-items-center">
+<section id="hero" class="d-flex align-items-center">
     <div class="section-slideshow" style="background-image:url('<?= base_url() . 'uploads/' . $kegiatan_mendatang_atau_terakhir['poster']; ?>')"></div>
     <div class="container position-relative" id="hero-container">
         <div class="row gy-5 justify-content-center">
