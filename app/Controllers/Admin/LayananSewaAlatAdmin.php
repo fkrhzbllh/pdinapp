@@ -239,7 +239,6 @@ class LayananSewaAlatAdmin extends BaseController
 	// update data sewa alat
 	public function saveUpdateSewaAlat($idJadwal, $idPenyewa)
 	{
-		$tipe = $this->request->getVar('tipe');
 		$idAlat = $this->request->getVar('alat');
 		$uuid = $this->request->getVar('uuid');
 		$alat = $this->alatModel->getAlatByID($idAlat);

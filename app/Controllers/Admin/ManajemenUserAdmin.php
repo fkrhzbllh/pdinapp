@@ -115,7 +115,7 @@ class ManajemenUserAdmin extends BaseController
 		return view('admin/formedituser.php', $this->data);
 	}
 
-	public function saveUpdateUser($id)
+	public function saveUpdateUser($id = null)
 	{
 		$this->data['current_page'] = 'adminmanajemenuser';
 		$users = auth()->getProvider();

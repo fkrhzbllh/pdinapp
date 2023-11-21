@@ -109,74 +109,12 @@
                 </div>
             </div>
         </div>
+        <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Sewa Alat</button>
     </form>
 </div>
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
-
-<script>
-    $(document).ready(function() {
-        if ($("#ruangan").find("option:selected").attr("class") == "Pameran") {
-            $("#Kantor,#Meeting,#Pengembangan").hide();
-            $('#Pameran').show();
-            $("#tipe").val($(this).find('option:selected').attr('class'));
-        } else if ($('#ruangan').find('option:selected').attr('class') == 'Kantor') {
-            $("#Pameran,#Meeting,#Pengembangan").hide();
-            $('#Kantor').show();
-            $("#tipe").val($(this).find('option:selected').attr('class'));
-        } else if ($('#ruangan').find('option:selected').attr('class') == 'Meeting') {
-            $("#Pameran,#Kantor,#Pengembangan").hide();
-            $('#Meeting').show();
-            $("#tipe").val($(this).find('option:selected').attr('class'));
-        } else if ($('#ruangan').find('option:selected').attr('class') == 'Pengembangan') {
-            $("#Pameran,#Kantor,#Meeting").hide();
-            $('#Pengembangan').show();
-            $("#tipe").val($(this).find('option:selected').attr('class'));
-        } else {
-            $("#Pameran,#Kantor,#Meeting,#Pengembangan").hide();
-        }
-
-        $('#ruangan').change(function() {
-            $("#Pameran,#Kantor,#Meeting,#Pengembangan").hide();
-            $('#' + $(this).find('option:selected').attr('class')).show();
-            $("#tipe").val($(this).find('option:selected').attr('class'));
-        });
-
-        // if ($('$sewaruangan').length > 0)
-        // {
-        //     $('$sewaruangan').validate({
-        //         rules: {
-        //             nama: {
-        //                 required: true
-        //             },
-        //             email: {
-        //                 required: true,
-        //                 email: true
-        //             },
-        //             nomorTelepon: {
-        //                 required: true
-        //             }
-        //         }
-        //     })
-        // }
-
-        // $('#tanggalMulai').date_default_timezone_set('id');
-        // $('#tanggalSelesai').date_default_timezone_set('id');
-
-        // var start = document.getElementById('tanggalMulai');
-        // var end = document.getElementById('tanggalSelesai');
-
-        // $('#tanggalMulai').change(function() {
-        //     if ($('#tanggalMulai').val)
-        //         $('#tanggalSelesai').min = $('#tanggalMulai').val;
-        // }, false);
-        // $('#tanggalSelesai').change(function() {
-        //     if ($("#tanggalSelesai").val)
-        //         $('#tanggalMulai').max = $("#tanggalSelesai").val;
-        // }, false);
-    });
-</script>
 
 <script>
     var start = document.getElementById('tanggalMulai');
@@ -198,73 +136,8 @@
         if (end.value)
             start.max = end.value;
     }, false);
-
-    var start2 = document.getElementById('tanggalMulai2');
-    var end2 = document.getElementById('tanggalSelesai2');
-    // var tanggal = new Date();
-    // var dd = String(tanggal.getDate()).padStart(2, '0');
-    // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // var yyyy = tanggal.getFullYear();
-
-    // today = dd + '-' + mm + '-' + yyyy;
-    // start2.min = new Date(today);
-    start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    // console.log(start2.min);
-
-    start2.addEventListener('change', function() {
-        if (start2.value)
-            end2.min = start2.value;
-    }, false);
-    end2.addEventListener('change', function() {
-        if (end2.value)
-            start2.max = end2.value;
-    }, false);
-
-    var start3 = document.getElementById('tanggalMulai3');
-    var end3 = document.getElementById('tanggalSelesai3');
-    // var tanggal = new Date();
-    // var dd = String(tanggal.getDate()).padStart(2, '0');
-    // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // var yyyy = tanggal.getFullYear();
-
-    // var today = dd + '-' + mm + '-' + yyyy;
-    // start.min = new Date(today);
-    start3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-
-    start3.addEventListener('change', function() {
-        if (start3.value)
-            end3.min = start3.value;
-    }, false);
-    end3.addEventListener('change', function() {
-        if (end3.value)
-            start3.max = end3.value;
-    }, false);
-
-    var start4 = document.getElementById('tanggalMulai4');
-    var end4 = document.getElementById('tanggalSelesai4');
-    // var tanggal = new Date();
-    // var dd = String(tanggal.getDate()).padStart(2, '0');
-    // var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // var yyyy = tanggal.getFullYear();
-
-    // var today = dd + '-' + mm + '-' + yyyy;
-    // start.min = new Date(today);
-    start4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-
-    start4.addEventListener('change', function() {
-        if (start4.value)
-            end4.min = start4.value;
-    }, false);
-    end4.addEventListener('change', function() {
-        if (end4.value)
-            start4.max = end4.value;
-    }, false);
 </script>
 
-<button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Sewa Ruangan</button>
 
 <script>
     var submit = document.getElementById('submit');

@@ -136,7 +136,9 @@ class RilisMediaAdmin extends BaseController
 
 		// delete gambar
 		if ($artikelLama['featured_image']) {
-			unlink('uploads/' . $artikelLama['featured_image']);
+			if (file_exists('uploads/' . $artikelLama['featured_image'])) {
+				unlink('uploads/' . $artikelLama['featured_image']);
+			}
 		}
 
 		if ($featured_image) {
@@ -178,7 +180,9 @@ class RilisMediaAdmin extends BaseController
 		// hapus gambar
 		if ($artikel) {
 			if ($artikel['featured_image']) {
-				unlink('uploads/' . $artikel['featured_image']);
+				if (file_exists('uploads/' . $artikel['featured_image'])) {
+					unlink('uploads/' . $artikel['featured_image']);
+				}
 			}
 			$this->artikelModel->delete($id);
 		}

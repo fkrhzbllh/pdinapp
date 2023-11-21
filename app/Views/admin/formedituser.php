@@ -99,7 +99,7 @@
         </div> -->
 
         <input type="hidden" name="id" value="<?= old('id') ? old('id') : $user['id'] ?>" />
-        <input type="hidden" name="uuid" value="<?= $uuid ?>" />
+        <input type="hidden" name="uuid" value="<?= old('uuid') ? old('uuid') : $uuid ?>" />
         <input type="hidden" name="username_old" value="<?= old('username_old') ? old('username_old') : $user['username'] ?>" />
         <input type="hidden" name="email_old" value="<?= old('email_old') ? old('email_old') : $user['secret'] ?>" />
 

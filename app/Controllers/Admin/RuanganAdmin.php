@@ -220,9 +220,11 @@ class RuanganAdmin extends BaseController
 		$fotoLama = $this->galeriRuanganModel->getGaleriByRuangan($id);
 		if ($fotoLama) {
 			foreach ($fotoLama as $key => $fl) {
-				unlink('uploads/' . $fl['nama_file']);
-				$this->galeriModel->delete($fl['id_galeri']);
-				// $this->galeriRuanganModel->delete($galeriRuangan[$key]['id']);
+				if (file_exists('uploads/' . $fl['nama_file'])) {
+					unlink('uploads/' . $fl['nama_file']);
+					$this->galeriModel->delete($fl['id_galeri']);
+					// $this->galeriRuanganModel->delete($galeriRuangan[$key]['id']);
+				}
 			}
 		}
 		// delete di table galeri_ruangan
@@ -268,9 +270,11 @@ class RuanganAdmin extends BaseController
 		$fotoLama = $this->galeriRuanganModel->getGaleriByRuangan($id);
 		if ($fotoLama) {
 			foreach ($fotoLama as $key => $fl) {
-				unlink('uploads/' . $fl['nama_file']);
-				$this->galeriModel->delete($fl['id_galeri']);
-				// $this->galeriRuanganModel->delete($galeriRuangan[$key]['id']);
+				if (file_exists('uploads/' . $fl['nama_file'])) {
+					unlink('uploads/' . $fl['nama_file']);
+					$this->galeriModel->delete($fl['id_galeri']);
+					// $this->galeriRuanganModel->delete($galeriRuangan[$key]['id']);
+				}
 			}
 		}
 		// delete di table galeri_ruangan

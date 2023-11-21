@@ -178,8 +178,10 @@ class AlatAdmin extends BaseController
 		$fotoLama = $this->galeriAlatModel->getGaleriByAlat($id);
 		if ($fotoLama) {
 			foreach ($fotoLama as $key => $fl) {
-				unlink('uploads/' . $fl['nama_file']);
-				$this->galeriModel->delete($fl['id_galeri']);
+				if (file_exists('uploads/' . $fl['nama_file'])) {
+					unlink('uploads/' . $fl['nama_file']);
+					$this->galeriModel->delete($fl['id_galeri']);
+				}
 			}
 		}
 		// delete di table galeri_alat
@@ -224,8 +226,10 @@ class AlatAdmin extends BaseController
 		$fotoLama = $this->galeriAlatModel->getGaleriByAlat($id);
 		if ($fotoLama) {
 			foreach ($fotoLama as $key => $fl) {
-				unlink('uploads/' . $fl['nama_file']);
-				$this->galeriModel->delete($fl['id_galeri']);
+				if (file_exists('uploads/' . $fl['nama_file'])) {
+					unlink('uploads/' . $fl['nama_file']);
+					$this->galeriModel->delete($fl['id_galeri']);
+				}
 			}
 		}
 		// delete di table galeri_alat

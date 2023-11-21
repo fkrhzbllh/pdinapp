@@ -137,7 +137,7 @@ class KegiatanAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/update-kegiatan')->withInput();
+			return redirect()->to('/DashboardAdmin/update-kegiatan/' . $slugLama)->withInput();
 		}
 
 		// dd($this->request->getFile('poster'));
@@ -148,7 +148,9 @@ class KegiatanAdmin extends BaseController
 		// delete gambar
 		$kegiatanLama = $this->kegiatanModel->getKegiatanByID($id);
 		if ($kegiatanLama['poster']) {
-			unlink('uploads/' . $kegiatanLama['poster']);
+			if (file_exists('uploads/' . $kegiatanLama['poster'])) {
+				unlink('uploads/' . $kegiatanLama['poster']);
+			}
 		}
 
 		if ($poster) {
@@ -190,7 +192,9 @@ class KegiatanAdmin extends BaseController
 		$kegiatan = $this->kegiatanModel->getKegiatanByID($id);
 		if ($kegiatan) {
 			if ($kegiatan['poster']) {
-				unlink('uploads/' . $kegiatan['poster']);
+				if (file_exists('uploads/' . $kegiatan['poster'])) {
+					unlink('uploads/' . $kegiatan['poster']);
+				}
 			}
 			$this->kegiatanModel->delete($id);
 		}

@@ -255,8 +255,8 @@
     var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = tanggal.getFullYear();
 
-    var today = yyyy + '-' + mm + '-' + dd;
-    start.min = today;
+    // var today = yyyy + '-' + mm + '-' + dd;
+    // start.min = today;
 
     start.addEventListener('change', function() {
         if (start.value)
