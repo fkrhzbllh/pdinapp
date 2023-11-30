@@ -174,6 +174,7 @@ class LayananPelatihanAdmin extends BaseController
 		$uuid = $this->request->getVar('uuid');
 		$pelatihan = $this->pelatihanModel->findByUUID($uuid);
 		$this->data['pelatihan'] = $pelatihan;
+		$this->data['uuid'] = $uuid;
 
 		return view('admin/formeditpelatihan.php', $this->data);
 	}
@@ -186,7 +187,7 @@ class LayananPelatihanAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors())->with('uuid', $this->request->getVar('uuid'));
 		}
 
 		// simpan data 

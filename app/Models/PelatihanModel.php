@@ -7,7 +7,7 @@ class PelatihanModel extends \App\Models\BaseModel
     protected $table = 'pelatihan';
     protected $useTimestamps = true;
     protected $tablePeserta = 'peserta_pelatihan';
-    protected $allowedFields = ['nama_pelatihan', 'deskripsi_pelatihan', 'slug', 'tgl_mulai', 'tgl_selesai', 'waktu_mulai', 'waktu_selesai'];
+    protected $allowedFields = ['uuid', 'nama_pelatihan', 'deskripsi_pelatihan', 'slug', 'tgl_mulai', 'tgl_selesai', 'waktu_mulai', 'waktu_selesai'];
 
     public function __construct()
     {

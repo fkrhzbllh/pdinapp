@@ -41,6 +41,9 @@ $routes->get('/kontak', 'Kontak::index');
 $routes->get('/rilis-media', 'RilisMedia::index');
 $routes->post('/rilis-media', 'RilisMedia::index');
 
+// Halaman Login
+$routes->get('/login', 'LoginController::index');
+
 // Halaman detail ruangan dan alat
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
 $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');
@@ -151,6 +154,7 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 	$routes->post('/DashboardAdmin/saveTambahPelatihan', 'Admin\LayananPelatihanAdmin::saveTambahPelatihan');
 
 	$routes->get('/DashboardAdmin/update-pelatihan/(:any)', 'Admin\LayananPelatihanAdmin::updatePelatihan/$1');
+	$routes->get('/DashboardAdmin/update-pelatihan', 'Admin\LayananPelatihanAdmin::updatePelatihan');
 	$routes->post('/DashboardAdmin/update-pelatihan', 'Admin\LayananPelatihanAdmin::updatePelatihan');
 	$routes->post('/DashboardAdmin/saveUpdatePelatihan', 'Admin\LayananPelatihanAdmin::saveUpdatePelatihan');
 

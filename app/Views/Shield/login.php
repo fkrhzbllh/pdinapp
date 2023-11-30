@@ -1,12 +1,9 @@
-<?= $this->extend(config('Auth')->views['layout']) ?>
+<?= $this->extend('layout/auth/template') ?>
 
-<?= $this->section('title') ?><?= lang('Auth.login') ?> <?= $this->endSection() ?>
-
-<?= $this->section('main') ?>
-{{ShieldOAuthButtonForLoginPage}}
-
+<?= $this->section('content') ?>
+<!-- <section id="section-konten"> -->
 <div class="container d-flex justify-content-center p-5">
-    <div class="card col-12 col-md-5 shadow-sm">
+    <div class="container-konten col-12 col-md-8 col-xl-5">
         <div class="card-body">
             <h5 class="card-title mb-5"><?= lang('Auth.login') ?></h5>
 
@@ -52,26 +49,35 @@
                     </div>
                 <?php endif; ?>
 
-                <div class="d-grid col-12 col-md-8 mx-auto m-3">
-                    <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.login') ?></button>
-                </div>
+                <button type="submit" class="btn btn-danger w-100 mt-2 mb-2"><?= lang('Auth.login') ?></button>
 
                 <?php if (setting('Auth.allowMagicLinkLogins')) : ?>
                     <p class="text-center"><?= lang('Auth.forgotPassword') ?> <a href="<?= url_to('magic-link') ?>"><?= lang('Auth.useMagicLink') ?></a></p>
                 <?php endif ?>
 
+            </form>
+            <div class="row mt-4 mb-2">
+                <button type="button" class="btn btn-outline-dark w-100 mb-2">
+                    <i class="bi bi-google me-2"></i>
+                    Masuk dengan Google
+                </button>
+                <button type="button" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-github me-2"></i>
+                    Masuk dengan GitHub
+                </button>
+            </div>
+            <div class="row">
                 <?php if (setting('Auth.allowRegistration')) : ?>
                     <p class="text-center"><?= lang('Auth.needAccount') ?> <a href="<?= url_to('register') ?>"><?= lang('Auth.register') ?></a></p>
                 <?php endif ?>
-
-            </form>
+            </div>
         </div>
     </div>
 </div>
-
+<!-- </section> -->
 <?= $this->endSection() ?>
 
-<?= $this->section('pageScripts') ?>
+<?= $this->section('script') ?>
 <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js' integrity='sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3' crossorigin='anonymous'></script>
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js' integrity='sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk' crossorigin='anonymous'></script>
 <?= $this->endSection() ?>
