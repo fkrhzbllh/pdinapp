@@ -9,7 +9,7 @@
             <?= \Config\Services::validation()->listErrors() ?>
             <div class="col-12">
                 <label for="namaPelatihan" class="form-label">Nama Pelatihan</label>
-                <input type="text" class="form-control <?= (validation_show_error('nama')) ? 'is-invalid' : ''; ?>" id="namaPelatihan" placeholder="" value="<?= old('namaPelatihan') ? old('namaPelatihan') : $pelatihan['nama_pelatihan'] ?>" name="namaPelatihan" autofocus>
+                <input type="text" class="form-control <?= (validation_show_error('namaPelatihan')) ? 'is-invalid' : ''; ?>" id="namaPelatihan" placeholder="" value="<?= old('namaPelatihan') ? old('namaPelatihan') : $pelatihan['nama_pelatihan'] ?>" name="namaPelatihan" autofocus required>
                 <div class="invalid-feedback">
                     <?= validation_show_error('namaPelatihan'); ?>
                 </div>
@@ -60,6 +60,7 @@
             </div>
 
             <input type="hidden" name="id" value="<?= old('id') ? old('id') : $pelatihan['id'] ?>" />
+            <input type="hidden" name="uuid" value="<?= old('uuid') ? old('uuid') : $uuid ?>" />
 
             <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
         </div>
@@ -69,5 +70,27 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
+
+<script>
+    var start = document.getElementById('tanggalMulai');
+    var end = document.getElementById('tanggalSelesai');
+    var tanggal = new Date();
+    var dd = String(tanggal.getDate()).padStart(2, '0');
+    var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = tanggal.getFullYear();
+
+    var today = yyyy + '-' + mm + '-' + dd;
+    // start.min = today;
+    // end.min = today;
+
+    start.addEventListener('change', function() {
+        if (start.value)
+            end.min = start.value;
+    }, false);
+    end.addEventListener('change', function() {
+        if (end.value)
+            start.max = end.value;
+    }, false);
+</script>
 
 <?= $this->endSection() ?>

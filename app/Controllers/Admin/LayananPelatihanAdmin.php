@@ -46,18 +46,6 @@ class LayananPelatihanAdmin extends BaseController
 		return view('admin/adminlayananpelatihan.php', $this->data);
 	}
 
-	public function alat()
-	{
-		$this->data['current_page'] = 'adminpelatihan';
-		// $perPage = 10;
-		// $this->data['per_page'] = $perPage;
-		// $this->data['alat'] = $this->alatModel->paginate($perPage, 'alat');
-		$this->data['pelatihan'] = $this->pelatihanModel->findAll();
-		// $this->data['pager'] = $this->alatModel->pager;
-		// $this->data['pager_current'] = $this->alatModel->pager->getCurrentPage('alat');
-		return view('admin/adminlayananpelatihan.php', $this->data);
-	}
-
 	public function listPelatihan()
 	{
 		$jadwalSudahSelesai = $this->pelatihanModel->where('tgl_selesai <', date("Y-m-d"))->orderBy('tgl_mulai', 'asc')->findAll();
@@ -77,7 +65,7 @@ class LayananPelatihanAdmin extends BaseController
 					$eventData = [];
 
 					$eventData = [
-						'end' => date_create($value['tgl_selesai'])->format('Y-m-d'),
+						'end' => date_add(date_create($value['tgl_selesai']), date_interval_create_from_date_string('1 day'))->format('Y-m-d'),
 						'title' => $value['nama_pelatihan'],
 						'start' => $value['tgl_mulai'],
 						'selesai' => date_create($value['tgl_selesai'])->format('Y-m-d'),
@@ -165,15 +153,16 @@ class LayananPelatihanAdmin extends BaseController
 	}
 
 	// form edit pelatihan
-	public function updatePelatihan()
+	public function updatePelatihan($uuid)
 	{
 		$this->data['current_page'] = 'adminpelatihan';
 		$this->data['judul_halaman'] = 'Pelatihan PDIN';
 
 		// ambil data yang dipilih
-		$uuid = $this->request->getVar('uuid');
+		// $uuid = $this->request->getVar('uuid');
 		$pelatihan = $this->pelatihanModel->findByUUID($uuid);
 		$this->data['pelatihan'] = $pelatihan;
+		$this->data['uuid'] = $uuid;
 
 		return view('admin/formeditpelatihan.php', $this->data);
 	}

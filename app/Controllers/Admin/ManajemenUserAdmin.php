@@ -220,7 +220,7 @@ class ManajemenUserAdmin extends BaseController
 	}
 	protected function getValidationRulesForUpdate($usernameRules, $emailRules): array
 	{
-		return setting('Validation.registration') ?? [
+		return [
 			'username' => [
 				'label' => 'Auth.username',
 				'rules' => $usernameRules,
