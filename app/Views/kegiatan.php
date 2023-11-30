@@ -466,16 +466,19 @@ Belum dirapikan
                 <p class="fs-3 lh-base mb-4">Temukan informasi terkini tentang acara, seminar, workshop, dan berbagai kegiatan lain yang kami selenggarakan. Tetap terhubung bersama kami</p>
 
                 <div class="d-flex flex-md-row flex-column mb-3 justify-content-center gx-1 btn-sosmed px-4">
-                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-instagram"></i>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="https://www.instagram.com/pdin.id/" role="button"><i class="bi bi-instagram"></i>
                         Instagram
                     </a>
-                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-facebook"></i>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="https://www.tiktok.com/@pdin_id" role="button"><i class="bi bi-tiktok"></i>
+                        TikTok
+                    </a>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="https://www.facebook.com/profile.php?id=100090825612362&mibextid=ZbWKwL" role="button"><i class="bi bi-facebook"></i>
                         Facebook
                     </a>
-                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-twitter"></i>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="https://twitter.com/pdin_id" role="button"><i class="bi bi-twitter-x"></i>
                         Twitter
                     </a>
-                    <a class="btn btn-outline-dark rounded-5 m-1" href="/rilis-media" role="button"><i class="bi bi-youtube"></i>
+                    <a class="btn btn-outline-dark rounded-5 m-1" href="https://www.youtube.com/@pdin_id" role="button"><i class="bi bi-youtube"></i>
                         Youtube
                     </a>
                 </div>

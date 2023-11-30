@@ -77,11 +77,11 @@
 							<a href="https://www.youtube.com/@pdin_id" target="_blank" class="btn btn-outline-dark p-3">
 								<i class="bi bi-youtube text-light"></i>
 							</a>
-							<a href="https://twitter.com/pdin_id" target="_blank" class="btn btn-outline-dark p-3">
+							<a href="https://www.facebook.com/profile.php?id=100090825612362&mibextid=ZbWKwL" target="_blank" class="btn btn-outline-dark p-3">
 								<i class="bi bi-facebook text-light"></i>
 							</a>
 							<a href="https://twitter.com/pdin_id" target="_blank" class="btn btn-outline-dark p-3">
-								<i class="bi bi-twitter text-light"></i>
+								<i class="bi bi-twitter-x text-light"></i>
 							</a>
 							<a href="https://www.tiktok.com/@pdin_id" target="_blank" class="btn btn-outline-dark p-3">
 								<i class="bi bi-tiktok text-light"></i>

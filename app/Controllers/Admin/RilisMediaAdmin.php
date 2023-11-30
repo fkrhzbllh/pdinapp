@@ -222,9 +222,9 @@ class RilisMediaAdmin extends BaseController
 				]
 			],
 			'featured_image' => [
-				'rules' => 'max_size[featured_image,2048]|is_image[featured_image]|mime_in[featured_image,image/jpg,image/jpeg,image/png]',
+				'rules' => 'required|is_image[featured_image]|mime_in[featured_image,image/jpg,image/jpeg,image/png]',
 				'errors' => [
-					'max_size' => 'ukuran foto ruangan maksimal 2MB',
+					'required' => 'gambar harus diisi',
 					'is_image' => 'file yang Anda pilih bukan gambar',
 					'mime_in' => 'file yang Anda pilih bukan gambar'
 				]

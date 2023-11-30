@@ -1,16 +1,8 @@
-<?= $this->extend('layout/admin/admin-template') ?>
+<?= $this->extend('layout/user/user-template') ?>
 
 <?= $this->section('content') ?>
 <?php helper('text') ?>
-<!-- <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/DashboardAdmin/alat">Alat</a></li>
-        <li class="breadcrumb-item active" aria-current="page">
-            <?php // echo 'Sewa' . $Alat['nama'] 
-            ?>
-        </li>
-    </ol>
-</nav> -->
+
 <div class="p-5 col-12 bg-white">
     <?php if (session()->getFlashdata('sukses')) : ?>
         <div class="alert alert-success" role="alert">
@@ -25,10 +17,10 @@
     <div class="row">
         <div class="col-12 col-md-12">
             <div class="row">
-                <div class="col-6 col-md-6">
+                <!-- <div class="col-6 col-md-6">
                     <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-pelatihan/' ?>">Tambah
                         Pelatihan</a>
-                </div>
+                </div> -->
                 <!-- === Nav tabel dan kalender === -->
                 <div class="col-6 col-md-6">
                     <ul class="nav nav-underline justify-content-end" role="tablist" id="navs-tab">
@@ -69,22 +61,16 @@
                         <table class="table table-bordered table-striped display" id="tablejadwal1" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <!-- <td>No</td> -->
                                     <td>Nama Pelatihan</td>
                                     <td>Mulai</td>
                                     <td>Selesai</td>
-                                    <td>Aksi</td>
+                                    <!-- <td>Aksi</td> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($jadwalAkanDatang as $key => $a) : ?>
                                     <tr>
-                                        <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
-                                                    ?>
-                            </td> -->
                                         <td><?= $a['events']['title'] ?></td>
-                                        <!-- <td><?php // $penyewa[$key]['nama_instansi'] 
-                                                    ?></td> -->
                                         <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
                                             <?php
                                             $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
@@ -97,19 +83,19 @@
                                             echo $formatter->format(date_create($a['events']['selesai']));
                                             ?>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
-                                            <!-- <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
+                                            <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" value="<?php echo $a['uuid'] ?>" name="uuid">
                                                 <button class="btn btn-warning" type="submit">Edit</button>
-                                            </form> -->
+                                            </form>
                                             <form action="/DashboardAdmin/pelatihan/<?php echo $a['id'] ?>" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -121,23 +107,16 @@
                         <table class="table table-bordered table-striped display" id="tablejadwal2" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <!-- <td>No</td> -->
                                     <td>Nama Pelatihan</td>
                                     <td>Mulai</td>
                                     <td>Selesai</td>
-                                    <td>Aksi</td>
+                                    <!-- <td>Aksi</td> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($jadwalSedangBerlangsung as $key => $a) : ?>
                                     <tr>
-                                        <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
-                                                    ?>
-                            </td> -->
                                         <td><?= $a['events']['title'] ?></td>
-
-                                        <!-- <td><?php // $penyewa[$key]['nama_instansi'] 
-                                                    ?></td> -->
                                         <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
                                             <?php
                                             $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
@@ -150,19 +129,19 @@
                                             echo $formatter->format(date_create($a['events']['selesai']));
                                             ?>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
-                                            <!-- <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
+                                            <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" value="<?php echo $a['uuid'] ?>" name="uuid">
                                                 <button class="btn btn-warning" type="submit">Edit</button>
-                                            </form> -->
+                                            </form>
                                             <form action="/DashboardAdmin/pelatihan/<?php echo $a['id'] ?>" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -174,19 +153,15 @@
                         <table class="table table-bordered table-striped display" id="tablejadwal3" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <!-- <td>No</td> -->
                                     <td>Nama Pelatihan</td>
                                     <td>Mulai</td>
                                     <td>Selesai</td>
-                                    <td>Aksi</td>
+                                    <!-- <td>Aksi</td> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($jadwalSudahSelesai as $key => $a) : ?>
                                     <tr>
-                                        <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
-                                                    ?>
-                            </td> -->
                                         <td><?= $a['events']['title'] ?></td>
                                         <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
                                             <?php
@@ -200,19 +175,19 @@
                                             echo $formatter->format(date_create($a['events']['selesai']));
                                             ?>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
-                                            <!-- <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
+                                            <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" value="<?php echo $a['uuid'] ?>" name="id">
                                                 <button class="btn btn-warning" type="submit">Edit</button>
-                                            </form> -->
+                                            </form>
                                             <form action="/DashboardAdmin/sewaAlat/<?php echo $a['id'] ?>" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -220,80 +195,9 @@
                     </div>
                 </div>
             </div>
-            <!-- <?php foreach ($jadwalSudahSelesai as $key => $a) : ?>
-
-                <div class="container px-4 py-3 my-3 rounded-3 shadow">
-                    <div class="row align-items-center">
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                            <div class="row">
-                                <h5><?php // $alat[$key]['nama'] 
-                                    ?></h5>
-                            </div>
-                            <div class="row">
-                                <h4 class="crop-text-2"><?php // word_limiter($a['nama_kegiatan'], 2) 
-                                                        ?></h4>
-                            </div>
-                            <div class="row">
-                                <h6>instansi</h6>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-6">
-                            <div class="row">
-                                <h6><?php // $penyewa[$key]['nama'] 
-                                    ?></h6>
-                            </div>
-                            <div class="row">
-                                <h5><?php // $penyewa[$key]['kontak'] 
-                                    ?></h5>
-                            </div>
-                            <div class="row">
-                                <h6>email</h6>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-6">
-                            <div class="row">
-                                <h6><?php /* if ($alat[$key]['tipe'] == 'Pameran') {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-                                        echo $formatter->format(date_create($a['tgl_mulai']));
-                                    } else {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                        echo $formatter->format(date_create($a['tgl_mulai']));
-                                    }*/ ?></h6>
-                            </div>
-                            <div class="row">
-                                <h6><?php /* if ($alat[$key]['tipe'] == 'Pameran') {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
-                                        echo $formatter->format(date_create($a['tgl_selesai']));
-                                    } else {
-                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                        echo $formatter->format(date_create($a['tgl_selesai']));
-                                    }*/ ?></h6>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-6 text-center">
-                            <div class="row">
-                                <h6>Status</h6>
-                            </div>
-                            <div class="row">
-                                <h4><?php // $a['status_pembayaran'] 
-                                    ?></h4>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-6 text-center">
-                            <a href="/DashboardAdmin/update-pelatihan/<?php // echo $a['uuid'] 
-                                                                        ?>" class="btn btn-warning">Edit</a>
-                            <form action="/DashboardAdmin/sewaAlat/<?php // echo $a['id'] 
-                                                                    ?>" method="post" class="d-inline">
-                                <?= csrf_field(); ?>
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?> -->
-
         </div>
+
+
         <div class="tab-pane fade" id="nav-kalender" role="tabpanel" aria-labelledby="nav-kalender-tab" tabindex="0">
             <div id="calendar"></div>
             <div class="modal fade" id="modalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -349,6 +253,35 @@
                                             <p class="p-0 fw-bold mb-1" id="nama_instansi">-</p>
                                         </div>
                                     </div> -->
+
+                                    <!-- Waktu Mulai Pelatihan -->
+                                    <div class="row p-0 m-0 mb-1">
+                                        <div class="col-1 m-0 p-0 align-self-start">
+                                            <div class="text-center">
+                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
+                                            <small class="mb-1 text-secondary">Waktu Mulai:</small>
+                                            <p class="p-0 fw-bold mb-1" id="tgl_mulai">
+                                                -
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Waktu Selesai Pelatihan -->
+                                    <div class="row p-0 m-0 mb-1">
+                                        <div class="col-1 m-0 p-0 align-self-start">
+                                            <div class="text-center">
+                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
+                                            <small class="mb-1 text-secondary">Waktu Selesai:</small>
+                                            <p class="p-0 fw-bold mb-1" id="tgl_selesai">
+                                                -
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-lg-6 ps-1">
                                     <!-- Deskripsi Kegiatan -->
@@ -363,34 +296,6 @@
                                             <p class="p-0 fw-bold mb-1" id="deskripsi_kegiatan">-</p>
                                         </div>
                                     </div> -->
-                                    <!-- Waktu Mulai Sewa -->
-                                    <div class="row p-0 m-0 mb-1">
-                                        <div class="col-1 m-0 p-0 align-self-start">
-                                            <div class="text-center">
-                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
-                                            <small class="mb-1 text-secondary">Waktu Mulai:</small>
-                                            <p class="p-0 fw-bold mb-1" id="tgl_mulai">
-                                                -
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!-- Waktu Selesai Sewa -->
-                                    <div class="row p-0 m-0 mb-1">
-                                        <div class="col-1 m-0 p-0 align-self-start">
-                                            <div class="text-center">
-                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
-                                            <small class="mb-1 text-secondary">Waktu Selesai:</small>
-                                            <p class="p-0 fw-bold mb-1" id="tgl_selesai">
-                                                -
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -412,14 +317,6 @@
 <script>
     $(document).ready(function() {
         $('#tablejadwal1').DataTable({
-            "columns": [
-                null,
-                null,
-                null,
-                {
-                    "width": "15%"
-                }
-            ],
             "order": [
                 [2, "asc"]
             ],
@@ -428,14 +325,6 @@
             }
         });
         $('#tablejadwal2').DataTable({
-            "columns": [
-                null,
-                null,
-                null,
-                {
-                    "width": "15%"
-                }
-            ],
             "order": [
                 [2, "asc"]
             ],
@@ -444,14 +333,6 @@
             }
         });
         $('#tablejadwal3').DataTable({
-            "columns": [
-                null,
-                null,
-                null,
-                {
-                    "width": "15%"
-                }
-            ],
             "order": [
                 [2, "asc"]
             ],
