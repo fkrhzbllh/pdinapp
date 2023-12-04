@@ -42,7 +42,13 @@ $routes->get('/rilis-media', 'RilisMedia::index');
 $routes->post('/rilis-media', 'RilisMedia::index');
 
 // Halaman Login
-$routes->get('/login', 'LoginController::index');
+// service('auth')->routes($routes, ['except' => ['login', 'register', 'magic-link']]);
+service('auth')->routes($routes);
+// $routes->get('/login', 'LoginController::loginView', ['as' => 'login']);
+// $routes->get('/register', 'RegisterController::registerView', ['as' => 'register']);
+// $routes->get('/login/magic-link', 'MagicLinkController::loginView', ['as' => 'magic-link']);
+// $routes->post('/login/magic-link', 'MagicLinkController::loginAction');
+// $routes->post('/login/verify-magic-link', 'MagicLinkController::verify');
 
 // Halaman detail ruangan dan alat
 $routes->get('/fasilitas/ruang/(:segment)', 'Fasilitas::detailRuangan/$1');
@@ -52,6 +58,7 @@ $routes->get('/fasilitas/alat/(:segment)', 'Fasilitas::detailAlat/$1');
 $routes->get('/rilis-media/(:any)', 'RilisMedia::detail/$1');
 
 $routes->group('', ['filter' => 'admin'], static function ($routes) {
+
 	// Dashboard Admin Alat
 	$routes->get('/DashboardAdmin/alat', 'Admin\AlatAdmin::index');
 

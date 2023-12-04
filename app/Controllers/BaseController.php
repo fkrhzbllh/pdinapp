@@ -62,6 +62,7 @@ abstract class BaseController extends Controller
 		session();
 
 		$this->data['judul_halaman'] = 'PDIN';
+		$this->data['current_page'] = 'pdin';
 	}
 
 	// protected function view(string $view, array $data = [], array $options = [])

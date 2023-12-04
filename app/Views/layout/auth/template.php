@@ -9,10 +9,7 @@
     <meta name="author" content="" />
     <link rel="icon" href="<?= base_url() ?>favicon.ico" />
 
-    <title><?php if (!empty($judul_halaman)) {
-                echo $judul_halaman;
-            } ?>
-    </title>
+    <title><?= $this->renderSection('title'); ?></title>
 
     <!-- Dipisah -->
     <!-- Bootstrap core CSS -->
@@ -48,8 +45,28 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Page content -->
-    <?= $this->renderSection('content'); ?>
+    <!-- Section konten auth -->
+    <section id="section-konten-auth">
+        <div class="container d-flex justify-content-center align-items-center p-5 m-auto">
+            <div class="container-konten col-12 col-md-8 col-xl-5">
+
+                <!-- Logo PDIN -->
+                <div class="text-center mb-4">
+                    <a href="/">
+                        <img class="w-50" src="<?= base_url() ?>assets/logo-pdin-merah-abu.png" id="logo" alt="Logo_PDIN" />
+                    </a>
+                </div>
+
+                <!-- Konten halaman -->
+                <div class="card-body">
+
+                    <!-- Page content -->
+                    <?= $this->renderSection('content'); ?>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
