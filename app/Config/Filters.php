@@ -31,6 +31,7 @@ class Filters extends BaseConfig
 		'jwt' => \CodeIgniter\Shield\Filters\JWTAuth::class,
 
 		'admin' => \App\Filters\AdminFilter::class,
+		'user' => \App\Filters\UserFilter::class,
 	];
 
 	/**
@@ -42,7 +43,7 @@ class Filters extends BaseConfig
 			// 'honeypot',
 			// 'csrf',
 			// 'invalidchars',
-			'session' => ['except' => ['login*', 'register', 'auth/a/*','oauth*', 'beranda', 'kegiatan', 'kontak', 'layanan', 'profilpdin', 'fasilitas', 'fasilitas/ruang/*', 'fasilitas/alat/*', 'galeri', '', 'rilis-media*']],
+			'session' => ['except' => ['login*', 'register', 'auth/a/*', 'oauth*', 'beranda', 'kegiatan', 'kontak', 'layanan', 'profilpdin', 'fasilitas', 'fasilitas/ruang/*', 'fasilitas/alat/*', 'galeri', '', 'rilis-media*']],
 		],
 		'after' => [
 			'toolbar',

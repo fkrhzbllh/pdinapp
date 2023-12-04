@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\User;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -12,7 +12,7 @@ use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
 
-class LayananSewaAlatAdmin extends BaseController
+class LayananSewaAlatUser extends BaseController
 {
 	protected $alatModel;
 	protected $sewaAlatModel;
@@ -32,37 +32,43 @@ class LayananSewaAlatAdmin extends BaseController
 		$this->galeriAlatModel = new GaleriAlatModel();
 		$this->galeriModel = new GaleriModel();
 		$this->helpers = ['form'];
-		$this->data['judul_halaman'] = 'Admin | Pusat Desain Industri Nasional';
-		$this->data['current_page'] = 'adminsewaalat';
-		$this->data['admin'] = true;
+		$this->data['judul_halaman'] = 'User | Pusat Desain Industri Nasional';
+		$this->data['current_page'] = 'usersewaalat';
+		$this->data['user'] = true;
 		date_default_timezone_set('Asia/Jakarta');
 		$this->faker = \Faker\Factory::create();
 	}
 
 	public function index()
 	{
-		$this->data['current_page'] = 'adminsewaalat';
+		$this->data['current_page'] = 'usersewaalat';
 		$this->data['alat'] = $this->alatModel->findAll();
-		return view('admin/adminlayanansewaalat.php', $this->data);
+		return view('user/userlayanansewaalat.php', $this->data);
 	}
 
 	public function alat()
 	{
-		$this->data['current_page'] = 'adminsewaalat';
+		$this->data['current_page'] = 'usersewaalat';
 		// $perPage = 10;
 		// $this->data['per_page'] = $perPage;
 		// $this->data['alat'] = $this->alatModel->paginate($perPage, 'alat');
 		$this->data['alat'] = $this->alatModel->findAll();
 		// $this->data['pager'] = $this->alatModel->pager;
 		// $this->data['pager_current'] = $this->alatModel->pager->getCurrentPage('alat');
-		return view('admin/adminlayanansewaalat.php', $this->data);
+		return view('user/userlayanansewaalat.php', $this->data);
 	}
 
 	public function listSewaAlat()
 	{
-		$jadwalSudahSelesai = $this->sewaAlatModel->where('tgl_akhir_sewa <', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalSedangBerlangsung = $this->sewaAlatModel->where('tgl_mulai_sewa <=', date("Y-m-d H:i:s"))->where('tgl_akhir_sewa >=', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalAkanDatang = $this->sewaAlatModel->where('tgl_mulai_sewa >', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
+		$idUser = auth()->id();
+		$penyewa = $this->penyewaModel->where(['id_user' => $idUser])->first();
+
+		if (empty($penyewa)) $idPenyewa = '';
+		else $idPenyewa = $penyewa['id'];
+
+		$jadwalSudahSelesai = $this->sewaAlatModel->where('tgl_akhir_sewa <', date("Y-m-d H:i:s"))->where(['id_penyewa' => $idPenyewa])->orderBy('tgl_mulai_sewa', 'asc')->findAll();
+		$jadwalSedangBerlangsung = $this->sewaAlatModel->where('tgl_mulai_sewa <=', date("Y-m-d H:i:s"))->where('tgl_akhir_sewa >=', date("Y-m-d H:i:s"))->where(['id_penyewa' => $idPenyewa])->orderBy('tgl_mulai_sewa', 'asc')->findAll();
+		$jadwalAkanDatang = $this->sewaAlatModel->where('tgl_mulai_sewa >', date("Y-m-d H:i:s"))->where(['id_penyewa' => $idPenyewa])->orderBy('tgl_mulai_sewa', 'asc')->findAll();
 
 		$jadwalSudahSelesaiArray = [];
 		$jadwalSedangBerlangsungArray = [];
@@ -157,19 +163,19 @@ class LayananSewaAlatAdmin extends BaseController
 		$this->data['jadwalAkanDatang'] = $jadwalAkanDatangArray;
 		$this->data['events'] = $eventsArray;
 
-		return view('admin/adminlayanansewaalat.php', $this->data);
+		return view('user/userlayanansewaalat.php', $this->data);
 	}
 
 	// form sewa alat
 	public function tambahSewaAlat()
 	{
 		session();
-		$this->data['current_page'] = 'adminsewaalat';
+		$this->data['current_page'] = 'usersewaalat';
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
 		$this->data['id_alat'] = '';
 		$this->data['alat'] = $this->alatModel->getAlat(); // find all
 
-		return view('admin/formtambahsewaalat.php', $this->data);
+		return view('user/formtambahsewaalat.php', $this->data);
 	}
 
 	// simpan data sewa alat
@@ -185,7 +191,7 @@ class LayananSewaAlatAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/tambah-sewa-alat/' . $slug)->withInput();
+			return redirect()->to('/dashboard-user/tambah-sewa-alat/' . $slug)->withInput();
 		}
 
 		// simpan data user
@@ -211,13 +217,13 @@ class LayananSewaAlatAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
 
-		return redirect()->to('/DashboardAdmin/layanan-sewa-alat');
+		return redirect()->to('/dashboard-user/layanan-sewa-alat');
 	}
 
 	// form edit sewa alat
 	public function updateSewaAlat($uuid)
 	{
-		$this->data['current_page'] = 'adminsewaalat';
+		$this->data['current_page'] = 'usersewaalat';
 		$this->data['judul_halaman'] = 'Sewa Alat PDIN';
 
 		// ambil data jadwal yang dipilih
@@ -233,7 +239,7 @@ class LayananSewaAlatAdmin extends BaseController
 		$penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
 		$this->data['penyewa'] = $penyewa;
 
-		return view('admin/formeditsewaalat.php', $this->data);
+		return view('user/formeditsewaalat.php', $this->data);
 	}
 
 	// update data sewa alat
@@ -249,7 +255,7 @@ class LayananSewaAlatAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/update-sewa-alat/' . $uuid)->withInput();
+			return redirect()->to('/dashboard-user/update-sewa-alat/' . $uuid)->withInput();
 		}
 
 		// simpan data user
@@ -274,7 +280,7 @@ class LayananSewaAlatAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil diubah.');
 
-		return redirect()->to('/DashboardAdmin/layanan-sewa-alat');
+		return redirect()->to('/dashboard-user/layanan-sewa-alat');
 	}
 
 	// hapus sewa alat
@@ -288,11 +294,11 @@ class LayananSewaAlatAdmin extends BaseController
 			$this->sewaAlatModel->delete($id);
 			session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
-			return redirect()->to('/DashboardAdmin/layanan-sewa-alat');
+			return redirect()->to('/dashboard-user/layanan-sewa-alat');
 		} else {
 			session()->setFlashdata('gagal', 'Data gagal dihapus.');
 
-			return redirect()->to('/DashboardAdmin/layanan-sewa-alat');
+			return redirect()->to('/dashboard-user/layanan-sewa-alat');
 		}
 	}
 

@@ -14,27 +14,27 @@
         </div>
     <?php endif; ?>
     <h3 class="mb-3">Sewa Alat</h3>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12 col-md-12">
             <div class="row">
-                <!-- <div class="col-6 col-md-6">
+                <div class="col-6 col-md-6">
                     <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-sewa-alat/' ?>">Tambah
                         Sewa Alat</a>
                 </div> -->
-                <!-- === Nav tabel dan kalender === -->
-                <div class="col-6 col-md-6">
-                    <ul class="nav nav-underline justify-content-end" role="tablist" id="navs-tab">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tabel-tab" data-bs-toggle="tab" data-bs-target="#nav-tabel" role="tab" aria-controls="nav-tabel" aria-selected="true"><i class="bi bi-table me-1"></i>Tabel</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-kalender-tab" data-bs-toggle="tab" data-bs-target="#nav-kalender" role="tab" aria-controls="nav-kalender" aria-selected="false"><i class="bi bi-calendar-event me-1"></i>Kalender</button>
-                        </li>
-                    </ul>
-                </div>
+    <!-- === Nav tabel dan kalender === -->
+    <!-- <div class="col-6 col-md-6"> -->
+    <ul class="nav nav-underline justify-content-center" role="tablist" id="navs-tab">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="nav-tabel-tab" data-bs-toggle="tab" data-bs-target="#nav-tabel" role="tab" aria-controls="nav-tabel" aria-selected="true"><i class="bi bi-table me-1"></i>Tabel</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="nav-kalender-tab" data-bs-toggle="tab" data-bs-target="#nav-kalender" role="tab" aria-controls="nav-kalender" aria-selected="false"><i class="bi bi-calendar-event me-1"></i>Kalender</button>
+        </li>
+    </ul>
+    <!-- </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- === Konten Nav Tabel === -->
     <div class="tab-content" id="navs-tabContent">

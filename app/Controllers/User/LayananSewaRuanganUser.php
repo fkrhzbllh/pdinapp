@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\User;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -12,7 +12,7 @@ use App\Models\GaleriRuanganModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
 
-class LayananSewaRuanganAdmin extends BaseController
+class LayananSewaRuanganUser extends BaseController
 {
 	protected $ruanganModel;
 	protected $sewaRuanganModel;
@@ -32,181 +32,24 @@ class LayananSewaRuanganAdmin extends BaseController
 		$this->galeriRuanganModel = new GaleriRuanganModel();
 		$this->galeriModel = new GaleriModel();
 		$this->helpers = ['form'];
-		$this->data['judul_halaman'] = 'Admin | Pusat Desain Industri Nasional';
-		$this->data['current_page'] = 'adminsewaruangan';
-		$this->data['admin'] = true;
+		$this->data['judul_halaman'] = 'User | Pusat Desain Industri Nasional';
+		$this->data['current_page'] = 'usersewaruangan';
+		$this->data['user'] = true;
 		date_default_timezone_set('Asia/Jakarta');
 		$this->faker = \Faker\Factory::create();
 	}
 
-	public function index()
-	{
-		$this->data['current_page'] = 'adminsewaruangan';
-		$this->data['ruangan'] = $this->ruanganModel->findAll();
-		return view('admin/adminlayanansewaruangan.php', $this->data);
-	}
-
-	public function ruangan()
-	{
-		$this->data['current_page'] = 'adminsewaruangan';
-		// $perPage = 10;
-		// $this->data['per_page'] = $perPage;
-		// $this->data['ruangan'] = $this->ruanganModel->paginate($perPage, 'ruangan');
-		$this->data['ruangan'] = $this->ruanganModel->findAll();
-		// $this->data['pager'] = $this->ruanganModel->pager;
-		// $this->data['pager_current'] = $this->ruanganModel->pager->getCurrentPage('ruangan');
-		return view('admin/adminlayanansewaruangan.php', $this->data);
-	}
-
-	// list sewa suatu ruangan
-	public function listSewaRuangannn()
-	{
-		$this->data['current_page'] = 'adminsewaruangan';
-
-		// $this->data['id_ruangan'] = $id;
-		// $jadwal = $this->sewaRuanganModel->findAll();
-		$jadwal = $this->sewaRuanganModel->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalSudahSelesai = $this->sewaRuanganModel->where('tgl_akhir_sewa <', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalSedangBerlangsung = $this->sewaRuanganModel->where('tgl_mulai_sewa <', date("Y-m-d H:i:s"))->where('tgl_akhir_sewa >', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalAkanDatang = $this->sewaRuanganModel->where('tgl_mulai_sewa >', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		// $penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
-		// $penyewa = $this->penyewaModel->findAll();
-		$this->data['jadwalSudahSelesai'] = $jadwalSudahSelesai;
-		$this->data['jadwalSedangBerlangsung'] = $jadwalSedangBerlangsung;
-		$this->data['jadwalAkanDatang'] = $jadwalAkanDatang;
-		// $this->data['penyewa'] = $penyewa;
-
-		// menampilkan penyewa sewa ruangan
-		if ($jadwalSudahSelesai) {
-			foreach ($jadwalSudahSelesai as $key => $value) {
-				$penyewa = $this->penyewaModel->getPenyewaByID($value['id_penyewa']);
-				$ruangan = $this->ruanganModel->getRuanganByID($value['id_ruangan']);
-				if ($penyewa == null || empty($penyewa)) {
-					// dd($this->penyewaModel->getPenyewaByID($jadwal[2]['id_penyewa']));
-					$this->data['penyewa'][$key]['nama'] = '';
-					$this->data['penyewa'][$key]['kontak'] = '';
-					$this->data['penyewa'][$key]['nama_instansi'] = '';
-				} else if ($ruangan == null || empty($ruangan)) {
-					$this->data['ruangan'][$key]['nama'] = '';
-				} else {
-					if ($ruangan['tipe'] == 'Pameran') {
-						$this->data['events'][$key]['allDay'] = true;
-						$this->data['events'][$key]['end'] = date_add(date_create($value['tgl_akhir_sewa']), date_interval_create_from_date_string('1 day'))->format('Y-m-d H:i:s');
-					} else {
-						$this->data['ruangan'][$key]['nama'] = $ruangan['nama'];
-						$this->data['ruangan'][$key]['tipe'] = $ruangan['tipe'];
-						$this->data['events'][$key]['end'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
-						$this->data['penyewa'][$key]['nama'] = $penyewa['nama'];
-						$this->data['penyewa'][$key]['kontak'] = $penyewa['kontak'];
-						$this->data['penyewa'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
-						$this->data['events'][$key]['title'] = $value['nama_kegiatan'];
-						$this->data['events'][$key]['start'] = $value['tgl_mulai_sewa'];
-						$this->data['events'][$key]['selesai'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
-						$this->data['events'][$key]['nama'] = $penyewa['nama'];
-						$this->data['events'][$key]['kontak'] = $penyewa['kontak'];
-						$this->data['events'][$key]['email'] = $penyewa['email'];
-						$this->data['events'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
-						$this->data['events'][$key]['deskripsi'] = $value['deskripsi'];
-						$this->data['events'][$key]['nama_ruangan'] = $ruangan['nama'];
-					}
-				}
-			}
-		} else {
-			$this->data['penyewa'] = '';
-			$this->data['events'] = '';
-			$this->data['ruangan'] = '';
-		}
-		// menampilkan penyewa sewa ruangan
-		if ($jadwalSedangBerlangsung) {
-			foreach ($jadwalSedangBerlangsung as $key => $value) {
-				$penyewa = $this->penyewaModel->getPenyewaByID($value['id_penyewa']);
-				$ruangan = $this->ruanganModel->getRuanganByID($value['id_ruangan']);
-				if ($penyewa == null || empty($penyewa)) {
-					// dd($this->penyewaModel->getPenyewaByID($jadwal[2]['id_penyewa']));
-					$this->data['penyewa'][$key]['nama'] = '';
-					$this->data['penyewa'][$key]['kontak'] = '';
-					$this->data['penyewa'][$key]['nama_instansi'] = '';
-				} else if ($ruangan == null || empty($ruangan)) {
-					$this->data['ruangan'][$key]['nama'] = '';
-				} else {
-					if ($ruangan['tipe'] == 'Pameran') {
-						$this->data['events'][$key]['allDay'] = true;
-						$this->data['events'][$key]['end'] = date_add(date_create($value['tgl_akhir_sewa']), date_interval_create_from_date_string('1 day'))->format('Y-m-d H:i:s');
-					} else {
-						$this->data['ruangan'][$key]['nama'] = $ruangan['nama'];
-						$this->data['ruangan'][$key]['tipe'] = $ruangan['tipe'];
-						$this->data['events'][$key]['end'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
-						$this->data['penyewa'][$key]['nama'] = $penyewa['nama'];
-						$this->data['penyewa'][$key]['kontak'] = $penyewa['kontak'];
-						$this->data['penyewa'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
-						$this->data['events'][$key]['title'] = $value['nama_kegiatan'];
-						$this->data['events'][$key]['start'] = $value['tgl_mulai_sewa'];
-						$this->data['events'][$key]['selesai'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
-						$this->data['events'][$key]['nama'] = $penyewa['nama'];
-						$this->data['events'][$key]['kontak'] = $penyewa['kontak'];
-						$this->data['events'][$key]['email'] = $penyewa['email'];
-						$this->data['events'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
-						$this->data['events'][$key]['deskripsi'] = $value['deskripsi'];
-						$this->data['events'][$key]['nama_ruangan'] = $ruangan['nama'];
-					}
-				}
-			}
-		} else {
-			$this->data['penyewa'] = '';
-			$this->data['events'] = '';
-			$this->data['ruangan'] = '';
-		}
-		// menampilkan penyewa sewa ruangan
-		if ($jadwalAkanDatang) {
-			foreach ($jadwalAkanDatang as $key => $value) {
-				$penyewa = $this->penyewaModel->getPenyewaByID($value['id_penyewa']);
-				$ruangan = $this->ruanganModel->getRuanganByID($value['id_ruangan']);
-				if ($penyewa == null || empty($penyewa)) {
-					// dd($this->penyewaModel->getPenyewaByID($jadwal[2]['id_penyewa']));
-					$this->data['penyewa'][$key]['nama'] = '';
-					$this->data['penyewa'][$key]['kontak'] = '';
-					$this->data['penyewa'][$key]['nama_instansi'] = '';
-				} else if ($ruangan == null || empty($ruangan)) {
-					$this->data['ruangan'][$key]['nama'] = '';
-				} else {
-					if ($ruangan['tipe'] == 'Pameran') {
-						$this->data['events'][$key]['allDay'] = true;
-						$this->data['events'][$key]['end'] = date_add(date_create($value['tgl_akhir_sewa']), date_interval_create_from_date_string('1 day'))->format('Y-m-d H:i:s');
-					} else {
-						$this->data['ruangan'][$key]['nama'] = $ruangan['nama'];
-						$this->data['ruangan'][$key]['tipe'] = $ruangan['tipe'];
-						$this->data['events'][$key]['end'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
-						$this->data['penyewa'][$key]['nama'] = $penyewa['nama'];
-						$this->data['penyewa'][$key]['kontak'] = $penyewa['kontak'];
-						$this->data['penyewa'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
-						$this->data['events'][$key]['title'] = $value['nama_kegiatan'];
-						$this->data['events'][$key]['start'] = $value['tgl_mulai_sewa'];
-						$this->data['events'][$key]['selesai'] = date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s');
-						$this->data['events'][$key]['nama'] = $penyewa['nama'];
-						$this->data['events'][$key]['kontak'] = $penyewa['kontak'];
-						$this->data['events'][$key]['email'] = $penyewa['email'];
-						$this->data['events'][$key]['nama_instansi'] = $penyewa['nama_instansi'];
-						$this->data['events'][$key]['deskripsi'] = $value['deskripsi'];
-						$this->data['events'][$key]['nama_ruangan'] = $ruangan['nama'];
-					}
-				}
-			}
-		} else {
-			$this->data['penyewa'] = '';
-			$this->data['events'] = '';
-			$this->data['ruangan'] = '';
-		}
-
-		$this->data['judul_halaman'] = 'Sewa Ruangan';
-
-		return view('admin/adminlayanansewaruangan.php', $this->data);
-	}
-
 	public function listSewaRuangan()
 	{
-		$jadwalSudahSelesai = $this->sewaRuanganModel->where('tgl_akhir_sewa <', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalSedangBerlangsung = $this->sewaRuanganModel->where('tgl_mulai_sewa <=', date("Y-m-d H:i:s"))->where('tgl_akhir_sewa >=', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
-		$jadwalAkanDatang = $this->sewaRuanganModel->where('tgl_mulai_sewa >', date("Y-m-d H:i:s"))->orderBy('tgl_mulai_sewa', 'asc')->findAll();
+		$idUser = auth()->id();
+		$penyewa = $this->penyewaModel->where(['id_user' => $idUser])->first();
+
+		if (empty($penyewa)) $idPenyewa = '';
+		else $idPenyewa = $penyewa['id'];
+
+		$jadwalSudahSelesai = $this->sewaRuanganModel->where('tgl_akhir_sewa <', date("Y-m-d H:i:s"))->where(['id_penyewa' => $idPenyewa])->orderBy('tgl_mulai_sewa', 'asc')->findAll();
+		$jadwalSedangBerlangsung = $this->sewaRuanganModel->where('tgl_mulai_sewa <=', date("Y-m-d H:i:s"))->where('tgl_akhir_sewa >=', date("Y-m-d H:i:s"))->where(['id_penyewa' => $idPenyewa])->orderBy('tgl_mulai_sewa', 'asc')->findAll();
+		$jadwalAkanDatang = $this->sewaRuanganModel->where('tgl_mulai_sewa >', date("Y-m-d H:i:s"))->where(['id_penyewa' => $idPenyewa])->orderBy('tgl_mulai_sewa', 'asc')->findAll();
 
 		$jadwalSudahSelesaiArray = [];
 		$jadwalSedangBerlangsungArray = [];
@@ -303,19 +146,19 @@ class LayananSewaRuanganAdmin extends BaseController
 		$this->data['jadwalAkanDatang'] = $jadwalAkanDatangArray;
 		$this->data['events'] = $eventsArray;
 
-		return view('admin/adminlayanansewaruangan.php', $this->data);
+		return view('user/userlayanansewaruangan.php', $this->data);
 	}
 
 	// form sewa ruangan
 	public function tambahSewaRuangan()
 	{
 		session();
-		$this->data['current_page'] = 'adminsewaruangan';
+		$this->data['current_page'] = 'usersewaruangan';
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
 		$this->data['id_ruangan'] = '';
 		$this->data['ruangan'] = $this->ruanganModel->getRuangan(); // find all
 
-		return view('admin/formtambahsewaruangan.php', $this->data);
+		return view('user/formtambahsewaruangan.php', $this->data);
 	}
 
 	// simpan data sewa ruangan
@@ -331,22 +174,20 @@ class LayananSewaRuanganAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/tambah-sewa-ruangan/' . $slug)->withInput();
+			return redirect()->to('/dashboard-user/tambah-sewa-ruangan/' . $slug)->withInput();
 		}
 
 		// dd($this->request->getVar());
 
-		if ($this->request->getVar('id_penyewa')) {
-			// simpan data user baru
-			$this->penyewaModel->save([
-				'email' => $this->request->getVar('email'),
-				'nama' => $this->request->getVar('nama'),
-				'kontak' => $this->request->getVar('nomorTelepon'),
-				'nama_instansi' => $this->request->getVar('instansi'),
-			]);
+		// simpan data user
+		$this->penyewaModel->save([
+			'email' => $this->request->getVar('email'),
+			'nama' => $this->request->getVar('nama'),
+			'kontak' => $this->request->getVar('nomorTelepon'),
+			'nama_instansi' => $this->request->getVar('instansi'),
+		]);
 
-			$userID = $this->penyewaModel->insertID();
-		} else $userID = $this->request->getVar('id_penyewa');
+		$userID = $this->penyewaModel->insertID();
 
 		// simpan data sewa berdasarkan tipe
 		if ($tipe == 'Pameran') {
@@ -393,13 +234,13 @@ class LayananSewaRuanganAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
 
-		return redirect()->to('/DashboardAdmin/layanan-sewa-ruangan');
+		return redirect()->to('/dashboard-user/layanan-sewa-ruangan');
 	}
 
 	// form edit sewa ruangan
 	public function updateSewaRuangan($uuid)
 	{
-		$this->data['current_page'] = 'adminsewaruangan';
+		$this->data['current_page'] = 'usersewaruangan';
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
 
 		// ambil data jadwal yang dipilih
@@ -415,7 +256,7 @@ class LayananSewaRuanganAdmin extends BaseController
 		$penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
 		$this->data['penyewa'] = $penyewa;
 
-		return view('admin/formeditsewaruangan.php', $this->data);
+		return view('user/formeditsewaruangan.php', $this->data);
 	}
 
 	// update data sewa ruangan
@@ -432,7 +273,7 @@ class LayananSewaRuanganAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/update-sewa-ruangan/' . $uuid)->withInput();
+			return redirect()->to('/dashboard-user/update-sewa-ruangan/' . $uuid)->withInput();
 		}
 
 		// simpan data user
@@ -489,7 +330,7 @@ class LayananSewaRuanganAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil diubah.');
 
-		return redirect()->to('/DashboardAdmin/layanan-sewa-ruangan');
+		return redirect()->to('/dashboard-user/layanan-sewa-ruangan');
 	}
 
 	// hapus sewa ruangan
@@ -503,11 +344,11 @@ class LayananSewaRuanganAdmin extends BaseController
 			$this->sewaRuanganModel->delete($id);
 			session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
-			return redirect()->to('/DashboardAdmin/layanan-sewa-ruangan');
+			return redirect()->to('/dashboard-user/layanan-sewa-ruangan');
 		} else {
 			session()->setFlashdata('gagal', 'Data gagal dihapus.');
 
-			return redirect()->to('/DashboardAdmin/layanan-sewa-ruangan');
+			return redirect()->to('/dashboard-user/layanan-sewa-ruangan');
 		}
 	}
 

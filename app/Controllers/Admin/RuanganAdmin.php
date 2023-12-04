@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\RuanganModel;
 use App\Models\SewaRuanganModel;
-use App\Models\UsersModel;
+use App\Models\PenyewaModel;
 use App\Models\GaleriRuanganModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
@@ -16,7 +16,7 @@ class RuanganAdmin extends BaseController
 {
 	protected $ruanganModel;
 	protected $sewaRuanganModel;
-	protected $usersModel;
+	protected $penyewaModel;
 	protected $galeriRuanganModel;
 	protected $galeriModel;
 	protected $helpers = ['form'];
@@ -28,7 +28,7 @@ class RuanganAdmin extends BaseController
 
 		$this->ruanganModel = new RuanganModel();
 		$this->sewaRuanganModel = new SewaRuanganModel();
-		$this->usersModel = new UsersModel();
+		$this->penyewaModel = new PenyewaModel();
 		$this->galeriRuanganModel = new GaleriRuanganModel();
 		$this->galeriModel = new GaleriModel();
 		$this->helpers = ['form'];
@@ -371,8 +371,8 @@ class RuanganAdmin extends BaseController
 		}
 		// $this->data['id_ruangan'] = $id;
 		$jadwal = $this->sewaRuanganModel->getJadwalSewaRuangan($ruangan['id']);
-		// $penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
-		// $penyewa = $this->usersModel->findAll();
+		// $penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
+		// $penyewa = $this->penyewaModel->findAll();
 		$this->data['ruangan'] = $ruangan;
 		$this->data['jadwal'] = $jadwal;
 		// $this->data['penyewa'] = $penyewa;
@@ -380,9 +380,9 @@ class RuanganAdmin extends BaseController
 		// menampilkan penyewa sewa ruangan
 		if ($jadwal) {
 			foreach ($jadwal as $key => $value) {
-				$penyewa = $this->usersModel->getUserByID($value['id_user']);
+				$penyewa = $this->penyewaModel->getPenyewaByID($value['id_penyewa']);
 				if ($penyewa == null || empty($penyewa)) {
-					// dd($this->usersModel->getUserByID($jadwal[2]['id_user']));
+					// dd($this->penyewaModel->getPenyewaByID($jadwal[2]['id_penyewa']));
 					$this->data['penyewa'][$key]['nama'] = '';
 					$this->data['penyewa'][$key]['kontak'] = '';
 					$this->data['penyewa'][$key]['nama_instansi'] = '';
@@ -453,14 +453,14 @@ class RuanganAdmin extends BaseController
 		// dd($this->request->getVar());
 
 		// simpan data user
-		$this->usersModel->save([
+		$this->penyewaModel->save([
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
 			'kontak' => $this->request->getVar('nomorTelepon'),
 			'nama_instansi' => $this->request->getVar('instansi'),
 		]);
 
-		$userID = $this->usersModel->insertID();
+		$userID = $this->penyewaModel->insertID();
 
 		// simpan data sewa berdasarkan tipe
 		if ($tipe == 'Pameran') {
@@ -469,7 +469,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $userID,
+				'id_penyewa' => $userID,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPameran'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPameran'),
 			]);
@@ -479,7 +479,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $userID,
+				'id_penyewa' => $userID,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiKantor'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiKantor'),
 			]);
@@ -489,7 +489,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $userID,
+				'id_penyewa' => $userID,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiMeeting'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiMeeting'),
 			]);
@@ -499,7 +499,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $userID,
+				'id_penyewa' => $userID,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPengembangan'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPengembangan'),
 			]);
@@ -526,7 +526,7 @@ class RuanganAdmin extends BaseController
 		$this->data['id_ruangan'] = $jadwal['id_ruangan'];
 
 		// ambil data penyewa berdasarkan jadwal
-		$penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
+		$penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
 		$this->data['penyewa'] = $penyewa;
 
 		return view('admin/formeditsewaruangan.php', $this->data);
@@ -550,7 +550,7 @@ class RuanganAdmin extends BaseController
 		}
 
 		// simpan data user
-		$this->usersModel->save([
+		$this->penyewaModel->save([
 			'id' => $idPenyewa,
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
@@ -565,7 +565,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $idPenyewa,
+				'id_penyewa' => $idPenyewa,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPameran'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPameran'),
 			]);
@@ -575,7 +575,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $idPenyewa,
+				'id_penyewa' => $idPenyewa,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiKantor'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiKantor'),
 			]);
@@ -585,7 +585,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $idPenyewa,
+				'id_penyewa' => $idPenyewa,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiMeeting'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiMeeting'),
 			]);
@@ -595,7 +595,7 @@ class RuanganAdmin extends BaseController
 				'id_ruangan' => $idRuangan,
 				'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 				'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-				'id_user' => $idPenyewa,
+				'id_penyewa' => $idPenyewa,
 				'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPengembangan'),
 				'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPengembangan'),
 			]);

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class UsersModel extends \App\Models\BaseModel
+class PenyewaModel extends \App\Models\BaseModel
 {
-	protected $table = 'user';
+	protected $table = 'penyewa';
 
 	protected $useTimestamps = true;
 
@@ -14,11 +14,16 @@ class UsersModel extends \App\Models\BaseModel
 	public function __construct()
 	{
 		parent::__construct();
-		$this->table = 'user';
+		$this->table = 'penyewa';
 	}
 
-	public function getUserByID($id)
+	public function getPenyewaByID($id)
 	{
 		return $this->where([$this->primaryKey => $id])->first();
+	}
+
+	public function getUserByEmail($email)
+	{
+		return $this->where(['email' => $email])->first();
 	}
 }

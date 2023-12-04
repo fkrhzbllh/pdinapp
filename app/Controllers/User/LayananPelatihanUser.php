@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\User;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -12,7 +12,7 @@ use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
 
-class LayananPelatihanAdmin extends BaseController
+class LayananPelatihanUser extends BaseController
 {
 	protected $pelatihanModel;
 	protected $pesertaPelatihanModel;
@@ -32,18 +32,18 @@ class LayananPelatihanAdmin extends BaseController
 		$this->galeriAlatModel = new GaleriAlatModel();
 		$this->galeriModel = new GaleriModel();
 		$this->helpers = ['form'];
-		$this->data['judul_halaman'] = 'Admin | Pusat Desain Industri Nasional';
-		$this->data['current_page'] = 'adminpelatihan';
-		$this->data['admin'] = true;
+		$this->data['judul_halaman'] = 'User | Pusat Desain Industri Nasional';
+		$this->data['current_page'] = 'userpelatihan';
+		$this->data['user'] = true;
 		date_default_timezone_set('Asia/Jakarta');
 		$this->faker = \Faker\Factory::create();
 	}
 
 	public function index()
 	{
-		$this->data['current_page'] = 'adminpelatihan';
+		$this->data['current_page'] = 'userpelatihan';
 		$this->data['pelatihan'] = $this->pelatihanModel->findAll();
-		return view('admin/adminlayananpelatihan.php', $this->data);
+		return view('user/userlayananpelatihan.php', $this->data);
 	}
 
 	public function listPelatihan()
@@ -112,17 +112,17 @@ class LayananPelatihanAdmin extends BaseController
 		$this->data['jadwalAkanDatang'] = $jadwalAkanDatangArray;
 		$this->data['events'] = $eventsArray;
 
-		return view('admin/adminlayananpelatihan.php', $this->data);
+		return view('user/userlayananpelatihan.php', $this->data);
 	}
 
 	// form pelatihan
 	public function tambahPelatihan()
 	{
 		session();
-		$this->data['current_page'] = 'adminpelatihan';
+		$this->data['current_page'] = 'userpelatihan';
 		$this->data['judul_halaman'] = 'Pelatihan PDIN';
 
-		return view('admin/formtambahpelatihan.php', $this->data);
+		return view('user/formtambahpelatihan.php', $this->data);
 	}
 
 	// simpan data pelatihan
@@ -149,13 +149,13 @@ class LayananPelatihanAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
 
-		return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		return redirect()->to('/dashboard-user/layanan-pelatihan');
 	}
 
 	// form edit pelatihan
 	public function updatePelatihan($uuid)
 	{
-		$this->data['current_page'] = 'adminpelatihan';
+		$this->data['current_page'] = 'userpelatihan';
 		$this->data['judul_halaman'] = 'Pelatihan PDIN';
 
 		// ambil data yang dipilih
@@ -164,7 +164,7 @@ class LayananPelatihanAdmin extends BaseController
 		$this->data['pelatihan'] = $pelatihan;
 		$this->data['uuid'] = $uuid;
 
-		return view('admin/formeditpelatihan.php', $this->data);
+		return view('user/formeditpelatihan.php', $this->data);
 	}
 
 	// update data pelatihan
@@ -191,25 +191,25 @@ class LayananPelatihanAdmin extends BaseController
 
 		session()->setFlashdata('sukses', 'Data berhasil diubah.');
 
-		return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		return redirect()->to('/dashboard-user/layanan-pelatihan');
 	}
 
 	// hapus pelatihan
 	public function deletePelatihan($id)
 	{
 		$this->pelatihanModel->delete($id);
-		return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		return redirect()->to('/dashboard-user/layanan-pelatihan');
 		// $pelatihan = $this->pelatihanModel->findById($id);
 
 		// if ($pelatihan) {
 		// 	$this->pelatihanModel->delete($id);
 		// 	session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
-		// 	return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		// 	return redirect()->to('/dashboard-user/layanan-pelatihan');
 		// } else {
 		// 	session()->setFlashdata('gagal', 'Data gagal dihapus.');
 
-		// 	return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		// 	return redirect()->to('/dashboard-user/layanan-pelatihan');
 		// }
 	}
 

@@ -6,7 +6,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class AdminFilter implements FilterInterface
+class UserFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
@@ -14,8 +14,8 @@ class AdminFilter implements FilterInterface
 
         $user = auth()->user();
 
-        if (!$user->inGroup('admin') && !$user->inGroup('superadmin') && !$user->inGroup('developer')) {
-            return redirect()->to('/dashboard-user');
+        if ($user->inGroup('admin') && $user->inGroup('superadmin') && $user->inGroup('developer')) {
+            return redirect()->to('/DashboardAdmin');
         }
     }
 
