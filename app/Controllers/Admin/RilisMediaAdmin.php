@@ -35,6 +35,11 @@ class RilisMediaAdmin extends BaseController
 
 	public function index()
 	{
+		// Jika session magicLogin masih berlaku, maka reset password
+		if (session('magicLogin')) {
+			return redirect()->route('atur-password');
+		}
+
 		$this->data['current_page'] = 'adminrilismedia';
 		$perPage = 10;
 		$this->data['per_page'] = $perPage;

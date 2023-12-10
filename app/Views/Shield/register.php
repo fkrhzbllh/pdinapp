@@ -57,11 +57,4 @@
         Masuk dengan Google
     </button>
 </a>
-
-<a href="<?= base_url('oauth/github') ?>">
-    <button type="button" class="btn btn-outline-primary w-100">
-        <i class="bi bi-github me-2"></i>
-        Masuk dengan GitHub
-    </button>
-</a>
 <?= $this->endSection() ?>

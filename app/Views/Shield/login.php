@@ -5,7 +5,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-
+<!-- {{ShieldOAuthButtonForLoginPage}} -->
 <!-- Pesan error -->
 <?php if (session('error') !== null) : ?>
     <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
@@ -61,15 +61,9 @@
 
 <!-- Opsi masuk dengan -->
 <a href="<?= base_url('oauth/google') ?>">
-    <button type="button" class="btn btn-outline-dark w-100 mb-2">
+    <button type="button" class="btn btn-outline-dark w-100">
         <i class="bi bi-google me-2"></i>
         Masuk dengan Google
-    </button>
-</a>
-<a href="<?= base_url('oauth/github') ?>">
-    <button type="button" class="btn btn-outline-primary w-100">
-        <i class="bi bi-github me-2"></i>
-        Masuk dengan GitHub
     </button>
 </a>
 

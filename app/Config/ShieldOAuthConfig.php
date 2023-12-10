@@ -34,26 +34,25 @@ class ShieldOAuthConfig extends OAuthConfig
      * @var array<string, array<string, bool|string>>
      */
     public array $oauthConfigs = [
-        'github' => [
-            'client_id'     => 'Get it from GitHub',
-            'client_secret' => 'Get it from GitHub',
-
-            'allow_login' => true,
-        ],
         'google' => [
-            // 'client_id'     => '772306012789-o3g7apdbt6g6smmlanjhup04ia7qnktn.apps.googleusercontent.com',
-            // 'client_secret' => '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',
             'client_id'     => GOOGLE_CLIENT_ID,
             'client_secret' => GOOGLE_CLIENT_SECRET,
 
             'allow_login' => true,
         ],
-        // 'yahoo' => [
-        //     'client_id'     => 'Get it from Yahoo',
-        //     'client_secret' => 'Get it from Yahoo',
+        // Reserved for possible implementation
+        'github' => [
+            'client_id'     => 'Get it from GitHub',
+            'client_secret' => 'Get it from GitHub',
 
-        //     'allow_login' => true,
-        // ],
+            'allow_login' => false,
+        ],
+        'yahoo' => [
+            'client_id'     => YAHOO_CLIENT_ID,
+            'client_secret' => YAHOO_CLIENT_SECRET,
+
+            'allow_login' => false,
+        ],
     ];
 
     /**
