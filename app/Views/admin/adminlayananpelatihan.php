@@ -98,6 +98,7 @@
                                             ?>
                                         </td>
                                         <td>
+                                            <a href="/DashboardAdmin/detail-pelatihan/<?= $a['uuid'] ?>" class="btn btn-success">Edit</a>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
                                             <!-- <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
@@ -151,6 +152,7 @@
                                             ?>
                                         </td>
                                         <td>
+                                            <a href="/DashboardAdmin/detail-pelatihan/<?= $a['uuid'] ?>" class="btn btn-success">Edit</a>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
                                             <!-- <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
@@ -201,6 +203,7 @@
                                             ?>
                                         </td>
                                         <td>
+                                            <a href="/DashboardAdmin/detail-pelatihan/<?= $a['uuid'] ?>" class="btn btn-success">Detail</a>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
                                             <!-- <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>

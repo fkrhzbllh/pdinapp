@@ -81,7 +81,6 @@
                             <option value="<?= $r['id'] ?>" class="<?= $r['tipe'] ?>">
                                 <?= $r['nama'] ?>
                             </option>
-                            <?= d($r['id']) ?>
                         <?php endif ?>
                     <?php endforeach ?>
                 </select>

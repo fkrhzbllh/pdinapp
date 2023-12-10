@@ -165,7 +165,15 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 	$routes->post('/DashboardAdmin/update-pelatihan', 'Admin\LayananPelatihanAdmin::updatePelatihan');
 	$routes->post('/DashboardAdmin/saveUpdatePelatihan', 'Admin\LayananPelatihanAdmin::saveUpdatePelatihan');
 
+	$routes->get('/DashboardAdmin/detail-pelatihan/(:any)', 'Admin\LayananPelatihanAdmin::detailPelatihan/$1');
+	$routes->get('/DashboardAdmin/tambah-peserta/(:any)', 'Admin\LayananPelatihanAdmin::tambahPeserta/$1');
+	$routes->post('/DashboardAdmin/saveTambahPesertaLama', 'Admin\LayananPelatihanAdmin::saveTambahPesertaLama');
+	$routes->post('/DashboardAdmin/saveTambahPesertaBaru', 'Admin\LayananPelatihanAdmin::saveTambahPesertaBaru');
+	$routes->get('/DashboardAdmin/update-peserta/(:any)/(:any)', 'Admin\LayananPelatihanAdmin::updatePeserta/$1/$2');
+	$routes->post('/DashboardAdmin/saveUpdatePeserta', 'Admin\LayananPelatihanAdmin::saveUpdatePeserta');
+
 	$routes->delete('/DashboardAdmin/pelatihan/(:num)', 'Admin\LayananPelatihanAdmin::deletePelatihan/$1');
+	$routes->delete('/DashboardAdmin/peserta/(:num)/(:num)/(:any)', 'Admin\LayananPelatihanAdmin::deletePeserta/$1/$2/$3');
 
 	// Manajemen User
 	$routes->get('/DashboardAdmin/manajemen-user', 'Admin\ManajemenUserAdmin::index');
