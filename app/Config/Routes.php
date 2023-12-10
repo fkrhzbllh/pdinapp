@@ -46,6 +46,7 @@ service('auth')->routes($routes);
 $routes->get('/atur-kata-sandi', 'AturKataSandi::index');
 $routes->post('/atur-kata-sandi', 'AturKataSandi::aturPassword', ['as' => 'atur-password']);
 $routes->get('/atur-profil', 'AturProfil', ['as' => 'atur-profil']);
+$routes->post('/atur-profil', 'AturProfil::aturProfil', ['as' => 'atur-profil']);
 // $routes->get('/register', 'RegisterController::registerView', ['as' => 'register']);
 // $routes->get('/login/magic-link', 'MagicLinkController::loginView', ['as' => 'magic-link']);
 // $routes->post('/login/magic-link', 'MagicLinkController::loginAction');

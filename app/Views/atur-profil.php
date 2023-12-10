@@ -9,13 +9,32 @@ Atur Profil
     <img class="mb-3" src="https://ui-avatars.com/api/?size=128&name=<?= urlencode(auth()->user()->first_name . ' ' . auth()->user()->last_name) ?>&rounded=true&background=d82328&color=ffffff&bold=true" alt="" />
     <h2 class="fw-bold mb-5"><?= auth()->user()->first_name ?></h2>
 </div>
+<!-- Pesan error -->
+<?php if (session('error') !== null) : ?>
+    <div class="alert alert-danger" role="alert"><?= session('error') ?></div>
+<?php elseif (session('errors') !== null) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?php if (is_array(session('errors'))) : ?>
+            <?php foreach (session('errors') as $error) : ?>
+                <?= $error ?>
+                <br>
+            <?php endforeach ?>
+        <?php else : ?>
+            <?= session('errors') ?>
+        <?php endif ?>
+    </div>
+<?php endif ?>
 <h4>Atur Profil</h4>
-<form action="<?= url_to('atur-password') ?>" method="post" class="mb-4">
+<form action="<?= url_to('atur-profil') ?>" method="post" class="mb-4">
     <?= csrf_field() ?>
 
-    <!-- Email -->
+    <!-- Nama Depan -->
     <div class="mb-2">
-        <input type="text" class="form-control" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= auth()->user()->first_name ?>" required />
+        <input type="text" class="form-control" name="first_name" placeholder="Nama Depan" value="<?= auth()->user()->first_name ?>" required />
+    </div>
+    <!-- Nama Belakang -->
+    <div class="mb-2">
+        <input type="text" class="form-control" name="last_name" placeholder="Nama Belakang" value="<?= auth()->user()->last_name ?>" required />
     </div>
     <!-- Email -->
     <div class="mb-2">
