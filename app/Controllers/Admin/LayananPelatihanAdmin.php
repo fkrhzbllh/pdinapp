@@ -7,18 +7,16 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\PelatihanModel;
 use App\Models\PesertaPelatihanModel;
-use App\Models\UsersModel;
-use App\Models\GaleriAlatModel;
-use App\Models\GaleriModel;
+use App\Models\DaftarPesertaPelatihanModel;
+use App\Models\PenyewaModel;
 use App\Controllers\BaseController;
 
 class LayananPelatihanAdmin extends BaseController
 {
 	protected $pelatihanModel;
 	protected $pesertaPelatihanModel;
-	protected $usersModel;
-	protected $galeriAlatModel;
-	protected $galeriModel;
+	protected $daftarPesertaPelatihanModel;
+	protected $penyewaModel;
 	protected $helpers = ['form'];
 	protected $faker;
 
@@ -28,9 +26,8 @@ class LayananPelatihanAdmin extends BaseController
 
 		$this->pelatihanModel = new PelatihanModel();
 		$this->pesertaPelatihanModel = new pesertaPelatihanModel();
-		$this->usersModel = new UsersModel();
-		$this->galeriAlatModel = new GaleriAlatModel();
-		$this->galeriModel = new GaleriModel();
+		$this->daftarPesertaPelatihanModel = new DaftarPesertaPelatihanModel();
+		$this->penyewaModel = new PenyewaModel();
 		$this->helpers = ['form'];
 		$this->data['judul_halaman'] = 'Admin | Pusat Desain Industri Nasional';
 		$this->data['current_page'] = 'adminpelatihan';
@@ -115,6 +112,19 @@ class LayananPelatihanAdmin extends BaseController
 		return view('admin/adminlayananpelatihan.php', $this->data);
 	}
 
+	public function detailPelatihan($uuid)
+	{
+		$pelatihan = $this->pelatihanModel->findByUUID($uuid);
+		$peserta = $this->pesertaPelatihanModel->getPesertaByIDPelatihan($pelatihan['id']);
+
+		// dd($peserta);
+		$this->data['current_page'] = 'adminpelatihan';
+		$this->data['pelatihan'] = $pelatihan;
+		$this->data['peserta'] = $peserta;
+
+		return view('admin/admindetaillayananpelatihan.php', $this->data);
+	}
+
 	// form pelatihan
 	public function tambahPelatihan()
 	{
@@ -197,20 +207,170 @@ class LayananPelatihanAdmin extends BaseController
 	// hapus pelatihan
 	public function deletePelatihan($id)
 	{
-		$this->pelatihanModel->delete($id);
-		return redirect()->to('/DashboardAdmin/layanan-pelatihan');
-		// $pelatihan = $this->pelatihanModel->findById($id);
+		// $this->pelatihanModel->delete($id);
+		// return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		$pelatihan = $this->pelatihanModel->findById($id);
 
-		// if ($pelatihan) {
-		// 	$this->pelatihanModel->delete($id);
-		// 	session()->setFlashdata('sukses', 'Data berhasil dihapus.');
+		if ($pelatihan) {
+			$this->pelatihanModel->delete($id);
+			session()->setFlashdata('sukses', 'Data berhasil dihapus.');
 
-		// 	return redirect()->to('/DashboardAdmin/layanan-pelatihan');
-		// } else {
-		// 	session()->setFlashdata('gagal', 'Data gagal dihapus.');
+			return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		} else {
+			session()->setFlashdata('gagal', 'Data gagal dihapus.');
 
-		// 	return redirect()->to('/DashboardAdmin/layanan-pelatihan');
-		// }
+			return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		}
+	}
+	// form pelatihan
+	public function tambahPeserta($uuid)
+	{
+		$pelatihan = $this->pelatihanModel->findByUUID($uuid);
+		$peserta = $this->pesertaPelatihanModel->findAll();
+
+		$this->data['current_page'] = 'adminpelatihan';
+		$this->data['judul_halaman'] = 'Pelatihan PDIN';
+		$this->data['pelatihan'] = $pelatihan;
+		$this->data['peserta'] = $peserta;
+
+		return view('admin/formtambahpeserta.php', $this->data);
+	}
+
+	// simpan data peserta baru
+	public function saveTambahPesertaBaru()
+	{
+		// aturan validasi
+		$rules = $this->formRulesPeserta('required|is_unique[peserta_pelatihan.email]');
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		}
+
+		// simpan data peserta pelatihan
+		$this->pesertaPelatihanModel->save([
+			'uuid' => $this->faker->uuid(),
+			'nama' => $this->request->getVar('nama'),
+			'email' => $this->request->getVar('email'),
+			'kontak' => $this->request->getVar('kontak'),
+		]);
+
+		$id_peserta = $this->pesertaPelatihanModel->insertID();
+
+		// simpan data daftar peserta pelatihan
+		$this->daftarPesertaPelatihanModel->save([
+			'id_peserta_pelatihan' => $id_peserta,
+			'id_pelatihan' => $this->request->getVar('id_pelatihan'),
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $this->request->getVar('uuid'));
+	}
+
+	// simpan data peserta baru
+	public function saveTambahPesertaLama()
+	{
+		// aturan validasi
+		$rules = $this->formRulesPesertaLama();
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+		}
+
+		// simpan data daftar peserta pelatihan
+		$this->daftarPesertaPelatihanModel->save([
+			'id_peserta_pelatihan' => $this->request->getVar('peserta'),
+			'id_pelatihan' => $this->request->getVar('id_pelatihan'),
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $this->request->getVar('uuid'));
+	}
+
+	// form edit peserta
+	public function updatePeserta($uuidPeserta, $uuidPelatihan)
+	{
+		$this->data['current_page'] = 'adminpelatihan';
+		$this->data['judul_halaman'] = 'Pelatihan PDIN';
+
+		// ambil data yang dipilih
+		// $uuidPeserta = $this->request->getVar('uuidPeserta');
+		$peserta = $this->pesertaPelatihanModel->findByUUID($uuidPeserta);
+		$this->data['peserta'] = $peserta;
+		$this->data['uuidPeserta'] = $uuidPeserta;
+		$this->data['uuidPelatihan'] = $uuidPelatihan;
+
+		return view('admin/formeditpeserta.php', $this->data);
+	}
+
+	// update data peserta
+	public function saveUpdatePeserta()
+	{
+		$emailLama = $this->request->getVar('emailLama');
+
+		$emailLama == $this->request->getVar('email') ? $rule = 'required' : $rule = 'required|is_unique[peserta_pelatihan.email]';
+
+		// aturan validasi
+		$rules = $this->formRulesPeserta($rule);
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors())->with('uuid', $this->request->getVar('uuid'));
+		}
+
+		// simpan data 
+		$this->pesertaPelatihanModel->save([
+			'id' => $this->request->getVar('id'),
+			'nama' => $this->request->getVar('nama'),
+			'email' => $this->request->getVar('email'),
+			'kontak' => $this->request->getVar('kontak'),
+		]);
+
+		$peserta = $this->pesertaPelatihanModel->findByUUID($this->request->getVar('uuid'));
+		if ($peserta['id_user'] != null) {
+			$users = auth()->getProvider();
+
+			$user = $users->findById($peserta['id_user']);
+			$user->fill([
+				'email' => $this->request->getVar('email'),
+			]);
+
+			$users->save($user);
+
+			$penyewa = $this->penyewaModel->where('id_user', $peserta['id_user'])->find();
+			if ($penyewa) {
+				$this->penyewaModel->save([
+					'id' => $penyewa['id'],
+					'email' => $this->request->getVar('email'),
+				]);
+			}
+		}
+
+		session()->setFlashdata('sukses', 'Data berhasil diubah.');
+
+		return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $this->request->getVar('uuid'));
+	}
+
+	// hapus peserta
+	public function deletePeserta($idPeserta, $idPelatihan, $uuidPelatihan)
+	{
+		// $this->pelatihanModel->delete($id);
+		// return redirect()->to('/DashboardAdmin/layanan-pelatihan');
+		$peserta = $this->daftarPesertaPelatihanModel->where(['id_peserta_pelatihan' => $idPeserta, 'id_pelatihan' => $idPelatihan])->first();
+
+		if ($peserta) {
+			$this->daftarPesertaPelatihanModel->delete($peserta['id']);
+			session()->setFlashdata('sukses', 'Data berhasil dihapus.');
+
+			return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $uuidPelatihan);
+		} else {
+			session()->setFlashdata('gagal', 'Data gagal dihapus.');
+
+			return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $uuidPelatihan);
+		}
 	}
 
 	// aturan validasi form pelatihan
@@ -249,6 +409,50 @@ class LayananPelatihanAdmin extends BaseController
 				'errors' => [
 					'required' => 'waktu selesai harus diisi',
 					'valid_date' => 'waktu selesai harus valid'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// aturan validasi form peserta
+	public function formRulesPeserta($rule)
+	{
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'nama harus diisi'
+				]
+			],
+			'kontak' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'kontak harus diisi',
+				]
+			],
+			'email' => [
+				'rules' => $rule,
+				'errors' => [
+					'required' => 'email harus diisi',
+					'is_unique' => 'email harus unik'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// aturan validasi form peserta
+	public function formRulesPesertaLama()
+	{
+		$rules = [
+			'peserta' => [
+				'rules' => 'required|is_unique[peserta_pelatihan.email]',
+				'errors' => [
+					'required' => 'peserta harus diisi',
+					'is_unique' => 'peserta sudah ada'
 				]
 			]
 		];

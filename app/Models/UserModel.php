@@ -30,9 +30,15 @@ class UserModel extends ShieldUserModel
         //     ->where('auth_groups_users.group !=', 'admin')->get()->getResultArray();
         return $this->db->query('SELECT u.username, u.first_name, u.last_name, u.uuid, agu.group, ai.secret FROM users u JOIN auth_groups_users agu ON u.id = agu.user_id JOIN auth_identities ai ON u.id = ai.user_id WHERE agu.group != "admin"')->getResultArray();
     }
+
     public function findByIdForEdit($uuid)
     {
         // return $this->where('auth_groups_users.group != admin')->findAll();
         return $this->db->query('SELECT u.id, u.username, u.first_name, u.last_name, u.uuid, agu.group, ai.secret FROM users u JOIN auth_groups_users agu ON u.id = agu.user_id JOIN auth_identities ai ON u.id = ai.user_id WHERE u.uuid = "' . $uuid . '"')->getRowArray();
+    }
+
+    public function getUserByEmail($email)
+    {
+        return $this->db->query('SELECT guests.nama, guests.kontak FROM guests WHERE email = "' . $email);
     }
 }

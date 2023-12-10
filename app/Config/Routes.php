@@ -166,7 +166,15 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 	$routes->post('/DashboardAdmin/update-pelatihan', 'Admin\LayananPelatihanAdmin::updatePelatihan');
 	$routes->post('/DashboardAdmin/saveUpdatePelatihan', 'Admin\LayananPelatihanAdmin::saveUpdatePelatihan');
 
+	$routes->get('/DashboardAdmin/detail-pelatihan/(:any)', 'Admin\LayananPelatihanAdmin::detailPelatihan/$1');
+	$routes->get('/DashboardAdmin/tambah-peserta/(:any)', 'Admin\LayananPelatihanAdmin::tambahPeserta/$1');
+	$routes->post('/DashboardAdmin/saveTambahPesertaLama', 'Admin\LayananPelatihanAdmin::saveTambahPesertaLama');
+	$routes->post('/DashboardAdmin/saveTambahPesertaBaru', 'Admin\LayananPelatihanAdmin::saveTambahPesertaBaru');
+	$routes->get('/DashboardAdmin/update-peserta/(:any)/(:any)', 'Admin\LayananPelatihanAdmin::updatePeserta/$1/$2');
+	$routes->post('/DashboardAdmin/saveUpdatePeserta', 'Admin\LayananPelatihanAdmin::saveUpdatePeserta');
+
 	$routes->delete('/DashboardAdmin/pelatihan/(:num)', 'Admin\LayananPelatihanAdmin::deletePelatihan/$1');
+	$routes->delete('/DashboardAdmin/peserta/(:num)/(:num)/(:any)', 'Admin\LayananPelatihanAdmin::deletePeserta/$1/$2/$3');
 
 	// Manajemen User
 	$routes->get('/DashboardAdmin/manajemen-user', 'Admin\ManajemenUserAdmin::index');
@@ -181,6 +189,50 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 	$routes->post('/DashboardAdmin/saveUpdateUser/', 'Admin\ManajemenUserAdmin::saveUpdateUser/$1');
 	$routes->delete('/DashboardAdmin/manajemen-user/(:num)', 'Admin\ManajemenUserAdmin::deleteUser/$1');
 });
+
+
+$routes->group('', ['filter' => 'user'], static function ($routes) {
+	$routes->get('/dashboard-user', 'User\LayananSewaRuanganUser::listSewaRuangan');
+	// Dashboard User Layanan sewa ruangan
+	$routes->get('/dashboard-user/layanan-sewa-ruangan', 'User\LayananSewaRuanganUser::listSewaRuangan');
+
+	$routes->get('/dashboard-user/tambah-sewa-ruangan/(:any)', 'User\LayananSewaRuanganUser::tambahSewaRuangan/$1');
+	$routes->get('/dashboard-user/tambah-sewa-ruangan/', 'User\LayananSewaRuanganUser::tambahSewaRuangan');
+	$routes->post('/dashboard-user/saveTambahSewaRuangan', 'User\LayananSewaRuanganUser::saveTambahSewaRuangan');
+
+	$routes->get('/dashboard-user/update-sewa-ruangan/(:any)', 'User\LayananSewaRuanganUser::updateSewaRuangan/$1');
+	$routes->post('/dashboard-user/saveUpdateSewaRuangan/(:num)/(:num)', 'User\LayananSewaRuanganUser::saveUpdateSewaRuangan/$1/$2');
+
+	$routes->delete('/dashboard-user/sewaRuangan/(:num)', 'User\LayananSewaRuanganUser::deleteSewaRuangan/$1');
+
+	// Dashboard User Layanan sewa alat
+	$routes->get('/dashboard-user/layanan-sewa-alat', 'User\LayananSewaAlatUser::listSewaAlat');
+
+	$routes->get('/dashboard-user/tambah-sewa-alat/(:any)', 'User\LayananSewaAlatUser::tambahSewaAlat/$1');
+	$routes->get('/dashboard-user/tambah-sewa-alat/', 'User\LayananSewaAlatUser::tambahSewaAlat');
+	$routes->post('/dashboard-user/saveTambahSewaAlat', 'User\LayananSewaAlatUser::saveTambahSewaAlat');
+
+	$routes->get('/dashboard-user/update-sewa-alat/(:any)', 'User\LayananSewaAlatUser::updateSewaAlat/$1');
+	$routes->post('/dashboard-user/saveUpdateSewaAlat/(:num)/(:num)', 'User\LayananSewaAlatUser::saveUpdateSewaAlat/$1/$2');
+
+	$routes->delete('/dashboard-user/sewaAlat/(:num)', 'User\LayananSewaAlatUser::deleteSewaAlat/$1');
+
+	// Dashboard User Layanan Pelatihan
+	$routes->get('/dashboard-user/layanan-pelatihan', 'User\LayananPelatihanUser::listPelatihan');
+
+	$routes->get('/dashboard-user/tambah-pelatihan/(:any)', 'User\LayananPelatihanUser::tambahPelatihan/$1');
+	$routes->get('/dashboard-user/tambah-pelatihan/', 'User\LayananPelatihanUser::tambahPelatihan');
+	$routes->post('/dashboard-user/saveTambahPelatihan', 'User\LayananPelatihanUser::saveTambahPelatihan');
+
+	$routes->get('/dashboard-user/update-pelatihan/(:any)', 'User\LayananPelatihanUser::updatePelatihan/$1');
+	$routes->get('/dashboard-user/update-pelatihan', 'User\LayananPelatihanUser::updatePelatihan');
+	$routes->post('/dashboard-user/update-pelatihan', 'User\LayananPelatihanUser::updatePelatihan');
+	$routes->post('/dashboard-user/saveUpdatePelatihan', 'User\LayananPelatihanUser::saveUpdatePelatihan');
+
+	$routes->delete('/dashboard-user/pelatihan/(:num)', 'User\LayananPelatihanUser::deletePelatihan/$1');
+});
+
+service('auth')->routes($routes);
 
 /*
  * --------------------------------------------------------------------

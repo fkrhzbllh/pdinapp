@@ -7,7 +7,7 @@ class SewaAlatModel extends \App\Models\BaseModel
     protected $table = 'sewa_alat';
     protected $useTimestamps = true;
     protected $alatTable = 'alat';
-    protected $allowedFields = ['uuid', 'id_alat', 'nama_kegiatan', 'deskripsi', 'id_user', 'tipe', 'tgl_mulai_sewa', 'tgl_akhir_sewa', 'tgl_transaksi'];
+    protected $allowedFields = ['uuid', 'id_alat', 'nama_kegiatan', 'deskripsi', 'id_penyewa', 'tipe', 'tgl_mulai_sewa', 'tgl_akhir_sewa', 'tgl_transaksi'];
 
     public function __construct()
     {

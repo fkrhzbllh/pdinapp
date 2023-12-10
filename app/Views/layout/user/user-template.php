@@ -27,11 +27,11 @@
 
 <body class="bg-white">
 
-    <?= $this->include('layout/admin/admin-sidebar'); ?>
+    <?= $this->include('layout/user/user-sidebar'); ?>
 
     <!-- Content -->
     <div id="content-dashboard" class="">
-        <?= $this->include('layout/admin/admin-navbar'); ?>
+        <?= $this->include('layout/user/user-navbar'); ?>
 
         <!-- Page content -->
         <?= $this->renderSection('content'); ?>

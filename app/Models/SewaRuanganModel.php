@@ -10,7 +10,7 @@ class SewaRuanganModel extends \App\Models\BaseModel
 
 	protected $ruanganTable = 'ruangan';
 
-	protected $allowedFields = ['uuid', 'id_ruangan', 'nama_kegiatan', 'deskripsi', 'id_user', 'tipe', 'tgl_mulai_sewa', 'tgl_akhir_sewa', 'tgl_transaksi'];
+	protected $allowedFields = ['uuid', 'id_ruangan', 'nama_kegiatan', 'deskripsi', 'id_penyewa', 'tipe', 'tgl_mulai_sewa', 'tgl_akhir_sewa', 'tgl_transaksi'];
 
 	public function __construct()
 	{

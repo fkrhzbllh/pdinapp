@@ -7,7 +7,7 @@
         <!-- <span class="divider"></span> -->
         <div class="profile">
             <div class="divider"></div>
-            <img src="<?= base_url() ?>assets/logo-pd.png" alt="" />
+            <img src="https://ui-avatars.com/api/?size=128&name=<?= urlencode(auth()->user()->first_name . ' ' . auth()->user()->last_name) ?>&rounded=true&background=d82328&color=ffffff&bold=true" alt="" />
             <ul class="profile-link" data-bs-auto-close="true">
                 <!-- <li>
                                 <a href="#"><i class="icon bi bi-person-circle"></i> Profile</a>

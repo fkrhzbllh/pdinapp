@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\AlatModel;
 use App\Models\SewaAlatModel;
-use App\Models\UsersModel;
+use App\Models\PenyewaModel;
 use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
@@ -16,7 +16,7 @@ class AlatAdmin extends BaseController
 {
 	protected $alatModel;
 	protected $sewaAlatModel;
-	protected $usersModel;
+	protected $penyewaModel;
 	protected $galeriAlatModel;
 	protected $galeriModel;
 	protected $helpers = ['form'];
@@ -28,7 +28,7 @@ class AlatAdmin extends BaseController
 
 		$this->alatModel = new AlatModel();
 		$this->sewaAlatModel = new SewaAlatModel();
-		$this->usersModel = new UsersModel();
+		$this->penyewaModel = new PenyewaModel();
 		$this->galeriAlatModel = new GaleriAlatModel();
 		$this->galeriModel = new GaleriModel();
 		$this->helpers = ['form'];
@@ -290,8 +290,8 @@ class AlatAdmin extends BaseController
 		}
 		// $this->data['id_alat'] = $id;
 		$jadwal = $this->sewaAlatModel->getJadwalSewaAlat($alat['id']);
-		// $penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
-		// $penyewa = $this->usersModel->findAll();
+		// $penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
+		// $penyewa = $this->penyewaModel->findAll();
 		$this->data['alat'] = $alat;
 		$this->data['jadwal'] = $jadwal;
 		// $this->data['penyewa'] = $penyewa;
@@ -299,9 +299,9 @@ class AlatAdmin extends BaseController
 		// menampilkan penyewa sewa alat
 		if ($jadwal) {
 			foreach ($jadwal as $key => $value) {
-				$penyewa = $this->usersModel->getUserByID($value['id_user']);
+				$penyewa = $this->penyewaModel->getPenyewaByID($value['id_penyewa']);
 				if ($penyewa == null || empty($penyewa)) {
-					// dd($this->usersModel->getUserByID($jadwal[2]['id_user']));
+					// dd($this->penyewaModel->getPenyewaByID($jadwal[2]['id_penyewa']));
 					$this->data['penyewa'][$key]['nama'] = '';
 					$this->data['penyewa'][$key]['kontak'] = '';
 					$this->data['penyewa'][$key]['nama_instansi'] = '';
@@ -363,14 +363,14 @@ class AlatAdmin extends BaseController
 		}
 
 		// simpan data user
-		$this->usersModel->save([
+		$this->penyewaModel->save([
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
 			'kontak' => $this->request->getVar('nomorTelepon'),
 			'nama_instansi' => $this->request->getVar('instansi'),
 		]);
 
-		$userID = $this->usersModel->insertID();
+		$userID = $this->penyewaModel->insertID();
 
 		// simpan data sewa
 		$this->sewaAlatModel->save([
@@ -378,7 +378,7 @@ class AlatAdmin extends BaseController
 			'id_alat' => $idAlat,
 			'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 			'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-			'id_user' => $userID,
+			'id_penyewa' => $userID,
 			'tgl_mulai_sewa' => $this->request->getVar('tanggalMulai'),
 			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesai'),
 		]);
@@ -408,7 +408,7 @@ class AlatAdmin extends BaseController
 		$this->data['id_alat'] = $jadwal['id_alat'];
 
 		// ambil data penyewa berdasarkan jadwal
-		$penyewa = $this->usersModel->getUserByID($jadwal['id_user']);
+		$penyewa = $this->penyewaModel->getPenyewaByID($jadwal['id_penyewa']);
 		$this->data['penyewa'] = $penyewa;
 
 		return view('admin/formeditsewaalat.php', $this->data);
@@ -431,7 +431,7 @@ class AlatAdmin extends BaseController
 		}
 
 		// simpan data user
-		$this->usersModel->save([
+		$this->penyewaModel->save([
 			'id' => $idPenyewa,
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
@@ -445,7 +445,7 @@ class AlatAdmin extends BaseController
 			'id_alat' => $idAlat,
 			'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 			'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-			'id_user' => $idPenyewa,
+			'id_penyewa' => $idPenyewa,
 			'tgl_mulai_sewa' => $this->request->getVar('tanggalMulai'),
 			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesai'),
 		]);

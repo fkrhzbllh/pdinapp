@@ -823,7 +823,7 @@ CREATE TABLE IF NOT EXISTS `sewa_alat` (
   `nama_kegiatan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `no_invoice` char(13) NOT NULL,
-  `id_user` int NOT NULL,
+  `id_penyewa` int NOT NULL,
   `created_at` datetime DEFAULT NULL COMMENT 'tanggal transaksi',
   `updated_at` datetime DEFAULT NULL,
   `tgl_mulai_sewa` datetime NOT NULL,
@@ -841,7 +841,7 @@ CREATE TABLE IF NOT EXISTS `sewa_alat` (
 -- Dumping data for table `sewa_alat`
 --
 
-INSERT INTO `sewa_alat` (`id`, `uuid`, `id_alat`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_user`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
+INSERT INTO `sewa_alat` (`id`, `uuid`, `id_alat`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_penyewa`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
 (1, 'asdfasdf', 6, 'Print action figure', 'Print action figure', 'abc', 1, '2023-04-25 16:54:30', NULL, '2023-04-25 16:54:30', '2023-04-27 21:54:31', 100, '2023-04-25 16:54:30', '', 'BELUM DIBAYAR', 'SELESAI');
 
 -- --------------------------------------------------------
@@ -858,7 +858,7 @@ CREATE TABLE IF NOT EXISTS `sewa_ruangan` (
   `nama_kegiatan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `no_invoice` char(13) NOT NULL,
-  `id_user` int NOT NULL,
+  `id_penyewa` int NOT NULL,
   `created_at` datetime NOT NULL COMMENT 'tanggal transaksi',
   `updated_at` datetime DEFAULT NULL,
   `tgl_mulai_sewa` datetime NOT NULL,
@@ -876,7 +876,7 @@ CREATE TABLE IF NOT EXISTS `sewa_ruangan` (
 -- Dumping data for table `sewa_ruangan`
 --
 
-INSERT INTO `sewa_ruangan` (`id`, `uuid`, `id_ruangan`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_user`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
+INSERT INTO `sewa_ruangan` (`id`, `uuid`, `id_ruangan`, `nama_kegiatan`, `deskripsi`, `no_invoice`, `id_penyewa`, `created_at`, `updated_at`, `tgl_mulai_sewa`, `tgl_akhir_sewa`, `total_biaya`, `tgl_pembayaran`, `bukti_pembayaran`, `status_pembayaran`, `status_transaksi`) VALUES
 (17, 'g', 9, 'asdfasdf', 'bbb', '', 1, '2023-08-03 07:01:39', '2023-08-03 07:01:39', '2023-08-07 00:00:00', '2023-08-10 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (18, 'h', 9, 'kjnkhk', 'bbb', '', 2, '2023-08-03 07:06:35', '2023-08-03 07:06:35', '2023-08-06 00:00:00', '2023-08-12 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),
 (19, 'j', 9, 'asdfasdf', 'iiijiij', '', 3, '2023-08-03 07:08:03', '2023-08-03 12:59:54', '2023-08-17 00:00:00', '2023-08-25 00:00:00', 0, '0000-00-00 00:00:00', '', NULL, NULL),

@@ -5,14 +5,14 @@ namespace App\Controllers\Admin;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use App\Models\UsersModel;
+use App\Models\PenyewaModel;
 use App\Models\GaleriModel;
 use App\Models\ArtikelModel;
 use App\Controllers\BaseController;
 
 class RilisMediaAdmin extends BaseController
 {
-	protected $usersModel;
+	protected $penyewaModel;
 	protected $galeriModel;
 	protected $artikelModel;
 	protected $helpers = ['form'];
@@ -22,7 +22,7 @@ class RilisMediaAdmin extends BaseController
 	{
 		parent::initController($request, $response, $logger);
 
-		$this->usersModel = new UsersModel();
+		$this->penyewaModel = new PenyewaModel();
 		$this->galeriModel = new GaleriModel();
 		$this->artikelModel = new ArtikelModel();
 		$this->helpers = ['form'];

@@ -5,14 +5,14 @@ namespace App\Controllers\Admin;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use App\Models\UsersModel;
+use App\Models\PenyewaModel;
 use App\Models\GaleriModel;
 use App\Models\KegiatanModel;
 use App\Controllers\BaseController;
 
 class KegiatanAdmin extends BaseController
 {
-	protected $usersModel;
+	protected $penyewaModel;
 	protected $galeriModel;
 	protected $kegiatanModel;
 	protected $helpers = ['form'];
@@ -22,7 +22,7 @@ class KegiatanAdmin extends BaseController
 	{
 		parent::initController($request, $response, $logger);
 
-		$this->usersModel = new UsersModel();
+		$this->penyewaModel = new PenyewaModel();
 		$this->galeriModel = new GaleriModel();
 		$this->kegiatanModel = new KegiatanModel();
 		$this->helpers = ['form'];
