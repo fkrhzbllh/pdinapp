@@ -330,6 +330,8 @@ class LayananPelatihanAdmin extends BaseController
 		]);
 
 		$peserta = $this->pesertaPelatihanModel->findByUUID($this->request->getVar('uuid'));
+
+		// Kalau sudah punya ID berarti sudah daftar akun
 		if ($peserta['id_user'] != null) {
 			$users = auth()->getProvider();
 

@@ -1,58 +1,114 @@
-<!-- SIDEBAR -->
-<div id="sidebar">
-    <a href="#" class="brand">
-        <!-- <i class="icon bi bi-grid-fill"> </i> -->
-        <div class="icon">
-            <!-- <img src="<?= base_url() ?>assets/Logo-PDIN.png"
-                    -->
-            <img src="<?= base_url() ?>favicon.ico" style="height: 24px; width: 24px" alt="" class="rounded-1" />
-        </div>
-        <span>
-            <h5 class="m-0 mt-1 p-0">Dashboard</h5>
-        </span>
+<!-- Sidebar -->
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
 
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard-user">
+        <img class="w-50" src="<?= base_url() ?>assets/logo-pdin-merah-abu.png" id="logo" alt="Logo_PDIN" />
     </a>
-    <ul class="side-menu">
-        <!-- <li>
-                    <a href="#" class="active">
-                        <i class="bi bi-grid-1x2-fill icon"></i>
-                        Dashboard Utama</a>
-                </li> -->
-        <li class="divider" data-text="rilismedia">Rilis Media</li>
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/rilis-media" class="<?= ($current_page == 'adminrilismedia') ? 'active' : '' ?>"><i class="icon bi bi-newspaper"></i>Rilis Media</a>
-        </li>
 
-        <li class="divider" data-text="fasilitas">Fasilitas</li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/ruangan" class="<?= ($current_page == 'adminruangan') ? 'active' : '' ?>"><i class="icon bi bi-door-open-fill"></i>Ruangan</a>
-        </li>
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/alat" class="<?= ($current_page == 'adminalat') ? 'active' : '' ?>"><i class="icon bi bi-tools"></i>Alat</a>
-        </li>
-        <li class="divider" data-text="kegiatan">Kegiatan</li>
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/kegiatan" class="<?= ($current_page == 'adminkegiatan') ? 'active' : '' ?>"><i class="icon bi bi-activity"></i>Kegiatan</a>
-        </li>
-        <li class="divider" data-text="layanan">Layanan</li>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Rilis Media
+    </div>
 
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-ruangan" class="<?= ($current_page == 'adminsewaruangan') ? 'active' : '' ?>"><i class="icon bi bi-door-open-fill"></i>Sewa Ruangan</a>
-        </li>
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/layanan-sewa-alat" class="<?= ($current_page == 'adminsewaalat') ? 'active' : '' ?>"><i class="icon bi bi-tools"></i>Sewa Alat</a>
-        </li>
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/layanan-pelatihan" class="<?= ($current_page == 'adminpelatihan') ? 'active' : '' ?>"><i class="icon bi bi-person-arms-up"></i>Pelatihan</a>
-        </li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item <?= ($current_page == 'adminrilismedia') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/rilis-media">
+            <i class="icon bi bi-newspaper"></i>
+            <span>Rilis Media</span>
+        </a>
+    </li>
 
-        <li class="divider" data-text="user">User</li>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Fasilitas
+    </div>
 
-        <li>
-            <a href="<?= base_url() ?>DashboardAdmin/manajemen-user" class="<?= ($current_page == 'adminmanajemenuser') ? 'active' : '' ?>"><i class="icon bi bi-people-fill"></i>Manajemen User</a>
-        </li>
+    <li class="nav-item <?= ($current_page == 'adminruangan') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/ruangan">
+            <i class="icon bi bi-door-open-fill"></i>
+            <span>Ruangan</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($current_page == 'adminalat') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/alat">
+            <i class="icon bi bi-tools"></i>
+            <span>Alat</span>
+        </a>
+    </li>
 
-    </ul>
-</div>
-<!-- SIDEBAR -->
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Kegiatan
+    </div>
+
+    <li class="nav-item <?= ($current_page == 'adminkegiatan') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/kegiatan">
+            <i class="icon bi bi-activity"></i>
+            <span>Kegiatan</span>
+        </a>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Layanan
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item <?= ($current_page == 'adminsewaruangan') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/layanan-sewa-ruangan">
+            <i class="icon bi bi-door-open-fill"></i>
+            <span>Sewa Ruangan</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($current_page == 'adminsewaalat') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/layanan-sewa-alat">
+            <i class="icon bi bi-tools"></i>
+            <span>Sewa Alat</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($current_page == 'adminpelatihan') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/layanan-pelatihan">
+            <i class="icon bi bi-person-arms-up"></i>
+            <span>Pelatihan</span>
+        </a>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        User
+    </div>
+
+    <li class="nav-item <?= ($current_page == 'adminmanajemenuser') ? 'active' : '' ?>">
+        <a class="nav-link" href="/DashboardAdmin/manajemen-user">
+            <i class="icon bi bi-people-fill"></i>
+            <span>Manajemen User</span>
+        </a>
+    </li>
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Pengguna
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="/dashboard-user">
+            <i class="bi bi-person-fill"></i>
+            <span>Dasbor Pengguna</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->

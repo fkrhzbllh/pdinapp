@@ -94,15 +94,15 @@
           <a class="nav-link text-start" href="#" id="v-pills-lokasipdin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-lokasipdin" role="tab" aria-controls="v-pills-lokasipdin" aria-selected="false">Pemilihan Lokasi PDIN</a>
         </li>
 
-        <!-- Tab Link Lokasi PDIN -->
-        <li class="nav-item">
+        <!-- Tab Link Pimpinan PDIN -->
+        <!-- <li class="nav-item">
           <a class="nav-link text-start" href="#" id="v-pills-pimpinanpdin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pimpinanpdin" role="tab" aria-controls="v-pills-pimpinanpdin" aria-selected="false">Pimpinan PDIN</a>
-        </li>
+        </li> -->
 
         <!-- Tab Link Struktur PDIN -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link text-start" href="#" id="v-pills-strukturpdin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-strukturpdin" role="tab" aria-controls="v-pills-strukturpdin" aria-selected="false">Struktur Organisasi PDIN</a>
-        </li>
+        </li> -->
       </ul>
 
       <!-- Isi tab -->

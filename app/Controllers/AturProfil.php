@@ -7,6 +7,12 @@ use CodeIgniter\HTTP\RedirectResponse;
 use Psr\Log\LoggerInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\PenyewaModel;
+use App\Models\PesertaPelatihanModel;
+use App\Models\UserModel;
+use CodeIgniter\Shield\Authentication\Passwords;
+use CodeIgniter\Shield\Entities\User;
+use Config\Auth;
 
 class AturProfil extends BaseController
 {
@@ -14,6 +20,9 @@ class AturProfil extends BaseController
      * Auth Table names
      */
     private array $tables;
+    protected $penyewaModel;
+    protected $pesertaModel;
+    protected $userModel;
 
     public function initController(
         RequestInterface $request,
@@ -29,10 +38,20 @@ class AturProfil extends BaseController
         /** @var Auth $authConfig */
         $authConfig   = config('Auth');
         $this->tables = $authConfig->tables;
+
+        $this->penyewaModel = new PenyewaModel();
+        $this->pesertaModel = new PesertaPelatihanModel();
+        $this->userModel = new UserModel();
     }
 
     public function index()
     {
+        // Apabila sukses mengubah profil, kembali ke dasbor user
+        if (session()->getFlashdata('sukses')) {
+            $url = '/dashboard-user';
+            header("Refresh:1;url=" . $url);
+        }
+
         return view('atur-profil', $this->data);
     }
 
@@ -45,19 +64,92 @@ class AturProfil extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $users = auth()->getProvider();
-
-        $user = $users->findById(auth()->id());
-        $user->fill([
+        // Update email, nama depan, dan nama belakang
+        $users = $this->userModel;
+        $user = [
+            'id' => auth()->id(),
+            'email'    => $this->request->getVar('email'),
             'first_name' => $this->request->getVar('first_name'),
-            'last_name' => $this->request->getVar('last_name'),
-            'email' => $this->request->getVar('email')
+            'last_name'    => $this->request->getVar('last_name'),
+            // 'password' => $this->request->getVar('password'),
+        ];
+        $users->save($user);
+
+        //Ganti email penyewa
+        $penyewa = $this->penyewaModel->where('id_user', auth()->id())->first();
+        if ($penyewa) {
+            $this->penyewaModel->save([
+                'id' => $penyewa['id'],
+                'email' => $this->request->getVar('email'),
+            ]);
+        }
+
+        // Ganti email peserta
+        $peserta = $this->pesertaModel->where('id_user', auth()->id())->first();
+        if ($peserta) {
+            $this->pesertaModel->save([
+                'id' => $peserta['id'],
+                'email' => $this->request->getVar('email'),
+            ]);
+        }
+
+        // Kembali dan kirim pesan sukses
+        return redirect()->back()->with('sukses', lang('Profile.editSuccess'));
+    }
+
+    public function aturPassword()
+    {
+        $rules = $this->getPasswordValidationRules();
+
+        // Cek validasi
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Get user
+        $users = auth()->getProvider();
+        $user = $users->findById(auth()->id());
+
+        /** @var Passwords $passwords */
+        $passwords = service('passwords');
+        $givenPassword = $this->request->getVar('old_password');
+
+        // Now, try matching the passwords.
+        if (!$passwords->verify($givenPassword, $user->password_hash)) {
+            return redirect()->back()->withInput()->with('errors', lang('Auth.invalidPassword'));
+        }
+
+        // Jika password lama benar, ganti password
+        $user->fill([
+            'password' => $this->request->getVar('password')
         ]);
         $users->save($user);
 
-        // Kembali ke dasbor
-        $url = auth()->user()->inGroup('admin') ? '/DashboardAdmin' : '/dashboard-user';
-        return redirect()->to($url);
+        // Kembali dan kirim pesan sukses
+        return redirect()->back()->with('sukses', lang('Profile.passwordChangeSuccess'));
+    }
+
+    /**
+     * Returns the rules that should be used for validation.
+     *
+     * @return array<string, array<string, array<string>|string>>
+     * @phpstan-return array<string, array<string, string|list<string>>>
+     */
+    protected function getPasswordValidationRules(): array
+    {
+        return [
+            'password' => [
+                'label'  => 'Auth.password',
+                'rules'  => 'required|' . Passwords::getMaxLengthRule() . '|strong_password[]',
+                'errors' => [
+                    'max_byte' => 'Auth.errorPasswordTooLongBytes',
+                ],
+            ],
+            'password_confirm' => [
+                'label' => 'Auth.passwordConfirm',
+                'rules' => 'required|matches[password]',
+            ],
+        ];
     }
 
     /**
@@ -68,15 +160,6 @@ class AturProfil extends BaseController
      */
     protected function getValidationRules(): array
     {
-        $registrationUsernameRules = array_merge(
-            config('AuthSession')->usernameValidationRules,
-            [sprintf('is_unique[%s.username]', $this->tables['users'])]
-        );
-        $registrationEmailRules = array_merge(
-            config('AuthSession')->emailValidationRules,
-            [sprintf('is_unique[%s.secret]', $this->tables['identities'])]
-        );
-
         return [
             'first_name' => [
                 'label' => 'Nama Depan',
@@ -88,7 +171,7 @@ class AturProfil extends BaseController
             ],
             'email' => [
                 'label' => 'Auth.email',
-                'rules' => $registrationEmailRules,
+                'rules' => 'valid_email',
             ]
         ];
     }

@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Import font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,600,600i,700,700i|Lato:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
     <!-- End Font -->
     <!-- Import Bootstrap CSS -->
@@ -16,139 +18,58 @@
     </link>
     <link ref="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Import Custom CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/styles/style-dasbor.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/styles/style.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/styles/style-full-calendar.css" />
     <title>Dashboard</title>
 </head>
 
-<body class="bg-white">
+<body id="page-top">
 
-    <?= $this->include('layout/user/user-sidebar'); ?>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-    <!-- Content -->
-    <div id="content-dashboard" class="">
-        <?= $this->include('layout/user/user-navbar'); ?>
+        <?= $this->include('layout/user/user-sidebar'); ?>
 
-        <!-- Page content -->
-        <?= $this->renderSection('content'); ?>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <?= $this->include('layout/user/user-navbar'); ?>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page content -->
+                    <?= $this->renderSection('content'); ?>
+
+                </div>
+            </div>
+        </div>
 
     </div>
+
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <!-- Script -->
     <?= $this->renderSection('script'); ?>
 
-    <script>
-        // SIDEBAR DROPDOWN
-        const allDropdown = document.querySelectorAll('#sidebar .side-dropdown');
-        const sidebar = document.getElementById('sidebar');
-
-        allDropdown.forEach(item => {
-            const a = item.parentElement.querySelector('a:first-child');
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                if (!this.classList.contains('active')) {
-                    allDropdown.forEach(i => {
-                        const aLink = i.parentElement.querySelector('a:first-child');
-
-                        aLink.classList.remove('active');
-                        i.classList.remove('show');
-                    })
-                }
-
-                this.classList.toggle('active');
-                item.classList.toggle('show');
-            })
-        })
-
-        // SIDEBAR COLLAPSE
-        const toggleSidebar = document.querySelector('#nav-dashboard .toggle-sidebar');
-        const allSideDivider = document.querySelectorAll('#sidebar .divider');
-
-        if (sidebar.classList.contains('hide')) {
-            allSideDivider.forEach(item => {
-                item.textContent = '-'
-            })
-            allDropdown.forEach(item => {
-                const a = item.parentElement.querySelector('a:first-child');
-                a.classList.remove('active');
-                item.classList.remove('show');
-            })
-
-
-        } else {
-            allSideDivider.forEach(item => {
-                item.textContent = item.dataset.text;
-            })
-        }
-
-        toggleSidebar.addEventListener('click', function() {
-            sidebar.classList.toggle('hide');
-
-            if (sidebar.classList.contains('hide')) {
-                allSideDivider.forEach(item => {
-                    item.textContent = '-'
-                })
-
-                allDropdown.forEach(item => {
-                    const a = item.parentElement.querySelector('a:first-child');
-                    a.classList.remove('active');
-                    item.classList.remove('show');
-                })
-            } else {
-                allSideDivider.forEach(item => {
-                    item.textContent = item.dataset.text;
-                })
-            }
-        })
-
-        sidebar.addEventListener('mouseleave', function() {
-            if (this.classList.contains('hide')) {
-                allDropdown.forEach(item => {
-                    const a = item.parentElement.querySelector('a:first-child');
-                    a.classList.remove('active');
-                    item.classList.remove('show');
-                })
-                allSideDivider.forEach(item => {
-                    item.textContent = '-'
-                })
-            }
-        })
-
-        sidebar.addEventListener('mouseenter', function() {
-            if (this.classList.contains('hide')) {
-                allDropdown.forEach(item => {
-                    const a = item.parentElement.querySelector('a:first-child');
-                    a.classList.remove('active');
-                    item.classList.remove('show');
-                })
-                allSideDivider.forEach(item => {
-                    item.textContent = item.dataset.text;
-                })
-            }
-        })
-
-
-        // PROFILE DROPDOWN
-        const profile = document.querySelector('#nav-dashboard .profile');
-        const imgProfile = profile.querySelector('img');
-        const dropdownProfile = profile.querySelector('.profile-link');
-
-        imgProfile.addEventListener('click', function() {
-            dropdownProfile.classList.toggle('show');
-            $('body').on('click', function() {
-                dropdownProfile.classList.toggle('show');
-            })
-        })
-    </script>
-
     <!-- Import Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="<?= base_url() ?>assets/js/sb-admin-2.min.js"></script>
 
 </body>
 

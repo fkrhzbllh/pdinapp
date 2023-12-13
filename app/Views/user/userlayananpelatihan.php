@@ -3,87 +3,121 @@
 <?= $this->section('content') ?>
 <?php helper('text') ?>
 
-<div class="p-5 col-12 bg-white">
-    <?php if (session()->getFlashdata('sukses')) : ?>
-        <div class="alert alert-success" role="alert">
-            <?= session()->getFlashdata('sukses') ?>
-        </div>
-    <?php elseif (session()->getFlashdata('gagal')) : ?>
-        <div class="alert alert-danger" role="alert">
-            <?= session()->getFlashdata('gagal') ?>
-        </div>
-    <?php endif; ?>
-    <h3 class="mb-3">Pelatihan</h3>
-    <div class="row">
-        <div class="col-12 col-md-12">
-            <div class="row">
-                <!-- <div class="col-6 col-md-6">
-                    <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-pelatihan/' ?>">Tambah
-                        Pelatihan</a>
-                </div> -->
-                <!-- === Nav tabel dan kalender === -->
-                <div class="col-6 col-md-6">
-                    <ul class="nav nav-underline justify-content-end" role="tablist" id="navs-tab">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tabel-tab" data-bs-toggle="tab" data-bs-target="#nav-tabel" role="tab" aria-controls="nav-tabel" aria-selected="true"><i class="bi bi-table me-1"></i>Tabel</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-kalender-tab" data-bs-toggle="tab" data-bs-target="#nav-kalender" role="tab" aria-controls="nav-kalender" aria-selected="false"><i class="bi bi-calendar-event me-1"></i>Kalender</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<?php if (session()->getFlashdata('sukses')) : ?>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('sukses') ?>
     </div>
+<?php elseif (session()->getFlashdata('gagal')) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= session()->getFlashdata('gagal') ?>
+    </div>
+<?php endif; ?>
+<h3 class="mb-3">Pelatihan</h3>
 
-    <!-- === Konten Nav Tabel === -->
-    <div class="tab-content" id="navs-tabContent">
-        <div class="tab-pane fade show active" id="nav-tabel" role="tabpanel" aria-labelledby="nav-tabel-tab" tabindex="0">
+<!-- === Nav tabel dan kalender === -->
+<ul class="nav nav-underline justify-content-end mb-3" role="tablist" id="navs-tab">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="nav-tabel-tab" data-bs-toggle="tab" data-bs-target="#nav-tabel" role="tab" aria-controls="nav-tabel" aria-selected="true"><i class="bi bi-table me-1"></i>Tabel</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="nav-kalender-tab" data-bs-toggle="tab" data-bs-target="#nav-kalender" role="tab" aria-controls="nav-kalender" aria-selected="false"><i class="bi bi-calendar-event me-1"></i>Kalender</button>
+    </li>
+</ul>
 
-            <!-- === Nav === -->
-            <div class="col mt-1">
-                <ul class="nav nav-tabs nav-justified" role="tablist" id="navs-tab-2">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="jadwal-akan-datang-tab" data-bs-toggle="tab" data-bs-target="#tab-jadwal-akan-datang" role="tab" aria-controls="tab-jadwal-akan-datang" aria-selected="true">Jadwal Akan Datang</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="jadwal-sedang-berlangsung-tab" data-bs-toggle="tab" data-bs-target="#tab-jadwal-sedang-berlangsung" role="tab" aria-controls="tab-jadwal-sedang-berlangsung" aria-selected="false">Jadwal Sedang Berlangsung</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="jadwal-sudah-selesai-tab" data-bs-toggle="tab" data-bs-target="#tab-jadwal-sudah-selesai" role="tab" aria-controls="tab-jadwal-sudah-selesai" aria-selected="false">Jadwal Sudah Selesai</button>
-                    </li>
-                </ul>
+<!-- === Konten Nav Tabel === -->
+<div class="tab-content" id="navs-tabContent">
+    <div class="tab-pane fade show active" id="nav-tabel" role="tabpanel" aria-labelledby="nav-tabel-tab" tabindex="0">
+
+        <!-- === Nav === -->
+        <div class="col mt-1">
+            <ul class="nav nav-tabs nav-justified" role="tablist" id="navs-tab-2">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="jadwal-akan-datang-tab" data-bs-toggle="tab" data-bs-target="#tab-jadwal-akan-datang" role="tab" aria-controls="tab-jadwal-akan-datang" aria-selected="true">Jadwal Akan Datang</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="jadwal-sedang-berlangsung-tab" data-bs-toggle="tab" data-bs-target="#tab-jadwal-sedang-berlangsung" role="tab" aria-controls="tab-jadwal-sedang-berlangsung" aria-selected="false">Jadwal Sedang Berlangsung</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="jadwal-sudah-selesai-tab" data-bs-toggle="tab" data-bs-target="#tab-jadwal-sudah-selesai" role="tab" aria-controls="tab-jadwal-sudah-selesai" aria-selected="false">Jadwal Sudah Selesai</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-jadwal-akan-datang" role="tabpanel" aria-labelledby="jadwal-akan-datang-tab" tabindex="0">
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered table-striped display" id="tablejadwal1" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td>Nama Pelatihan</td>
+                                <td>Mulai</td>
+                                <td>Selesai</td>
+                                <!-- <td>Aksi</td> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($jadwalAkanDatang as $key => $a) : ?>
+                                <tr>
+                                    <td><?= $a['events']['title'] ?></td>
+                                    <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
+                                        <?php
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
+                                        echo $formatter->format(date_create($a['events']['start']));
+                                        ?>
+                                    </td>
+                                    <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
+                                        <?php
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
+                                        echo $formatter->format(date_create($a['events']['selesai']));
+                                        ?>
+                                    </td>
+                                    <!-- <td>
+                                            <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
+                                            <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" value="<?php echo $a['uuid'] ?>" name="uuid">
+                                                <button class="btn btn-warning" type="submit">Edit</button>
+                                            </form>
+                                            <form action="/DashboardAdmin/pelatihan/<?php echo $a['id'] ?>" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
+                                            </form>
+                                        </td> -->
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab-jadwal-akan-datang" role="tabpanel" aria-labelledby="jadwal-akan-datang-tab" tabindex="0">
-                    <div class="table-responsive mt-3">
-                        <table class="table table-bordered table-striped display" id="tablejadwal1" style="width: 100%;">
-                            <thead>
+            <div class="tab-pane" id="tab-jadwal-sedang-berlangsung" role="tabpanel" aria-labelledby="jadwal-sedang-berlangsung-tab" tabindex="0">
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered table-striped display" id="tablejadwal2" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td>Nama Pelatihan</td>
+                                <td>Mulai</td>
+                                <td>Selesai</td>
+                                <!-- <td>Aksi</td> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($jadwalSedangBerlangsung as $key => $a) : ?>
                                 <tr>
-                                    <td>Nama Pelatihan</td>
-                                    <td>Mulai</td>
-                                    <td>Selesai</td>
-                                    <!-- <td>Aksi</td> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($jadwalAkanDatang as $key => $a) : ?>
-                                    <tr>
-                                        <td><?= $a['events']['title'] ?></td>
-                                        <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
-                                            <?php
-                                            $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                            echo $formatter->format(date_create($a['events']['start']));
-                                            ?>
-                                        </td>
-                                        <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
-                                            <?php
-                                            $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                            echo $formatter->format(date_create($a['events']['selesai']));
-                                            ?>
-                                        </td>
-                                        <!-- <td>
+                                    <td><?= $a['events']['title'] ?></td>
+                                    <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
+                                        <?php
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
+                                        echo $formatter->format(date_create($a['events']['start']));
+                                        ?>
+                                    </td>
+                                    <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
+                                        <?php
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
+                                        echo $formatter->format(date_create($a['events']['selesai']));
+                                        ?>
+                                    </td>
+                                    <!-- <td>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
                                             <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
@@ -96,86 +130,40 @@
                                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
                                             </form>
                                         </td> -->
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane" id="tab-jadwal-sedang-berlangsung" role="tabpanel" aria-labelledby="jadwal-sedang-berlangsung-tab" tabindex="0">
-                    <div class="table-responsive mt-3">
-                        <table class="table table-bordered table-striped display" id="tablejadwal2" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <td>Nama Pelatihan</td>
-                                    <td>Mulai</td>
-                                    <td>Selesai</td>
-                                    <!-- <td>Aksi</td> -->
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($jadwalSedangBerlangsung as $key => $a) : ?>
-                                    <tr>
-                                        <td><?= $a['events']['title'] ?></td>
-                                        <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
-                                            <?php
-                                            $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                            echo $formatter->format(date_create($a['events']['start']));
-                                            ?>
-                                        </td>
-                                        <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
-                                            <?php
-                                            $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                            echo $formatter->format(date_create($a['events']['selesai']));
-                                            ?>
-                                        </td>
-                                        <!-- <td>
-                                            <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
-                                            <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
-                                                <?= csrf_field(); ?>
-                                                <input type="hidden" value="<?php echo $a['uuid'] ?>" name="uuid">
-                                                <button class="btn btn-warning" type="submit">Edit</button>
-                                            </form>
-                                            <form action="/DashboardAdmin/pelatihan/<?php echo $a['id'] ?>" method="post" class="d-inline">
-                                                <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
-                                            </form>
-                                        </td> -->
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
-                    </div>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="tab-pane" id="tab-jadwal-sudah-selesai" role="tabpanel" aria-labelledby="jadwal-sudah-selesai-tab" tabindex="0">
-                    <div class="table-responsive mt-3">
-                        <table class="table table-bordered table-striped display" id="tablejadwal3" style="width: 100%;">
-                            <thead>
+            </div>
+            <div class="tab-pane" id="tab-jadwal-sudah-selesai" role="tabpanel" aria-labelledby="jadwal-sudah-selesai-tab" tabindex="0">
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered table-striped display" id="tablejadwal3" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <td>Nama Pelatihan</td>
+                                <td>Mulai</td>
+                                <td>Selesai</td>
+                                <!-- <td>Aksi</td> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($jadwalSudahSelesai as $key => $a) : ?>
                                 <tr>
-                                    <td>Nama Pelatihan</td>
-                                    <td>Mulai</td>
-                                    <td>Selesai</td>
-                                    <!-- <td>Aksi</td> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($jadwalSudahSelesai as $key => $a) : ?>
-                                    <tr>
-                                        <td><?= $a['events']['title'] ?></td>
-                                        <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
-                                            <?php
-                                            $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                            echo $formatter->format(date_create($a['events']['start']));
-                                            ?>
-                                        </td>
-                                        <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
-                                            <?php
-                                            $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
-                                            echo $formatter->format(date_create($a['events']['selesai']));
-                                            ?>
-                                        </td>
-                                        <!-- <td>
+                                    <td><?= $a['events']['title'] ?></td>
+                                    <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
+                                        <?php
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
+                                        echo $formatter->format(date_create($a['events']['start']));
+                                        ?>
+                                    </td>
+                                    <td data-sort="<?php echo strtotime($a['events']['start']) ?>">
+                                        <?php
+                                        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta', IntlDateFormatter::GREGORIAN, 'EEEE, dd MMMM yyyy');
+                                        echo $formatter->format(date_create($a['events']['selesai']));
+                                        ?>
+                                    </td>
+                                    <!-- <td>
                                             <a href="/DashboardAdmin/update-pelatihan/<?= $a['uuid'] ?>" class="btn btn-warning">Edit</a>
                                             <form action="/DashboardAdmin/update-pelatihan" method="post" class="d-inline">
                                                 <?= csrf_field(); ?>
@@ -188,37 +176,37 @@
                                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');">Hapus</button>
                                             </form>
                                         </td> -->
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <div class="tab-pane fade" id="nav-kalender" role="tabpanel" aria-labelledby="nav-kalender-tab" tabindex="0">
-            <div id="calendar"></div>
-            <div class="modal fade" id="modalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-black border border-0">
-                            <h1 class="modal-title fs-4 text-white" id="exampleModalLabel">
-                                Detail Kegiatan Pelatihan
-                            </h1>
+    <div class="tab-pane fade" id="nav-kalender" role="tabpanel" aria-labelledby="nav-kalender-tab" tabindex="0">
+        <div id="calendar"></div>
+        <div class="modal fade" id="modalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-black border border-0">
+                        <h1 class="modal-title fs-4 text-white" id="exampleModalLabel">
+                            Detail Kegiatan Pelatihan
+                        </h1>
 
-                            <button type="button" class="btn-close bg-pdin-secondary me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close bg-pdin-secondary me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="bg-danger w-100" style="height: 4px"></div>
+                    <div class="modal-body">
+                        <div class="row p-2">
+                            <h4 id="nama_pelatihan" class="">-</h4>
                         </div>
-                        <div class="bg-danger w-100" style="height: 4px"></div>
-                        <div class="modal-body">
-                            <div class="row p-2">
-                                <h4 id="nama_pelatihan" class="">-</h4>
-                            </div>
-                            <div class="row p-2">
-                                <div class="col-12 col-lg-6 ps-1">
-                                    <!-- nama penyewa -->
-                                    <!-- <div class="row p-0 m-0 mb-1">
+                        <div class="row p-2">
+                            <div class="col-12 col-lg-6 ps-1">
+                                <!-- nama penyewa -->
+                                <!-- <div class="row p-0 m-0 mb-1">
                                         <div class="col-1 m-0 p-0 align-self-start">
                                             <div class="text-center">
                                                 <i class="bi bi-person" style="font-size: 14px; color: 8c8c8c"></i>
@@ -229,8 +217,8 @@
                                             <p class="p-0 fw-bold mb-1" id="nama_penyewa">-</p>
                                         </div>
                                     </div> -->
-                                    <!-- kontak penyewa -->
-                                    <!-- <div class="row p-0 m-0 mb-1">
+                                <!-- kontak penyewa -->
+                                <!-- <div class="row p-0 m-0 mb-1">
                                         <div class="col-1 m-0 p-0 align-self-start">
                                             <div class="text-center">
                                                 <i class="bi bi-telephone" style="font-size: 14px; color: 8c8c8c"></i>
@@ -241,8 +229,8 @@
                                             <p class="p-0 fw-bold mb-1" id="kontak">-</p>
                                         </div>
                                     </div> -->
-                                    <!-- Nama Instansi -->
-                                    <!-- <div class="row p-0 m-0 mb-1">
+                                <!-- Nama Instansi -->
+                                <!-- <div class="row p-0 m-0 mb-1">
                                         <div class="col-1 m-0 p-0 align-self-start">
                                             <div class="text-center">
                                                 <i class="bi bi-building" style="font-size: 14px; color: 8c8c8c"></i>
@@ -254,38 +242,38 @@
                                         </div>
                                     </div> -->
 
-                                    <!-- Waktu Mulai Pelatihan -->
-                                    <div class="row p-0 m-0 mb-1">
-                                        <div class="col-1 m-0 p-0 align-self-start">
-                                            <div class="text-center">
-                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
-                                            <small class="mb-1 text-secondary">Waktu Mulai:</small>
-                                            <p class="p-0 fw-bold mb-1" id="tgl_mulai">
-                                                -
-                                            </p>
+                                <!-- Waktu Mulai Pelatihan -->
+                                <div class="row p-0 m-0 mb-1">
+                                    <div class="col-1 m-0 p-0 align-self-start">
+                                        <div class="text-center">
+                                            <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
                                         </div>
                                     </div>
-                                    <!-- Waktu Selesai Pelatihan -->
-                                    <div class="row p-0 m-0 mb-1">
-                                        <div class="col-1 m-0 p-0 align-self-start">
-                                            <div class="text-center">
-                                                <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
-                                            <small class="mb-1 text-secondary">Waktu Selesai:</small>
-                                            <p class="p-0 fw-bold mb-1" id="tgl_selesai">
-                                                -
-                                            </p>
-                                        </div>
+                                    <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
+                                        <small class="mb-1 text-secondary">Waktu Mulai:</small>
+                                        <p class="p-0 fw-bold mb-1" id="tgl_mulai">
+                                            -
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6 ps-1">
-                                    <!-- Deskripsi Kegiatan -->
-                                    <!-- <div class="row p-0 m-0 mb-1">
+                                <!-- Waktu Selesai Pelatihan -->
+                                <div class="row p-0 m-0 mb-1">
+                                    <div class="col-1 m-0 p-0 align-self-start">
+                                        <div class="text-center">
+                                            <i class="bi bi-calendar-event" style="font-size: 14px; color: 8c8c8c"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
+                                        <small class="mb-1 text-secondary">Waktu Selesai:</small>
+                                        <p class="p-0 fw-bold mb-1" id="tgl_selesai">
+                                            -
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 ps-1">
+                                <!-- Deskripsi Kegiatan -->
+                                <!-- <div class="row p-0 m-0 mb-1">
                                         <div class="col-1 m-0 p-0 align-self-start">
                                             <div class="text-center">
                                                 <i class="bi bi-activity" style="font-size: 14px; color: 8c8c8c"></i>
@@ -296,17 +284,16 @@
                                             <p class="p-0 fw-bold mb-1" id="deskripsi_kegiatan">-</p>
                                         </div>
                                     </div> -->
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php // echo d($events) 
-            ?>
-            <?php // echo $pager->links('artikel', 'pager')
-            ?>
         </div>
+        <?php // echo d($events) 
+        ?>
+        <?php // echo $pager->links('artikel', 'pager')
+        ?>
     </div>
 </div>
 
