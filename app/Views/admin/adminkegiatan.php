@@ -13,10 +13,9 @@
             <a class="btn btn-outline-danger mb-3" href="<?= base_url() . 'DashboardAdmin/tambah-kegiatan' ?>">Tambah
                 Kegiatan</a>
         </div>
-        <div class="col-12 col-md-6">
+        <!-- <div class="col-12 col-md-6">
             <div class="row mb-3">
                 <div class="col-6 col-sm-8 ms-auto">
-                    <!-- input pencarian -->
                     <form action="" method="post">
                         <div class="input-group ">
                             <input type="text" class="form-control bg-light text-secondary" placeholder="Cari Kegiatan" aria-label="" aria-describedby="" id="" name="keyword" />
@@ -30,10 +29,10 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="table-responsive">
-        <table class="table align-middle table-bordered">
+    <div class="table-responsive p-0">
+        <table class="table align-middle table-bordered" id="tablekegiatan" style="width:100%">
             <thead>
                 <tr>
                     <td>No</td>
@@ -69,4 +68,16 @@
     </div>
     <?= $pager->links('kegiatan', 'pager') ?>
 </div>
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+<script>
+    $(document).ready(function() {
+        $('#tablekegiatan').DataTable({
+            "language": {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
+            }
+        });
+    });
+</script>
 <?= $this->endSection() ?>
