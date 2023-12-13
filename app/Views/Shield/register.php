@@ -35,6 +35,16 @@
         <input type="text" class="form-control" name="username" inputmode="text" autocomplete="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>" required />
     </div>
 
+    <!-- Nama Depan -->
+    <div class="mb-2">
+        <input type="text" class="form-control" name="first_name" inputmode="text" autocomplete="first_name" placeholder="<?= lang('Auth.first_name') ?>" value="<?= old('first_name') ?>" required />
+    </div>
+
+    <!-- Nama Belakang -->
+    <div class="mb-4">
+        <input type="text" class="form-control" name="last_name" inputmode="text" autocomplete="last_name" placeholder="<?= lang('Auth.last_name') ?>" value="<?= old('last_name') ?>" required />
+    </div>
+
     <!-- Password -->
     <div class="mb-2">
         <input type="password" class="form-control" name="password" inputmode="text" autocomplete="new-password" placeholder="<?= lang('Auth.password') ?>" required />

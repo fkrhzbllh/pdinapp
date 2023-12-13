@@ -410,7 +410,7 @@ class Auth extends ShieldAuth
 			$url = '/DashboardAdmin';
 		} else if (!auth()->user()->inGroup('admin') && !auth()->user()->inGroup('superadmin') && !auth()->user()->inGroup('developer')) {
 			$url = '/dashboard-user';
-		} else setting('Auth.redirects')['login'];
+		} else $url = setting('Auth.redirects')['login'];
 
 		return $this->getUrl($url);
 	}
@@ -432,7 +432,11 @@ class Auth extends ShieldAuth
 	 */
 	public function registerRedirect(): string
 	{
-		$url = setting('Auth.redirects')['register'];
+		if (auth()->user()->inGroup('admin') || auth()->user()->inGroup('superadmin') || auth()->user()->inGroup('developer')) {
+			$url = '/DashboardAdmin';
+		} else if (!auth()->user()->inGroup('admin') && !auth()->user()->inGroup('superadmin') && !auth()->user()->inGroup('developer')) {
+			$url = '/dashboard-user';
+		} else $url = setting('Auth.redirects')['register'];
 
 		return $this->getUrl($url);
 	}

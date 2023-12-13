@@ -395,6 +395,18 @@
                                             <p class="p-0 fw-bold mb-1" id="nama_instansi">-</p>
                                         </div>
                                     </div>
+                                    <!-- Nama Email -->
+                                    <div class="row p-0 m-0 mb-1">
+                                        <div class="col-1 m-0 p-0 align-self-start">
+                                            <div class="text-center">
+                                                <i class="bi bi-building" style="font-size: 14px; color: 8c8c8c"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-10 text-start p-0 m-0 ms-1 align-self-end">
+                                            <small class="mb-1 text-secondary">Email:</small>
+                                            <p class="p-0 fw-bold mb-1" id="email">-</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-lg-6 ps-1">
                                     <!-- Deskripsi Kegiatan -->
@@ -600,6 +612,9 @@
                 $('.modal-body').find('#nama_instansi').text(arg.event
                     .extendedProps
                     .nama_instansi);
+                $('.modal-body').find('#email').text(arg.event
+                    .extendedProps
+                    .email);
                 $('.modal-body').find('#deskripsi_kegiatan').text(arg.event
                     .extendedProps
                     .deskripsi);

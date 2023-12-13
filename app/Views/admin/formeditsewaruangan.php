@@ -16,17 +16,6 @@
                 </div>
             </div>
 
-            <!-- <div class="col-12">
-                <label for="username" class="form-label">Username</label>
-                <div class="input-group has-validation">
-                    <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                    <div class="invalid-feedback">
-                        Your username is required.
-                    </div>
-                </div>
-            </div> -->
-
             <div class="col-md-6">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control <?= (validation_show_error('email')) ? 'is-invalid' : ''; ?>" id="email" placeholder="you@example.com" name="email" value="<?= (old('email')) ? old('email') : $penyewa['email'] ?>">
@@ -116,14 +105,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai2" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= (old('tanggalMulaiKantor')) ? old('tanggalMulaiKantor') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" step="3600" />
+                        <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= (old('tanggalMulaiKantor')) ? old('tanggalMulaiKantor') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiKantor'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai2" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= (old('tanggalSelesaiKantor')) ? old('tanggalSelesaiKantor') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" step="60" />
+                        <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= (old('tanggalSelesaiKantor')) ? old('tanggalSelesaiKantor') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiKantor'); ?>
                         </div>
@@ -135,14 +124,14 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="tanggalMulai3" class="form-label">Tanggal Mulai</label>
-                        <input id="tanggalMulai3" class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiMeeting" value="<?= (old('tanggalMulaiMeeting')) ? old('tanggalMulaiMeeting') : $formatter2->format(date_create($jadwal['tgl_mulai_sewa'])) ?>" />
+                        <input id="tanggalMulai3" class="form-control <?= (validation_show_error('tanggalMulaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiMeeting" value="<?= (old('tanggalMulaiMeeting')) ? old('tanggalMulaiMeeting') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalMulaiMeeting'); ?>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="tanggalSelesai3" class="form-label">Tanggal Selesai</label>
-                        <input id="tanggalSelesai3" class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiMeeting" value="<?= (old('tanggalSelesaiMeeting')) ? old('tanggalSelesaiMeeting') : $formatter2->format(date_create($jadwal['tgl_akhir_sewa'])) ?>" />
+                        <input id="tanggalSelesai3" class="form-control <?= (validation_show_error('tanggalSelesaiMeeting')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiMeeting" value="<?= (old('tanggalSelesaiMeeting')) ? old('tanggalSelesaiMeeting') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
                         <div class="invalid-feedback">
                             <?= validation_show_error('tanggalSelesaiMeeting'); ?>
                         </div>
@@ -176,6 +165,7 @@
             <input id="idRuangan" class="form-control" type="hidden" name="idRuangan" value="<?= (old('idRuangan')) ? old('idRuangan') : $ruangan['id'] ?>" />
             <input id="idJadwal" class="form-control" type="hidden" name="idJadwal" value="<?= (old('idJadwal')) ? old('idJadwal') : $jadwal['id'] ?>" />
             <input id="idPenyewa" class="form-control" type="hidden" name="idPenyewa" value="<?= (old('idPenyewa')) ? old('idPenyewa') : $penyewa['id'] ?>" />
+            <input id="emailLama" class="form-control" type="hidden" name="emailLama" value="<?= (old('emailLama')) ? old('emailLama') : $penyewa['email'] ?>" />
 
             <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit">Edit Sewa Ruangan</button>
         </div>
@@ -211,39 +201,6 @@
             $('#' + $(this).find('option:selected').attr('class')).show();
             $("#tipe").val($(this).find('option:selected').attr('class'));
         });
-
-        // if ($('$sewaruangan').length > 0)
-        // {
-        //     $('$sewaruangan').validate({
-        //         rules: {
-        //             nama: {
-        //                 required: true
-        //             },
-        //             email: {
-        //                 required: true,
-        //                 email: true
-        //             },
-        //             nomorTelepon: {
-        //                 required: true
-        //             }
-        //         }
-        //     })
-        // }
-
-        // $('#tanggalMulai').date_default_timezone_set('id');
-        // $('#tanggalSelesai').date_default_timezone_set('id');
-
-        // var start = document.getElementById('tanggalMulai');
-        // var end = document.getElementById('tanggalSelesai');
-
-        // $('#tanggalMulai').change(function() {
-        //     if ($('#tanggalMulai').val)
-        //         $('#tanggalSelesai').min = $('#tanggalMulai').val;
-        // }, false);
-        // $('#tanggalSelesai').change(function() {
-        //     if ($("#tanggalSelesai").val)
-        //         $('#tanggalMulai').max = $("#tanggalSelesai").val;
-        // }, false);
     });
 </script>
 

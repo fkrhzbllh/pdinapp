@@ -240,7 +240,7 @@ class LayananPelatihanAdmin extends BaseController
 	public function saveTambahPesertaBaru()
 	{
 		// aturan validasi
-		$rules = $this->formRulesPeserta('required|is_unique[peserta_pelatihan.email]');
+		$rules = $this->formRulesPeserta('required|is_unique[peserta_pelatihan.email]|valid_email');
 
 		// cek validasi
 		if (!$this->validate($rules)) {
@@ -311,14 +311,14 @@ class LayananPelatihanAdmin extends BaseController
 	{
 		$emailLama = $this->request->getVar('emailLama');
 
-		$emailLama == $this->request->getVar('email') ? $rule = 'required' : $rule = 'required|is_unique[peserta_pelatihan.email]';
+		$emailLama == $this->request->getVar('email') ? $rule = 'required' : $rule = 'required|is_unique[peserta_pelatihan.email]|valid_email';
 
 		// aturan validasi
 		$rules = $this->formRulesPeserta($rule);
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors())->with('uuid', $this->request->getVar('uuid'));
+			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors())->with('uuidPeserta', $this->request->getVar('uuidPeserta'))->with('uuidPelatihan', $this->request->getVar('uuidPelatihan'));
 		}
 
 		// simpan data 
@@ -329,31 +329,35 @@ class LayananPelatihanAdmin extends BaseController
 			'kontak' => $this->request->getVar('kontak'),
 		]);
 
-		$peserta = $this->pesertaPelatihanModel->findByUUID($this->request->getVar('uuid'));
+		$peserta = $this->pesertaPelatihanModel->findByUUID($this->request->getVar('uuidPeserta'));
+		if ($peserta) {
 
-		// Kalau sudah punya ID berarti sudah daftar akun
-		if ($peserta['id_user'] != null) {
-			$users = auth()->getProvider();
+			// Kalau sudah punya ID berarti sudah daftar akun
+			if ($peserta['id_user'] != null) {
+				$users = auth()->getProvider();
 
-			$user = $users->findById($peserta['id_user']);
-			$user->fill([
-				'email' => $this->request->getVar('email'),
-			]);
-
-			$users->save($user);
-
-			$penyewa = $this->penyewaModel->where('id_user', $peserta['id_user'])->find();
-			if ($penyewa) {
-				$this->penyewaModel->save([
-					'id' => $penyewa['id'],
+				$user = $users->findById($peserta['id_user']);
+				$user->fill([
 					'email' => $this->request->getVar('email'),
 				]);
+
+				$users->save($user);
+
+				$penyewa = $this->penyewaModel->where('id_user', $peserta['id_user'])->first();
+				if ($penyewa) {
+					$this->penyewaModel->save([
+						'id' => $penyewa['id'],
+						'nama' => $this->request->getVar('nama'),
+						'email' => $this->request->getVar('email'),
+						'kontak' => $this->request->getVar('kontak'),
+					]);
+				}
 			}
 		}
 
 		session()->setFlashdata('sukses', 'Data berhasil diubah.');
 
-		return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $this->request->getVar('uuid'));
+		return redirect()->to('/DashboardAdmin/detail-pelatihan/' . $this->request->getVar('uuidPelatihan'));
 	}
 
 	// hapus peserta
@@ -438,7 +442,8 @@ class LayananPelatihanAdmin extends BaseController
 				'rules' => $rule,
 				'errors' => [
 					'required' => 'email harus diisi',
-					'is_unique' => 'email harus unik'
+					'is_unique' => 'email harus unik',
+					'valid_email' => 'email tidak valid'
 				]
 			]
 		];

@@ -42,13 +42,19 @@ $routes->get('/rilis-media', 'RilisMedia::index');
 $routes->post('/rilis-media', 'RilisMedia::index');
 
 // Halaman Login
-service('auth')->routes($routes);
 $routes->get('/atur-kata-sandi', 'AturKataSandi::index');
 $routes->post('/atur-kata-sandi', 'AturKataSandi::aturPassword', ['as' => 'atur-password']);
 $routes->get('/atur-profil', 'AturProfil', ['as' => 'atur-profil']);
 $routes->post('/atur-profil', 'AturProfil::aturProfil', ['as' => 'atur-profil']);
+
 $routes->post('/atur-profil-kata-sandi', 'AturProfil::aturPassword', ['as' => 'atur-profil-kata-sandi']);
-// $routes->get('/register', 'RegisterController::registerView', ['as' => 'register']);
+// Halaman Register
+$routes->post('/register', 'RegisterController::registerAction');
+$routes->get('/register', 'RegisterController::registerView', ['as' => 'register']);
+
+// Halaman Login
+service('auth')->routes($routes);
+// $routes->get('/login', 'LoginController::loginAction', ['as' => 'login']);
 // $routes->get('/login/magic-link', 'MagicLinkController::loginView', ['as' => 'magic-link']);
 // $routes->post('/login/magic-link', 'MagicLinkController::loginAction');
 // $routes->post('/login/verify-magic-link', 'MagicLinkController::verify');
@@ -137,7 +143,8 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 
 	$routes->get('/DashboardAdmin/tambah-sewa-ruangan/(:any)', 'Admin\LayananSewaRuanganAdmin::tambahSewaRuangan/$1');
 	$routes->get('/DashboardAdmin/tambah-sewa-ruangan/', 'Admin\LayananSewaRuanganAdmin::tambahSewaRuangan');
-	$routes->post('/DashboardAdmin/saveTambahSewaRuangan', 'Admin\LayananSewaRuanganAdmin::saveTambahSewaRuangan');
+	$routes->post('/DashboardAdmin/saveTambahSewaRuanganPenyewaBaru', 'Admin\LayananSewaRuanganAdmin::saveTambahSewaRuanganPenyewaBaru');
+	$routes->post('/DashboardAdmin/saveTambahSewaRuanganPenyewaLama', 'Admin\LayananSewaRuanganAdmin::saveTambahSewaRuanganPenyewaLama');
 
 	$routes->get('/DashboardAdmin/update-sewa-ruangan/(:any)', 'Admin\LayananSewaRuanganAdmin::updateSewaRuangan/$1');
 	$routes->post('/DashboardAdmin/saveUpdateSewaRuangan/(:num)/(:num)', 'Admin\LayananSewaRuanganAdmin::saveUpdateSewaRuangan/$1/$2');
@@ -149,7 +156,8 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 
 	$routes->get('/DashboardAdmin/tambah-sewa-alat/(:any)', 'Admin\LayananSewaAlatAdmin::tambahSewaAlat/$1');
 	$routes->get('/DashboardAdmin/tambah-sewa-alat/', 'Admin\LayananSewaAlatAdmin::tambahSewaAlat');
-	$routes->post('/DashboardAdmin/saveTambahSewaAlat', 'Admin\LayananSewaAlatAdmin::saveTambahSewaAlat');
+	$routes->post('/DashboardAdmin/saveTambahSewaAlatPenyewaBaru', 'Admin\LayananSewaAlatAdmin::saveTambahSewaAlatPenyewaBaru');
+	$routes->post('/DashboardAdmin/saveTambahSewaAlatPenyewaLama', 'Admin\LayananSewaAlatAdmin::saveTambahSewaAlatPenyewaLama');
 
 	$routes->get('/DashboardAdmin/update-sewa-alat/(:any)', 'Admin\LayananSewaAlatAdmin::updateSewaAlat/$1');
 	$routes->post('/DashboardAdmin/saveUpdateSewaAlat/(:num)/(:num)', 'Admin\LayananSewaAlatAdmin::saveUpdateSewaAlat/$1/$2');

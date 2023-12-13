@@ -35,7 +35,7 @@
 					<div class="col-11 px-2 px-md-3 py-2">
 						<h6 class="text-light mb-3">Chat</h6>
 						<a href="https://wa.me/628978087902" target="_blank">
-							<p class="text-light">+62-897-808-7902</p>
+							<p class="text-light"><u>0897-8087-902</u></p>
 						</a>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 					<div class="col-11 px-2 px-md-3 py-2">
 						<h6 class="text-light mb-3">Email</h6>
 						<a href="mailto:pdin.yogyakarta@gmail.com">
-							<p class="text-light">pdin.yogyakarta@gmail.com</p>
+							<p class="text-light"><u>pdin.yogyakarta@gmail.com</u></p>
 						</a>
 					</div>
 				</div>

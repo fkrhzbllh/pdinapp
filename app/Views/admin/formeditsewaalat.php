@@ -95,7 +95,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label for="tanggalMulai" class="form-label">Tanggal Mulai</label>
-                    <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulai')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulai" value="<?= (old('tanggalMulai')) ? old('tanggalMulai') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d h:i') ?>" step="60" />
+                    <input id="tanggalMulai" class="form-control <?= (validation_show_error('tanggalMulai')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulai" value="<?= (old('tanggalMulai')) ? old('tanggalMulai') : date_create($jadwal['tgl_mulai_sewa'])->format('Y-m-d H:i') ?>">
 
                     <div class="invalid-feedback">
                         <?= validation_show_error('tanggalMulai'); ?>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="tanggalSelesai" class="form-label">Tanggal Selesai</label>
-                    <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesai')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesai" value="<?= (old('tanggalSelesai')) ? old('tanggalSelesai') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d h:i') ?>" step="60" />
+                    <input id="tanggalSelesai" class="form-control <?= (validation_show_error('tanggalSelesai')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesai" value="<?= (old('tanggalSelesai')) ? old('tanggalSelesai') : date_create($jadwal['tgl_akhir_sewa'])->format('Y-m-d H:i') ?>" />
                     <div class="invalid-feedback">
                         <?= validation_show_error('tanggalSelesai'); ?>
                     </div>
@@ -115,6 +115,7 @@
         <input id="idAlat" class="form-control" type="hidden" name="idAlat" value="<?= (old('idAlat')) ? old('idAlat') : $alat['id'] ?>" />
         <input id="idJadwal" class="form-control" type="hidden" name="idJadwal" value="<?= (old('idJadwal')) ? old('idJadwal') : $jadwal['id'] ?>" />
         <input id="idPenyewa" class="form-control" type="hidden" name="idPenyewa" value="<?= (old('idPenyewa')) ? old('idPenyewa') : $penyewa['id'] ?>" />
+        <input id="emailLama" class="form-control" type="hidden" name="emailLama" value="<?= (old('emailLama')) ? old('emailLama') : $penyewa['email'] ?>" />
 
         <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit">Edit Sewa Alat</button>
     </form>

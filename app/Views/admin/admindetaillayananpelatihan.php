@@ -49,7 +49,7 @@
                         <td><?= $a['email'] ?></td>
                         <td><?= $a['kontak'] ?></td>
                         <td>
-                            <a href="/DashboardAdmin/update-peserta/<?= $a['uuid_peserta_pelatihan'] ?>" class="btn btn-warning">Edit</a>
+                            <a href="/DashboardAdmin/update-peserta/<?= $a['uuid_peserta_pelatihan'] . '/' . $a['uuid_pelatihan'] ?>" class="btn btn-warning">Edit</a>
                             <!-- <form action="/DashboardAdmin/update-peserta" method="post" class="d-inline">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" value="<?php echo $a['uuid_peserta_pelatihan'] ?>" name="uuid">
@@ -82,9 +82,6 @@
                 {
                     "width": "15%"
                 }
-            ],
-            "order": [
-                [2, "asc"]
             ],
             "language": {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
