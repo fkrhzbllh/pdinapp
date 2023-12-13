@@ -44,6 +44,30 @@
 					<li class="nav-item ps-2">
 						<a class="nav-link <?= ($current_page == 'kontak') ? 'active' : '' ?>" href="<?= base_url() ?>kontak">Kontak</a>
 					</li>
+					<li class="nav-item dropdown ps-2">
+						<?php if (!auth()->loggedIn()) : ?>
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-person-fill"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end" id="navbar-nav-user">
+								<li><a class="dropdown-item" href="/login">Login</a></li>
+							</ul>
+						<?php else : ?>
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="https://ui-avatars.com/api/?size=128&name=<?= urlencode(auth()->user()->first_name . ' ' . auth()->user()->last_name) ?>&rounded=true&background=d82328&color=ffffff&bold=true" alt="" style="width: 32px; height: 32px; padding: 0px" />
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end" id="navbar-nav-user-loggedin">
+								<li><a class="dropdown-item" href="/dashboard-user">Dashboard User</a></li>
+								<?php if (auth()->user()->inGroup('admin') || auth()->user()->inGroup('superadmin') || auth()->user()->inGroup('developer')) : ?>
+									<li><a class="dropdown-item" href="/DashboardAdmin">Dashboard Admin</a></li>
+								<?php endif; ?>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="/logout">Logout</a></li>
+							</ul>
+						<?php endif; ?>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -94,7 +118,11 @@
 
 					if (isLgOrBigger()) {
 						$('#navbar-nav a').addClass('text-light');
+						$('#navbar-nav-user a').removeClass('text-light');
+						$('#navbar-nav-user-loggedin a').removeClass('text-light');
 					} else {
+						$('#navbar-nav-user a').addClass('text-light');
+						$('#navbar-nav-user-loggedin a').addClass('text-light');
 						$('#navbar-nav a').removeClass('text-light');
 					}
 				<?php endif ?>
