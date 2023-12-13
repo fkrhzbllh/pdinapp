@@ -47,12 +47,12 @@ class ShieldOAuthConfig extends OAuthConfig
 
             'allow_login' => false,
         ],
-        'yahoo' => [
-            'client_id'     => YAHOO_CLIENT_ID,
-            'client_secret' => YAHOO_CLIENT_SECRET,
+        // 'yahoo' => [
+        //     'client_id'     => YAHOO_CLIENT_ID,
+        //     'client_secret' => YAHOO_CLIENT_SECRET,
 
-            'allow_login' => false,
-        ],
+        //     'allow_login' => false,
+        // ],
     ];
 
     /**

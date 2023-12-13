@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use App\Models\AlatModel;
 use App\Models\SewaAlatModel;
 use App\Models\PenyewaModel;
+use App\Models\PesertaPelatihanModel;
 use App\Models\GaleriAlatModel;
 use App\Models\GaleriModel;
 use App\Controllers\BaseController;
@@ -17,6 +18,7 @@ class LayananSewaAlatAdmin extends BaseController
 	protected $alatModel;
 	protected $sewaAlatModel;
 	protected $penyewaModel;
+	protected $pesertaPelatihanModel;
 	protected $galeriAlatModel;
 	protected $galeriModel;
 	protected $helpers = ['form'];
@@ -29,6 +31,7 @@ class LayananSewaAlatAdmin extends BaseController
 		$this->alatModel = new AlatModel();
 		$this->sewaAlatModel = new SewaAlatModel();
 		$this->penyewaModel = new PenyewaModel();
+		$this->pesertaPelatihanModel = new PesertaPelatihanModel();
 		$this->galeriAlatModel = new GaleriAlatModel();
 		$this->galeriModel = new GaleriModel();
 		$this->helpers = ['form'];
@@ -168,20 +171,22 @@ class LayananSewaAlatAdmin extends BaseController
 		$this->data['judul_halaman'] = 'Sewa Ruangan PDIN';
 		$this->data['id_alat'] = '';
 		$this->data['alat'] = $this->alatModel->getAlat(); // find all
+		$this->data['penyewa'] = $this->penyewaModel->findAll(); // find all
 
 		return view('admin/formtambahsewaalat.php', $this->data);
 	}
 
-	// simpan data sewa alat
-	public function saveTambahSewaAlat()
+	// simpan data sewa alat penyewa baru
+	public function saveTambahSewaAlatPenyewaBaru()
 	{
-		$tipe = $this->request->getVar('tipe');
-		$idAlat = $this->request->getVar('alat');
+		$idAlat = $this->request->getVar('alatPenyewaBaru');
 		$alat = $this->alatModel->getAlatByID($idAlat);
 		$slug = $alat['slug'];
 
+		$ruleEmail = 'required|is_unique[penyewa.email]|valid_email';
+
 		// aturan validasi
-		$rules = $this->formRulesSewaAlat();
+		$rules = $this->formRulesSewaAlat($ruleEmail);
 
 		// cek validasi
 		if (!$this->validate($rules)) {
@@ -190,6 +195,7 @@ class LayananSewaAlatAdmin extends BaseController
 
 		// simpan data user
 		$this->penyewaModel->save([
+			'uuid' => $this->faker->uuid(),
 			'email' => $this->request->getVar('email'),
 			'nama' => $this->request->getVar('nama'),
 			'kontak' => $this->request->getVar('nomorTelepon'),
@@ -202,9 +208,40 @@ class LayananSewaAlatAdmin extends BaseController
 		$this->sewaAlatModel->save([
 			'uuid' => $this->faker->uuid(),
 			'id_alat' => $idAlat,
+			'nama_kegiatan' => $this->request->getVar('namaKegiatanPenyewaBaru'),
+			'deskripsi' => $this->request->getVar('deskripsiKegiatanPenyewaBaru'),
+			'id_penyewa' => $userID,
+			'tgl_mulai_sewa' => $this->request->getVar('tanggalMulaiPenyewaBaru'),
+			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesaiPenyewaBaru'),
+		]);
+
+		session()->setFlashdata('sukses', 'Data berhasil ditambahkan.');
+
+		return redirect()->to('/DashboardAdmin/layanan-sewa-alat');
+	}
+
+	// simpan data sewa alat penyewa lama
+	public function saveTambahSewaAlatPenyewaLama()
+	{
+		$idAlat = $this->request->getVar('alat');
+		$alat = $this->alatModel->getAlatByID($idAlat);
+		$slug = $alat['slug'];
+
+		// aturan validasi
+		$rules = $this->formRulesSewaAlatPenyewaLama();
+
+		// cek validasi
+		if (!$this->validate($rules)) {
+			return redirect()->to('/DashboardAdmin/tambah-sewa-alat/' . $slug)->withInput();
+		}
+
+		// simpan data sewa
+		$this->sewaAlatModel->save([
+			'uuid' => $this->faker->uuid(),
+			'id_alat' => $idAlat,
 			'nama_kegiatan' => $this->request->getVar('namaKegiatan'),
 			'deskripsi' => $this->request->getVar('deskripsiKegiatan'),
-			'id_penyewa' => $userID,
+			'id_penyewa' => $this->request->getVar('penyewa'),
 			'tgl_mulai_sewa' => $this->request->getVar('tanggalMulai'),
 			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesai'),
 		]);
@@ -241,11 +278,12 @@ class LayananSewaAlatAdmin extends BaseController
 	{
 		$idAlat = $this->request->getVar('alat');
 		$uuid = $this->request->getVar('uuid');
-		$alat = $this->alatModel->getAlatByID($idAlat);
-		$slug = $alat['slug'];
+
+		$emailLama = $this->request->getVar('emailLama');
+		$emailLama == $this->request->getVar('email') ? $ruleEmail = 'required' : $ruleEmail = 'required|is_unique[penyewa.email]|valid_email';
 
 		// aturan validasi
-		$rules = $this->formRulesSewaAlat();
+		$rules = $this->formRulesUpdateSewaAlat($ruleEmail);
 
 		// cek validasi
 		if (!$this->validate($rules)) {
@@ -272,6 +310,31 @@ class LayananSewaAlatAdmin extends BaseController
 			'tgl_akhir_sewa' => $this->request->getVar('tanggalSelesai'),
 		]);
 
+		// update data di tabel user dan peserta pelatihan
+		$penyewa = $this->penyewaModel->getPenyewaByID($idPenyewa);
+		if ($penyewa) {
+			if ($penyewa['id_user'] != null) {
+				$users = auth()->getProvider();
+
+				$user = $users->findById($penyewa['id_user']);
+				$user->fill([
+					'email' => $this->request->getVar('email'),
+				]);
+
+				$users->save($user);
+
+				$peserta = $this->pesertaPelatihanModel->where('id_user', $penyewa['id_user'])->first();
+				if ($peserta) {
+					$this->pesertaPelatihanModel->save([
+						'id' => $peserta['id'],
+						'nama' => $this->request->getVar('nama'),
+						'email' => $this->request->getVar('email'),
+						'kontak' => $this->request->getVar('kontak'),
+					]);
+				}
+			}
+		}
+
 		session()->setFlashdata('sukses', 'Data berhasil diubah.');
 
 		return redirect()->to('/DashboardAdmin/layanan-sewa-alat');
@@ -281,8 +344,6 @@ class LayananSewaAlatAdmin extends BaseController
 	public function deleteSewaAlat($id)
 	{
 		$sewaalat = $this->sewaAlatModel->getJadwalByID($id);
-		$alat = $this->alatModel->getAlatByID($sewaalat['id_alat']);
-		$slug = $alat['slug'];
 
 		if ($sewaalat) {
 			$this->sewaAlatModel->delete($id);
@@ -297,7 +358,7 @@ class LayananSewaAlatAdmin extends BaseController
 	}
 
 	// aturan validasi form sewa alat
-	public function formRulesSewaAlat()
+	public function formRulesSewaAlat($email)
 	{
 		$rules = [
 			'nama' => [
@@ -307,7 +368,7 @@ class LayananSewaAlatAdmin extends BaseController
 				]
 			],
 			'email' => [
-				'rules' => 'required|valid_email',
+				'rules' => $email,
 				'errors' => [
 					'required' => '{field} harus diisi',
 					'valid_email' => '{field} harus valid'
@@ -326,6 +387,110 @@ class LayananSewaAlatAdmin extends BaseController
 				'rules' => 'required',
 				'errors' => [
 					'required' => '{field} harus diisi'
+				]
+			],
+			'namaKegiatanPenyewaBaru' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'nama kegiatan harus diisi'
+				]
+			],
+			'alatPenyewaBaru' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus dipilih'
+				]
+			],
+			'tanggalMulaiPenyewaBaru' => [
+				'rules' => 'required|valid_date',
+				'errors' => [
+					'required' => 'waktu mulai harus diisi',
+					'valid_date' => 'waktu mulai harus valid'
+				]
+			],
+			'tanggalSelesaiPenyewaBaru' => [
+				'rules' => 'required|valid_date',
+				'errors' => [
+					'required' => 'waktu selesai harus diisi',
+					'valid_date' => 'waktu selesai harus valid'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// aturan validasi form sewa alat
+	public function formRulesUpdateSewaAlat($email)
+	{
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'email' => [
+				'rules' => $email,
+				'errors' => [
+					'required' => '{field} harus diisi',
+					'valid_email' => '{field} harus valid'
+				]
+			],
+			'nomorTelepon' => [
+				'rules' => 'required|numeric|min_length[8]|max_length[15]',
+				'errors' => [
+					'required' => 'nomor telepon harus diisi',
+					'numeric' => 'nomor telepon harus berupa angka',
+					'min_length' => 'nomor telepon harus lebih dari 8 angka',
+					'max_length' => 'nomor telepon harus kurang dari 15 angka'
+				]
+			],
+			'instansi' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus diisi'
+				]
+			],
+			'namaKegiatan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'nama kegiatan harus diisi'
+				]
+			],
+			'alat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus dipilih'
+				]
+			],
+			'tanggalMulai' => [
+				'rules' => 'required|valid_date',
+				'errors' => [
+					'required' => 'waktu mulai harus diisi',
+					'valid_date' => 'waktu mulai harus valid'
+				]
+			],
+			'tanggalSelesai' => [
+				'rules' => 'required|valid_date',
+				'errors' => [
+					'required' => 'waktu selesai harus diisi',
+					'valid_date' => 'waktu selesai harus valid'
+				]
+			]
+		];
+
+		return $rules;
+	}
+
+	// aturan validasi form sewa alat
+	public function formRulesSewaAlatPenyewaLama()
+	{
+		$rules = [
+			'penyewa' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => '{field} harus dipilih'
 				]
 			],
 			'namaKegiatan' => [

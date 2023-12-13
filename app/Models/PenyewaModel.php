@@ -9,7 +9,7 @@ class PenyewaModel extends \App\Models\BaseModel
 	protected $useTimestamps = true;
 
 	// protected $ruanganTable = 'ruangan';
-	protected $allowedFields = ['email', 'nama', 'kontak', 'nama_instansi'];
+	protected $allowedFields = ['id_user', 'uuid', 'email', 'nama', 'kontak', 'nama_instansi'];
 
 	public function __construct()
 	{
