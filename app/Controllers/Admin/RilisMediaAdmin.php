@@ -63,6 +63,7 @@ class RilisMediaAdmin extends BaseController
 	// simpan tambah artikel
 	public function saveTambahRilisMedia()
 	{
+		// dd($this->request->getFile('featured_image'));
 		// aturan validasi
 		$rules = $this->formRulesRilisMedia('required|is_unique[artikel.judul]');
 
@@ -227,9 +228,9 @@ class RilisMediaAdmin extends BaseController
 				]
 			],
 			'featured_image' => [
-				'rules' => 'required|is_image[featured_image]|mime_in[featured_image,image/jpg,image/jpeg,image/png]',
+				'rules' => 'uploaded[featured_image]|is_image[featured_image]|mime_in[featured_image,image/jpg,image/jpeg,image/png]',
 				'errors' => [
-					'required' => 'gambar harus diisi',
+					'uploaded' => 'gambar harus diisi',
 					'is_image' => 'file yang Anda pilih bukan gambar',
 					'mime_in' => 'file yang Anda pilih bukan gambar'
 				]
