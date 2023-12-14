@@ -167,7 +167,7 @@
             <input id="idPenyewa" class="form-control" type="hidden" name="idPenyewa" value="<?= (old('idPenyewa')) ? old('idPenyewa') : $penyewa['id'] ?>" />
             <input id="emailLama" class="form-control" type="hidden" name="emailLama" value="<?= (old('emailLama')) ? old('emailLama') : $penyewa['email'] ?>" />
 
-            <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit">Edit Sewa Ruangan</button>
+            <button class="w-100 btn btn-danger mt-5 mb-5" type="submit">Edit Sewa Ruangan</button>
         </div>
     </form>
 </div>

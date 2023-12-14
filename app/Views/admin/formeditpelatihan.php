@@ -62,7 +62,7 @@
             <input type="hidden" name="id" value="<?= old('id') ? old('id') : $pelatihan['id'] ?>" />
             <input type="hidden" name="uuid" value="<?= old('uuid') ? old('uuid') : $uuid ?>" />
 
-            <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
+            <button class="w-100 btn btn-danger mt-5" type="submit">Simpan</button>
         </div>
     </form>
 </div>

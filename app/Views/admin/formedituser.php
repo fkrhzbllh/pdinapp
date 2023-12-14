@@ -104,7 +104,7 @@
         <input type="hidden" name="email_old" value="<?= old('email_old') ? old('email_old') : $user['secret'] ?>" />
 
         <div class="d-grid col-12 col-md-8 mx-auto m-3">
-            <button type="submit" class="btn btn-primary btn-block"><?= 'Edit User' ?></button>
+            <button type="submit" class="btn btn-danger btn-block"><?= 'Edit User' ?></button>
         </div>
 
     </form>

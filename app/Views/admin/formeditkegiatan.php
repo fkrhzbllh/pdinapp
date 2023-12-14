@@ -126,7 +126,7 @@
 
             <input type="hidden" name="slug" value="<?= $kegiatan['slug'] ?>">
 
-            <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
+            <button class="w-100 btn btn-danger mt-5" type="submit">Simpan</button>
         </div>
     </form>
 </div>

@@ -214,7 +214,7 @@
             <input type="hidden" name="slug" value="<?= old('slug') ? old('slug') : $ruangan['slug'] ?>">
             <input type="hidden" name="idRuangan" value="<?= old('idRuangan') ? old('idRuangan') : $ruangan['id'] ?>">
 
-            <button class="w-100 btn btn-primary mt-5" type="submit">Simpan</button>
+            <button class="w-100 btn btn-danger mt-5" type="submit">Simpan</button>
         </div>
     </form>
 </div>

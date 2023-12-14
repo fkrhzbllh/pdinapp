@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="control-label mb-2">Excerp</label>
+                    <label class="control-label mb-2">Excerpt</label>
                     <textarea class="form-control overlayscollbar <?= (validation_show_error('excerp')) ? 'is-invalid' : ''; ?>" rows="5" type="text" name="excerp" id="excerp"><?= (old('excerp')) ? old('excerp') : $artikel['excerp'] ?></textarea>
                     <div class="invalid-feedback">
                         <?= validation_show_error('excerp'); ?>
@@ -106,7 +106,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-sm-12">
-                    <button type="submit" name="submit" id="btn-submit" class="w-100 btn btn-primary mt-5">Simpan</button>
+                    <button type="submit" name="submit" id="btn-submit" class="w-100 btn btn-danger mt-5">Simpan</button>
                 </div>
             </div>
     </form>
