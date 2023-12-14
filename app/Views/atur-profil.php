@@ -79,7 +79,7 @@
         <input type="password" class="form-control" name="password_confirm" autocomplete="password_confirm" placeholder="<?= lang('Auth.passwordConfirm') ?>" value="" required />
     </div>
 
-    <button type="submit" class="btn btn-danger w-100 mt-2 mb-2"><?= lang('Auth.send') ?></button>
+    <button type="submit" class="btn btn-danger w-100 mt-2 mb-5"><?= lang('Auth.send') ?></button>
 
 </form>
 
