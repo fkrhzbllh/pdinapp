@@ -66,7 +66,6 @@
             </tbody>
         </table>
     </div>
-    <?= $pager->links('kegiatan', 'pager') ?>
 </div>
 <?= $this->endSection() ?>
 

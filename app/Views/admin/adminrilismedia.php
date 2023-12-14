@@ -48,7 +48,6 @@
             </tbody>
         </table>
     </div>
-    <?= $pager->links('artikel', 'pager') ?>
 </div>
 <?= $this->endSection() ?>
 
