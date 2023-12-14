@@ -2,7 +2,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard-user">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <img class="w-50" src="<?= base_url() ?>assets/logo-pdin-merah-abu.png" id="logo" alt="Logo_PDIN" />
     </a>
 

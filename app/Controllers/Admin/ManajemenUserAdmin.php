@@ -37,14 +37,14 @@ class ManajemenUserAdmin extends BaseController
 	public function index()
 	{
 		$this->data['current_page'] = 'adminmanajemenuser';
-		$this->data['user'] = $this->userModel->findAllButAdmins();
+		$this->data['user'] = $this->userModel->getAll();
 		return view('admin/adminmanajemenuser.php', $this->data);
 	}
 
 	public function user()
 	{
 		$this->data['current_page'] = 'adminmanajemenuser';
-		$this->data['user'] = $this->userModel->findAllButAdmins();
+		$this->data['user'] = $this->userModel->getAll();
 		return view('admin/adminmanajemenuser.php', $this->data);
 	}
 
@@ -110,7 +110,7 @@ class ManajemenUserAdmin extends BaseController
 		$this->data['uuid'] = $uuid;
 		// d($this->userModel->findAll());
 		// d($this->userModel->findByIdForEdit($uuid));
-		// dd($this->userModel->findAllButAdmins());
+		// dd($this->userModel->getAll());
 
 		return view('admin/formedituser.php', $this->data);
 	}
@@ -160,6 +160,8 @@ class ManajemenUserAdmin extends BaseController
 		];
 		$this->userModel->save($nama);
 
+		session()->setFlashdata('sukses', 'Data user berhasil diubah.');
+
 		return redirect()->to('/DashboardAdmin/manajemen-user');
 	}
 
@@ -174,6 +176,9 @@ class ManajemenUserAdmin extends BaseController
 		$user = $users->findById($id);
 
 		$users->delete($user->id, true);
+
+		session()->setFlashdata('sukses', 'User berhasil dihapus.');
+
 		return redirect()->to('/DashboardAdmin/manajemen-user');
 	}
 

@@ -41,6 +41,9 @@ $routes->get('/kontak', 'Kontak::index');
 $routes->get('/rilis-media', 'RilisMedia::index');
 $routes->post('/rilis-media', 'RilisMedia::index');
 
+// upload gambar konten artikel
+$routes->post('/upload_image', 'Upload::uploadImage');
+
 // Halaman Login
 $routes->get('/atur-kata-sandi', 'AturKataSandi::index');
 $routes->post('/atur-kata-sandi', 'AturKataSandi::aturPassword', ['as' => 'atur-password']);
