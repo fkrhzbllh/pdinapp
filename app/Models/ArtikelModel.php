@@ -87,6 +87,10 @@ class ArtikelModel extends \App\Models\BaseModel
 
 	public function formatTanggalSingle($data)
 	{
+		// tampilan error kalau tidak ada slug artikel yang ada di database
+		if (empty($data)) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Artikel tidak ditemukan.');
+		}
 
 		$timestamp = strtotime($data['tgl_terbit']); // Ubah ke timestamp
 

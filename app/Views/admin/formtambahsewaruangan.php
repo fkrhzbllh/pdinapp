@@ -107,14 +107,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="tanggalMulai2" class="form-label">Tanggal Mulai</label>
-                                <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= old('tanggalMulaiKantor') ?>" step="3600" />
+                                <input id="tanggalMulai2" class="form-control <?= (validation_show_error('tanggalMulaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantor" value="<?= old('tanggalMulaiKantor') ?>" />
                                 <div class="invalid-feedback">
                                     <?= validation_show_error('tanggalMulaiKantor'); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="tanggalSelesai2" class="form-label">Tanggal Selesai</label>
-                                <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= old('tanggalSelesaiKantor') ?>" step="60" />
+                                <input id="tanggalSelesai2" class="form-control <?= (validation_show_error('tanggalSelesaiKantor')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantor" value="<?= old('tanggalSelesaiKantor') ?>" />
                                 <div class="invalid-feedback">
                                     <?= validation_show_error('tanggalSelesaiKantor'); ?>
                                 </div>
@@ -268,14 +268,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label for="tanggalMulai22" class="form-label">Tanggal Mulai</label>
-                                <input id="tanggalMulai22" class="form-control <?= (validation_show_error('tanggalMulaiKantorPenyewaBaru')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantorPenyewaBaru" value="<?= old('tanggalMulaiKantorPenyewaBaru') ?>" step="3600" />
+                                <input id="tanggalMulai22" class="form-control <?= (validation_show_error('tanggalMulaiKantorPenyewaBaru')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalMulaiKantorPenyewaBaru" value="<?= old('tanggalMulaiKantorPenyewaBaru') ?>" />
                                 <div class="invalid-feedback">
                                     <?= validation_show_error('tanggalMulaiKantorPenyewaBaru'); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="tanggalSelesai22" class="form-label">Tanggal Selesai</label>
-                                <input id="tanggalSelesai22" class="form-control <?= (validation_show_error('tanggalSelesaiKantorPenyewaBaru')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantorPenyewaBaru" value="<?= old('tanggalSelesaiKantorPenyewaBaru') ?>" step="60" />
+                                <input id="tanggalSelesai22" class="form-control <?= (validation_show_error('tanggalSelesaiKantorPenyewaBaru')) ? 'is-invalid' : ''; ?>" type="datetime-local" name="tanggalSelesaiKantorPenyewaBaru" value="<?= old('tanggalSelesaiKantorPenyewaBaru') ?>" />
                                 <div class="invalid-feedback">
                                     <?= validation_show_error('tanggalSelesaiKantorPenyewaBaru'); ?>
                                 </div>

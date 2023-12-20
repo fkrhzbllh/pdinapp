@@ -247,8 +247,9 @@
             }
             reader.readAsDataURL(this.files.item(i));
 
-            fileBloc.append('<span class="file-delete"><span>+</span></span>')
-                .append(fileName).append(image);
+            // fileBloc.append('<span class="file-delete"><span>+</span></span>')
+            //     .append(fileName).append(image);
+            fileBloc.append(image).append(fileName).append('<span class="file-delete"><span>+</span></span>');
             $("#filesList > #files-names").append(fileBloc);
         };
         // Ajout des fichiers dans l'objet DataTransfer
@@ -300,8 +301,9 @@
             // }
             // reader.readAsDataURL(this.files.item(i));
 
-            fileBloc.append('<span class="file-delete"><span>+</span></span>')
-                .append(fileName).append(image);
+            // fileBloc.append('<span class="file-delete"><span>+</span></span>')
+            //     .append(fileName).append(image);
+            fileBloc.append(image).append(fileName).append('<span class="file-delete"><span>+</span></span>');
             $("#filesList > #files-names").append(fileBloc);
 
             // ***Here is the code for converting "image source" (url) to "Base64".***

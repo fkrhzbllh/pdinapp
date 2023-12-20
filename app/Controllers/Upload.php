@@ -10,10 +10,11 @@ class Upload extends BaseController
     {
         $file = $this->request->getFile('file');
 
-        dd($file);
+        // dd($file);
         if ($file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
-            $file->move('uploads', $newName);
+            // $file->move('uploads');
+            $file->move(ROOTPATH . 'public/uploads', $newName);
 
             $response = [
                 'location' => base_url('uploads/' . $newName),
@@ -22,6 +23,27 @@ class Upload extends BaseController
             return $this->response->setStatusCode(200)->setJSON($response);
         } else {
             return $this->response->setStatusCode(400)->setJSON(['error' => 'Invalid file']);
+        }
+    }
+
+    public function deleteImage()
+    {
+        $imageUrl = $this->request->getVar('image_url');
+
+        dd($imageUrl);
+        // Extract the filename from the URL
+        $filename = pathinfo($imageUrl, PATHINFO_BASENAME);
+
+        // Construct the full server path
+        $filePath = ROOTPATH . 'public/uploads/' . $filename;
+
+        // Check if the file exists before attempting to delete
+        if (file_exists($filePath)) {
+            unlink($filePath);
+
+            return $this->response->setStatusCode(200)->setJSON(['message' => 'Image deleted successfully']);
+        } else {
+            return $this->response->setStatusCode(404)->setJSON(['error' => 'Image not found']);
         }
     }
 }

@@ -33,7 +33,7 @@
         <table class="table align-middle table-bordered" id="tableruangan" style="width: 100%;">
             <thead>
                 <tr>
-                    <!-- <td>No</td> -->
+                    <td>No</td>
                     <td>Nama Ruangan</td>
                     <td>Tipe</td>
                     <td>Lantai</td>
@@ -43,15 +43,10 @@
             <tbody>
                 <?php foreach ($ruangan as $key => $a) : ?>
                     <tr>
-                        <!-- <td><?php // echo ($pager_current - 1) * $per_page + ($key + 1)
-                                    ?>
-                    -->
-                        </td>
+                        <td class="number"></td>
                         <td><?= $a['nama'] ?></td>
-                        <td><?= $a['tipe'] ?>
-                        </td>
-                        <td><?= ($a['lantai'] == 0) ? '0 (Floor Ground)' : $a['lantai'] ?>
-                        </td>
+                        <td><?= $a['tipe'] ?></td>
+                        <td><?= ($a['lantai'] == 0) ? '0 (Floor Ground)' : $a['lantai'] ?></td>
                         <td>
                             <a href="/DashboardAdmin/update-ruangan/<?= $a['slug'] ?>" class="btn btn-warning">Edit</a>
                             <!-- <form action="/DashboardAdmin/update-ruangan" method="post" class="d-inline">
@@ -70,9 +65,9 @@
                         <?= csrf_field(); ?>
                         <button class="btn btn-success" type="submit">Sewa</button>
                         </form> -->
-                            <?php if ($a['tipe'] != 'Lainnya') : ?>
+                            <!-- <?php if ($a['tipe'] != 'Lainnya') : ?>
                                 <a href="/DashboardAdmin/sewa-ruangan/<?= $a['slug'] ?>" class="btn btn-success">Sewa</a>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                         </td>
                     </tr>
                 <?php endforeach ?>
@@ -92,13 +87,35 @@
                 null,
                 null,
                 null,
+                null,
                 {
-                    "width": "25%"
+                    "width": "20%"
                 },
+            ],
+            columnDefs: [{
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                },
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 4
+                }
+            ],
+            order: [
+                [1, 'asc']
             ],
             "language": {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
             }
+        });
+
+        $("#tableruangan").on('draw.dt', function() {
+            let n = 0;
+            $(".number").each(function() {
+                $(this).html(++n);
+            })
         });
     });
 </script>

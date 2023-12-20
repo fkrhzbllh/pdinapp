@@ -132,7 +132,7 @@ class RilisMediaAdmin extends BaseController
 
 		// cek validasi
 		if (!$this->validate($rules)) {
-			return redirect()->to('/DashboardAdmin/update-rilis-media')->withInput();
+			return redirect()->to('/DashboardAdmin/update-rilis-media/' . $slugLama)->withInput();
 		}
 
 		// dd($this->request->getFile('poster'));
@@ -142,8 +142,10 @@ class RilisMediaAdmin extends BaseController
 
 		// delete gambar
 		if ($artikelLama['featured_image']) {
-			if (file_exists('uploads/' . $artikelLama['featured_image'])) {
-				unlink('uploads/' . $artikelLama['featured_image']);
+			// if (file_exists('uploads/' . $artikelLama['featured_image'])) 
+			if (file_exists(ROOTPATH . 'public/uploads/' . $artikelLama['featured_image'])) {
+				// unlink('uploads/' . $artikelLama['featured_image']);
+				unlink(ROOTPATH . 'public/uploads/' . $artikelLama['featured_image']);
 			}
 		}
 

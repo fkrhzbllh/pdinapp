@@ -120,18 +120,19 @@
     tinymce.init({
         selector: '#konten',
         plugins: [
-            'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
-            'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
-            'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help',
+            'advlist', 'autolink',
+            'lists', 'link', 'charmap', 'preview', 'anchor', 'searchreplace',
+            'fullscreen', 'insertdatetime', 'table', 'help',
             'wordcount'
         ],
-        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+        toolbar: 'undo redo | casechange blocks | bold italic backcolor | ' +
             'alignleft aligncenter alignright alignjustify | ' +
-            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
+            'bullist numlist checklist outdent indent | removeformat | code table help',
         image_title: true,
         automatic_uploads: true,
-        image_upload_url: '<?= base_url() ?>/upload_image',
+        images_upload_url: '/upload_image',
         file_picker_types: 'image',
+        relative_urls: true,
         file_picker_callback: (cb, value, meta) => {
             const input = document.createElement('input');
             input.setAttribute('type', 'file');
@@ -166,6 +167,46 @@
             });
 
             input.click();
+        },
+        // Add this event handler to remove the image from the server when deleted or canceled
+        images_delete_callback: function(img) {
+            // Send a request to delete the image from the server
+            var imageUrl = img.src;
+            var formData = new FormData();
+            formData.append('image_url', imageUrl);
+
+            console.log(formData);
+
+            fetch('<?= base_url() ?>/delete_image', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        },
+        setup(editor) {
+            editor.on("keydown", function(e) {
+                if ((e.keyCode == 8 || e.keyCode == 46) && tinymce.activeEditor.selection) {
+                    var selectedNode = tinymce.activeEditor.selection.getNode();
+                    if (selectedNode && selectedNode.nodeName == 'IMG') {
+                        var imageSrc = selectedNode.src;
+                        //here you can call your server to delete the image
+
+                        var formData = new FormData();
+                        // formData.append('image_url', imageUrl);
+                        formData.append('image_url', imageSrc);
+
+                        fetch('/delete_image', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => console.log(data))
+                            .catch(error => console.error('Error:', error));
+                    }
+                }
+            });
         }
     });
 </script>
