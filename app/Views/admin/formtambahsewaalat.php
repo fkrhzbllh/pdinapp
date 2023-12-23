@@ -214,14 +214,9 @@
 <script>
     var start = document.getElementById('tanggalMulai');
     var end = document.getElementById('tanggalSelesai');
-    var tanggal = new Date();
-    var dd = String(tanggal.getDate()).padStart(2, '0');
-    var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = tanggal.getFullYear();
 
-    var today = yyyy + '-' + mm + '-' + dd;
-    start.min = today;
-    end.min = today;
+    start.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    end.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start.addEventListener('change', function() {
         if (start.value)
@@ -231,19 +226,12 @@
         if (end.value)
             start.max = end.value;
     }, false);
-</script>
 
-<script>
     var start = document.getElementById('tanggalMulai2');
     var end = document.getElementById('tanggalSelesai2');
-    var tanggal = new Date();
-    var dd = String(tanggal.getDate()).padStart(2, '0');
-    var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = tanggal.getFullYear();
 
-    var today = yyyy + '-' + mm + '-' + dd;
-    start.min = today;
-    end.min = today;
+    start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start.addEventListener('change', function() {
         if (start.value)

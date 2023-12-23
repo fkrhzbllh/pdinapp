@@ -34,7 +34,7 @@
         <table class="table align-middle table-bordered" id="tablealat" style="width:100%">
             <thead>
                 <tr>
-                    <!-- <td>No</td> -->
+                    <td>No</td>
                     <th>Nama Alat</th>
                     <th>Aksi</th>
                 </tr>
@@ -42,6 +42,7 @@
             <tbody>
                 <?php foreach ($alat as $key => $a) : ?>
                     <tr>
+                        <td class="number"></td>
                         <td><?= $a['nama'] ?></td>
                         <td><a href="/DashboardAdmin/update-alat/<?= $a['slug'] ?>" class="btn btn-warning">Edit</a>
                             <form action="/DashboardAdmin/alat/<?php echo $a['id'] ?>" method="post" class="d-inline">
@@ -64,14 +65,37 @@
 <script>
     $(document).ready(function() {
         $('#tablealat').DataTable({
-            "columns": [{
+            "columns": [
+                null,
+                {
                     "width": "80%"
                 },
                 null,
             ],
+            columnDefs: [{
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                },
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 2
+                }
+            ],
+            order: [
+                [1, 'asc']
+            ],
             "language": {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
             }
+        });
+
+        $("#tablealat").on('draw.dt', function() {
+            let n = 0;
+            $(".number").each(function() {
+                $(this).html(++n);
+            })
         });
     });
 </script>

@@ -45,15 +45,12 @@
             <tbody>
                 <?php foreach ($kegiatan as $key => $a) : ?>
                     <tr>
-                        <td><?= ($pager_current - 1) * $per_page + ($key + 1) ?>
-                        </td>
-                        <td><?= $a['nama_kegiatan'] ?>
-                        </td>
+                        <td class="number"></td>
+                        <td><?= $a['nama_kegiatan'] ?></td>
                         <td><?php $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Asia/Jakarta');
                             echo $formatter->format(date_create($a['tgl_mulai'])) ?>
                         </td>
-                        <td><?= $a['tipe_kegiatan'] ?>
-                        </td>
+                        <td><?= $a['tipe_kegiatan'] ?></td>
                         <td><a href="/DashboardAdmin/update-kegiatan/<?= $a['slug'] ?>" class="btn btn-warning">Edit</a>
                             <form action="/DashboardAdmin/kegiatan/<?php echo $a['id'] ?>" method="post" class="d-inline">
                                 <?= csrf_field(); ?>
@@ -75,7 +72,28 @@
         $('#tablekegiatan').DataTable({
             "language": {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
-            }
+            },
+            columnDefs: [{
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                },
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 4
+                }
+            ],
+            order: [
+                [1, 'asc']
+            ],
+        });
+
+        $("#tablekegiatan").on('draw.dt', function() {
+            let n = 0;
+            $(".number").each(function() {
+                $(this).html(++n);
+            })
         });
     });
 </script>

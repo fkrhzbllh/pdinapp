@@ -56,7 +56,7 @@ class RilisMedia extends BaseController
 
 		// tampilan error kalau tidak ada slug artikel yang ada di database
 		if (empty($artikel)) {
-			throw new \CodeIgniter\Exceptions\PageNotFoundException('Ruangan ' . $slug . ' tidak ditemukan.');
+			throw new \CodeIgniter\Exceptions\PageNotFoundException('Artikel ' . $slug . ' tidak ditemukan.');
 		}
 
 		// Artikel yang sedang ditampilkan

@@ -43,6 +43,7 @@ $routes->post('/rilis-media', 'RilisMedia::index');
 
 // upload gambar konten artikel
 $routes->post('/upload_image', 'Upload::uploadImage');
+$routes->post('/delete_image', 'Upload::deleteImage');
 
 // Halaman Login
 $routes->get('/atur-kata-sandi', 'AturKataSandi::index');
@@ -112,6 +113,7 @@ $routes->group('', ['filter' => 'admin'], static function ($routes) {
 	$routes->get('/DashboardAdmin/tambah-rilis-media', 'Admin\RilisMediaAdmin::tambahRilisMedia');
 	$routes->post('/DashboardAdmin/saveTambahRilisMedia', 'Admin\RilisMediaAdmin::saveTambahRilisMedia/$1');
 
+	$routes->get('/DashboardAdmin/update-rilis-media', 'Admin\RilisMediaAdmin::updateRilisMedia/$1');
 	$routes->get('/DashboardAdmin/update-rilis-media/(:any)', 'Admin\RilisMediaAdmin::updateRilisMedia/$1');
 	$routes->post('/DashboardAdmin/saveUpdateRilisMedia/(:num)', 'Admin\RilisMediaAdmin::saveUpdateRilisMedia/$1');
 

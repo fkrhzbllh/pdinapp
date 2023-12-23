@@ -36,7 +36,7 @@
                         </td>
                         <td><?= $a['status'] ?></td>
                         <td><a href="/DashboardAdmin/update-rilis-media/<?= $a['slug'] ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-title="Edit" id="edit">Edit</a>
-                            <form action="/DashboarAdmin/rilismedia/<?php echo $a['id'] ?>" method="post" class="d-inline">
+                            <form action="/DashboardAdmin/rilismedia/<?php echo $a['id'] ?>" method="post" class="d-inline">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin?');" data-bs-toggle="tooltip" data-bs-title="Hapus">Hapus</button>

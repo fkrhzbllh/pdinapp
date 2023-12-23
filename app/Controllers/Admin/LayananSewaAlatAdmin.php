@@ -112,6 +112,18 @@ class LayananSewaAlatAdmin extends BaseController
 						];
 					} else {
 						$alatData['nama'] = '';
+						$eventData = [
+							'end' => date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s'),
+							'title' => $value['nama_kegiatan'],
+							'start' => $value['tgl_mulai_sewa'],
+							'selesai' => date_create($value['tgl_akhir_sewa'])->format('Y-m-d H:i:s'),
+							'nama' => $penyewa['nama'],
+							'kontak' => $penyewa['kontak'],
+							'email' => $penyewa['email'],
+							'nama_instansi' => $penyewa['nama_instansi'],
+							'deskripsi' => $value['deskripsi'],
+							'nama_alat' => 'Alat telah dihapus sistem',
+						];
 					}
 
 					$eventsArray[] = $eventData;
