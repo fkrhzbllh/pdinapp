@@ -102,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Sewa Alat</button>
+                <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submit">Sewa Alat</button>
             </form>
         </div>
 
@@ -200,7 +200,7 @@
                         </div>
                     </div>
 
-                    <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submitPenyewaBaru">Sewa Alat</button>
+                    <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submitPenyewaBaru">Sewa Alat</button>
 
                 </div>
             </form>
