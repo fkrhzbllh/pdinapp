@@ -44,7 +44,7 @@
 
                     <input type="hidden" name="uuid" value="<?= old('uuid') ? old('uuid') : $pelatihan['uuid'] ?>" id="uuid">
                     <input type="hidden" name="id_pelatihan" value="<?= old('id_pelatihan') ? old('id_pelatihan') : $pelatihan['id'] ?>" id="id_pelatihan">
-                    <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Tambah Peserta</button>
+                    <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submit">Tambah Peserta</button>
 
                 </div>
             </form>
@@ -80,7 +80,7 @@
 
                     <input type="hidden" name="uuid" value="<?= old('uuid') ? old('uuid') : $pelatihan['uuid'] ?>" id="uuid">
                     <input type="hidden" name="id_pelatihan" value="<?= old('id_pelatihan') ? old('id_pelatihan') : $pelatihan['id'] ?>" id="id_pelatihan">
-                    <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Tambah Peserta</button>
+                    <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submit">Tambah Peserta</button>
 
                 </div>
             </form>

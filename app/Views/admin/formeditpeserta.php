@@ -36,7 +36,7 @@
             <input type="hidden" name="id" value="<?= old('id') ? old('id') : $peserta['id'] ?>" id="id">
             <input type="hidden" name="uuidPeserta" value="<?= old('uuidPeserta') ? old('uuidPeserta') : $uuidPeserta ?>" id="uuidPeserta">
             <input type="hidden" name="uuidPelatihan" value="<?= old('uuidPelatihan') ? old('uuidPelatihan') : $uuidPelatihan ?>" id="uuidPelatihan">
-            <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Ubah Peserta</button>
+            <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submit">Ubah Peserta</button>
 
         </div>
     </form>

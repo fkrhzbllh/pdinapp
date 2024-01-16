@@ -161,7 +161,7 @@
                     </div>
 
                     <input id="tipe" class="form-control" type="hidden" name="tipe" value="<?= old('tipe') ?>" />
-                    <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submit">Sewa Ruangan</button>
+                    <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submit">Sewa Ruangan</button>
 
                 </div>
             </form>
@@ -324,7 +324,7 @@
                     </div>
 
                     <input id="tipePenyewaBaru" class="form-control" type="hidden" name="tipePenyewaBaru" value="<?= old('tipePenyewaBaru') ?>" />
-                    <button class="w-100 btn btn-primary btn-lg mt-5 mb-5" type="submit" id="submitPenyewaBaru">Sewa Ruangan</button>
+                    <button class="w-100 btn btn-danger mt-5 mb-5" type="submit" id="submitPenyewaBaru">Sewa Ruangan</button>
 
                 </div>
             </form>
