@@ -37,43 +37,10 @@
                 <label for="tipe" class="form-label">Tipe Ruangan</label>
                 <select class="form-select <?= (validation_show_error('tipe')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="tipe" name="tipe">
                     <option selected disabled>Pilih Tipe</option>
-                    <?php if (old('tipe') == 'Pameran') : ?>
-                        <option selected value="Pameran">Pameran</option>
-                        <option value="Kantor">Kantor</option>
-                        <option value="Meeting">Ruang Pertemuan</option>
-                        <option value="Pengembangan">Ruang Pengembangan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    <?php elseif (old('tipe') == 'Kantor') : ?>
-                        <option value="Pameran">Pameran</option>
-                        <option selected value="Kantor">Kantor</option>
-                        <option value="Meeting">Ruang Pertemuan</option>
-                        <option value="Pengembangan">Ruang Pengembangan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    <?php elseif (old('tipe') == 'Meeting') : ?>
-                        <option value="Pameran">Pameran</option>
-                        <option value="Kantor">Kantor</option>
-                        <option selected value="Meeting">Ruang Pertemuan</option>
-                        <option value="Pengembangan">Ruang Pengembangan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    <?php elseif (old('tipe') == 'Pengembangan') : ?>
-                        <option value="Pameran">Pameran</option>
-                        <option value="Kantor">Kantor</option>
-                        <option value="Meeting">Ruang Pertemuan</option>
-                        <option selected value="Pengembangan">Ruang Pengembangan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    <?php elseif (old('tipe') == 'Lainnya') : ?>
-                        <option value="Pameran">Pameran</option>
-                        <option value="Kantor">Kantor</option>
-                        <option value="Meeting">Ruang Pertemuan</option>
-                        <option value="Pengembangan">Ruang Pengembangan</option>
-                        <option selected value="Lainnya">Lainnya</option>
-                    <?php else : ?>
-                        <option value="Pameran">Pameran</option>
-                        <option value="Kantor">Kantor</option>
-                        <option value="Meeting">Ruang Pertemuan</option>
-                        <option value="Pengembangan">Ruang Pengembangan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    <?php endif; ?>
+                    <?php $types = ['Pameran', 'Kantor', 'Meeting', 'Pengembangan', 'Lainnya']; ?>
+                    <?php foreach ($types as $type) : ?>
+                        <option <?= (old('tipe') == $type) ? 'selected' : ''; ?> value="<?= $type ?>"><?= $type ?></option>
+                    <?php endforeach; ?>
                 </select>
                 <div class="invalid-feedback">
                     <?= validation_show_error('tipe'); ?>
@@ -84,43 +51,11 @@
                 <label for="lantai" class="form-label">Lantai</label>
                 <select class="form-select <?= (validation_show_error('lantai')) ? 'is-invalid' : ''; ?>" aria-label="Default select" id="lantai" name="lantai">
                     <option selected disabled>Pilih Lantai</option>
-                    <?php if (old('lantai') == '0') : ?>
-                        <option selected value="0">Ground Floor</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    <?php elseif (old('lantai') == '1') : ?>
-                        <option value="0">Ground Floor</option>
-                        <option selected value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    <?php elseif (old('lantai') == '2') : ?>
-                        <option value="0">Ground Floor</option>
-                        <option value="1">1</option>
-                        <option selected value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    <?php elseif (old('lantai') == '3') : ?>
-                        <option value="0">Ground Floor</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option selected value="3">3</option>
-                        <option value="4">4</option>
-                    <?php elseif (old('lantai') == '4') : ?>
-                        <option value="0">Ground Floor</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option selected value="4">4</option>
-                    <?php else : ?>
-                        <option value="0">Ground Floor</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    <?php endif; ?>
+                    <?php for ($i = 0; $i <= 4; $i++) : ?>
+                        <option <?= (old('lantai') == $i) ? 'selected' : ''; ?> value="<?= $i ?>">
+                            <?= ($i == 0) ? 'Ground Floor' : $i; ?>
+                        </option>
+                    <?php endfor; ?>
                 </select>
                 <div class="invalid-feedback">
                     <?= validation_show_error('lantai'); ?>

@@ -68,12 +68,16 @@
             <label for="grup" class="form-label">Grup</label>
             <div class="input-group">
                 <select name="group" class="form-select ms-auto" aria-label="Default select example">
-                    <option selected value="user">User</option>
+                    <!-- <option selected value="user">User</option>
                     <option value="admin">Admin</option>
                     <option value="pemerintah">Pemerintah</option>
                     <option value="perusahaan">Perusahaan</option>
                     <option value="pelajar">Pelajar</option>
-                    <option value="mitra">Mitra</option>
+                    <option value="mitra">Mitra</option> -->
+                    <?php $types = ['user', 'admin', 'pemerintah', 'perusahaan', 'pelajar', 'mitra']; ?>
+                    <?php foreach ($types as $type) : ?>
+                        <option <?= (old('group') ?: $user['group']) == $type ? 'selected' : ''; ?> value="<?= $type; ?>"><?= $type; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>

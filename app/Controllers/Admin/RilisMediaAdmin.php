@@ -142,10 +142,10 @@ class RilisMediaAdmin extends BaseController
 
 		// delete gambar
 		if ($artikelLama['featured_image']) {
-			// if (file_exists('uploads/' . $artikelLama['featured_image'])) 
-			if (file_exists(ROOTPATH . 'public/uploads/' . $artikelLama['featured_image'])) {
-				// unlink('uploads/' . $artikelLama['featured_image']);
-				unlink(ROOTPATH . 'public/uploads/' . $artikelLama['featured_image']);
+			if (file_exists('uploads/' . $artikelLama['featured_image'])) {
+				// if (file_exists(ROOTPATH . 'public/uploads/' . $artikelLama['featured_image'])) {
+				unlink('uploads/' . $artikelLama['featured_image']);
+				// unlink(ROOTPATH . 'public/uploads/' . $artikelLama['featured_image']);
 			}
 		}
 
