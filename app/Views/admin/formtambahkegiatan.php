@@ -151,8 +151,8 @@
     var start = document.getElementById('tgl_mulai');
     var end = document.getElementById('tgl_selesai');
 
-    start.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start.addEventListener('change', function() {
         if (start.value)

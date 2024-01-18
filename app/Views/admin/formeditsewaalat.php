@@ -134,6 +134,7 @@
 
     // var today = yyyy + '-' + mm + '-' + dd;
     // start.min = today;
+    end.min = start.value;
 
     start.addEventListener('change', function() {
         if (start.value)

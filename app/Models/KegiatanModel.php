@@ -63,10 +63,12 @@ class KegiatanModel extends \App\Models\BaseModel
 			$tgl_selesai_unix = strtotime($a['tgl_selesai']);
 			$now_unix = strtotime(date('Y-m-d H:i:s'));
 
-			$diff_seconds = abs($tgl_mulai_unix - $now_unix);
+			$diff_seconds = abs($now_unix - $tgl_mulai_unix);
 			$diff_seconds_past = abs($tgl_selesai_unix - $now_unix);
 
-			if ($now_unix > $tgl_selesai_unix) {
+			if (date('Y-m-d H:i:s') >= $a['tgl_mulai'] && date('Y-m-d H:i:s') <= $a['tgl_selesai']) {
+				$a['hari_tersisa'] = 'Sedang Berlangsung';
+			} else if ($now_unix > $tgl_selesai_unix) {
 				// Event has already ended
 				$remaining_days = floor($diff_seconds_past / (60 * 60 * 24));
 				$a['hari_tersisa'] = $remaining_days . ' hari yang lalu';

@@ -29,13 +29,6 @@
             </div>
             <div class="col-md-3">
                 <div class="mb-3">
-                    <label class="control-label mb-2">Meta Description</label>
-                    <textarea class="form-control overlayscollbar <?= (validation_show_error('meta_description')) ? 'is-invalid' : ''; ?>" rows="5" type="text" name="meta_description" id="meta_description"><?= old('meta_description') ?></textarea>
-                    <div class="invalid-feedback">
-                        <?= validation_show_error('meta_description'); ?>
-                    </div>
-                </div>
-                <div class="mb-3">
                     <label class="control-label mb-2">Excerp</label>
                     <textarea class="form-control overlayscollbar <?= (validation_show_error('excerp')) ? 'is-invalid' : ''; ?>" rows="5" type="text" name="excerp" id="excerp"><?= old('excerp') ?></textarea>
                     <div class="invalid-feedback">

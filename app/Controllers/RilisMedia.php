@@ -35,7 +35,7 @@ class RilisMedia extends BaseController
 			$artikel = $this->artikelModel;
 		}
 
-		$this->data['artikel'] = $this->artikelModel->formatTanggal($artikel->paginate(3, 'artikel'));
+		$this->data['artikel'] = $this->artikelModel->formatTanggal($artikel->where(['status' => 'published'])->where('tgl_terbit <= ', date('Y-m-d H:i:s'))->paginate(3, 'artikel'));
 		$this->data['pager'] = $this->artikelModel->pager;
 
 		// Section artikel terbaru, ambil 3 artikel terbaru untuk Sorotan

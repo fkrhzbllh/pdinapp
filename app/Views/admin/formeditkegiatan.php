@@ -211,4 +211,23 @@
             console.log("Here is Data Transfer", document.querySelector('#poster').files)
         })
 </script>
+
+
+<script>
+    var start = document.getElementById('tgl_mulai');
+    var end = document.getElementById('tgl_selesai');
+
+    // start.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    end.min = start.value;
+
+    start.addEventListener('change', function() {
+        if (start.value)
+            end.min = start.value;
+    }, false);
+    end.addEventListener('change', function() {
+        if (end.value)
+            start.max = end.value;
+    }, false);
+</script>
 <?= $this->endSection() ?>

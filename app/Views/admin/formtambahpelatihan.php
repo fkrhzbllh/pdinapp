@@ -90,8 +90,8 @@
     var yyyy = tanggal.getFullYear();
 
     var today = yyyy + '-' + mm + '-' + dd;
-    start.min = today;
-    end.min = today;
+    // start.min = today;
+    // end.min = today;
 
     start.addEventListener('change', function() {
         if (start.value)

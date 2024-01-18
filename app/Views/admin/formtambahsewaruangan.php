@@ -407,8 +407,8 @@
     var yyyy = tanggal.getFullYear();
 
     var today = yyyy + '-' + mm + '-' + dd;
-    start.min = today;
-    end.min = today;
+    // start.min = today;
+    // end.min = today;
 
     start.addEventListener('change', function() {
         if (start.value)
@@ -422,8 +422,8 @@
     var start2 = document.getElementById('tanggalMulai2');
     var end2 = document.getElementById('tanggalSelesai2');
 
-    start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start2.addEventListener('change', function() {
         if (start2.value)
@@ -437,8 +437,8 @@
     var start3 = document.getElementById('tanggalMulai3');
     var end3 = document.getElementById('tanggalSelesai3');
 
-    start3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start3.addEventListener('change', function() {
         if (start3.value)
@@ -452,12 +452,13 @@
     var start4 = document.getElementById('tanggalMulai4');
     var end4 = document.getElementById('tanggalSelesai4');
 
-    start4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start4.addEventListener('change', function() {
-        if (start4.value)
+        if (start4.value) {
             end4.min = start4.value;
+        }
     }, false);
     end4.addEventListener('change', function() {
         if (end4.value)
@@ -466,69 +467,69 @@
 </script>
 
 <script>
-    var start = document.getElementById('tanggalMulai11');
-    var end = document.getElementById('tanggalSelesai11');
+    var start11 = document.getElementById('tanggalMulai11');
+    var end11 = document.getElementById('tanggalSelesai11');
     var tanggal = new Date();
     var dd = String(tanggal.getDate()).padStart(2, '0');
     var mm = String(tanggal.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = tanggal.getFullYear();
 
     var today = yyyy + '-' + mm + '-' + dd;
-    start.min = today;
-    end.min = today;
+    // start.min = today;
+    // end.min = today;
 
-    start.addEventListener('change', function() {
-        if (start.value)
-            end.min = start.value;
+    start11.addEventListener('change', function() {
+        if (start11.value)
+            end11.min = start11.value;
     }, false);
-    end.addEventListener('change', function() {
-        if (end.value)
-            start.max = end.value;
-    }, false);
-
-    var start2 = document.getElementById('tanggalMulai22');
-    var end2 = document.getElementById('tanggalSelesai22');
-
-    start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-
-    start2.addEventListener('change', function() {
-        if (start2.value)
-            end2.min = start2.value;
-    }, false);
-    end2.addEventListener('change', function() {
-        if (end2.value)
-            start2.max = end2.value;
+    end11.addEventListener('change', function() {
+        if (end11.value)
+            start11.max = end11.value;
     }, false);
 
-    var start3 = document.getElementById('tanggalMulai33');
-    var end3 = document.getElementById('tanggalSelesai33');
+    var start22 = document.getElementById('tanggalMulai22');
+    var end22 = document.getElementById('tanggalSelesai22');
 
-    start3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end3.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start22.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end22.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
-    start3.addEventListener('change', function() {
-        if (start3.value)
-            end3.min = start3.value;
+    start22.addEventListener('change', function() {
+        if (start22.value)
+            end22.min = start22.value;
     }, false);
-    end3.addEventListener('change', function() {
-        if (end3.value)
-            start3.max = end3.value;
+    end22.addEventListener('change', function() {
+        if (end22.value)
+            start22.max = end22.value;
     }, false);
 
-    var start4 = document.getElementById('tanggalMulai44');
-    var end4 = document.getElementById('tanggalSelesai44');
+    var start33 = document.getElementById('tanggalMulai33');
+    var end33 = document.getElementById('tanggalSelesai33');
 
-    start4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end4.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start33.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end33.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
-    start4.addEventListener('change', function() {
-        if (start4.value)
-            end4.min = start4.value;
+    start33.addEventListener('change', function() {
+        if (start33.value)
+            end33.min = start33.value;
     }, false);
-    end4.addEventListener('change', function() {
-        if (end4.value)
-            start4.max = end4.value;
+    end33.addEventListener('change', function() {
+        if (end33.value)
+            start33.max = end33.value;
+    }, false);
+
+    var start44 = document.getElementById('tanggalMulai44');
+    var end44 = document.getElementById('tanggalSelesai44');
+
+    // start44.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end44.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+
+    start44.addEventListener('change', function() {
+        if (start44.value)
+            end44.min = start44.value;
+    }, false);
+    end44.addEventListener('change', function() {
+        if (end44.value)
+            start44.max = end44.value;
     }, false);
 </script>
 

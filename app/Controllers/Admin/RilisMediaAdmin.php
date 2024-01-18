@@ -217,6 +217,12 @@ class RilisMediaAdmin extends BaseController
 					'required' => 'konten harus diisi',
 				]
 			],
+			'excerp' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'excerp harus diisi',
+				]
+			],
 			'status' => [
 				'rules' => 'required',
 				'errors' => [

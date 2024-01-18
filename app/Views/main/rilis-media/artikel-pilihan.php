@@ -21,7 +21,7 @@
 
                     <!-- Judul kegiatan -->
                     <p class="card-title">
-                        <a class="link-dark text-decoration-none crop-text-2" href="#" target="_blank">
+                        <a class="link-dark text-decoration-none crop-text-2" href="/rilis-media/<?php echo $a['slug'] ?>">
                             <b>
                                 <?php echo $a['judul']; ?>
                             </b>

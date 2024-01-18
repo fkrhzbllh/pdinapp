@@ -239,6 +239,12 @@ class KegiatanAdmin extends BaseController
 					'required' => 'tanggal mulai harus diisi'
 				]
 			],
+			'tgl_selesai' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'tanggal selesai harus diisi'
+				]
+			],
 			'poster' => [
 				'rules' => 'uploaded[poster]|max_size[poster,2048]|is_image[poster]|mime_in[poster,image/jpg,image/jpeg,image/png]',
 				'errors' => [

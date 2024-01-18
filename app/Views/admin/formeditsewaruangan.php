@@ -214,6 +214,7 @@
 
     // var today = yyyy + '-' + mm + '-' + dd;
     // start.min = today;
+    end.min = start.value;
 
     start.addEventListener('change', function() {
         if (start.value)
@@ -233,6 +234,7 @@
 
     // var today = dd + '-' + mm + '-' + yyyy;
     // start2.min = new Date(today);
+    end2.min = start2.value;
 
     start2.addEventListener('change', function() {
         if (start2.value)
@@ -252,6 +254,7 @@
 
     // var today = dd + '-' + mm + '-' + yyyy;
     // start3.min = new Date(today);
+    end3.min = start3.value;
 
     start3.addEventListener('change', function() {
         if (start3.value)
@@ -271,6 +274,7 @@
 
     // var today = dd + '-' + mm + '-' + yyyy;
     // start4.min = new Date(today);
+    end4.min = start4.value;
 
     start4.addEventListener('change', function() {
         if (start4.value)

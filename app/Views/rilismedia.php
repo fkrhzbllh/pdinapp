@@ -44,7 +44,7 @@
 
                           <!-- Ringkasan -->
                           <p class="card-text crop-text-2 mb-3">
-                            <?= word_limiter($a['meta_description'], 10); ?>
+                            <?= word_limiter($a['excerp'], 10); ?>
                           </p>
 
                           <!-- Tanggal -->
@@ -106,7 +106,7 @@
                     <!-- Body artikel -->
                     <div class="card-body">
                       <h4 class="card-title">
-                        <a class="link-dark text-decoration-none crop-text-2" href="/rilis-media/<?php echo $a['slug'] ?>" target="_blank"><?php echo $a['judul']; ?></a>
+                        <a class="link-dark text-decoration-none crop-text-2" href="/rilis-media/<?php echo $a['slug'] ?>"><?php echo $a['judul']; ?></a>
                       </h4>
 
                       <div class="card-text crop-text-2 mb-3">

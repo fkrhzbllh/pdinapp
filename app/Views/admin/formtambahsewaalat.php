@@ -215,8 +215,8 @@
     var start = document.getElementById('tanggalMulai');
     var end = document.getElementById('tanggalSelesai');
 
-    start.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start.addEventListener('change', function() {
         if (start.value)
@@ -227,11 +227,11 @@
             start.max = end.value;
     }, false);
 
-    var start = document.getElementById('tanggalMulai2');
-    var end = document.getElementById('tanggalSelesai2');
+    var start2 = document.getElementById('tanggalMulai2');
+    var end2 = document.getElementById('tanggalSelesai2');
 
-    start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
-    end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // start2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
+    // end2.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));;
 
     start.addEventListener('change', function() {
         if (start.value)

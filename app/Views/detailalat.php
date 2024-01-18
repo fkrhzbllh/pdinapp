@@ -163,7 +163,7 @@
                       placeholder=""
                       aria-label=""
                       aria-describedby="copy-link"
-                      value="https://www.pdin.id/rilismedia/grand+launching+pusat+design+industri+nasional"
+                      value="https://www.pdin.id/rilis-media/grand+launching+pusat+design+industri+nasional"
                       id="myInput"
                     />
                     <div class="input-group-append">

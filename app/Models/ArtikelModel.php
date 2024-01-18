@@ -9,7 +9,7 @@ class ArtikelModel extends \App\Models\BaseModel
 	protected $useTimestamps = true;
 
 	// protected $tableSewaRuangan = 'sewa_ruangan';
-	protected $allowedFields = ['judul', 'slug', 'konten', 'excerp', 'meta_description', 'status', 'tgl_terbit', 'id_admin_create', 'id_admin_update', 'featured_image', 'kategori'];
+	protected $allowedFields = ['judul', 'slug', 'konten', 'excerp', 'status', 'tgl_terbit', 'id_admin_create', 'id_admin_update', 'featured_image', 'kategori'];
 
 	public function __construct()
 	{
@@ -22,12 +22,14 @@ class ArtikelModel extends \App\Models\BaseModel
 		if (!$slug) {
 			// Ambil semua artikel dan urutkan dari yang terbaru
 			return $this->formatTanggal(
-				$this->orderBy('tgl_terbit', 'DESC')->findAll()
+				// $this->where(['status' => 'published'])->where('tgl_terbit <= ', date('Y-m-d H:i:s'))->orderBy('tgl_terbit', 'DESC')->findAll()
+				$this->db->table('artikel')->where(['status' => 'published'])->where('tgl_terbit <= ', date('Y-m-d H:i:s'))->orderBy('tgl_terbit', 'DESC')->get()->getResultArray()
 			);
 		}
 
 		return $this->formatTanggalSingle(
-			$this->where(['slug' => $slug])->first()
+			// $this->where(['slug' => $slug])->first()
+			$this->db->table('artikel')->where('tgl_terbit <= ', date('Y-m-d H:i:s'))->where(['slug' => $slug])->get()->getFirstRow()
 		);
 	}
 
@@ -46,8 +48,10 @@ class ArtikelModel extends \App\Models\BaseModel
 	 */
 	public function getArtikelTerbaru($jumlah)
 	{
-		$data = $this->orderBy('tgl_terbit', 'DESC') // Urutkan dari tanggal terbaru
-			->findAll($jumlah);
+		// $data = $this->where(['status' => 'published'])->orderBy('tgl_terbit', 'DESC') // Urutkan dari tanggal terbaru
+		// 	->findAll($jumlah);
+		$data = $this->db->table('artikel')->where('tgl_terbit <= ', date('Y-m-d H:i:s'))->where(['status' => 'published'])->orderBy('tgl_terbit', 'DESC') // Urutkan dari tanggal terbaru
+			->get($jumlah)->getResultArray();
 
 		return $this->formatTanggal($data);
 	}
@@ -62,9 +66,12 @@ class ArtikelModel extends \App\Models\BaseModel
 		// Y bulan terakhir dalam bentuk Date agar bisa dicompare di query
 		$lastYMonths = date('Y-m-d', strtotime("-$bulan months"));
 
-		$data = $this->where("tgl_terbit >= '$lastYMonths'") // Jika tanggal terbit lebih besar dari Y bulan terakhir
+		// $data = $this->where("tgl_terbit >= '$lastYMonths'")->where(['status' => 'published']) // Jika tanggal terbit lebih besar dari Y bulan terakhir
+		// 	->orderBy('RAND()') // Urutkan secara random
+		// 	->findAll($jumlah); // Ambil sejumlah $jumlah data
+		$data = $this->db->table('artikel')->where("tgl_terbit >= '$lastYMonths'")->where('tgl_terbit <= ', date('Y-m-d H:i:s'))->where(['status' => 'published']) // Jika tanggal terbit lebih besar dari Y bulan terakhir
 			->orderBy('RAND()') // Urutkan secara random
-			->findAll($jumlah); // Ambil sejumlah $jumlah data
+			->get($jumlah)->getResultArray(); // Ambil sejumlah $jumlah data
 
 		return $this->formatTanggal($data);
 	}

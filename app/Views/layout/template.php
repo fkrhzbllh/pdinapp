@@ -44,6 +44,9 @@
     <!-- Script -->
     <?= $this->renderSection('style'); ?>
 
+    <!-- meta -->
+    <?= $this->renderSection('meta'); ?>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">

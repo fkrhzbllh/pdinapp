@@ -8,6 +8,10 @@
 ?>
 <?= $this->extend('layout/template') ?>
 
+<?= $this->section('meta') ?>
+<meta name="description" content="<?= $artikel['excerp'] ?>">
+<?= $this->endSection() ?>
+
 <?= $this->section('style') ?>
 <!-- Pindah ke style -->
 <style>
@@ -65,7 +69,7 @@
 
 					<!-- Input link siap copy -->
 					<div class="input-group mb-3">
-						<input type="text" class="form-control bg-light text-secondary" placeholder="" aria-label="" aria-describedby="copy-link" value="<?= base_url() . 'rilismedia/' . $artikel['slug'] ?>" id="myInput" />
+						<input type="text" class="form-control bg-light text-secondary" placeholder="" aria-label="" aria-describedby="copy-link" value="<?= base_url() . 'rilis-media/' . $artikel['slug'] ?>" id="myInput" />
 						<div class="input-group-append">
 							<div class="tooltip"></div>
 							<button class="btn btn-danger btn-lg rounded-start-0" type="button" onclick="myFunction()" onmouseout="outFunc()">
@@ -76,10 +80,14 @@
 
 					<!-- Tombol share sosmed -->
 					<div class="d-flex flex-grow-1 justify-content-center justify-content-xl-between flex-wrap">
-						<a class="btn btn-facebook-1 m-2 m-xl-0 mb-lg-2" href="#" target=""><small><span class="bi bi-facebook me-2"></span>Facebook</small></a>
-						<a class="btn btn-twitter-1 m-2 m-xl-0 mb-lg-2" href="#" target=""><small><span class="bi bi-twitter me-2"></span>Twitter</small></a>
-
-						<a class="btn btn-linkedin-1 m-2 m-xl-0 mb-lg-2" href="#" target=""><small><span class="bi bi-linkedin me-2"></span>LinkedIn</small></a>
+						<div class="fb-share-button" data-href="<?= 'https://' . base_url() . 'rilis-media/' . $artikel['slug'] ?>" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= 'https://pdin.id/' . 'rilis-media/' . $artikel['slug'] ?>" class="fb-xfbml-parse-ignore btn btn-facebook-1 m-2 m-xl-0 mb-lg-2"><span class="bi bi-facebook me-2"></span>Share</a></div>
+						<a class="twitter-share-button btn btn-twitter-1 m-2 m-xl-0 mb-lg-2" href="https://twitter.com/intent/tweet?url=<?= 'https://pdin.id/' . 'rilis-media/' . $artikel['slug'] ?>&via=pdin_id" data-size="large" data-url="<?= base_url() . 'rilis-media/' . $artikel['slug'] ?>" target="_blank">
+							<span class="bi bi-twitter me-2"></span>Tweet
+						</a>
+						<a class="btn btn-linkedin-1 m-2 m-xl-0 mb-lg-2" href="https://www.linkedin.com/sharing/share-offsite/?url=<?= 'https://' . urlencode('pdin.id/' . 'rilis-media/' . $artikel['slug']) ?>" target="_blank"><small><span class="bi bi-linkedin me-2"></span>LinkedIn</small></a>
+						<!-- <a class="btn btn-facebook-1 m-2 m-xl-0 mb-lg-2" href="#" target=""><small><span class="bi bi-facebook me-2"></span>Facebook</small></a> -->
+						<!-- <a class="btn btn-twitter-1 m-2 m-xl-0 mb-lg-2" href="#" target=""><small><span class="bi bi-twitter me-2"></span>Twitter</small></a> -->
+						<!-- <a class="btn btn-linkedin-1 m-2 m-xl-0 mb-lg-2" href="#" target=""><small><span class="bi bi-linkedin me-2"></span>LinkedIn</small></a> -->
 					</div>
 
 					<!-- Artikel pilihan -->
@@ -104,7 +112,7 @@
 
 										<!-- Judul kegiatan -->
 										<p class="card-title">
-											<a class="link-dark text-decoration-none crop-text-2" href="#" target="_blank">
+											<a class="link-dark text-decoration-none crop-text-2" href="<?= base_url() . 'rilis-media/' . $a['slug'] ?>">
 												<b>
 													<?php echo $a['judul']; ?>
 												</b>
@@ -144,4 +152,15 @@
 		navigator.clipboard.writeText(copyText.value);
 	}
 </script>
+
+<!-- share facebook -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0" nonce="APU2E6xs"></script>
+
+<!-- share linkedin -->
+<script src="https://platform.linkedin.com/in.js" type="text/javascript">
+	lang: en_US
+</script>
+<script type="IN/Share" data-url="https://www.linkedin.com"></script>
+
 <?= $this->endSection() ?>
